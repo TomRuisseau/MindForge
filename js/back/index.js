@@ -24,10 +24,10 @@ const pool = mysql.createPool({
 pool.getConnection(function(err, connection) {
   var sql = "CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))";
 
-  connection.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Table created");
-  });
+  // connection.query(sql, function (err, result) {
+  //   if (err) throw err;
+  //   console.log("Table created");
+  // });
 
   //connection.query("SELECT * FROM Sorts", function (err, result, fields) {
     //if (err) throw err;
