@@ -2,10 +2,10 @@
   "name": "propro",
   "version": "1.0.0",
   "description": "Protoype de site web de gamification de l'apprentissage",
-  "main": "js/back/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm install && node ./js/back/index.js"
+    "start": "npm install && node ./index.js"
   },
   "author": "",
   "license": "ISC",
