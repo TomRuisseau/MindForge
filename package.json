@@ -2,7 +2,7 @@
   "name": "propro",
   "version": "1.0.0",
   "description": "Protoype de site web de gamification de l'apprentissage",
-  "main": "index.js",
+  "main": "js/back/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
