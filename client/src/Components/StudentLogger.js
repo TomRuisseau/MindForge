@@ -1,8 +1,8 @@
 function StudentLogger() {
     return (
-        <div>
-            <h1>Student Logger</h1>
-        </div>
+        <>
+            <h1>Student logger</h1>
+        </>
     )
 }
 
