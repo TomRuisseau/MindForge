@@ -7,6 +7,7 @@ function Login(props) {
     const handleSubmit = (e) => {
         e.preventDefault(); // prevent page reload
         console.log(email, password)
+        props.sendValidation("TeacherDashboard");
     }
 
     return (

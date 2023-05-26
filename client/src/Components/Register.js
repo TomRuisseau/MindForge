@@ -8,6 +8,7 @@ function Register(props) {
     const handleSubmit = (e) => {
         e.preventDefault(); // prevent page reload
         console.log(email, password, passwordConfirm)
+        props.sendValidation("TeacherDashboard");
     }
 
     return (

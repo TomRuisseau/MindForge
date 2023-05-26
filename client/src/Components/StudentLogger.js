@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
-function StudentLogger() {
+function StudentLogger(props) {
     const [code, setCode] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault(); // prevent page reload
         console.log(code);
+        props.onValidation("StudentDashboard");
     }
 
     return (
