@@ -1,12 +1,11 @@
 import React from 'react';
-import { useState } from 'react';
-import TempDrawer from './TempDrawer';
+import StudentDrawer from './StudentDrawer';
 
 function StudentDashboard() {
     return (
         <div>
-            <TempDrawer />
-            <h1>Student Dashboard</h1>
+            <StudentDrawer />
+            <h1 className="text-center">Student Dashboard</h1>
         </div>
     )
 }
