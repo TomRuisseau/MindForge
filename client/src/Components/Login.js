@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from 'axios';
+
 
 function Login(props) {
     const [email, setEmail] = useState('');
@@ -7,7 +9,15 @@ function Login(props) {
     const handleSubmit = (e) => {
         e.preventDefault(); // prevent page reload
         console.log(email, password)
-        props.sendValidation("TeacherDashboard");
+        axios.post('http://localhost:5000/login/teacher', { email: email, password: password })
+
+            .then(res => {
+                console.log(res.data);
+                props.sendValidation("TeacherDashboard");
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     return (

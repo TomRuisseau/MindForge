@@ -17,6 +17,23 @@ app.post("/api", (req, res) => {
   res.send("Hello from server!");
 });
 
+app.post("/login/student", (req, res) => {
+  console.log(req.body.code);
+  res.send("student code received!");
+});
+
+app.post("/login/teacher", (req, res) => {
+  console.log(req.body.email);
+  console.log(req.body.password);
+  res.send("login logs received!");
+});
+
+app.post("/register/teacher", (req, res) => {
+  console.log(req.body.email);
+  console.log(req.body.password);
+  res.send("register logs received!");
+});
+
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

@@ -1,14 +1,31 @@
 import React, { useState } from "react";
+import axios from 'axios';
+    
 
 function Register(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState(''); // TODO: add password confirmation
 
+
     const handleSubmit = (e) => {
         e.preventDefault(); // prevent page reload
-        console.log(email, password, passwordConfirm)
-        props.sendValidation("TeacherDashboard");
+        console.log(email, password, passwordConfirm);
+        if (password === passwordConfirm) {
+
+            axios.post('http://localhost:5000/register/teacher', { email: email, password: password })
+
+                .then(res => {
+                    console.log(res.data);
+                    props.sendValidation("TeacherDashboard");
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
+        else {
+            alert("Passwords do not match");
+        }
     }
 
     return (

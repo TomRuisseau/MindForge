@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from 'axios';
+
 
 function StudentLogger(props) {
     const [code, setCode] = useState('');
@@ -6,7 +8,17 @@ function StudentLogger(props) {
     const handleSubmit = (e) => {
         e.preventDefault(); // prevent page reload
         console.log(code);
-        props.onValidation("StudentDashboard");
+
+        axios.post('http://localhost:5000/login/student', { code: code })
+
+            .then(res => {
+                console.log(res.data);
+                props.onValidation("StudentDashboard");
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
     }
 
     return (

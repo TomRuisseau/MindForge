@@ -22,6 +22,7 @@ function App() {
         console.log(err);
       })
   }
+  
   return (
     <>
       <button onClick={() => onTest()}>Test server</button>
