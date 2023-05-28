@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
-    
+
 
 function Register(props) {
     const [email, setEmail] = useState('');
@@ -17,6 +17,10 @@ function Register(props) {
 
                 .then(res => {
                     console.log(res.data);
+                    if (res.data === 1) {
+                        alert("Email already used");
+                        return;
+                    }
                     props.sendValidation("TeacherDashboard");
                 })
                 .catch(err => {
