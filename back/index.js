@@ -23,36 +23,31 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
+//login for student
 app.post("/login/student", (req, res) => {
   console.log(req.body.code);
   res.send("student code received!");
 });
 
+//login for teacher
 app.post("/login/teacher", (req, res) => {
   //todo : use the real table
-
   pool.getConnection(function (err, connection) {
-
     connection.query("SELECT * FROM LoginTest WHERE email = '" + req.body.email + "' AND mot_de_passe = '" + req.body.password + "'", function (err, result, fields) {
       if (err) throw err;
-      //test if email and password match
-      res.send(result.length > 0 ? "1" : "0");
-    });
+      res.send(result.length > 0 ? "1" : "0");  //test if email and password match
 
+    });
   });
 });
 
+//register for teacher
 app.post("/register/teacher", (req, res) => {
   //todo : use the real table
-
   pool.getConnection(function (err, connection) {
-
     connection.query("SELECT * FROM LoginTest WHERE email = '" + req.body.email + "'", function (err, result, fields) {
       if (err) throw err;
-      //test if email already used
-      if (result.length > 0) {
-        res.send("1");
-      }
+      if (result.length > 0) res.send("1");  //test if email already used
       else {
         //insert new user
         connection.query("INSERT INTO LoginTest(email, mot_de_passe) VALUES ('" + req.body.email + "', '" + req.body.password + "')", function (err, result, fields) {
@@ -61,11 +56,8 @@ app.post("/register/teacher", (req, res) => {
         });
       }
     });
-
   });
-
 });
-
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
