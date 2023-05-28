@@ -16,7 +16,6 @@ function Register(props) {
             axios.post('http://localhost:5000/register/teacher', { email: email, password: password })
 
                 .then(res => {
-                    console.log(res.data);
                     if (res.data === 1) {
                         alert("Email already used");
                         return;

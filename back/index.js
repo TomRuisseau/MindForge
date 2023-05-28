@@ -19,8 +19,6 @@ const pool = mysql.createPool({
 })
 
 
-
-
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
@@ -31,26 +29,32 @@ app.post("/login/student", (req, res) => {
 });
 
 app.post("/login/teacher", (req, res) => {
-  console.log(req.body.email);
-  console.log(req.body.password);
-  res.send("login logs received!");
+  //todo : use the real table
+
+  pool.getConnection(function (err, connection) {
+
+    connection.query("SELECT * FROM LoginTest WHERE email = '" + req.body.email + "' AND mot_de_passe = '" + req.body.password + "'", function (err, result, fields) {
+      if (err) throw err;
+      //test if email and password match
+      res.send(result.length > 0 ? "1" : "0");
+    });
+
+  });
 });
 
 app.post("/register/teacher", (req, res) => {
-  console.log(req.body.email);
-  console.log(req.body.password);
-
   //todo : use the real table
 
   pool.getConnection(function (err, connection) {
 
     connection.query("SELECT * FROM LoginTest WHERE email = '" + req.body.email + "'", function (err, result, fields) {
       if (err) throw err;
-      console.log(result);
+      //test if email already used
       if (result.length > 0) {
         res.send("1");
       }
       else {
+        //insert new user
         connection.query("INSERT INTO LoginTest(email, mot_de_passe) VALUES ('" + req.body.email + "', '" + req.body.password + "')", function (err, result, fields) {
           if (err) throw err;
           res.send("0");

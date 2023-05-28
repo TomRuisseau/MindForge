@@ -12,8 +12,12 @@ function Login(props) {
         axios.post('http://localhost:5000/login/teacher', { email: email, password: password })
 
             .then(res => {
-                console.log(res.data);
-                props.sendValidation("TeacherDashboard");
+                if (res.data === 1) {
+                    props.sendValidation("TeacherDashboard");
+                }
+                else {
+                    alert("Email or password incorrect");
+                }
             })
             .catch(err => {
                 console.log(err);
