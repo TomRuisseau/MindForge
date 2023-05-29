@@ -1,7 +1,7 @@
 const TeacherMenu = () => {
     return (
-        <div>
-            <h1>Teacher Menu</h1>
+        <div className="h-100 bg-warning">
+            <h1 className="text-center">Teacher Menu</h1>
         </div>
     );
 }

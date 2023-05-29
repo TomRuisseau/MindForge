@@ -6,13 +6,13 @@ import React, { useState } from "react";
 function TeacherLogger(props) {
     const [currentForm, setCurrentForm] = useState('Login'); // ['Login', 'Register']
 
-    const toggleForm = (formName) => {
+    const toggleForm = (formName) => { 
         setCurrentForm(formName);
     }
 
     const validation = (page, id) => {
-        props.onValidation(page);
         props.onPass(id);
+        props.onValidation(page);
     }
     return (
         <>

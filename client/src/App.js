@@ -8,6 +8,7 @@ import TeacherDashboard from './Components/TeacherDashboard';
 function App() {
   const [currentPage, setCurrentPage] = useState('Choice'); // ['Choice', 'TeacherLogger', 'StudentLogger', 'StudentDashboard', 'TeacherDashboard']
   const [logId, setLogId] = useState('');
+
   const switchPage = (page) => {
     setCurrentPage(page);
   }
