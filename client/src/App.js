@@ -13,18 +13,16 @@ function App() {
   }
 
   return (
-    <>
-      <div className="App">
-        {
-          currentPage === "Choice" ? <Choice onChoice={switchPage} /> :
-            currentPage === "TeacherLogger" ? <TeacherLogger onValidation={switchPage} /> :
-              currentPage === "StudentLogger" ? <StrudentLogger onValidation={switchPage} /> :
-                currentPage === "StudentDashboard" ? <StudentDashboard /> :
-                  <TeacherDashboard />
+    <div className="App w-100 h-100">
+      {
+        currentPage === "Choice" ? <Choice onChoice={switchPage} /> :
+          currentPage === "TeacherLogger" ? <TeacherLogger onValidation={switchPage} /> :
+            currentPage === "StudentLogger" ? <StrudentLogger onValidation={switchPage} /> :
+              currentPage === "StudentDashboard" ? <StudentDashboard /> :
+                <TeacherDashboard />
 
-        }
-      </div>
-    </>
+      }
+    </div>
   );
 }
 
