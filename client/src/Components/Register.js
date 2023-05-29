@@ -20,7 +20,7 @@ function Register(props) {
                         alert("Email already used");
                         return;
                     }
-                    props.sendValidation("TeacherDashboard");
+                    props.sendValidation("TeacherDashboard", email);
                 })
                 .catch(err => {
                     console.log(err);

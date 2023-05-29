@@ -1,11 +1,13 @@
-import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react';
+import React, { useState, useRef } from 'react';
 import TeacherDrawer from './TeacherDrawer';
 import TeacherMenu from './TeacherMenu';
 import StudentManager from './StudentManager';
 
-function TeacherDashboard() {
+function TeacherDashboard(props) {
     const [page, setPage] = useState("TeacherMenu"); // TeacherMenu, StudentManager, quests, quiz, dailyEvent, tutorial, settings
     const childRef = useRef();
+
+    console.log(props.id);
 
     const switchPage = (page) => {
         setPage(page);

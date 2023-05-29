@@ -13,7 +13,7 @@ function Login(props) {
 
             .then(res => {
                 if (res.data === 1) {
-                    props.sendValidation("TeacherDashboard");
+                    props.sendValidation("TeacherDashboard", email);
                 }
                 else {
                     alert("Email or password incorrect");

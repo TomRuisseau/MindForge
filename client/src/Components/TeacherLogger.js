@@ -10,8 +10,9 @@ function TeacherLogger(props) {
         setCurrentForm(formName);
     }
 
-    const validation = (page) => {
+    const validation = (page, id) => {
         props.onValidation(page);
+        props.onPass(id);
     }
     return (
         <>
