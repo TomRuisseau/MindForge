@@ -18,7 +18,7 @@ function TeacherDashboard(props) {
         <div className='Dashboard w-100 h-100 m-0'>
             <TeacherDrawer ref={childRef} onChoice={switchPage} />
             <div className="row m-0 w-100 h-100" >
-                <div className="col-10 p-0">
+                <div className="pages col p-0">
                     <button onClick={() => childRef.current.toggleDrawerOutside()} className="btn btn-primary position-absolute">Omg le tiroir</button>
                     {page === "TeacherMenu" ? <TeacherMenu /> : page === "StudentManager" ? <StudentManager /> : <h1>Page not found</h1>}
                 </div>
