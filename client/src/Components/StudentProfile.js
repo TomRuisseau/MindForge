@@ -14,7 +14,7 @@ function StudentProfile(){
                     <h2>Ton nom:</h2>
                     <h2>Ton équipe:</h2>
                     <h2>Ta vie:</h2>
-                    <progress id="file" max="100" value="70"> 70% </progress>
+                    <progress id="file" max="100" value="100"> 70% </progress>
                 </div>
                 <div className='col'>
                     <h2>Ton avatar:</h2>
