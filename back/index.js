@@ -59,9 +59,8 @@ app.post("/register/teacher", (req, res) => {
   });
 });
 
-//login for teacher
+//create a new team
 app.post("/addTeam", (req, res) => {
-  //todo : use the real table
   pool.getConnection(function (err, connection) {
     connection.query("SELECT * FROM equipe WHERE name = '" + req.body.name + "'", function (err, result, fields) {
       if (err) throw err;
@@ -76,6 +75,48 @@ app.post("/addTeam", (req, res) => {
     });
   });
 });
+
+//get all teams of a teacher
+app.post("/getTeams", (req, res) => {
+  pool.getConnection(function (err, connection) {
+    connection.query("SELECT name FROM equipe WHERE teacher_email = '" + req.body.email + "'", function (err, result, fields) {
+      if (err) throw err;
+      res.send(result);
+    });
+  });
+});
+
+//add a new student
+app.post("/addStudent", (req, res) => {
+  pool.getConnection(function (err, connection) {
+    connection.query("SELECT * FROM student", function (err, result, fields) {
+      if (err) throw err;
+      let hp = 50;
+      let xp = 0;
+      let mana = 10;
+      let level = 1;
+      let id = result.length + 1;
+      connection.query("INSERT INTO student(id,teacher_email, first_name, surname, class, hp, xp, mana, level) VALUES ('"
+        + id + "', '" //id
+        + req.body.email + "', '" //teacher_email
+        + req.body.first_name + "', '" //first_name
+        + req.body.surname + "', '" //surname
+        + req.body.class + "', '" //class
+        + hp + "', '" //hp
+        + xp + "', '" //xp
+        + mana + "', '" //mana
+        + level + "', '" //level
+        + "')", function (err, result, fields) {
+          if (err) throw err;
+          res.send("0");
+        }
+      );
+    });
+  });
+});
+
+
+
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
