@@ -3,7 +3,6 @@ import { useState } from "react";
 function PopUpTeam(props) {
   //state
   const [nomDequipe, setNomDequipe] = useState("");
-  const [toggle, setToggle] = useState(false);
 
   //comportement
   const handleSubmit = (e) => {
@@ -12,12 +11,14 @@ function PopUpTeam(props) {
     //axios.post('http://localhost:5000/login/teacher', { email: email, password: password })
   };
 
-  //affichage
+  //affichage (render)
   return (
-    <div className="w-25 p-3 h-30 border border-danger rounded bg-primary position-absolute top-50 x*-left-50">
+    <div className="w-25 p-3 h-40 border border-primary rounded bg-danger position-absolute d-flex flex-column justify-content-center">
       <h2>Créer une équipe</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="text">Entrez un nom d'équipe :</label>
+      <form onSubmit={handleSubmit} className="d-flex flex-column">
+        <label htmlFor="text" className="mt-3">
+          Entrez un nom d'équipe :
+        </label>
         <input
           value={nomDequipe}
           onChange={(e) => setNomDequipe(e.target.value)}
@@ -27,7 +28,11 @@ function PopUpTeam(props) {
           id="nomDequipe"
           name="nomDequipe"
         />
-        <button type="submit" className="btn btn-primary" onClick={props.close}>
+        <button
+          type="submit"
+          className="btn btn-success mt-3"
+          onClick={props.close}
+        >
           Valider
         </button>
       </form>
