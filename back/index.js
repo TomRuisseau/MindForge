@@ -62,11 +62,11 @@ app.post("/register/teacher", (req, res) => {
 //create a new team
 app.post("/addTeam", (req, res) => {
   pool.getConnection(function (err, connection) {
-    connection.query("SELECT * FROM equipe WHERE name = '" + req.body.name + "'", function (err, result, fields) {
+    connection.query("SELECT * FROM team WHERE name = '" + req.body.name + "'", function (err, result, fields) {
       if (err) throw err;
       if (result.length > 0) res.send("1");  //test if name already used
       else {
-        connection.query("INSERT INTO equipe(name,teacher_email) VALUES ('" + req.body.name + "', '" + req.body.email + "')", function (err, result, fields) {
+        connection.query("INSERT INTO team(name,teacher_email) VALUES ('" + req.body.name + "', '" + req.body.email + "')", function (err, result, fields) {
           if (err) throw err;
           res.send("0");
 
@@ -79,7 +79,7 @@ app.post("/addTeam", (req, res) => {
 //get all teams of a teacher
 app.post("/getTeams", (req, res) => {
   pool.getConnection(function (err, connection) {
-    connection.query("SELECT name FROM equipe WHERE teacher_email = '" + req.body.email + "'", function (err, result, fields) {
+    connection.query("SELECT name FROM team WHERE teacher_email = '" + req.body.email + "'", function (err, result, fields) {
       if (err) throw err;
       res.send(result);
     });
@@ -96,9 +96,10 @@ app.post("/addStudent", (req, res) => {
       let mana = 10;
       let level = 1;
       let id = result.length + 1;
-      connection.query("INSERT INTO student(id,teacher_email, first_name, surname, class, hp, xp, mana, level) VALUES ('"
+      connection.query("INSERT INTO student(id,teacher_email, team, first_name, surname, class, hp, xp, mana, level) VALUES ('"
         + id + "', '" //id
         + req.body.email + "', '" //teacher_email
+        + req.body.team + "', '" //teacher_email
         + req.body.first_name + "', '" //first_name
         + req.body.surname + "', '" //surname
         + req.body.class + "', '" //class
