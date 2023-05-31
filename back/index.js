@@ -59,6 +59,24 @@ app.post("/register/teacher", (req, res) => {
   });
 });
 
+//login for teacher
+app.post("/addTeam", (req, res) => {
+  //todo : use the real table
+  pool.getConnection(function (err, connection) {
+    connection.query("SELECT * FROM equipe WHERE name = '" + req.body.name + "'", function (err, result, fields) {
+      if (err) throw err;
+      if (result.length > 0) res.send("1");  //test if name already used
+      else {
+        connection.query("INSERT INTO equipe(name,teacher_email) VALUES ('" + req.body.name + "', '" + req.body.email + "')", function (err, result, fields) {
+          if (err) throw err;
+          res.send("0");
+
+        });
+      }
+    });
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });

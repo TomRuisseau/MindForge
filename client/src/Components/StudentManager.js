@@ -1,9 +1,10 @@
 import { useState } from "react";
 import PopUpTeam from "./PopUpTeam";
 import PopUpStudent from "./PopUpStudent";
+import PopUpHP from "./PopUpHP";
 
 const StudentManager = () => {
-  const [popUp, setPopUp] = useState("hidden"); //[hidden, addTeam, addStudent]
+  const [popUp, setPopUp] = useState("hidden"); //[hidden, addTeam, addStudent, removeHp]
 
   return (
     <div className="row p-0 m-0 w-100 h-100">
@@ -16,6 +17,9 @@ const StudentManager = () => {
 
       {popUp === "addStudent" ? (
         <PopUpStudent close={() => setPopUp("hidden")} />
+      ) : null}
+      {popUp === "removeHp" ? (
+        <PopUpHP close={() => setPopUp("hidden")} />
       ) : null}
       <div className="col m-0 p-0 h-100 bg-secondary">
         <h1 className="text-center">Actions</h1>
@@ -34,7 +38,10 @@ const StudentManager = () => {
             Ajouter un élève
           </button>
 
-          <button className="btn btn-primary mt-10">
+          <button
+            className="btn btn-primary mt-10"
+            onClick={() => setPopUp("removeHp")}
+          >
             Retirer des HP à l'élève sélectionné
           </button>
           <button className="btn btn-primary mt-10">
