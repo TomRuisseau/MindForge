@@ -35,7 +35,7 @@ const StudentDrawer = forwardRef((props, ref) => {
                     <h2 onClick={toggleDrawer}>Ma classe</h2>
                     <h2 onClick={() => {toggleDrawer(); props.onChoice("Shop")}}>Boutique</h2>
                     <h2 onClick={toggleDrawer}>Quetes</h2>
-                    <h2 onClick={toggleDrawer}>Tutoriel</h2>
+                    <h2 onClick={() => {toggleDrawer(); props.onChoice("Tutorial")}}>Tutoriel</h2>
                     <h2 onClick={toggleDrawer}>Paramètres</h2>
                 </div>
             </Drawer>

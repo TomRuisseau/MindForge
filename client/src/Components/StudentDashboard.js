@@ -8,6 +8,7 @@ import { useState, useRef } from 'react';
 import StudentProfile from './StudentProfile';
 import StudentTeam from './StudentTeam';
 import Shop from './Shop';
+import Tutorial from './Tutorial';
 
 function StudentDashboard() {
     const [page, setPage] = useState("StudentMenu"); // StudentMenu, quests, quiz, dailyEvent, tutorial, settings
@@ -24,7 +25,7 @@ function StudentDashboard() {
             <div className="row m-0 w-100 h-100" >
                 <div className="pages col p-0">
                     <button onClick={() => childRef.current.toggleDrawerOutside()} className="btn btn-primary position-absolute">Menu</button>
-                    {page === "StudentProfile" ? <StudentProfile /> : page === "StudentTeam" ? <StudentTeam/> : page === "Shop" ? <Shop/> : <StudentMenu/>}
+                    {page === "StudentProfile" ? <StudentProfile /> : page === "StudentTeam" ? <StudentTeam/> : page === "Shop" ? <Shop/> : page === "Tutorial" ? <Tutorial/> : <StudentMenu/>}
                 </div>
             </div>
 
