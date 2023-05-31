@@ -142,8 +142,7 @@ app.post("/addStudent", (req, res) => {
         "', '" + //xp
         mana +
         "', '" + //mana
-        level +
-        "', '" + //level
+        level + //level
         "')",
         function (err, result, fields) {
           if (err) throw err;
