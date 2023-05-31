@@ -13,7 +13,7 @@ function PopUpTeam(props) {
 
   //affichage (render)
   return (
-    <div className="w-25 p-3 h-40 border border-primary rounded bg-danger position-absolute d-flex flex-column justify-content-center">
+    <div className="w-auto p-3 h-40 border border-primary rounded bg-danger position-absolute d-flex flex-column justify-content-center">
       <h2>Créer une équipe</h2>
       <form onSubmit={handleSubmit} className="d-flex flex-column">
         <label htmlFor="text" className="mt-3">
