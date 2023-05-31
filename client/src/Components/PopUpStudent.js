@@ -1,16 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function PopUpStudent(props) {
   //state
   const [nomEleve, setNomEleve] = useState("");
   const [prenomEleve, setPrenomEleve] = useState("");
   const [classe, setClasse] = useState(""); //[classe1,classe2,classe3] //peut-être une classe par défaut
-
+  const [teams, setTeams] = useState([]); //[team1,team2,team3] //peut-être une team par défaut
+  const [team, setTeam] = useState(""); //[team1,team2,team3] //peut-être une team par défaut
   //comportement
+  useEffect(() => {
+    axios
+      .post("http://localhost:5000/getTeams", { email: props.id })
+      .then((res) => {
+        setTeams(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [props.id]);
+
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
     console.log(nomEleve);
-    //axios.post('http://localhost:5000/login/teacher', { email: email, password: password })
+    axios.post("http://localhost:5000/addStudent", {
+      email: props.id,
+      surname: nomEleve,
+      first_name: prenomEleve,
+      class: classe,
+      team: team,
+    });
   };
 
   //affichage (render)
@@ -27,13 +46,19 @@ function PopUpStudent(props) {
         <label htmlFor="text" className="mt-3">
           Choisir une équipe
         </label>
-        <select name="teams" id="teams-select" className="rounded">
-          <option value="team1">équipe 1</option>
-          <option value="team2">équipe 2</option>
-          <option value="team3">équipe 3</option>
-          <option value="team4">équipe 4</option>
-          <option value="team5">équipe 5</option>
-          <option value="team6">équipe 6</option>
+        <select
+          name="teams"
+          id="teams-select"
+          className="rounded"
+          onChange={(e) => setTeam(e.target.value)}
+        >
+          {teams.map((team) => {
+            return (
+              <option value={team.name} key={team.name}>
+                {team.name}
+              </option>
+            );
+          })}
         </select>
 
         <label htmlFor="text" className="mt-3">
@@ -65,15 +90,39 @@ function PopUpStudent(props) {
         <p className="mt-3">Choisir la classe du personnage</p>
         <div className="d-flex flex-row justify-content-between">
           <div>
-            <input type="radio" id="tank" name="classe" value="tank" />
+            <input
+              type="radio"
+              id="tank"
+              name="classe"
+              value="tank"
+              onClick={() => {
+                setClasse("tank");
+              }}
+            />
             <label htmlFor="tank">Tank</label>
           </div>
           <div>
-            <input type="radio" id="healer" name="classe" value="healer" />
+            <input
+              type="radio"
+              id="healer"
+              name="classe"
+              value="healer"
+              onClick={() => {
+                setClasse("healer");
+              }}
+            />
             <label htmlFor="healer">Healer</label>
           </div>
           <div>
-            <input type="radio" id="mage" name="classe" value="mage" />
+            <input
+              type="radio"
+              id="mage"
+              name="classe"
+              value="mage"
+              onClick={() => {
+                setClasse("mage");
+              }}
+            />
             <label htmlFor="mage">Mage</label>
           </div>
         </div>

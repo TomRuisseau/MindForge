@@ -16,16 +16,16 @@ const StudentManager = (props) => {
       ) : null}
 
       {popUp === "addStudent" ? (
-        <PopUpStudent close={() => setPopUp("hidden")} />
+        <PopUpStudent close={() => setPopUp("hidden")} id={props.id} />
       ) : null}
       {popUp === "removeHp" ? (
         <PopUpHP close={() => setPopUp("hidden")} />
       ) : null}
       <div className="col m-0 p-0 h-100 bg-secondary">
         <h1 className="text-center">Actions</h1>
-        <div className="w-100 d-flex flex-column align-content-between">
+        <div className="m-5 d-flex flex-column align-content-between">
           <button
-            className="btn btn-primary mt-10"
+            className="btn btn-primary mt-5"
             onClick={() => setPopUp("addTeam")}
           >
             Ajouter une équipe
