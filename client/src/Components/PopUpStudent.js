@@ -14,6 +14,7 @@ function PopUpStudent(props) {
       .post("http://localhost:5000/getTeams", { email: props.id })
       .then((res) => {
         setTeams(res.data);
+        setTeam(res.data[0].name);
       })
       .catch((err) => {
         console.log(err);
@@ -22,7 +23,6 @@ function PopUpStudent(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
-    console.log(nomEleve);
     axios.post("http://localhost:5000/addStudent", {
       email: props.id,
       surname: nomEleve,
@@ -30,6 +30,7 @@ function PopUpStudent(props) {
       class: classe,
       team: team,
     });
+    props.close();
   };
 
   //affichage (render)
@@ -129,7 +130,6 @@ function PopUpStudent(props) {
         <button
           type="submit"
           className="btn btn-success mt-3"
-          onClick={props.close}
         >
           Valider
         </button>

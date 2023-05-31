@@ -32,10 +32,10 @@ app.post("/login/teacher", (req, res) => {
   pool.getConnection(function (err, connection) {
     connection.query(
       "SELECT * FROM teacher WHERE email = '" +
-        req.body.email +
-        "' AND password = '" +
-        req.body.password +
-        "'",
+      req.body.email +
+      "' AND password = '" +
+      req.body.password +
+      "'",
       function (err, result, fields) {
         if (err) throw err;
         res.send(result.length > 0 ? "1" : "0"); //test if email and password match
@@ -57,10 +57,10 @@ app.post("/register/teacher", (req, res) => {
           //insert new user
           connection.query(
             "INSERT INTO teacher(email, password) VALUES ('" +
-              req.body.email +
-              "', '" +
-              req.body.password +
-              "')",
+            req.body.email +
+            "', '" +
+            req.body.password +
+            "')",
             function (err, result, fields) {
               if (err) throw err;
               res.send("0");
@@ -83,10 +83,10 @@ app.post("/addTeam", (req, res) => {
         else {
           connection.query(
             "INSERT INTO team(name,teacher_email) VALUES ('" +
-              req.body.name +
-              "', '" +
-              req.body.email +
-              "')",
+            req.body.name +
+            "', '" +
+            req.body.email +
+            "')",
             function (err, result, fields) {
               if (err) throw err;
               res.send("0");
@@ -124,27 +124,27 @@ app.post("/addStudent", (req, res) => {
       let id = result.length + 1;
       connection.query(
         "INSERT INTO student(id,teacher_email, team, first_name, surname, class, hp, xp, mana, level) VALUES ('" +
-          id +
-          "', '" + //id
-          req.body.email +
-          "', '" + //teacher_email
-          req.body.team +
-          "', '" + //teacher_email
-          req.body.first_name +
-          "', '" + //first_name
-          req.body.surname +
-          "', '" + //surname
-          req.body.class +
-          "', '" + //class
-          hp +
-          "', '" + //hp
-          xp +
-          "', '" + //xp
-          mana +
-          "', '" + //mana
-          level +
-          "', '" + //level
-          "')",
+        id + //id
+        "', '" +
+        req.body.email +
+        "', '" + //teacher_email
+        req.body.team +
+        "', '" + //team
+        req.body.first_name +
+        "', '" + //first_name
+        req.body.surname +
+        "', '" + //surname
+        req.body.class +
+        "', '" + //class
+        hp +
+        "', '" + //hp
+        xp +
+        "', '" + //xp
+        mana +
+        "', '" + //mana
+        level +
+        "', '" + //level
+        "')",
         function (err, result, fields) {
           if (err) throw err;
           res.send("0");
