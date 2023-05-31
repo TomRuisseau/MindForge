@@ -9,8 +9,6 @@ function TeacherDashboard(props) {
   const [page, setPage] = useState("TeacherMenu"); // TeacherMenu, StudentManager, quests, quiz, dailyEvent, tutorial, settings
   const childRef = useRef();
 
-  console.log(props.id);
-
   const switchPage = (page) => {
     setPage(page);
     console.log(page);
@@ -29,7 +27,7 @@ function TeacherDashboard(props) {
           {page === "TeacherMenu" ? (
             <TeacherMenu />
           ) : page === "StudentManager" ? (
-            <StudentManager />
+            <StudentManager id={props.id} />
           ) : (
             <Quests />
           )}

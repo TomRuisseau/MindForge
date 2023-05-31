@@ -3,7 +3,7 @@ import PopUpTeam from "./PopUpTeam";
 import PopUpStudent from "./PopUpStudent";
 import PopUpHP from "./PopUpHP";
 
-const StudentManager = () => {
+const StudentManager = (props) => {
   const [popUp, setPopUp] = useState("hidden"); //[hidden, addTeam, addStudent, removeHp]
 
   return (
@@ -12,7 +12,7 @@ const StudentManager = () => {
         <h1 className="text-center">Liste</h1>
       </div>
       {popUp === "addTeam" ? (
-        <PopUpTeam close={() => setPopUp("hidden")} />
+        <PopUpTeam close={() => setPopUp("hidden")} id={props.id} />
       ) : null}
 
       {popUp === "addStudent" ? (

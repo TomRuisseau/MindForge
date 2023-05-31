@@ -15,8 +15,14 @@ function PopUpStudent(props) {
 
   //affichage (render)
   return (
-    <div className="w-auto p-3 h-40 border border-danger rounded bg-primary position-absolute d-flex flex-column justify-content-center">
-      <h2>Ajouter un élève</h2>
+    <div className="w-auto p-5 h-40 border border-danger rounded bg-primary position-absolute d-flex flex-column justify-content-center">
+      <div className="d-flex flex-row">
+        <h2>Ajouter un élève</h2>
+        <button
+          className="btn-close text-danger w-10 mx-3 rounded-circle"
+          onClick={props.close}
+        ></button>
+      </div>
       <form onSubmit={handleSubmit} className="d-flex flex-column">
         <label htmlFor="text" className="mt-3">
           Choisir une équipe
@@ -60,15 +66,15 @@ function PopUpStudent(props) {
         <div className="d-flex flex-row justify-content-between">
           <div>
             <input type="radio" id="tank" name="classe" value="tank" />
-            <label for="tank">Tank</label>
+            <label htmlFor="tank">Tank</label>
           </div>
           <div>
             <input type="radio" id="healer" name="classe" value="healer" />
-            <label for="healer">Healer</label>
+            <label htmlFor="healer">Healer</label>
           </div>
           <div>
             <input type="radio" id="mage" name="classe" value="mage" />
-            <label for="mage">Mage</label>
+            <label htmlFor="mage">Mage</label>
           </div>
         </div>
         <button

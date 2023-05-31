@@ -13,10 +13,13 @@ function PopUpHP(props) {
 
   //affichage (render)
   return (
-    <div className="w-auto p-3 h-40 border border-muted rounded bg-warning position-absolute d-flex flex-column justify-content-center">
+    <div className="w-auto p-5 h-40 border border-muted rounded bg-warning position-absolute d-flex flex-column justify-content-center">
       <div className="d-flex flex-row">
         <h2>Retirer des HP à 'prenom + nom'</h2>
-        <button className="bg-muted w-10"> X </button>
+        <button
+          className="btn-close text-danger w-10 mx-3 rounded-circle"
+          onClick={props.close}
+        ></button>
       </div>
       <form onSubmit={handleSubmit} className="d-flex flex-column">
         <label htmlFor="number" className="mt-3">
