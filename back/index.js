@@ -3,6 +3,7 @@ const app = express();
 const port = 5000;
 var cors = require("cors");
 const mysql = require("mysql");
+const { classMap } = require("./modules/class.js");
 
 app.use(express.json()); //Used to parse JSON bodies
 app.use(cors()); //Prevent CORS errors
@@ -113,17 +114,15 @@ app.post("/getTeams", (req, res) => {
 
 //add a new student
 app.post("/addStudent", (req, res) => {
-  console.log(req.body.class);
   pool.getConnection(function (err, connection) {
     connection.query("SELECT * FROM student", function (err, result, fields) {
       if (err) throw err;
-      let hp = 50;
+      let hp = classMap.get(req.body.class).hp;
       let xp = 0;
-      let mana = 10;
-      let level = 1;
+      let mana = classMap.get(req.body.class).mana;
       let id = result.length + 1;
       connection.query(
-        "INSERT INTO student(id,teacher_email, team, first_name, surname, class, hp, xp, mana, level) VALUES ('" +
+        "INSERT INTO student(id,teacher_email, team, first_name, surname, class, hp, xp, mana) VALUES ('" +
         id + //id
         "', '" +
         req.body.email +
@@ -141,8 +140,6 @@ app.post("/addStudent", (req, res) => {
         xp +
         "', '" + //xp
         mana +
-        "', '" + //mana
-        level + //level
         "')",
         function (err, result, fields) {
           if (err) throw err;
