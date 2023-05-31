@@ -30,7 +30,7 @@ const TeacherDrawer = forwardRef((props, ref) => {
                 <button onClick={toggleDrawer} className="btn btn-primary">Omg le tiroir ?</button>
                 <h2 onClick={() => { toggleDrawer(); props.onChoice("TeacherMenu") }}>Ecran principal</h2>
                 <h2 onClick={() => { toggleDrawer(); props.onChoice("StudentManager") }}>Gérer les élèves (ajouter/dégats/récompenses)</h2>
-                <h2 onClick={toggleDrawer}>Quetes</h2>
+                <h2 onClick={() => { toggleDrawer(); props.onChoice("Quests") }}>Quetes</h2>
                 <h2 onClick={toggleDrawer}>Quiz</h2>
                 <h2 onClick={toggleDrawer}>Evènement journalier</h2>
                 <h2 onClick={toggleDrawer}>Tutoriel</h2>

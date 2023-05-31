@@ -3,6 +3,7 @@ import TeacherDrawer from './TeacherDrawer';
 import TeacherMenu from './TeacherMenu';
 import StudentManager from './StudentManager';
 import SmallList from './SmallList';
+import Quests from './Quests';
 
 function TeacherDashboard(props) {
     const [page, setPage] = useState("TeacherMenu"); // TeacherMenu, StudentManager, quests, quiz, dailyEvent, tutorial, settings
@@ -20,9 +21,9 @@ function TeacherDashboard(props) {
             <div className="row m-0 w-100 h-100" >
                 <div className="pages col p-0">
                     <button onClick={() => childRef.current.toggleDrawerOutside()} className="btn btn-primary position-absolute">Omg le tiroir</button>
-                    {page === "TeacherMenu" ? <TeacherMenu /> : page === "StudentManager" ? <StudentManager /> : <h1>Page not found</h1>}
+                    {page === "TeacherMenu" ? <TeacherMenu /> : page === "StudentManager" ? <StudentManager /> : <Quests/>}
                 </div>
-                {page === "StudentManager" ? null : <SmallList /> /*faut fix ça*/}
+                {page === "StudentManager" ? null : <SmallList />}
             </div>
         </div>
     )
