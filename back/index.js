@@ -33,7 +33,7 @@ app.post("/login/student", (req, res) => {
 app.post("/login/teacher", (req, res) => {
   //todo : use the real table
   pool.getConnection(function (err, connection) {
-    connection.query("SELECT * FROM LoginTest WHERE email = '" + req.body.email + "' AND mot_de_passe = '" + req.body.password + "'", function (err, result, fields) {
+    connection.query("SELECT * FROM teacher WHERE email = '" + req.body.email + "' AND password = '" + req.body.password + "'", function (err, result, fields) {
       if (err) throw err;
       res.send(result.length > 0 ? "1" : "0");  //test if email and password match
 
@@ -45,12 +45,12 @@ app.post("/login/teacher", (req, res) => {
 app.post("/register/teacher", (req, res) => {
   //todo : use the real table
   pool.getConnection(function (err, connection) {
-    connection.query("SELECT * FROM LoginTest WHERE email = '" + req.body.email + "'", function (err, result, fields) {
+    connection.query("SELECT * FROM teacher WHERE email = '" + req.body.email + "'", function (err, result, fields) {
       if (err) throw err;
       if (result.length > 0) res.send("1");  //test if email already used
       else {
         //insert new user
-        connection.query("INSERT INTO LoginTest(email, mot_de_passe) VALUES ('" + req.body.email + "', '" + req.body.password + "')", function (err, result, fields) {
+        connection.query("INSERT INTO teacher(email, password) VALUES ('" + req.body.email + "', '" + req.body.password + "')", function (err, result, fields) {
           if (err) throw err;
           res.send("0");
         });
