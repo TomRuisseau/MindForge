@@ -14,7 +14,7 @@ const StudentDrawer = () => {
 
     return (
         <>
-            <button onClick={toggleDrawer} className="btn btn-primary">Omg le tiroir</button>
+            <button onClick={toggleDrawer} className="btn btn-primary">Menu</button>
             <Drawer
                 open={isOpen}
                 onClose={toggleDrawer}
@@ -22,7 +22,8 @@ const StudentDrawer = () => {
                 className='drawer'
                 size={500}
             >
-                <button onClick={toggleDrawer} className="btn btn-primary">Omg le tiroir ?</button>
+                <button onClick={toggleDrawer} className="btn btn-primary">Menu</button>
+                <h2 onClick={() => {toggleDrawer(); props.onChoice("StudentMenu")}}>Mon profil</h2>
                 <h2 onClick={toggleDrawer}>Mon équipe</h2>
                 <h2 onClick={toggleDrawer}>Ma classe</h2>
                 <h2 onClick={toggleDrawer}>Boutique</h2>
