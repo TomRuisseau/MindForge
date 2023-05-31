@@ -16,7 +16,7 @@ function StudentProfile(){
                     <h2>Ta vie:</h2>
                     <progress id="file" max="100" value="100"> 70% </progress>
                 </div>
-                <div className='col-2 w-100'>
+                <div className='col-2'>
                     <h2>Ton avatar:</h2>
                     <img src="media/pierre.png" className='w-100'></img>
                 </div>             
