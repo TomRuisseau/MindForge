@@ -1,4 +1,3 @@
-// Récupère les données de la table student et les affiche dans le front StudentProfile.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
