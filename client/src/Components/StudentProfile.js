@@ -45,7 +45,7 @@ function StudentProfile(props) {
 
 
                     <h2>Ta vie:</h2>
-                    <progress id="file" max="100" value={hpRatio}></progress>
+                    <progress className="progress-bar" role="progressbar" id="file" max="100" value={hpRatio}></progress>
                 </div>
                 <div className='col-2'>
                     <h2>Ton avatar:</h2>
