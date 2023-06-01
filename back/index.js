@@ -128,8 +128,9 @@ app.post("/addStudent", (req, res) => {
       let xp = 0;
       let mana = classMap.get(req.body.class).mana;
       let id = result.length + 1;
+      let date = new Date().getTime();
       connection.query(
-        "INSERT INTO student(id,teacher_email, team, first_name, surname, class, hp, xp, mana) VALUES ('" +
+        "INSERT INTO student(id,teacher_email, team, first_name, surname, class, hp, xp, mana, last_time) VALUES ('" +
         id + //id
         "', '" +
         req.body.email +
@@ -147,6 +148,8 @@ app.post("/addStudent", (req, res) => {
         xp +
         "', '" + //xp
         mana +
+        "', '" + //mana
+        date + //last_time
         "')",
         function (err, result, fields) {
           if (err) throw err;

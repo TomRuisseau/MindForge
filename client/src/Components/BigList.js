@@ -8,6 +8,7 @@ const BigList = forwardRef((props, ref) => {
   const [students, setStudents] = useState([]); //liste des élèves
   const [count, setCount] = useState(0); //compteur de rechargement
 
+
   //comportement
   useImperativeHandle(ref, () => ({
     forceReload: () => {
@@ -20,12 +21,12 @@ const BigList = forwardRef((props, ref) => {
       .post("http://localhost:5000/getStudents", { email: props.id })
       .then((res) => {
         setStudents(res.data);
-        console.log("allo");
       })
       .catch((err) => {
         console.log(err);
       });
   }, [props.id, count]);
+
 
   //affichage (render)
   return (

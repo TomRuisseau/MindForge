@@ -32,9 +32,14 @@ function PopUpStudent(props) {
         first_name: prenomEleve,
         class: classe,
         team: team,
+      })
+      .then((res) => {
+        props.reload();
+        props.close();
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    props.reload();
-    props.close();
   };
 
   //affichage (render)
