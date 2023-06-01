@@ -155,7 +155,7 @@ app.post("/getStudents", (req, res) => {
   pool.getConnection(function (err, connection) {
     let studentsMap = new Map();
     connection.query(
-      "SELECT * FROM student WHERE teacher_email = '" + req.body.email + "' GROUP BY team",
+      "SELECT * FROM student WHERE teacher_email = '" + req.body.email + "' ORDER BY team",
       function (err, result, fields) {
         if (err) throw err;
         res.send(result);
