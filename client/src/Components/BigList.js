@@ -29,7 +29,10 @@ const BigList = forwardRef((props, ref) => {
 
   //affichage (render)
   return (
-    <div className="text-muted">
+    <div
+      className="text-muted m-5 px-5 border border-black rounded bg-warning"
+      style={{ height: "80vh", overflow: "auto" }}
+    >
       {Array.from(
         students.reduce((teamMap, student) => {
           if (teamMap.has(student.team)) {
@@ -42,13 +45,13 @@ const BigList = forwardRef((props, ref) => {
       ).map(([team, members]) => (
         <React.Fragment key={team}>
           <h2>{team}</h2>
-          <table>
+          <table className="mb-5">
             <tbody>
               {members.map((student) => (
                 <tr key={student.id}>
-                  <td>{student.surname}</td>
-                  <td>{student.first_name}</td>
-                  <td>{student.class}</td>
+                  <td className="mx-5 px-5">{student.surname}</td>
+                  <td className="mx-5 px-5">{student.first_name}</td>
+                  <td className="mx-5 px-5">{student.class}</td>
                 </tr>
               ))}
             </tbody>
