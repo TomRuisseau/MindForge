@@ -24,13 +24,15 @@ function PopUpStudent(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
-    axios.post("http://localhost:5000/addStudent", {
-      email: props.id,
-      surname: nomEleve,
-      first_name: prenomEleve,
-      class: classe,
-      team: team,
-    });
+    //number of students in the team must not exceeds 5
+    axios
+      .post("http://localhost:5000/addStudent", {
+        email: props.id,
+        surname: nomEleve,
+        first_name: prenomEleve,
+        class: classe,
+        team: team,
+      });
     props.reload();
     props.close();
   };
