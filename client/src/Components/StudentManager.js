@@ -2,11 +2,12 @@ import { useState } from "react";
 import PopUpTeam from "./PopUpTeam";
 import PopUpStudent from "./PopUpStudent";
 import PopUpHP from "./PopUpHP";
+import PopUpXP from "./PopUpXP";
 import BigList from "./BigList";
 import { useRef } from "react";
 
 const StudentManager = (props) => {
-  const [popUp, setPopUp] = useState("hidden"); //[hidden, addTeam, addStudent, removeHp]
+  const [popUp, setPopUp] = useState("hidden"); //[hidden, addTeam, addStudent, removeHp, removeXp]
   const childRef = useRef();
 
   const forceReload = () => {
@@ -34,6 +35,9 @@ const StudentManager = (props) => {
       {popUp === "removeHp" ? (
         <PopUpHP close={() => setPopUp("hidden")} />
       ) : null}
+      {popUp === "removeXp" ? (
+        <PopUpXP close={() => setPopUp("hidden")} />
+      ) : null}
       <div className="col m-0 p-0 h-100 bg-secondary">
         <h1 className="text-center">Actions</h1>
         <div className="m-5 d-flex flex-column align-content-between">
@@ -57,7 +61,10 @@ const StudentManager = (props) => {
           >
             Retirer des HP à l'élève sélectionné
           </button>
-          <button className="btn btn-primary mt-10">
+          <button
+            className="btn btn-primary mt-10"
+            onClick={() => setPopUp("removeXp")}
+          >
             Ajouter de l'XP à l'élève sélectionné
           </button>
         </div>

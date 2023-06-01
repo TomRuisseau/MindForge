@@ -29,7 +29,7 @@ const BigList = forwardRef((props, ref) => {
 
   //affichage (render)
   return (
-    <div className="">
+    <div className="text-muted">
       {Array.from(
         students.reduce((teamMap, student) => {
           if (teamMap.has(student.team)) {
