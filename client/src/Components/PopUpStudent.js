@@ -73,6 +73,7 @@ function PopUpStudent(props) {
           placeholder="Dupont"
           id="nomEleve"
           name="nomEleve"
+          required
         />
 
         <label htmlFor="text" className="mt-3">
@@ -86,6 +87,7 @@ function PopUpStudent(props) {
           placeholder="Jean"
           id="prenomEleve"
           name="prenomEleve"
+          required
         />
 
         <p className="mt-3">Choisir la classe du personnage</p>
@@ -99,6 +101,7 @@ function PopUpStudent(props) {
               onClick={() => {
                 setClasse("tank");
               }}
+              required
             />
             <label htmlFor="tank">Tank</label>
           </div>
@@ -111,6 +114,7 @@ function PopUpStudent(props) {
               onClick={() => {
                 setClasse("healer");
               }}
+              required
             />
             <label htmlFor="healer">Healer</label>
           </div>
@@ -123,14 +127,12 @@ function PopUpStudent(props) {
               onClick={() => {
                 setClasse("mage");
               }}
+              required
             />
             <label htmlFor="mage">Mage</label>
           </div>
         </div>
-        <button
-          type="submit"
-          className="btn btn-success mt-3"
-        >
+        <button type="submit" className="btn btn-success mt-3">
           Valider
         </button>
       </form>

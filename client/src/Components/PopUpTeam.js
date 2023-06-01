@@ -46,6 +46,7 @@ function PopUpTeam(props) {
           placeholder="Un nom d'équipe"
           id="nomDequipe"
           name="nomDequipe"
+          required
         />
         <button type="submit" className="btn btn-success mt-3">
           Valider

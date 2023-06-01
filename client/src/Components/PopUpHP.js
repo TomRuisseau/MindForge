@@ -33,6 +33,7 @@ function PopUpHP(props) {
           placeholder="0"
           id="hp"
           name="hp"
+          required
         />
         <button
           type="submit"
