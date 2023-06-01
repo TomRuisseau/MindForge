@@ -177,6 +177,18 @@ app.post("/getStudents", (req, res) => {
   });
 });
 
+//get % of hp of a student
+app.post("/getHp", (req, res) => {
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT hp, class FROM student WHERE id = '" + req.body.id + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send(Math.floor(result[0].hp / classMap.get(result[0].class).hp * 100));
+      });
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
