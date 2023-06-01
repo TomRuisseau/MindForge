@@ -10,9 +10,11 @@ import StudentTeam from './StudentTeam';
 import Shop from './Shop';
 import Tutorial from './Tutorial';
 
-function StudentDashboard() {
+function StudentDashboard(props) {
     const [page, setPage] = useState("StudentMenu"); // StudentMenu, quests, quiz, dailyEvent, tutorial, settings
     const childRef = useRef();
+
+    console.log(props.data)
 
     const switchPage = (page) => {
         setPage(page);
@@ -24,8 +26,13 @@ function StudentDashboard() {
             <StudentDrawer ref={childRef} onChoice={switchPage}/>
             <div className="row w-100 h-100" >
                 <div className="pages col p-0">
+
+
+
+
+
                     <button onClick={() => childRef.current.toggleDrawerOutside()} className="btn btn-primary position-absolute start-0">Menu</button>
-                    {page === "StudentProfile" ? <StudentProfile /> : page === "StudentTeam" ? <StudentTeam/> : page === "Shop" ? <Shop/> : page === "Tutorial" ? <Tutorial/> : <StudentMenu/>}
+                    {page === "StudentProfile" ? <StudentProfile data={props.data}/> : page === "StudentTeam" ? <StudentTeam/> : page === "Shop" ? <Shop/> : page === "Tutorial" ? <Tutorial/> : <StudentMenu/>}
                 </div>
             </div>
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import StudentProfile from "./StudentProfile";
 
 
 function StudentLogger(props) {
@@ -13,7 +14,9 @@ function StudentLogger(props) {
             .then(res => {
                 console.log(res.data.length);
                 if (res.data.length !== 0) {
+                    props.onPass(res.data);
                     props.onValidation("StudentDashboard");
+                    
                 }
                 else {
                     alert("Code incorrect");

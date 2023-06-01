@@ -29,7 +29,7 @@ function App() {
         currentPage === "Choice" ? <Choice onChoice={switchPage} /> :
           currentPage === "TeacherLogger" ? <TeacherLogger onValidation={switchPage} onPass={passId} /> :
             currentPage === "StudentLogger" ? <StrudentLogger onValidation={switchPage} onPass={passId} /> :
-              currentPage === "StudentDashboard" ? <StudentDashboard /> :
+              currentPage === "StudentDashboard" ? <StudentDashboard data={logId} /> :
                 <TeacherDashboard id={logId} />
 
       }

@@ -1,6 +1,19 @@
-import React from 'react';
+// Récupère les données de la table student et les affiche dans le front StudentProfile.js
+import React, {useState, useEffect} from 'react';
 
-function StudentProfile(){
+
+
+
+
+
+
+function StudentProfile(props){
+
+    
+    console.log(props.data);
+    
+    
+
     return(
         <>
             <div className='row'>
@@ -12,9 +25,14 @@ function StudentProfile(){
                 <div className='col-2'></div>
                 <div className='col-4'>
                     <h2>Ton nom:</h2>
+                    <p>{props.data[0].first_name}</p>
+                    
                     <h2>Ton équipe:</h2>
+                    <p>{props.data[0].team}</p>
+
+
                     <h2>Ta vie:</h2>
-                    <progress id="file" max="100" value="100"> 70% </progress>
+                    <progress id="file" max="100" value={props.data[0].hp}></progress>
                 </div>
                 <div className='col-2'>
                     <h2>Ton avatar:</h2>
