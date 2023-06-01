@@ -170,6 +170,18 @@ app.post("/getStudents", (req, res) => {
   });
 });
 
+//get all students of a team
+app.post("/getStudentsTeam", (req, res) => {
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT * FROM student WHERE team = '" + req.body.team + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send(result);
+      });
+  });
+});
+
 //get % of hp of a student
 app.post("/getHp", (req, res) => {
   pool.getConnection(function (err, connection) {
