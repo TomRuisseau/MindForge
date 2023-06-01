@@ -1,4 +1,4 @@
-function bigList(props) {
+function BigList(props) {
   //state
 
   //comportement
@@ -11,4 +11,4 @@ function bigList(props) {
   );
 }
 
-export default bigList;
+export default BigList;
