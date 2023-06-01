@@ -22,9 +22,9 @@ function StudentDashboard() {
         <div>
             <h1 className="text-center">Student Dashboard</h1>
             <StudentDrawer ref={childRef} onChoice={switchPage}/>
-            <div className="row m-0 w-100 h-100" >
+            <div className="row w-100 h-100" >
                 <div className="pages col p-0">
-                    <button onClick={() => childRef.current.toggleDrawerOutside()} className="btn btn-primary position-absolute">Menu</button>
+                    <button onClick={() => childRef.current.toggleDrawerOutside()} className="btn btn-primary position-absolute start-0">Menu</button>
                     {page === "StudentProfile" ? <StudentProfile /> : page === "StudentTeam" ? <StudentTeam/> : page === "Shop" ? <Shop/> : page === "Tutorial" ? <Tutorial/> : <StudentMenu/>}
                 </div>
             </div>
