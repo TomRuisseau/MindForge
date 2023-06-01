@@ -16,8 +16,15 @@ function App() {
   const passId = (id) => {
     setLogId(id);
   }
+
+
+
+
+
   return (
     <div className="App w-100 h-100">
+      <button onClick={() => { switchPage("Choice") }} className='btn btn-primary position-absolute end-0'>Menu principal</button>
+
       {
         currentPage === "Choice" ? <Choice onChoice={switchPage} /> :
           currentPage === "TeacherLogger" ? <TeacherLogger onValidation={switchPage} onPass={passId} /> :
