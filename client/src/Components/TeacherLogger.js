@@ -16,9 +16,13 @@ function TeacherLogger(props) {
     }
     return (
         <>
+            <div className="w-50">
             {
+                
                 currentForm === "Login" ? <Login onFormSwitch={toggleForm} sendValidation={validation} /> : <Register onFormSwitch={toggleForm} sendValidation={validation} />
+               
             }
+            </div>
         </>
     )
 }
