@@ -7,13 +7,17 @@ function StudentLogger(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault(); // prevent page reload
-        console.log(code);
 
         axios.post('http://localhost:5000/login/student', { code: code })
 
             .then(res => {
-                console.log(res.data);
-                props.onValidation("StudentDashboard");
+                console.log(res.data.length);
+                if (res.data.length !== 0) {
+                    props.onValidation("StudentDashboard");
+                }
+                else {
+                    alert("Code incorrect");
+                }
             })
             .catch(err => {
                 console.log(err);

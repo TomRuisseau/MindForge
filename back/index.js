@@ -23,8 +23,16 @@ app.get("/", (req, res) => {
 
 //login for student
 app.post("/login/student", (req, res) => {
-  console.log(req.body.code);
-  res.send("student code received!");
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT * FROM student WHERE id = '" + req.body.code + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+        res.send(result); //test if id is valid
+      }
+    );
+  });
 });
 
 //login for teacher
