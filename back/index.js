@@ -4,6 +4,7 @@ const port = 5000;
 var cors = require("cors");
 const mysql = require("mysql");
 const { classMap } = require("./modules/class.js");
+const { default: StudentProfile } = require("../client/src/Components/StudentProfile.js");
 
 app.use(express.json()); //Used to parse JSON bodies
 app.use(cors()); //Prevent CORS errors
@@ -29,6 +30,11 @@ app.post("/login/student", (req, res) => {
       function (err, result, fields) {
         if (err) throw err;
         console.log(result);
+        
+
+        
+      
+
         res.send(result); //test if id is valid
       }
     );
