@@ -1,5 +1,6 @@
 // Récupère les données de la table student et les affiche dans le front StudentProfile.js
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 
 
 
@@ -11,6 +12,18 @@ function StudentProfile(props){
 
     
     console.log(props.data);
+    const [hpRatio, setHpRatio] = useState(0);
+
+    useEffect(() => {
+        axios
+          .post("http://localhost:5000/getHp", { id: props.data.id })
+          .then((res) => {
+            setHpRatio(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }, [props.data]);
     
     
 
@@ -32,7 +45,7 @@ function StudentProfile(props){
 
 
                     <h2>Ta vie:</h2>
-                    <progress id="file" max="100" value={props.data[0].hp}></progress>
+                    <progress id="file" max="100" value={hpRatio}></progress>
                 </div>
                 <div className='col-2'>
                     <h2>Ton avatar:</h2>
