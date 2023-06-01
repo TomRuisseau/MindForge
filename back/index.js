@@ -183,9 +183,8 @@ app.post("/getHp", (req, res) => {
       "SELECT hp, class FROM student WHERE id = '" + req.body.id + "'",
       function (err, result, fields) {
         if (err) throw err;
-        // console.log(result[0].hp / classMap.get(result[0].class).hp);
-        // res.send(Math.floor(result[0].hp / classMap.get(result[0].class).hp * 100));
-        res.send(100);
+        let ratioHp = Math.floor(result[0].hp / classMap.get(result[0].class).hp * 100);
+        res.send(ratioHp.toString());
       });
   });
 });
