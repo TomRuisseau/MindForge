@@ -150,6 +150,19 @@ app.post("/addStudent", (req, res) => {
   });
 });
 
+//get all teams of a teacher ordered by team
+app.post("/getStudents", (req, res) => {
+  pool.getConnection(function (err, connection) {
+    let studentsMap = new Map();
+    connection.query(
+      "SELECT * FROM student WHERE teacher_email = '" + req.body.email + "' GROUP BY team",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send(result);
+      });
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
