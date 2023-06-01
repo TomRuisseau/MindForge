@@ -4,7 +4,6 @@ const port = 5000;
 var cors = require("cors");
 const mysql = require("mysql");
 const { classMap } = require("./modules/class.js");
-const { default: StudentProfile } = require("../client/src/Components/StudentProfile.js");
 
 app.use(express.json()); //Used to parse JSON bodies
 app.use(cors()); //Prevent CORS errors
@@ -30,10 +29,10 @@ app.post("/login/student", (req, res) => {
       function (err, result, fields) {
         if (err) throw err;
         console.log(result);
-        
 
-        
-      
+
+
+
 
         res.send(result); //test if id is valid
       }
@@ -184,7 +183,9 @@ app.post("/getHp", (req, res) => {
       "SELECT hp, class FROM student WHERE id = '" + req.body.id + "'",
       function (err, result, fields) {
         if (err) throw err;
-        res.send(Math.floor(result[0].hp / classMap.get(result[0].class).hp * 100));
+        // console.log(result[0].hp / classMap.get(result[0].class).hp);
+        // res.send(Math.floor(result[0].hp / classMap.get(result[0].class).hp * 100));
+        res.send(100);
       });
   });
 });
