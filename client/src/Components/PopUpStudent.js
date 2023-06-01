@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import React from "react";
 
 function PopUpStudent(props) {
   //state
@@ -30,6 +31,7 @@ function PopUpStudent(props) {
       class: classe,
       team: team,
     });
+    props.reload();
     props.close();
   };
 

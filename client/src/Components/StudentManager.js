@@ -3,22 +3,33 @@ import PopUpTeam from "./PopUpTeam";
 import PopUpStudent from "./PopUpStudent";
 import PopUpHP from "./PopUpHP";
 import BigList from "./BigList";
+import { useRef } from "react";
 
 const StudentManager = (props) => {
   const [popUp, setPopUp] = useState("hidden"); //[hidden, addTeam, addStudent, removeHp]
+  const childRef = useRef();
+
+  const forceReload = () => {
+    console.log("reload");
+    childRef.current.forceReload();
+  };
 
   return (
     <div className="row p-0 m-0 w-100 h-100">
       <div className="col-8 m-0 p-0 bg-info">
         <h1 className="text-center">Liste des élèves par équipe</h1>
-        <BigList />
+        <BigList id={props.id} ref={childRef} />
       </div>
       {popUp === "addTeam" ? (
         <PopUpTeam close={() => setPopUp("hidden")} id={props.id} />
       ) : null}
 
       {popUp === "addStudent" ? (
-        <PopUpStudent close={() => setPopUp("hidden")} id={props.id} />
+        <PopUpStudent
+          close={() => setPopUp("hidden")}
+          id={props.id}
+          reload={forceReload}
+        />
       ) : null}
       {popUp === "removeHp" ? (
         <PopUpHP close={() => setPopUp("hidden")} />
