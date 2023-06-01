@@ -1,6 +1,23 @@
 import React from "react";
 
 function StudentTeam(){
+
+    console.log(props);
+    const [team, setTeam] = useState(0);
+
+    useEffect(() => {
+        axios
+            .post("http://localhost:5000/getStudentsTeam", { team: props.data[0].team })
+            .then((res) => {
+                setTeam(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+
+            });
+    }, [props.data]);
+
+
     return(
         <>
             <div className='row'>

@@ -32,7 +32,7 @@ function StudentDashboard(props) {
 
 
                     <button onClick={() => childRef.current.toggleDrawerOutside()} className="btn btn-primary position-absolute start-0">Menu</button>
-                    {page === "StudentProfile" ? <StudentProfile data={props.data}/> : page === "StudentTeam" ? <StudentTeam/> : page === "Shop" ? <Shop/> : page === "Tutorial" ? <Tutorial/> : <StudentMenu/>}
+                    {page === "StudentProfile" ? <StudentProfile data={props.data}/> : page === "StudentTeam" ? <StudentTeam data={props.data}/> : page === "Shop" ? <Shop/> : page === "Tutorial" ? <Tutorial/> : <StudentMenu/>}
                 </div>
             </div>
 
