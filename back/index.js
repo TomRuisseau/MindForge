@@ -28,12 +28,6 @@ app.post("/login/student", (req, res) => {
       "SELECT * FROM student WHERE id = '" + req.body.code + "'",
       function (err, result, fields) {
         if (err) throw err;
-        console.log(result);
-
-
-
-
-
         res.send(result); //test if id is valid
       }
     );
@@ -188,6 +182,20 @@ app.post("/getHp", (req, res) => {
       });
   });
 });
+
+//get % mana of a student
+app.post("/getMana", (req, res) => {
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT mana, class FROM student WHERE id = '" + req.body.id + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        let ratioMana = Math.floor(result[0].mana / classMap.get(result[0].class).mana * 100);
+        res.send(ratioMana.toString());
+      });
+  });
+});
+
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
