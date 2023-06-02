@@ -17,7 +17,7 @@ function TeacherDashboard(props) {
     <div className="Dashboard w-100 h-100 m-0">
       <TeacherDrawer ref={childRef} onChoice={switchPage} />
       <div className="row m-0 w-100 h-100">
-        <div className="pages col p-0">
+        <div className="col p-0">
           <button
             onClick={() => childRef.current.toggleDrawerOutside()}
             className="btn btn-primary position-absolute"
@@ -32,7 +32,8 @@ function TeacherDashboard(props) {
             <Quests />
           )}
         </div>
-        {page === "StudentManager" ? null : <SmallList />}
+
+        {page === "StudentManager" ? null : <SmallList id={props.id} />}
       </div>
     </div>
   );
