@@ -259,10 +259,16 @@ app.post("/removeHp", (req, res) => {//receive id and damage
 app.post("/giveXp", (req, res) => {//receive id and xp
   pool.getConnection(function (err, connection) {
     connection.query(
-      "UPDATE student SET xp = '" + (req.body.xp + 1) + "' WHERE id = '" + req.body.id + "'",
+      "SELECT xp FROM student WHERE id = '" + req.body.id + "'",
       function (err, result, fields) {
         if (err) throw err;
-        res.send("0");
+        let new_xp = parseInt(result[0].xp) + parseInt(req.body.xp);
+        connection.query(
+          "UPDATE student SET xp ='" + new_xp + "' WHERE id = '" + req.body.id + "'",
+          function (err, result, fields) {
+            if (err) throw err;
+            res.send("0");
+          });
       });
   });
 });

@@ -44,7 +44,7 @@ const StudentManager = (props) => {
         <PopUpHP close={() => setPopUp("hidden")} id={student} />
       ) : null}
       {popUp === "removeXp" ? (
-        <PopUpXP close={() => setPopUp("hidden")} />
+        <PopUpXP close={() => setPopUp("hidden")} id={student} />
       ) : null}
       <div className="col m-0 p-0 h-100 bg-secondary">
         <h1 className="text-center">Actions</h1>
