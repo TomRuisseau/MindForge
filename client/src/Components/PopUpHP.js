@@ -14,6 +14,7 @@ function PopUpHP(props) {
     })
       .then((res) => {
         props.close();
+        props.addCounter(1);
 
       })
       .catch((err) => {

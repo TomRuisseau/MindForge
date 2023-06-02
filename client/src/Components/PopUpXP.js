@@ -14,6 +14,7 @@ function PopUpXP(props) {
     }
     ).then((res) => {
       props.close();
+      props.addCounter(1)
     }
     ).catch((err) => {
       console.log(err);

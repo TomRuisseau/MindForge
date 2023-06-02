@@ -9,9 +9,9 @@ import { useRef } from "react";
 
 const StudentManager = (props) => {
   const [popUp, setPopUp] = useState("hidden"); //[hidden, addTeam, addStudent, removeHp, removeXp]
-  const [openStats, setOpenStats] = useState("hidden"); //[false, true]
-  const childRef = useRef();
   const [student, setStudent] = useState(0);
+  const [counter, setCounter] = useState(0); //used to force reloads 
+  const childRef = useRef();
 
   const forceReload = () => {
     console.log("reload");
@@ -27,7 +27,7 @@ const StudentManager = (props) => {
       <div className="col-10 m-0 p-0 bg-info">
         <div className="d-flex flex-row my-5">
           <BigList id={props.id} ref={childRef} onPass={pass} />
-          {student === 0 ? null : <StudentStats id={student} />}
+          {student === 0 ? null : <StudentStats id={student} counter={counter} />}
         </div>
       </div>
       {popUp === "addTeam" ? (
@@ -42,10 +42,10 @@ const StudentManager = (props) => {
         />
       ) : null}
       {popUp === "removeHp" ? (
-        <PopUpHP close={() => setPopUp("hidden")} id={student} />
+        <PopUpHP close={() => setPopUp("hidden")} id={student} addCounter={setCounter} />
       ) : null}
       {popUp === "removeXp" ? (
-        <PopUpXP close={() => setPopUp("hidden")} id={student} />
+        <PopUpXP close={() => setPopUp("hidden")} id={student} addCounter={setCounter} />
       ) : null}
       <div className="col m-0 p-0 h-100 bg-secondary">
         <h1 className="text-center">Actions</h1>

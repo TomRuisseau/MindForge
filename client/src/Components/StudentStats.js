@@ -22,7 +22,7 @@ function StudentStats(props) {
       .catch((err) => {
         console.log(err);
       });
-  }, [props.id]);
+  }, [props.id, props.counter]);
 
   return (
     <div className="w-50 m-5 px-5 py-2 border border-black rounded bg-warning">
