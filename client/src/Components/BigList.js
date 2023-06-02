@@ -21,6 +21,7 @@ const BigList = forwardRef((props, ref) => {
       prevStudents.map((student) => {
         if (student.id === studentId) {
           setSelectedStudent(studentId);
+          props.onPass(studentId);
           return { ...student, bgColor: "bg-danger" };
         } else {
           return { ...student, bgColor: "" };

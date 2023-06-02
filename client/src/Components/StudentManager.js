@@ -4,22 +4,30 @@ import PopUpStudent from "./PopUpStudent";
 import PopUpHP from "./PopUpHP";
 import PopUpXP from "./PopUpXP";
 import BigList from "./BigList";
+import StudentStats from "./StudentStats";
 import { useRef } from "react";
 
 const StudentManager = (props) => {
   const [popUp, setPopUp] = useState("hidden"); //[hidden, addTeam, addStudent, removeHp, removeXp]
   const childRef = useRef();
+  const [student, setStudent] = useState(0);
 
   const forceReload = () => {
     console.log("reload");
     childRef.current.forceReload();
   };
 
+  const pass = (identifiant) => {
+    setStudent(identifiant);
+  };
+
   return (
     <div className="row p-0 m-0 w-100 h-100">
       <div className="col-10 m-0 p-0 bg-info">
-        <h1 className="text-center">Liste des élèves par équipe</h1>
-        <BigList id={props.id} ref={childRef} />
+        <div className="d-flex flex-row my-5">
+          <BigList id={props.id} ref={childRef} onPass={pass} />
+          <StudentStats id={student} />
+        </div>
       </div>
       {popUp === "addTeam" ? (
         <PopUpTeam close={() => setPopUp("hidden")} id={props.id} />
