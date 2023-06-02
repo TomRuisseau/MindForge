@@ -3,13 +3,21 @@ import axios from "axios";
 
 function StudentStats(props) {
   const [studentStats, setStudentStats] = useState([]);
+  const [skin, setSkin] = useState("toutNu");
 
   useEffect(() => {
     axios
       .post("http://localhost:5000/getStudent", { id: props.id })
       .then((res) => {
         setStudentStats(res.data);
-        console.log(res.data);
+        axios
+          .post("http://localhost:5000/getSkin", { id: props.id })
+          .then((res) => {
+            setSkin(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -29,7 +37,7 @@ function StudentStats(props) {
           <p>Classe : {stat.class}</p>
           <p>XP : {stat.xp}</p>
           <p>HP : {stat.hp}</p>
-          <img src={stat.skin} />
+          <img src={`media/skin/${skin}.png`} className="w-50" />
         </div>
       ))}
     </div>
