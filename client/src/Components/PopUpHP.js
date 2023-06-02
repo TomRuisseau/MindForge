@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 function PopUpHP(props) {
   //state
@@ -7,9 +8,23 @@ function PopUpHP(props) {
   //comportement
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
-    console.log(HP);
-    //axios.post('http://localhost:5000/login/teacher', { email: email, password: password })
+    axios.post("http://localhost:5000/removeHp", {
+      id: props.id,
+      damage: HP,
+    })
+      .then((res) => {
+        props.close();
+
+      })
+      .catch((err) => {
+        console.log(err);
+      }
+      );
+
+
+
   };
+
 
   //affichage (render)
   return (
@@ -38,7 +53,6 @@ function PopUpHP(props) {
         <button
           type="submit"
           className="btn btn-success mt-3"
-          onClick={props.close}
         >
           Valider
         </button>

@@ -41,7 +41,7 @@ const StudentManager = (props) => {
         />
       ) : null}
       {popUp === "removeHp" ? (
-        <PopUpHP close={() => setPopUp("hidden")} />
+        <PopUpHP close={() => setPopUp("hidden")} id={student} />
       ) : null}
       {popUp === "removeXp" ? (
         <PopUpXP close={() => setPopUp("hidden")} />

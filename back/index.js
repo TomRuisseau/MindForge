@@ -236,15 +236,21 @@ app.post("/getMana", (req, res) => {
 });
 
 //inflict damage to a student
-app.post("/inflictDamage", (req, res) => {//receive id, damage and hp
-  let new_hp = req.body.hp - req.body.damage;
-  new_hp = new_hp < 0 ? 0 : new_hp;
+app.post("/removeHp", (req, res) => {//receive id and damage
+
   pool.getConnection(function (err, connection) {
     connection.query(
-      "UPDATE student SET hp = '" + new_hp + "' WHERE id = '" + req.body.id + "'",
+      "SELECT hp FROM student WHERE id = '" + req.body.id + "'",
       function (err, result, fields) {
         if (err) throw err;
-        res.send(new_hp === 0 ? "dead" : "alive");
+        let new_hp = result[0].hp - req.body.damage;
+        new_hp = new_hp < 0 ? 0 : new_hp;
+        connection.query(
+          "UPDATE student SET hp = '" + new_hp + "' WHERE id = '" + req.body.id + "'",
+          function (err, result, fields) {
+            if (err) throw err;
+            res.send(new_hp === 0 ? "dead" : "alive");
+          });
       });
   });
 });
