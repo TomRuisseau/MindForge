@@ -62,19 +62,21 @@ const StudentManager = (props) => {
           >
             Ajouter un élève
           </button>
-
-          <button
-            className="btn btn-primary mt-10"
-            onClick={() => setPopUp("removeHp")}
-          >
-            Retirer des HP à l'élève sélectionné
-          </button>
-          <button
-            className="btn btn-primary mt-10"
-            onClick={() => setPopUp("removeXp")}
-          >
-            Ajouter de l'XP à l'élève sélectionné
-          </button>
+          {student === 0 ? null :
+            <button
+              className="btn btn-primary mt-10"
+              onClick={() => setPopUp("removeHp")}
+            >
+              Retirer des HP à l'élève sélectionné
+            </button>}
+          {student === 0 ? null :
+            <button
+              className="btn btn-primary mt-10"
+              onClick={() => setPopUp("removeXp")}
+            >
+              Ajouter de l'XP à l'élève sélectionné
+            </button>
+          }
         </div>
       </div>
     </div>
