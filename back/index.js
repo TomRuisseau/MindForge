@@ -165,7 +165,19 @@ app.post("/addStudent", (req, res) => {
         "')",
         function (err, result, fields) {
           if (err) throw err;
-          res.send("0");
+          connection.query(
+            "INSERT INTO owned_item() VALUES ('" +
+            req.body.class +
+            "', '" +
+            id +
+            "', '" +
+            true +
+            "')",
+            function (err, result, fields) {
+              if (err) throw err;
+              res.send("0");
+            }
+          );
         }
       );
     });
