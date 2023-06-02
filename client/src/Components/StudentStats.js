@@ -1,12 +1,9 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 function StudentStats(props) {
-  //state
-  const [studentStats, setStudentStats] = useState([]); //stats de l'élève
+  const [studentStats, setStudentStats] = useState([]);
 
-  //comportement
   useEffect(() => {
     axios
       .post("http://localhost:5000/getStudent", { id: props.id })
@@ -19,10 +16,22 @@ function StudentStats(props) {
       });
   }, [props.id]);
 
-  //affichage (render)
   return (
     <div className="w-50 m-5 px-5 py-2 border border-black rounded bg-warning">
-      <h1>Stats de l'élève</h1>
+      {studentStats.map((stat) => (
+        <div key={stat.id}>
+          <div className="d-flex flex-row justify-content-between">
+            <h2>
+              {stat.first_name} {stat.surname}
+            </h2>
+            <h2>Equipe : {stat.team}</h2>
+          </div>
+          <p>Classe : {stat.class}</p>
+          <p>XP : {stat.xp}</p>
+          <p>HP : {stat.hp}</p>
+          <img src={stat.skin} />
+        </div>
+      ))}
     </div>
   );
 }
