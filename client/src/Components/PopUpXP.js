@@ -15,7 +15,7 @@ function PopUpXP(props) {
   return (
     <div className="w-auto p-5 h-40 border border-muted rounded bg-secondary position-absolute d-flex flex-column justify-content-center">
       <div className="d-flex flex-row">
-        <h2>Retirer des XP à 'prenom + nom'</h2>
+        <h2>Ajouter des XP à 'prenom + nom'</h2>
         <button
           className="btn-close text-danger w-10 mx-3 rounded-circle"
           onClick={props.close}
@@ -23,7 +23,7 @@ function PopUpXP(props) {
       </div>
       <form onSubmit={handleSubmit} className="d-flex flex-column">
         <label htmlFor="number" className="mt-3">
-          Donner le nombre d'XP à retirer :
+          Donner le nombre d'XP à ajouter :
         </label>
         <input
           value={XP}

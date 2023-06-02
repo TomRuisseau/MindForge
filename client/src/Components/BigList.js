@@ -7,7 +7,7 @@ const BigList = forwardRef((props, ref) => {
   //state
   const [students, setStudents] = useState([]); //liste des élèves
   const [count, setCount] = useState(0); //compteur de rechargement
-
+  const [selectedStudent, setSelectedStudent] = useState(0); //élève sélectionné
 
   //comportement
   useImperativeHandle(ref, () => ({
@@ -16,17 +16,34 @@ const BigList = forwardRef((props, ref) => {
     },
   }));
 
+  const changeBackground = (studentId) => {
+    setStudents((prevStudents) =>
+      prevStudents.map((student) => {
+        if (student.id === studentId) {
+          setSelectedStudent(studentId);
+          return { ...student, bgColor: "bg-danger" };
+        } else {
+          return { ...student, bgColor: "" };
+        }
+        return student;
+      })
+    );
+  };
+
   useEffect(() => {
     axios
       .post("http://localhost:5000/getStudents", { email: props.id })
       .then((res) => {
-        setStudents(res.data);
+        // Ajouter la propriété bgColor initiale à chaque élève
+        const updatedStudents = res.data.map((student) => ({
+          ...student,
+        }));
+        setStudents(updatedStudents);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [props.id, count]);
-
 
   //affichage (render)
   return (
@@ -49,10 +66,14 @@ const BigList = forwardRef((props, ref) => {
           <table className="mb-5">
             <tbody>
               {members.map((student) => (
-                <tr key={student.id}>
+                <tr
+                  key={student.id}
+                  className={student.bgColor}
+                  onClick={() => changeBackground(student.id)}
+                >
                   <td className="mx-5 px-5">{student.surname}</td>
                   <td className="mx-5 px-5">{student.first_name}</td>
-                  <td className="mx-5 px-5">{student.class}</td>
+                  <td className="mx-5 px-5">{student.id}</td>
                 </tr>
               ))}
             </tbody>
