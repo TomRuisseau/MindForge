@@ -197,6 +197,18 @@ app.post("/getStudentsTeam", (req, res) => {
   });
 });
 
+//get a specific student
+app.post("/getStudent", (req, res) => { //todo : send the skin too
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT * FROM student WHERE id = '" + req.body.id + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send(result);
+      });
+  });
+});
+
 //get % of hp of a student
 app.post("/getHp", (req, res) => {
   pool.getConnection(function (err, connection) {
@@ -222,6 +234,35 @@ app.post("/getMana", (req, res) => {
       });
   });
 });
+
+//inflict damage to a student
+app.post("/inflictDamage", (req, res) => {//receive id, damage and hp
+  let new_hp = req.body.hp - req.body.damage;
+  new_hp = new_hp < 0 ? 0 : new_hp;
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "UPDATE student SET hp = '" + new_hp + "' WHERE id = '" + req.body.id + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send(new_hp === 0 ? "dead" : "alive");
+      });
+  });
+});
+
+//give xp to a student
+app.post("/giveXp", (req, res) => {//receive id and xp
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "UPDATE student SET xp = '" + (req.body.xp + 1) + "' WHERE id = '" + req.body.id + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send("0");
+      });
+  });
+});
+
+
+
 
 
 app.listen(port, () => {
