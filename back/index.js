@@ -285,7 +285,17 @@ app.post("/giveXp", (req, res) => {//receive id and xp
   });
 });
 
-
+//send skin of a student
+app.post("/getSkin", (req, res) => {
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT item_name FROM owned_item WHERE id = '" + req.body.id + "' AND equiped = '" + true + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send(result[0].item_name);
+      });
+  });
+});
 
 
 
