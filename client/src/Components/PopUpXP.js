@@ -1,9 +1,21 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function PopUpXP(props) {
   //state
   const [XP, setXP] = useState(0);
+  const [first_name, setFirst_name] = useState("");
+  const [surname, setSurname] = useState("");
+
+  useEffect(() => {
+    axios.post("http://localhost:5000/getStudent", { id: props.id }).then((res) => {
+      setFirst_name(res.data[0].first_name);
+      setSurname(res.data[0].surname);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }, [props.id]);
+
 
   //comportement
   const handleSubmit = (e) => {
@@ -26,7 +38,7 @@ function PopUpXP(props) {
   return (
     <div className="w-auto p-5 h-40 border border-muted rounded bg-secondary position-absolute d-flex flex-column justify-content-center">
       <div className="d-flex flex-row">
-        <h2>Ajouter des XP à 'prenom + nom'</h2>
+        <h2>Ajouter de l'XP à {first_name} {surname}</h2>
         <button
           className="btn-close text-danger w-10 mx-3 rounded-circle"
           onClick={props.close}
