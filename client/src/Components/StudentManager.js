@@ -17,7 +17,7 @@ const StudentManager = (props) => {
 
   return (
     <div className="row p-0 m-0 w-100 h-100">
-      <div className="col-8 m-0 p-0 bg-info">
+      <div className="col-10 m-0 p-0 bg-info">
         <h1 className="text-center">Liste des élèves par équipe</h1>
         <BigList id={props.id} ref={childRef} />
       </div>

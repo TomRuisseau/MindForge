@@ -48,7 +48,7 @@ const BigList = forwardRef((props, ref) => {
   //affichage (render)
   return (
     <div
-      className="text-muted m-5 px-5 py-2 border border-black rounded bg-warning"
+      className="text-muted w-50 m-5 px-5 py-2 border border-black rounded bg-warning"
       style={{ height: "80vh", overflow: "auto" }}
     >
       {Array.from(
