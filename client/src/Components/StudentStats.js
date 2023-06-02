@@ -10,14 +10,14 @@ function StudentStats(props) {
       .post("http://localhost:5000/getStudent", { id: props.id })
       .then((res) => {
         setStudentStats(res.data);
-        axios
-          .post("http://localhost:5000/getSkin", { id: props.id })
-          .then((res) => {
-            setSkin(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .post("http://localhost:5000/getSkin", { id: props.id })
+      .then((res) => {
+        setSkin(res.data);
       })
       .catch((err) => {
         console.log(err);
