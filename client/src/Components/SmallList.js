@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import '../Styles/Scroll.css'
 
 const SmallList = (props) => {
     const [students, setStudents] = useState([]);
@@ -21,7 +22,7 @@ const SmallList = (props) => {
 
     return (
         <div
-            className="col-2 m-5 text-muted border border-black rounded"
+            className="col-2 m-5 text-muted border border-black rounded custom-scrollbar"
             style={{ height: "80vh", overflow: "auto" }}
         >
             {Array.from(

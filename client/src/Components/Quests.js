@@ -75,7 +75,7 @@ function Quests(props) {
 
     //affichage
     return (
-        <div className="row test">
+        <div className="row">
             <div className="col m-5 custom-scrollbar" style={{ height: "85vh", overflow: "auto" }}>
                 <h2 className="text-center">Liste de quêtes</h2>
                 <table className="table table-striped">
