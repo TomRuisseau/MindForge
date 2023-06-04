@@ -57,11 +57,26 @@ function Quests(props) {
         setQuests(blankQuests);
     }
 
+    const deleteQuest = (e) => {
+        e.preventDefault(); // prevent page reload
+        axios.post("http://localhost:5000/deleteQuest", {
+            id: selectedQuest,
+        }
+        ).then((res) => {
+            setCounter(counter + 1);
+        }
+        ).catch((err) => {
+            console.log(err);
+        }
+        );
+    };
+
+
     //affichage
     return (
         <div className="row">
             <div className="col m-5" style={{ height: "85vh", overflow: "auto" }}>
-                <h2>Liste de quêtes</h2>
+                <h2 className="text-center">Liste de quêtes</h2>
                 <table className="table table-striped">
                     <thead>
                         <tr>
@@ -114,6 +129,9 @@ function Quests(props) {
                         Valider
                     </button>
                 </form>
+                <button onClick={deleteQuest} className="btn btn-danger mt-3">
+                    Supprimer la quête sélectionnée
+                </button>
             </div>
         </div>
     )

@@ -374,7 +374,19 @@ app.post("/getQuests", (req, res) => {
   });
 });
 
-
+//delete a quest
+app.post("/deleteQuest", (req, res) => {
+  //receive id
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "DELETE FROM quest WHERE id = '" + req.body.id + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send("0");
+      }
+    );
+  });
+});
 
 
 app.listen(port, () => {
