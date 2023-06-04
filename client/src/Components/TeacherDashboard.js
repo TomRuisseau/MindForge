@@ -29,7 +29,7 @@ function TeacherDashboard(props) {
           ) : page === "StudentManager" ? (
             <StudentManager id={props.id} />
           ) : (
-            <Quests />
+            <Quests id={props.id} />
           )}
         </div>
 

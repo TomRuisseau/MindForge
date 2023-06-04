@@ -37,12 +37,12 @@ app.post("/login/student", (req, res) => {
           //todo : mettre à 24h
           connection.query(
             "UPDATE student SET last_time = '" +
-              now +
-              "', mana = '" +
-              (result[0].mana + 1) +
-              "' WHERE id = '" +
-              req.body.code +
-              "'",
+            now +
+            "', mana = '" +
+            (result[0].mana + 1) +
+            "' WHERE id = '" +
+            req.body.code +
+            "'",
             function (err, result2, fields) {
               if (err) throw err;
               res.send(result);
@@ -62,10 +62,10 @@ app.post("/login/teacher", (req, res) => {
   pool.getConnection(function (err, connection) {
     connection.query(
       "SELECT * FROM teacher WHERE email = '" +
-        req.body.email +
-        "' AND password = '" +
-        req.body.password +
-        "'",
+      req.body.email +
+      "' AND password = '" +
+      req.body.password +
+      "'",
       function (err, result, fields) {
         if (err) throw err;
         res.send(result.length > 0 ? "1" : "0"); //test if email and password match
@@ -87,10 +87,10 @@ app.post("/register/teacher", (req, res) => {
           //insert new user
           connection.query(
             "INSERT INTO teacher(email, password) VALUES ('" +
-              req.body.email +
-              "', '" +
-              req.body.password +
-              "')",
+            req.body.email +
+            "', '" +
+            req.body.password +
+            "')",
             function (err, result, fields) {
               if (err) throw err;
               res.send("0");
@@ -113,10 +113,10 @@ app.post("/addTeam", (req, res) => {
         else {
           connection.query(
             "INSERT INTO team(name,teacher_email) VALUES ('" +
-              req.body.name +
-              "', '" +
-              req.body.email +
-              "')",
+            req.body.name +
+            "', '" +
+            req.body.email +
+            "')",
             function (err, result, fields) {
               if (err) throw err;
               res.send("0");
@@ -153,36 +153,36 @@ app.post("/addStudent", (req, res) => {
       let date = new Date().getTime();
       connection.query(
         "INSERT INTO student(id,teacher_email, team, first_name, surname, class, hp, xp, mana, last_time) VALUES ('" +
-          id + //id
-          "', '" +
-          req.body.email +
-          "', '" + //teacher_email
-          req.body.team +
-          "', '" + //team
-          req.body.first_name +
-          "', '" + //first_name
-          req.body.surname +
-          "', '" + //surname
-          req.body.class +
-          "', '" + //class
-          hp +
-          "', '" + //hp
-          xp +
-          "', '" + //xp
-          mana +
-          "', '" + //mana
-          date + //last_time
-          "')",
+        id + //id
+        "', '" +
+        req.body.email +
+        "', '" + //teacher_email
+        req.body.team +
+        "', '" + //team
+        req.body.first_name +
+        "', '" + //first_name
+        req.body.surname +
+        "', '" + //surname
+        req.body.class +
+        "', '" + //class
+        hp +
+        "', '" + //hp
+        xp +
+        "', '" + //xp
+        mana +
+        "', '" + //mana
+        date + //last_time
+        "')",
         function (err, result, fields) {
           if (err) throw err;
           connection.query(
             "INSERT INTO owned_item() VALUES ('" +
-              req.body.class +
-              "', '" +
-              id +
-              "', '" +
-              true +
-              "')",
+            req.body.class +
+            "', '" +
+            id +
+            "', '" +
+            true +
+            "')",
             function (err, result, fields) {
               if (err) throw err;
               res.send("0");
@@ -200,8 +200,8 @@ app.post("/getStudents", (req, res) => {
     let studentsMap = new Map();
     connection.query(
       "SELECT * FROM student WHERE teacher_email = '" +
-        req.body.email +
-        "' ORDER BY team",
+      req.body.email +
+      "' ORDER BY team",
       function (err, result, fields) {
         if (err) throw err;
         res.send(result);
@@ -282,10 +282,10 @@ app.post("/removeHp", (req, res) => {
         new_hp = new_hp < 0 ? 0 : new_hp;
         connection.query(
           "UPDATE student SET hp = '" +
-            new_hp +
-            "' WHERE id = '" +
-            req.body.id +
-            "'",
+          new_hp +
+          "' WHERE id = '" +
+          req.body.id +
+          "'",
           function (err, result, fields) {
             if (err) throw err;
             res.send(new_hp === 0 ? "dead" : "alive");
@@ -307,10 +307,10 @@ app.post("/giveXp", (req, res) => {
         let new_xp = parseInt(result[0].xp) + parseInt(req.body.xp);
         connection.query(
           "UPDATE student SET xp ='" +
-            new_xp +
-            "' WHERE id = '" +
-            req.body.id +
-            "'",
+          new_xp +
+          "' WHERE id = '" +
+          req.body.id +
+          "'",
           function (err, result, fields) {
             if (err) throw err;
             res.send("0");
@@ -326,10 +326,10 @@ app.post("/getSkin", (req, res) => {
   pool.getConnection(function (err, connection) {
     connection.query(
       "SELECT item_name FROM owned_item WHERE student_id = '" +
-        req.body.id +
-        "' AND equiped = '" +
-        true +
-        "'",
+      req.body.id +
+      "' AND equiped = '" +
+      true +
+      "'",
       function (err, result, fields) {
         if (err) throw err;
         res.send(result[0].item_name);
@@ -337,6 +337,31 @@ app.post("/getSkin", (req, res) => {
     );
   });
 });
+
+//add quest
+app.post("/addQuest", (req, res) => {
+  //receive id and quest
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "INSERT INTO quest(id, teacher_email, reward, description) VALUES ('" +
+      new Date().getTime() +
+      "', '" +
+      req.body.email +
+      "', '" +
+      req.body.reward +
+      "', '" +
+      req.body.description +
+      "')",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send("0");
+      }
+    );
+  });
+});
+
+
+
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
