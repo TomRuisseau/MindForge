@@ -1,17 +1,15 @@
 import React from 'react';
 import StudentDrawer from './StudentDrawer';
 import StudentMenu from './StudentMenu';
-import StudentManager from './StudentManager';
-import SmallList from './SmallList';
-import Quests from './Quests';
 import { useState, useRef } from 'react';
 import StudentProfile from './StudentProfile';
 import StudentTeam from './StudentTeam';
 import Shop from './Shop';
 import Tutorial from './Tutorial';
+import StudentQuests from './StudentQuests';
 
 function StudentDashboard(props) {
-    const [page, setPage] = useState("StudentMenu"); // StudentMenu, quests, quiz, dailyEvent, tutorial, settings
+    const [page, setPage] = useState("StudentMenu"); // StudentMenu, quests, quiz, dailyEvent, tutorial, settings, Quetes
     const childRef = useRef();
 
     console.log(props.data)
@@ -23,22 +21,17 @@ function StudentDashboard(props) {
     return (
         <div>
             <h1 className="text-center">Student Dashboard</h1>
-            <StudentDrawer ref={childRef} onChoice={switchPage}/>
+            <StudentDrawer ref={childRef} onChoice={switchPage} />
             <div className="row w-100 h-100" >
                 <div className="pages col p-0">
-
-
-
-
-
                     <button onClick={() => childRef.current.toggleDrawerOutside()} className="btn btn-primary position-absolute start-0">Menu</button>
-                    {page === "StudentProfile" ? <StudentProfile data={props.data}/> : page === "StudentTeam" ? <StudentTeam data={props.data}/> : page === "Shop" ? <Shop/> : page === "Tutorial" ? <Tutorial/> : <StudentMenu/>}
+                    {page === "StudentProfile" ? <StudentProfile data={props.data} /> : page === "StudentTeam" ? <StudentTeam data={props.data} /> : page === "Shop" ? <Shop /> : page === "Tutorial" ? <Tutorial /> : page === "Quetes" ? <StudentQuests data={props.data} /> : <StudentMenu />}
                 </div>
             </div>
 
-            
+
         </div>
-       
+
     )
 }
 
