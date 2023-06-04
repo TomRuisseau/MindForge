@@ -6,11 +6,18 @@ function Quests(props) {
     const [description, setDescription] = useState("")
     const [reward, setReward] = useState(0)
     const [counter, setCounter] = useState(0) // pour forcer le rechargement de la page quand on ajoute une quête
+    const [quests, setQuests] = useState([]) // liste des quêtes
 
     //comportement
     useEffect(() => {
-        console.log("Quests mounted");
-    }, []);
+        axios.post("http://localhost:5000/getQuests", { email: props.id })
+            .then((res) => {
+                setQuests(res.data)
+            }).catch((err) => {
+                console.log(err);
+            }
+            );
+    }, [counter, props.id]);
 
     const handleSubmit = (e) => {
         e.preventDefault(); // prevent page reload
@@ -33,8 +40,26 @@ function Quests(props) {
     //affichage
     return (
         <div className="row">
-            <div className="col m-5">
+            <div className="col m-5" style={{ height: "85vh", overflow: "auto" }}>
                 <h2>Liste de quêtes</h2>
+                <table className="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Description</th>
+                            <th scope="col">Récompense</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {quests.map((quest) => {
+                            return (
+                                <tr key={quest.id}>
+                                    <td>{quest.description}</td>
+                                    <td>{quest.reward}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
             </div>
             <div className="col-4 m-5">
                 <h2>Ajouter une quête : </h2>

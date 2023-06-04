@@ -361,6 +361,20 @@ app.post("/addQuest", (req, res) => {
 });
 
 
+//get all quests of a teacher
+app.post("/getQuests", (req, res) => {
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT * FROM quest WHERE teacher_email = '" + req.body.email + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send(result);
+      }
+    );
+  });
+});
+
+
 
 
 app.listen(port, () => {
