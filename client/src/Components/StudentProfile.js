@@ -12,12 +12,21 @@ function StudentProfile(props) {
 
     console.log(props.data);
     const [hpRatio, setHpRatio] = useState(0);
+    const [skin, setSkin] = useState("toutNu");
 
     useEffect(() => {
         axios
             .post("http://localhost:5000/getHp", { id: props.data[0].id })
             .then((res) => {
                 setHpRatio(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        axios
+            .post("http://localhost:5000/getSkin", { id: props.data[0].id })
+            .then((res) => {
+                setSkin(res.data);
             })
             .catch((err) => {
                 console.log(err);
@@ -48,7 +57,7 @@ function StudentProfile(props) {
                 </div>
                 <div className='col-2'>
                     <h2>Ton avatar:</h2>
-                    <img src="media/pierre.png" className='w-100'></img>
+                    <img src={`media/skin/${skin}.png`} className='w-100'></img>
                 </div>
             </div>
         </>
