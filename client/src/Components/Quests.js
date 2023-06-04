@@ -130,7 +130,7 @@ function Quests(props) {
                         Valider
                     </button>
                 </form>
-                <button onClick={deleteQuest} className="btn btn-danger mt-3">
+                <button onClick={deleteQuest} className="btn btn-danger mt-5">
                     Supprimer la quête sélectionnée
                 </button>
             </div>
