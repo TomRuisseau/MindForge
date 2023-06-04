@@ -7,12 +7,17 @@ function Quests(props) {
     const [reward, setReward] = useState(0)
     const [counter, setCounter] = useState(0) // pour forcer le rechargement de la page quand on ajoute une quête
     const [quests, setQuests] = useState([]) // liste des quêtes
+    const [selectedQuest, setSelectedQuest] = useState(0) // quête sélectionnée
 
     //comportement
     useEffect(() => {
         axios.post("http://localhost:5000/getQuests", { email: props.id })
             .then((res) => {
-                setQuests(res.data)
+                const blankQuests = res.data.map((quest) => {
+                    quest.bg = "";
+                    return quest;
+                })
+                setQuests(blankQuests);
             }).catch((err) => {
                 console.log(err);
             }
@@ -37,6 +42,21 @@ function Quests(props) {
         );
     };
 
+    const select = (e) => {
+        let key = e.target.parentNode.getAttribute("data-key");
+        setSelectedQuest(key);
+        const blankQuests = quests.map((quest) => {
+            if (quest.id == key) {
+                quest.bg = "bg-primary";
+            }
+            else {
+                quest.bg = "";
+            }
+            return quest;
+        })
+        setQuests(blankQuests);
+    }
+
     //affichage
     return (
         <div className="row">
@@ -52,7 +72,7 @@ function Quests(props) {
                     <tbody>
                         {quests.map((quest) => {
                             return (
-                                <tr key={quest.id}>
+                                <tr key={quest.id} onClick={select} data-key={quest.id} className={quest.bg}>
                                     <td>{quest.description}</td>
                                     <td>{quest.reward}</td>
                                 </tr>
