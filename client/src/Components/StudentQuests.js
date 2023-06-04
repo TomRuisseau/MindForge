@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function StudentQuests(props) {
     //state
-    const [counter, setCounter] = useState(0) // pour forcer le rechargement de la page quand valide une quête
+    //const [counter, setCounter] = useState(0) // pour forcer le rechargement de la page quand valide une quête
     const [quests, setQuests] = useState([]) // liste des quêtes
 
     //comportement
@@ -15,7 +15,7 @@ function StudentQuests(props) {
                 console.log(err);
             }
             );
-    }, [counter, props.id]);
+    }, [/*counter,*/ props.data]);
 
     const questValidation = (e) => {
         e.preventDefault(); // prevent page reload

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import StudentProfile from "./StudentProfile";
 
 
 function StudentLogger(props) {
@@ -16,7 +15,7 @@ function StudentLogger(props) {
                 if (res.data.length !== 0) {
                     props.onPass(res.data);
                     props.onValidation("StudentDashboard");
-                    
+
                 }
                 else {
                     alert("Code incorrect");
@@ -31,11 +30,11 @@ function StudentLogger(props) {
     return (
         <>
             <div className="w-50">
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="code">Entre le code fourni par ton enseignant</label>
-                <input value={code} onChange={(e) => setCode(e.target.value)} type="text" className="form-control" placeholder="xyz123" id="code" name="code" />
-                <button type="submit" className="btn btn-primary">Connexion</button>
-            </form>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="code">Entre le code fourni par ton enseignant</label>
+                    <input value={code} onChange={(e) => setCode(e.target.value)} type="text" className="form-control" placeholder="xyz123" id="code" name="code" />
+                    <button type="submit" className="btn btn-primary">Connexion</button>
+                </form>
             </div>
         </>
     )

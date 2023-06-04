@@ -47,7 +47,7 @@ function Quests(props) {
         let key = e.target.parentNode.getAttribute("data-key");
         setSelectedQuest(key);
         const blankQuests = quests.map((quest) => {
-            if (quest.id == key) {
+            if (quest.id.toString() === key) {
                 quest.bg = "bg-primary";
             }
             else {

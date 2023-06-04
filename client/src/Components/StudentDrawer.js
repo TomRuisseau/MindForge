@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 
 // import component
 import Drawer from 'react-modern-drawer'

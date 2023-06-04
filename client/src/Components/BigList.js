@@ -28,7 +28,6 @@ const BigList = forwardRef((props, ref) => {
         } else {
           return { ...student, bgColor: "" };
         }
-        return student;
       })
     );
   };
