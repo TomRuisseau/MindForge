@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import '../Styles/Scroll.css'
 
 function Quests(props) {
     //state
@@ -74,8 +75,8 @@ function Quests(props) {
 
     //affichage
     return (
-        <div className="row">
-            <div className="col m-5" style={{ height: "85vh", overflow: "auto" }}>
+        <div className="row test">
+            <div className="col m-5 custom-scrollbar" style={{ height: "85vh", overflow: "auto" }}>
                 <h2 className="text-center">Liste de quêtes</h2>
                 <table className="table table-striped">
                     <thead>
