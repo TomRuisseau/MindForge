@@ -26,32 +26,35 @@ function PopUpTeam(props) {
 
   //affichage (render)
   return (
-    <div className="w-auto p-5 h-40 border border-primary rounded bg-danger position-absolute d-flex flex-column justify-content-center">
-      <div className="d-flex flex-row">
-        <h2>Créer une équipe</h2>
-        <button
-          className="btn-close text-danger w-10 mx-3 rounded-circle"
-          onClick={props.close}
-        ></button>
+    <div className="position-absolute w-100 h-100 d-flex align-items-center justify-content-center">
+      <div className="p-5 border border-muted rounded w-auto h-auto bg-danger d-flex flex-column align-items-center">
+        {" "}
+        <div className="d-flex flex-row">
+          <h2 className="px-3">Créer une équipe</h2>
+          <button
+            className="btn-close btn-close-white h-auto"
+            onClick={props.close}
+          ></button>
+        </div>
+        <form onSubmit={handleSubmit} className="d-flex flex-column">
+          <label htmlFor="text" className="mt-3">
+            Entrez un nom d'équipe :
+          </label>
+          <input
+            value={nomDequipe}
+            onChange={(e) => setNomDequipe(e.target.value)}
+            type="text"
+            className="form-control"
+            placeholder="Un nom d'équipe"
+            id="nomDequipe"
+            name="nomDequipe"
+            required
+          />
+          <button type="submit" className="btn btn-success mt-3">
+            Valider
+          </button>
+        </form>
       </div>
-      <form onSubmit={handleSubmit} className="d-flex flex-column">
-        <label htmlFor="text" className="mt-3">
-          Entrez un nom d'équipe :
-        </label>
-        <input
-          value={nomDequipe}
-          onChange={(e) => setNomDequipe(e.target.value)}
-          type="text"
-          className="form-control"
-          placeholder="Un nom d'équipe"
-          id="nomDequipe"
-          name="nomDequipe"
-          required
-        />
-        <button type="submit" className="btn btn-success mt-3">
-          Valider
-        </button>
-      </form>
     </div>
   );
 }

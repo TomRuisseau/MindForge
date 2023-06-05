@@ -44,107 +44,107 @@ function PopUpStudent(props) {
 
   //affichage (render)
   return (
-    <div className="w-auto p-5 h-40 border border-danger rounded bg-primary position-absolute d-flex flex-column justify-content-center">
-      <div className="d-flex flex-row">
-        <h2>Ajouter un élève</h2>
-        <button
-          className="btn-close text-danger w-10 mx-3 rounded-circle"
-          onClick={props.close}
-        ></button>
-      </div>
-      <form onSubmit={handleSubmit} className="d-flex flex-column">
-        <label htmlFor="text" className="mt-3">
-          Choisir une équipe
-        </label>
-        <select
-          name="teams"
-          id="teams-select"
-          className="rounded"
-          onChange={(e) => setTeam(e.target.value)}
-        >
-          {teams.map((team) => {
-            return (
-              <option value={team.name} key={team.name}>
-                {team.name}
-              </option>
-            );
-          })}
-        </select>
-
-        <label htmlFor="text" className="mt-3">
-          Nom de l'élève
-        </label>
-        <input
-          value={nomEleve}
-          onChange={(e) => setNomEleve(e.target.value)}
-          type="text"
-          className="form-control"
-          placeholder="Dupont"
-          id="nomEleve"
-          name="nomEleve"
-          required
-        />
-
-        <label htmlFor="text" className="mt-3">
-          Prénom de l'élève
-        </label>
-        <input
-          value={prenomEleve}
-          onChange={(e) => setPrenomEleve(e.target.value)}
-          type="text"
-          className="form-control"
-          placeholder="Jean"
-          id="prenomEleve"
-          name="prenomEleve"
-          required
-        />
-
-        <p className="mt-3">Choisir la classe du personnage</p>
-        <div className="d-flex flex-row justify-content-between">
-          <div>
-            <input
-              type="radio"
-              id="tank"
-              name="classe"
-              value="tank"
-              onClick={() => {
-                setClasse("tank");
-              }}
-              required
-            />
-            <label htmlFor="tank">Tank</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="healer"
-              name="classe"
-              value="healer"
-              onClick={() => {
-                setClasse("healer");
-              }}
-              required
-            />
-            <label htmlFor="healer">Healer</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="mage"
-              name="classe"
-              value="mage"
-              onClick={() => {
-                setClasse("mage");
-              }}
-              required
-            />
-            <label htmlFor="mage">Mage</label>
-          </div>
+    <div className="position-absolute w-100 h-100 d-flex align-items-center justify-content-center">
+      <div className="p-5 border border-muted rounded w-auto h-auto bg-primary d-flex flex-column align-items-center">
+        {" "}
+        <div className="d-flex flex-row">
+          <h2 className="px-3">Ajouter un élève</h2>
+          <button className="btn-close h-auto" onClick={props.close}></button>
         </div>
-        <button type="submit" className="btn btn-success mt-3">
-          Valider
-        </button>
-      </form>
+        <form onSubmit={handleSubmit} className="d-flex flex-column">
+          <label htmlFor="text" className="mt-3">
+            Choisir une équipe
+          </label>
+          <select
+            name="teams"
+            id="teams-select"
+            className="rounded"
+            onChange={(e) => setTeam(e.target.value)}
+          >
+            {teams.map((team) => {
+              return (
+                <option value={team.name} key={team.name}>
+                  {team.name}
+                </option>
+              );
+            })}
+          </select>
+
+          <label htmlFor="text" className="mt-3">
+            Nom de l'élève
+          </label>
+          <input
+            value={nomEleve}
+            onChange={(e) => setNomEleve(e.target.value)}
+            type="text"
+            className="form-control"
+            placeholder="Dupont"
+            id="nomEleve"
+            name="nomEleve"
+            required
+          />
+
+          <label htmlFor="text" className="mt-3">
+            Prénom de l'élève
+          </label>
+          <input
+            value={prenomEleve}
+            onChange={(e) => setPrenomEleve(e.target.value)}
+            type="text"
+            className="form-control"
+            placeholder="Jean"
+            id="prenomEleve"
+            name="prenomEleve"
+            required
+          />
+
+          <p className="mt-3">Choisir la classe du personnage</p>
+          <div className="d-flex flex-row justify-content-between">
+            <div>
+              <input
+                type="radio"
+                id="tank"
+                name="classe"
+                value="tank"
+                onClick={() => {
+                  setClasse("tank");
+                }}
+                required
+              />
+              <label htmlFor="tank">Tank</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="healer"
+                name="classe"
+                value="healer"
+                onClick={() => {
+                  setClasse("healer");
+                }}
+                required
+              />
+              <label htmlFor="healer">Healer</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="mage"
+                name="classe"
+                value="mage"
+                onClick={() => {
+                  setClasse("mage");
+                }}
+                required
+              />
+              <label htmlFor="mage">Mage</label>
+            </div>
+          </div>
+          <button type="submit" className="btn btn-success mt-3">
+            Valider
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import PopUpTeam from "./PopUpTeam";
 import PopUpStudent from "./PopUpStudent";
 import PopUpHP from "./PopUpHP";
 import PopUpXP from "./PopUpXP";
+import PopUpDead from "./PopUpDead";
 import BigList from "./BigList";
 import StudentStats from "./StudentStats";
 import { useRef } from "react";
@@ -10,8 +11,12 @@ import { useRef } from "react";
 const StudentManager = (props) => {
   const [popUp, setPopUp] = useState("hidden"); //[hidden, addTeam, addStudent, removeHp, removeXp]
   const [student, setStudent] = useState(0);
-  const [counter, setCounter] = useState(0); //used to force reloads 
+  const [counter, setCounter] = useState(0); //used to force reloads
   const childRef = useRef();
+
+  const isDead = (id) => {
+    setPopUp("dead");
+  };
 
   const forceReload = () => {
     console.log("reload");
@@ -27,9 +32,19 @@ const StudentManager = (props) => {
       <div className="col-10 m-0 p-0 bg-info">
         <div className="d-flex flex-row my-5">
           <BigList id={props.id} ref={childRef} onPass={pass} />
-          {student === 0 ? null : <StudentStats id={student} counter={counter} />}
+          {student === 0 ? null : (
+            <StudentStats id={student} counter={counter} />
+          )}
+          {popUp === "dead" && student !== 0 ? (
+            <PopUpDead
+              id={student}
+              life={isDead}
+              close={() => setPopUp("hidden")}
+            />
+          ) : null}
         </div>
       </div>
+
       {popUp === "addTeam" ? (
         <PopUpTeam close={() => setPopUp("hidden")} id={props.id} />
       ) : null}
@@ -42,10 +57,19 @@ const StudentManager = (props) => {
         />
       ) : null}
       {popUp === "removeHp" ? (
-        <PopUpHP close={() => setPopUp("hidden")} id={student} addCounter={setCounter} />
+        <PopUpHP
+          close={() => setPopUp("hidden")}
+          id={student}
+          addCounter={setCounter}
+          isDead={isDead}
+        />
       ) : null}
       {popUp === "removeXp" ? (
-        <PopUpXP close={() => setPopUp("hidden")} id={student} addCounter={setCounter} />
+        <PopUpXP
+          close={() => setPopUp("hidden")}
+          id={student}
+          addCounter={setCounter}
+        />
       ) : null}
       <div className="col m-0 p-0 h-100 bg-secondary">
         <h1 className="text-center">Actions</h1>
