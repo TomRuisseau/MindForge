@@ -1,3 +1,13 @@
 .btn-principal{
     color: white;
+    position: relative;
+    top: 10%;
+    transition: 0.5s;
+}
+
+.btn-principal:hover{
+    color: white;
+    background-color: #1e7e34;
+    border-color: #1e7e34;
+
 }
