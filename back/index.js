@@ -205,11 +205,23 @@ app.post("/addStudent", (req, res) => {
             "', '" +
             id +
             "', '" +
-            true +
+            1 +
             "')",
             function (err, result, fields) {
               if (err) throw err;
-              res.send("0");
+              connection.query(
+                "INSERT INTO owned_item() VALUES ('" +
+                classMap.get(req.body.class).spell +
+                "', '" +
+                id +
+                "', '" +
+                1 +
+                "')",
+                function (err, result, fields) {
+                  if (err) throw err;
+                  res.send("0");
+                }
+              );
             }
           );
         }
@@ -357,7 +369,7 @@ app.post("/getSkin", (req, res) => {
       "SELECT item_name FROM owned_item WHERE student_id = '" +
       req.body.id +
       "' AND equiped = '" +
-      true +
+      1 +
       "'",
       function (err, result, fields) {
         if (err) throw err;
