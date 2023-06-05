@@ -388,6 +388,25 @@ app.post("/deleteQuest", (req, res) => {
   });
 });
 
+//validate a quest
+app.post("/questValidation", (req, res) => {
+  //receive id
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "INSERT INTO completed_quest(student_id, quest_id) VALUES ('" +
+      req.body.student_id +
+      "', '" +
+      req.body.quest_id +
+      "')",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send("0");
+      }
+    );
+  });
+});
+
+
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

@@ -19,7 +19,16 @@ function StudentQuests(props) {
 
     const questValidation = (e) => {
         e.preventDefault(); // prevent page reload
-        alert("Faut faire le code pour ça ^^");
+        // alert(e.target.parentElement.parentElement.getAttribute("data-key"));
+        // alert(props.data[0].id);
+        axios.post("http://localhost:5000/questValidation", { quest_id: e.target.parentElement.parentElement.getAttribute("data-key"), student_id: props.data[0].id })
+            .then((res) => {
+                //setCounter(counter + 1);
+            }
+            ).catch((err) => {
+                console.log(err);
+            }
+            );
     }
 
 
