@@ -29,12 +29,14 @@ function StudentLogger(props) {
 
     return (
         <>
-            <div className="w-50">
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="code">Entre le code fourni par ton enseignant</label>
-                    <input value={code} onChange={(e) => setCode(e.target.value)} type="text" className="form-control" placeholder="xyz123" id="code" name="code" />
-                    <button type="submit" className="btn btn-primary">Connexion</button>
-                </form>
+            <div className="mainChoice">
+                <div className="w-50">
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor="code">Entre le code fourni par ton enseignant</label>
+                        <input value={code} onChange={(e) => setCode(e.target.value)} type="text" className="form-control" placeholder="xyz123" id="code" name="code" />
+                        <button type="submit" className="btn btn-primary">Connexion</button>
+                    </form>
+                </div>
             </div>
         </>
     )
