@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../Styles/studentTeam.css';
 
 function StudentTeam(props){
 
@@ -31,7 +32,7 @@ function StudentTeam(props){
                         return (
                             
                                 
-                                <div className='col-2'>
+                                <div className='col-2 case'>
                                     
                                     <p>{student.first_name}</p>
                                 </div>
