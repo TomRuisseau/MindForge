@@ -17,6 +17,30 @@ const pool = mysql.createPool({
   database: "u495496740_Propro",
 });
 
+function addXp(connectionPool, id, xp, res) {
+  connectionPool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT xp FROM student WHERE id = '" + id + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        let new_xp = parseInt(result[0].xp) + parseInt(xp);
+        connection.query(
+          "UPDATE student SET xp ='" +
+          new_xp +
+          "' WHERE id = '" +
+          id +
+          "'",
+          function (err, result, fields) {
+            if (err) throw err;
+            res.send("1");
+          }
+        );
+      }
+    );
+  });
+}
+
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
@@ -297,28 +321,33 @@ app.post("/removeHp", (req, res) => {
 });
 
 //give xp to a student
+// app.post("/giveXp", (req, res) => {
+//   //receive id and xp
+//   pool.getConnection(function (err, connection) {
+//     connection.query(
+//       "SELECT xp FROM student WHERE id = '" + req.body.id + "'",
+//       function (err, result, fields) {
+//         if (err) throw err;
+//         let new_xp = parseInt(result[0].xp) + parseInt(req.body.xp);
+//         connection.query(
+//           "UPDATE student SET xp ='" +
+//           new_xp +
+//           "' WHERE id = '" +
+//           req.body.id +
+//           "'",
+//           function (err, result, fields) {
+//             if (err) throw err;
+//             res.send("0");
+//           }
+//         );
+//       }
+//     );
+//   });
+// });
+
 app.post("/giveXp", (req, res) => {
   //receive id and xp
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT xp FROM student WHERE id = '" + req.body.id + "'",
-      function (err, result, fields) {
-        if (err) throw err;
-        let new_xp = parseInt(result[0].xp) + parseInt(req.body.xp);
-        connection.query(
-          "UPDATE student SET xp ='" +
-          new_xp +
-          "' WHERE id = '" +
-          req.body.id +
-          "'",
-          function (err, result, fields) {
-            if (err) throw err;
-            res.send("0");
-          }
-        );
-      }
-    );
-  });
+  addXp(pool, req.body.id, req.body.xp, res);
 });
 
 //send skin of a student
@@ -425,7 +454,13 @@ app.post("/questValidation", (req, res) => {
       "')",
       function (err, result, fields) {
         if (err) throw err;
-        res.send("0");
+        connection.query(
+          "SELECT reward FROM quest WHERE id = '" + req.body.quest_id + "'",
+          function (err, result, fields) {
+            if (err) throw err;
+            addXp(pool, req.body.student_id, result[0].reward, res);
+          }
+        );
       }
     );
   });
