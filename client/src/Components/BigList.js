@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import React from "react";
 import { forwardRef, useImperativeHandle } from "react";
-import '../Styles/Scroll.css'
-
+import "../Styles/Scroll.css";
 
 const BigList = forwardRef((props, ref) => {
   //state
@@ -50,7 +49,7 @@ const BigList = forwardRef((props, ref) => {
   //affichage (render)
   return (
     <div
-      className="text-muted w-50 m-5 px-5 py-2 border border-black rounded bg-warning custom-scrollbar"
+      className="text-muted w-50 m-5 px-5 py-2 border border-black rounded custom-scrollbar"
       style={{ height: "78vh", overflow: "auto" }}
     >
       {Array.from(
