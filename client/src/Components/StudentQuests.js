@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function StudentQuests(props) {
     //state
-    //const [counter, setCounter] = useState(0) // pour forcer le rechargement de la page quand valide une quête
+    const [counter, setCounter] = useState(0) // pour forcer le rechargement de la page quand valide une quête
     const [quests, setQuests] = useState([]) // liste des quêtes
     const [completedQuests, setCompletedQuests] = useState([]) // liste des quêtes validées
     //comportement
@@ -22,13 +22,13 @@ function StudentQuests(props) {
                 console.log(err);
             }
             )
-    }, [/*counter,*/ props.data]);
+    }, [counter, props.data]);
 
     const questValidation = (e) => {
         e.preventDefault(); // prevent page reload
         axios.post("http://localhost:5000/questValidation", { quest_id: e.target.parentElement.parentElement.getAttribute("data-key"), student_id: props.data[0].id })
             .then((res) => {
-                //setCounter(counter + 1);
+                setCounter(counter + 1);
             }
             ).catch((err) => {
                 console.log(err);

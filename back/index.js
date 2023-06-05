@@ -401,7 +401,13 @@ app.post("/deleteQuest", (req, res) => {
       "DELETE FROM quest WHERE id = '" + req.body.id + "'",
       function (err, result, fields) {
         if (err) throw err;
-        res.send("0");
+        connection.query(
+          "DELETE FROM completed_quest WHERE quest_id = '" + req.body.id + "'",
+          function (err, result, fields) {
+            if (err) throw err;
+            res.send("0");
+          }
+        );
       }
     );
   });
