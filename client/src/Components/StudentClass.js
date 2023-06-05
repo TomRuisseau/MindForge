@@ -1,38 +1,18 @@
-import React, {useState,useEffect} from "react";
-import axios from "axios";
+import React, {useState,useEffect} from "react";S
 
-function StudentClass(props){
+function StudentClass(){
 
-    const [classroom, setClassroom] = useState([]);
-
-
-
-
-
+    
 
 
     return(
         <>
-            <div className='row'>
-                <div className='col-2'></div>
-                <h1 className='col'>Ma classe</h1>
-                <div className='row'>
-                    <div className='col-2'></div>
-                    {classroom.map((student) => {
-                        return (
-                            
-                                
-                                <div className='col-2'>
-                                    
-                                    <p>{student.first_name}</p>
-                                </div>
-                        
-                        )
-                    }
-                    )}
-                </div>
-            </div>
+        <div className='row'>
+            <div className='col-2'></div>
+            <h1 className='col'>Ma classe</h1>
+        </div>
         </>
     )
-    
 }
+
+export default StudentClass;
