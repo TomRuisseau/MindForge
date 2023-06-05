@@ -1,8 +1,7 @@
-import React, {useState,useEffect} from "react";S
-
+import React, {useState,useEffect} from "react";
 function StudentClass(){
 
-    
+
 
 
     return(
