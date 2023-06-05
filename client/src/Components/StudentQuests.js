@@ -5,7 +5,7 @@ function StudentQuests(props) {
     //state
     //const [counter, setCounter] = useState(0) // pour forcer le rechargement de la page quand valide une quête
     const [quests, setQuests] = useState([]) // liste des quêtes
-
+    const [completedQuests, setCompletedQuests] = useState([]) // liste des quêtes validées
     //comportement
     useEffect(() => {
         axios.post("http://localhost:5000/getQuests", { email: props.data[0].teacher_email })
@@ -15,12 +15,17 @@ function StudentQuests(props) {
                 console.log(err);
             }
             );
+        axios.post("http://localhost:5000/getCompletedQuests", { email: props.data[0].teacher_email, id: props.data[0].id })
+            .then((res) => {
+                setCompletedQuests(res.data);
+            }).catch((err) => {
+                console.log(err);
+            }
+            )
     }, [/*counter,*/ props.data]);
 
     const questValidation = (e) => {
         e.preventDefault(); // prevent page reload
-        // alert(e.target.parentElement.parentElement.getAttribute("data-key"));
-        // alert(props.data[0].id);
         axios.post("http://localhost:5000/questValidation", { quest_id: e.target.parentElement.parentElement.getAttribute("data-key"), student_id: props.data[0].id })
             .then((res) => {
                 //setCounter(counter + 1);
@@ -30,6 +35,16 @@ function StudentQuests(props) {
             }
             );
     }
+
+    const testCompletedQuests = (quest_id) => {
+        for (let i = 0; i < completedQuests.length; i++) {
+            if (completedQuests[i].id == quest_id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 
     //affichage
@@ -50,7 +65,7 @@ function StudentQuests(props) {
                                 <tr key={quest.id} data-key={quest.id}>
                                     <td>{quest.description}</td>
                                     <td>{quest.reward}</td>
-                                    <td><button onClick={questValidation} className='btn btn-light'>Terminer la quête</button></td>
+                                    {testCompletedQuests(quest.id) ? <td><p>Quête déjà terminée</p></td> : <td><button onClick={questValidation} className='btn btn-light'>Terminer la quête</button></td>}
                                 </tr>
                             );
                         })}
