@@ -332,31 +332,6 @@ app.post("/removeHp", (req, res) => {
   });
 });
 
-//give xp to a student
-// app.post("/giveXp", (req, res) => {
-//   //receive id and xp
-//   pool.getConnection(function (err, connection) {
-//     connection.query(
-//       "SELECT xp FROM student WHERE id = '" + req.body.id + "'",
-//       function (err, result, fields) {
-//         if (err) throw err;
-//         let new_xp = parseInt(result[0].xp) + parseInt(req.body.xp);
-//         connection.query(
-//           "UPDATE student SET xp ='" +
-//           new_xp +
-//           "' WHERE id = '" +
-//           req.body.id +
-//           "'",
-//           function (err, result, fields) {
-//             if (err) throw err;
-//             res.send("0");
-//           }
-//         );
-//       }
-//     );
-//   });
-// });
-
 app.post("/giveXp", (req, res) => {
   //receive id and xp
   addXp(pool, req.body.id, req.body.xp, res);
@@ -477,6 +452,27 @@ app.post("/questValidation", (req, res) => {
     );
   });
 });
+
+//get spells of a student
+app.post("/getSpells", (req, res) => {
+  let query = "SELECT item.* FROM item, owned_item WHERE item.type = 'spell_"
+    + req.body.class
+    + "'"
+    + " AND owned_item.student_id = '"
+    + req.body.id
+    + "'";
+  pool.getConnection(function (err, connection) {
+
+    connection.query(query,
+      function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+        res.send(result);
+      }
+    );
+  });
+});
+
 
 
 

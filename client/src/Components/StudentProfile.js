@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SpellBar from './SpellBar';
 import axios from 'axios';
 
 
@@ -54,6 +55,7 @@ function StudentProfile(props) {
 
                     <h2>Ta vie:</h2>
                     <progress className="progress-bar" role="progressbar" id="file" max="100" value={hpRatio}></progress>
+                    <SpellBar data={props.data} />
                 </div>
                 <div className='col-2'>
                     <h2>Ton avatar:</h2>
