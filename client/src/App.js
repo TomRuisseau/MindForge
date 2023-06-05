@@ -4,6 +4,7 @@ import StrudentLogger from './Components/StudentLogger';
 import React, { useState } from 'react';
 import StudentDashboard from './Components/StudentDashboard';
 import TeacherDashboard from './Components/TeacherDashboard';
+import './Styles/BoutonPrincipal.css'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('Choice'); // ['Choice', 'TeacherLogger', 'StudentLogger', 'StudentDashboard', 'TeacherDashboard']
@@ -23,7 +24,7 @@ function App() {
 
   return (
     <div className="App w-100 h-100">
-      <button onClick={() => { switchPage("Choice") }} className='btn btn-primary position-absolute end-0'>Menu principal</button>
+      <button onClick={() => { switchPage("Choice") }} className='btn btn-primary position-absolute end-0 btn-principal'>Menu principal</button>
 
       {
         currentPage === "Choice" ? <Choice onChoice={switchPage} /> :
