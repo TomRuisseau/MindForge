@@ -2,7 +2,7 @@
     color: white;
     position: relative;
     top: 10%;
-    transition: 0.5s;
+    transition: 1s;
 }
 
 .btn-principal:hover{
