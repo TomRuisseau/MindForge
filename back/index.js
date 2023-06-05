@@ -374,6 +374,25 @@ app.post("/getQuests", (req, res) => {
   });
 });
 
+//get completed quests of a student
+app.post("/getCompletedQuests", (req, res) => {
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT quest.* FROM quest, completed_quest WHERE teacher_email = '"
+      + req.body.email +
+      "' AND completed_quest.student_id = '" +
+      req.body.id +
+      "' AND completed_quest.quest_id = quest.id",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send(result);
+      }
+    );
+  });
+});
+
+//get quests except the ones already validated
+
 //delete a quest
 app.post("/deleteQuest", (req, res) => {
   //receive id
