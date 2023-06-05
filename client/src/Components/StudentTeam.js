@@ -25,14 +25,21 @@ function StudentTeam(props){
             <div className='row'>
                 <div className='col-2'></div>
                 <h1 className='col'>Mon équipe</h1>
-                {team.map((student) => {
-                    return (
-                        <div className='col'>
-                            <p>{student.first_name}</p>
-                        </div>
-                    )
-                }
-                )}
+                <div className='row'>
+                    <div className='col-2'></div>
+                    {team.map((student) => {
+                        return (
+                            
+                                
+                                <div className='col-2'>
+                                    
+                                    <p>{student.first_name}</p>
+                                </div>
+                        
+                        )
+                    }
+                    )}
+                </div>
 
             </div>
         </>
