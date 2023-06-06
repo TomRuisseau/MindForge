@@ -3,13 +3,21 @@ import axios from "axios";
 
 function Shop(props) {
     const [spells, setSpells] = useState([]); // liste des sorts
+    const [skins, setSkins] = useState([]); // liste des skins
 
     useEffect(() => {
         axios.post("http://localhost:5000/getSpellsShop", { id: props.data[0].id, class: props.data[0].class })
             .then((res) => {
                 setSpells(res.data);
-                console.log(res.data);
             }).catch((err) => {
+                console.log(err);
+            }
+            );
+        axios.post("http://localhost:5000/getSkinsShop", { id: props.data[0].id })
+            .then((res) => {
+                setSkins(res.data);
+            }
+            ).catch((err) => {
                 console.log(err);
             }
             );
@@ -31,7 +39,7 @@ function Shop(props) {
                             <div key={spell.name}>
                                 <h2>{spell.name.split("_").join(" ")}</h2>
                                 <img src={`media/spells/${spell.name}.webp`}></img>
-                                <p>{spell.owned ? "Prix : " + spell.cost + " XP" : "Déjà possédé"}</p>
+                                <p>{!spell.owned ? "Prix : " + spell.cost + " XP" : "Déjà possédé"}</p>
                             </div>
                         )
                     }
