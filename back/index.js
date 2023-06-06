@@ -508,17 +508,14 @@ app.post("/getSkinsShop", (req, res) => {
       function (err, allSpells, fields) {
         if (err) throw err;
         connection.query(
-          "SELECT item.* FROM item, owned_item WHERE item.type = 'skin'"
-          + " AND owned_item.student_id = '"
+          "SELECT item_name FROM owned_item WHERE student_id = '"
           + req.body.id
-          + "'"
-          + " GROUP BY item.name",
+          + "'",
           function (err, result, fields) {
-            // console.log(result);
             allSpells.forEach((spell) => {
               spell.owned = false;
               result.forEach((ownedSpell) => {
-                if (spell.name === ownedSpell.name) {
+                if (spell.name === ownedSpell.item_name) {
                   spell.owned = true;
                 }
               });
@@ -530,6 +527,7 @@ app.post("/getSkinsShop", (req, res) => {
       });
   });
 });
+
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

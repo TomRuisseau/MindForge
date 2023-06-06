@@ -16,6 +16,7 @@ function Shop(props) {
         axios.post("http://localhost:5000/getSkinsShop", { id: props.data[0].id })
             .then((res) => {
                 setSkins(res.data);
+                console.log(res.data);
             }
             ).catch((err) => {
                 console.log(err);
@@ -32,7 +33,7 @@ function Shop(props) {
             </div>
             <br></br>
             <div className='row'>
-                <div className='col p-5'>
+                <div className='col p-5 overflow-auto'>
                     <h2>Sorts</h2>
                     {spells.map((spell) => {
                         return (
@@ -45,10 +46,23 @@ function Shop(props) {
                     }
                     )}
                 </div>
+                <div className="col">
+                    <h2>Skins</h2>
+                    <div className='d-flex flex-row'>
+                        {skins.map((skin) => {
+                            return (
+                                <div key={skin.name}>
+                                    <h2>{skin.name.split("_").join(" ")}</h2>
+                                    <img src={`media/skin/${skin.name}.png`} style={{ width: "100%" }}></img>
+                                    <p>{!skin.owned ? "Prix : " + skin.cost + " XP" : "Déjà possédé"}</p>
+                                    <div />
+                                </div>
+                            )
+                        }
+                        )}
+                    </div>
+                </div>
             </div>
-
-
-
         </>
     )
 }
