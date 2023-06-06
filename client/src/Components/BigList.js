@@ -23,7 +23,7 @@ const BigList = forwardRef((props, ref) => {
         if (student.id === studentId) {
           setSelectedStudent(studentId);
           props.onPass(studentId);
-          return { ...student, bgColor: "bg-danger" };
+          return { ...student, bgColor: "bg-info" };
         } else {
           return { ...student, bgColor: "" };
         }
