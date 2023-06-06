@@ -467,13 +467,24 @@ app.post("/getSpells", (req, res) => {
     connection.query(query,
       function (err, result, fields) {
         if (err) throw err;
-        console.log(result);
         res.send(result);
       }
     );
   });
 });
 
+//get spells shop of a student
+app.post("/getSpellsShop", (req, res) => {
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT * FROM item WHERE type = 'spell_" + req.body.class + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send(result);
+      }
+    );
+  });
+});
 
 
 
