@@ -39,6 +39,11 @@ function Shop(props) {
         console.log(selected);
     }
 
+    const equip = () => {
+        console.log(selected);
+    }
+
+
     const isOwned = (name) => {
         let owned = false;
         skins.forEach((skin) => {
@@ -96,7 +101,7 @@ function Shop(props) {
                     </div>
                 </div>
             </div>
-            {selected !== "" ? <button className="btn btn-primary" onClick={buy}>Acheter</button> : <></>}
+            {(selected !== "" && !isOwned(selected)) ? <button className="btn btn-primary" onClick={buy}>Acheter</button> : <></>}
             {isOwned(selected) ? <button className="btn btn-primary" onClick={equip}>Equiper</button> : <></>}
         </>
     )
