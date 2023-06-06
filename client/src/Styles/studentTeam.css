@@ -4,3 +4,17 @@
     border-width: 1px;
     border-style: solid;
 }
+
+.row{
+    display: flex;
+}
+
+.col{
+    flex: 1;
+}
+
+.col img{
+    max-width: 100%;
+    height: auto;
+
+}
