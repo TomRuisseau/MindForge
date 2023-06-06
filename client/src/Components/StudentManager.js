@@ -14,7 +14,7 @@ const StudentManager = (props) => {
   const [counter, setCounter] = useState(0); //used to force reloads
   const childRef = useRef();
 
-  const isDead = (id) => {
+  const isDead = () => {
     setPopUp("dead");
   };
 
@@ -40,6 +40,7 @@ const StudentManager = (props) => {
               id={student}
               life={isDead}
               close={() => setPopUp("hidden")}
+              open={() => setPopUp("badRand")}
             />
           ) : null}
         </div>
