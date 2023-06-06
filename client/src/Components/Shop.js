@@ -29,22 +29,36 @@ function Shop(props) {
     const select = (e) => {
         if (e.target.getAttribute("data-key") === null) {
             setSelected(e.target.parentNode.getAttribute("data-key"));
-            console.log(e.target.parentNode.getAttribute("data-key"));
         }
         else {
             setSelected(e.target.getAttribute("data-key"));
-            console.log(e.target.getAttribute("data-key"));
         }
     }
 
+    const buy = () => {
+        console.log(selected);
+    }
+
+    const isOwned = (name) => {
+        let owned = false;
+        skins.forEach((skin) => {
+            if (skin.name === name && skin.owned) {
+                owned = true;
+            }
+        });
+        spells.forEach((spell) => {
+            if (spell.name === name && spell.owned) {
+                owned = true;
+            }
+        });
+        return owned;
+    }
+
+
     return (
         <>
-            <div className='row'>
-                <div className='col-2'></div>
-                <h1 className='col'>Boutique</h1>
-                <h2 className="text-center">Vous avez {props.data[0].xp} xp</h2>
-            </div>
-            <br></br>
+            <h1 className='text-center'>Boutique</h1>
+            <h2 className="text-center">Vous avez {props.data[0].xp} xp</h2>
             <div className='row'>
                 <div className='col p-5'>
                     <h2>Sorts</h2>
@@ -63,7 +77,7 @@ function Shop(props) {
                         )}
                     </div>
                 </div>
-                <div className="col">
+                <div className="col p-5">
                     <h2>Skins</h2>
                     <div className='d-flex flex-row'>
                         {skins.map((skin) => {
@@ -82,6 +96,8 @@ function Shop(props) {
                     </div>
                 </div>
             </div>
+            {selected !== "" ? <button className="btn btn-primary" onClick={buy}>Acheter</button> : <></>}
+            {isOwned(selected) ? <button className="btn btn-primary" onClick={equip}>Equiper</button> : <></>}
         </>
     )
 }
