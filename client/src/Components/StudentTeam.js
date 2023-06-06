@@ -53,8 +53,8 @@ function StudentTeam(props){
                                 <div className='col-3'>
                                     
                                     <h3>{student.first_name}</h3>
-                                    <p>{student.hp}</p>
-                                    <p>{student.xp}</p>
+                                    <h5>Vie:</h5><p>{student.hp}</p>
+                                    <h5>XP:</h5><p>{student.xp}</p>
                                     <img src={`media/skin/${student.skin}.png`} alt={`media/skin/toutNu.png`} className="skin display-box max-w"></img>
                                 </div>
                         
