@@ -4,6 +4,7 @@ import TeacherMenu from "./TeacherMenu";
 import StudentManager from "./StudentManager";
 import SmallList from "./SmallList";
 import Quests from "./Quests";
+import "../Styles/teacherDashboard.css";
 
 function TeacherDashboard(props) {
   const [page, setPage] = useState("TeacherMenu"); // TeacherMenu, StudentManager, quests, quiz, dailyEvent, tutorial, settings
@@ -20,9 +21,9 @@ function TeacherDashboard(props) {
         <div className="col p-0">
           <button
             onClick={() => childRef.current.toggleDrawerOutside()}
-            className="btn btn-primary position-absolute"
+            className="btn btn-primary position-absolute btn-gauche"
           >
-            Omg le tiroir
+            Menu
           </button>
           {page === "TeacherMenu" ? (
             <TeacherMenu />

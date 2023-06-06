@@ -1,0 +1,7 @@
+.drawerTeacher{
+    width: 240px;
+    flex-shrink: 0;
+    left: 20px;
+    position: inherit;
+
+}
