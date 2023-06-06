@@ -16,7 +16,9 @@ const SpellBar = (props) => {
 
     return (
         <div>
-            <h1>SpellBar</h1>
+            <br></br>
+            <h2>SpellBar</h2>
+            
             {spells.map((spell) => {
                 return (
                     <img key={spell.name} src={`media/spells/${spell.name}.webp`}></img>
