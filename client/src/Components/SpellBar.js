@@ -15,7 +15,16 @@ const SpellBar = (props) => {
     }, [props.data]);
 
     return (
-        <h1>SpellBar</h1>
+        <div>
+            <h1>SpellBar</h1>
+            {spells.map((spell) => {
+                return (
+                    <img key={spell.name} src={`media/spells/${spell.name}.webp`}></img>
+                )
+            }
+            )}
+        </div>
+
     )
 }
 

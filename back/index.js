@@ -460,7 +460,8 @@ app.post("/getSpells", (req, res) => {
     + "'"
     + " AND owned_item.student_id = '"
     + req.body.id
-    + "'";
+    + "'"
+    + " GROUP BY item.name";
   pool.getConnection(function (err, connection) {
 
     connection.query(query,
