@@ -2,12 +2,12 @@
     color: white;
     position: relative;
     top: 10%;
-    transition: 1s;
+    transition: 2s;
+    right: 10px;
 }
 
 .btn-principal:hover{
     color: white;
     background-color: #1e7e34;
     border-color: #1e7e34;
-
 }
