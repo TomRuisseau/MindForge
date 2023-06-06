@@ -478,11 +478,27 @@ app.post("/getSpellsShop", (req, res) => {
   pool.getConnection(function (err, connection) {
     connection.query(
       "SELECT * FROM item WHERE type = 'spell_" + req.body.class + "'",
-      function (err, result, fields) {
+      function (err, allSpells, fields) {
         if (err) throw err;
-        res.send(result);
-      }
-    );
+        connection.query(
+          "SELECT item.* FROM item, owned_item WHERE item.type = 'spell_"
+          + req.body.class
+          + "'"
+          + " AND owned_item.student_id = '"
+          + req.body.id
+          + "'"
+          + " GROUP BY item.name",
+          function (err, result, fields) {
+            allSpells.forEach((spell) => {
+              result.forEach((ownedSpell) => {
+                spell.owned = spell.name === ownedSpell.name;
+              });
+            }
+            );
+            res.send(allSpells);
+          }
+        );
+      });
   });
 });
 
