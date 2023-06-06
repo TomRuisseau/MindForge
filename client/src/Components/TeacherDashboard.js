@@ -4,6 +4,7 @@ import TeacherMenu from "./TeacherMenu";
 import StudentManager from "./StudentManager";
 import SmallList from "./SmallList";
 import Quests from "./Quests";
+import DailyRand from "./DailyRand";
 import "../Styles/teacherDashboard.css";
 
 function TeacherDashboard(props) {
@@ -29,9 +30,11 @@ function TeacherDashboard(props) {
             <TeacherMenu />
           ) : page === "StudentManager" ? (
             <StudentManager id={props.id} />
-          ) : (
+          ) : page === "Quests" ? (
             <Quests id={props.id} />
-          )}
+          ) : page === "DailyRand" ? (
+            <DailyRand />
+          ) : null}
         </div>
 
         {page === "StudentManager" ? null : <SmallList id={props.id} />}
