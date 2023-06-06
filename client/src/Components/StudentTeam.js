@@ -50,12 +50,12 @@ function StudentTeam(props){
                         return (
                             
                                 
-                                <div className='col-3 case'>
+                                <div className='col-3 case position-absolute'>
                                     
                                     <h3>{student.first_name}</h3>
                                     <p>{student.hp}</p>
                                     <p>{student.xp}</p>
-                                    <img src={`media/skin/${student.skin}.png`} alt="skin" className="skin"></img>
+                                    <img src={`media/skin/${student.skin}.png`} alt="skin" className="skin position-"></img>
                                 </div>
                         
                         )
