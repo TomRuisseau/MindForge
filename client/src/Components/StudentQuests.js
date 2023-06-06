@@ -49,8 +49,10 @@ function StudentQuests(props) {
 
     //affichage
     return (
-        <div className="row">
-            <div className="col m-5 custom-scrollbar" style={{ height: "82vh", overflow: "auto" }}>
+        <>
+        <br></br>
+        <div className="row position-absolute mx-auto w-100 top-50 start-50 translate-middle">
+            <div className="col position-relative mx-auto custom-scrollbar" style={{ height: "82vh", overflow: "auto" }}>
                 <h2 className="text-center">Liste de quêtes</h2>
                 <table className="table table-striped">
                     <thead>
@@ -73,6 +75,7 @@ function StudentQuests(props) {
                 </table>
             </div>
         </div>
+        </> 
     )
 }
 
