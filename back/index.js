@@ -524,6 +524,33 @@ app.post("/getSkinsShop", (req, res) => {
   });
 });
 
+//buy a spell or item 
+app.post("/buy", (req, res) => {
+  //receive id and item name
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "INSERT INTO owned_item(student_id, item_name, equiped) VALUES ('" +
+      req.body.id +
+      "', '" +
+      req.body.name +
+      "', '0')",
+      function (err, result, fields) {
+        if (err) throw err;
+        connection.query(
+          "UPDATE student SET xp = '" +
+          req.body.newXp +
+          "' WHERE id = '" +
+          req.body.id +
+          "'",
+          function (err, result, fields) {
+            if (err) throw err;
+            res.send("0");
+          }
+        );
+      }
+    );
+  });
+});
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

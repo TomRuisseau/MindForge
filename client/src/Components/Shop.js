@@ -6,6 +6,7 @@ function Shop(props) {
     const [spells, setSpells] = useState([]); // liste des sorts
     const [skins, setSkins] = useState([]); // liste des skins
     const [selected, setSelected] = useState(""); // liste des skins
+    const [counter, setCounter] = useState(0); // pour forcer le rechargement de la page quand valide une quête
 
     useEffect(() => {
         axios.post("http://localhost:5000/getSpellsShop", { id: props.data[0].id, class: props.data[0].class })
@@ -24,7 +25,7 @@ function Shop(props) {
                 console.log(err);
             }
             );
-    }, [props.data]);
+    }, [props.data, counter]);
 
     const select = (e) => {
         if (e.target.getAttribute("data-key") === null) {
@@ -36,7 +37,34 @@ function Shop(props) {
     }
 
     const buy = () => {
-        console.log(selected);
+        let price = 0;
+        skins.forEach((skin) => {
+            if (skin.name === selected) {
+                price = skin.cost;
+            }
+        }
+        );
+        spells.forEach((spell) => {
+            if (spell.name === selected) {
+                price = spell.cost;
+            }
+        }
+        );
+        console.log(price);
+        console.log(props.data[0].xp);
+        if (props.data[0].xp >= price) {
+            axios.post("http://localhost:5000/buy", { id: props.data[0].id, name: selected, newXp: props.data[0].xp - price })
+                .then((res) => {
+                    props.data[0].xp -= price;
+                    setCounter(counter + 1);
+                }).catch((err) => {
+                    console.log(err);
+                }
+                );
+        }
+        else {
+            alert("Vous n'avez pas assez d'xp");
+        }
     }
 
     const equip = () => {
