@@ -19,7 +19,6 @@ function Shop(props) {
         axios.post("http://localhost:5000/getSkinsShop", { id: props.data[0].id })
             .then((res) => {
                 setSkins(res.data);
-                console.log(res.data);
             }
             ).catch((err) => {
                 console.log(err);
@@ -50,8 +49,6 @@ function Shop(props) {
             }
         }
         );
-        console.log(price);
-        console.log(props.data[0].xp);
         if (props.data[0].xp >= price) {
             axios.post("http://localhost:5000/buy", { id: props.data[0].id, name: selected, newXp: props.data[0].xp - price })
                 .then((res) => {
@@ -69,6 +66,13 @@ function Shop(props) {
 
     const equip = () => {
         axios.post("http://localhost:5000/equip", { id: props.data[0].id, name: selected })
+            .then((res) => {
+                setCounter(counter + 1);
+            }
+            ).catch((err) => {
+                console.log(err);
+            }
+            );
     }
 
 
@@ -95,6 +99,16 @@ function Shop(props) {
             }
         });
         return _skin;
+    }
+
+    const isEquiped = (name) => {
+        let equiped = false;
+        skins.forEach((skin) => {
+            if (skin.name === name && skin.equiped == "1") {
+                equiped = true;
+            }
+        });
+        return equiped;
     }
 
 
@@ -131,7 +145,7 @@ function Shop(props) {
                                 <div key={skin.name} data-key={skin.name} className={className} onClick={select}>
                                     <h2>{skin.name.split("_").join(" ")}</h2>
                                     <img src={`media/skin/${skin.name}.png`} style={{ width: "100%" }}></img>
-                                    <p>{!skin.owned ? "Prix : " + skin.cost + " XP" : "Déjà possédé"}</p>
+                                    <p>{!skin.owned ? "Prix : " + skin.cost + " XP" : "Déjà possédé" + (isEquiped(skin.name) ? " et équipé" : "")}</p>
                                     <div />
                                 </div>
                             )
@@ -141,7 +155,7 @@ function Shop(props) {
                 </div>
             </div>
             {(selected !== "" && !isOwned(selected)) ? <button className="btn btn-primary" onClick={buy}>Acheter</button> : <></>}
-            {(isOwned(selected) && isSkin(selected)) ? <button className="btn btn-primary" onClick={equip}>Equiper</button> : <></>}
+            {(isOwned(selected) && isSkin(selected) && !isEquiped(selected)) ? <button className="btn btn-primary" onClick={equip}>Equiper</button> : <></>}
         </>
     )
 }

@@ -504,7 +504,7 @@ app.post("/getSkinsShop", (req, res) => {
       function (err, allSpells, fields) {
         if (err) throw err;
         connection.query(
-          "SELECT item_name FROM owned_item WHERE student_id = '"
+          "SELECT item_name, equiped FROM owned_item WHERE student_id = '"
           + req.body.id
           + "'",
           function (err, result, fields) {
@@ -513,6 +513,7 @@ app.post("/getSkinsShop", (req, res) => {
               result.forEach((ownedSpell) => {
                 if (spell.name === ownedSpell.item_name) {
                   spell.owned = true;
+                  spell.equiped = ownedSpell.equiped;
                 }
               });
             }
