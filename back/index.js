@@ -455,15 +455,11 @@ app.post("/questValidation", (req, res) => {
 
 //get spells of a student
 app.post("/getSpells", (req, res) => {
-  let query = "SELECT item.* FROM item, owned_item WHERE item.type = 'spell_"
-    + req.body.class
-    + "'"
-    + " AND owned_item.student_id = '"
+  let query = "SELECT owned_item.item_name FROM owned_item, item WHERE owned_item.student_id = '"
     + req.body.id
     + "'"
-    + " GROUP BY item.name";
+    + " AND owned_item.item_name = item.name AND item.type = 'spell_" + req.body.class + "'";
   pool.getConnection(function (err, connection) {
-
     connection.query(query,
       function (err, result, fields) {
         if (err) throw err;
