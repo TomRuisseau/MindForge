@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 
 function PopUpHP(props) {
   //state
-  const [HP, setHP] = useState(0);
+  const [HP, setHP] = useState();
   const [first_name, setFirst_name] = useState("");
   const [surname, setSurname] = useState("");
 

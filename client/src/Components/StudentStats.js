@@ -37,7 +37,11 @@ function StudentStats(props) {
           <p>Classe : {stat.class}</p>
           <p>XP : {stat.xp}</p>
           <p>HP : {stat.hp}</p>
-          <img src={`media/skin/${skin}.png`} className="w-50" />
+          <img
+            src={`media/skin/${skin}.png`}
+            className="position-absolute"
+            style={{ bottom: "15%", right: "20%", width: "25%" }}
+          />
         </div>
       ))}
     </div>

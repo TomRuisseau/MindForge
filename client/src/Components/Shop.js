@@ -8,7 +8,7 @@ function Shop(props) {
         axios.post("http://localhost:5000/getSpellsShop", { id: props.data[0].id, class: props.data[0].class })
             .then((res) => {
                 setSpells(res.data);
-                console.log(res.data);  
+                console.log(res.data);
             }).catch((err) => {
                 console.log(err);
             }
@@ -24,20 +24,18 @@ function Shop(props) {
             </div>
             <br></br>
             <div className='row'>
-                <div className='col-2'></div>
-                <div className='col-2'>
-                    <h3>Item 1</h3>
-                    <img className="img-thumbnail" src="https://cdna.artstation.com/p/assets/images/images/040/894/544/large/jhonnatan-christofer-barbosa-e1.jpg?1630176038" alt="item1" />
-                </div>
-                <div className='col-2'>
-                    <h3>Item 2</h3>
-                    <img className="img-thumbnail" src="https://cdna.artstation.com/p/assets/images/images/040/894/544/large/jhonnatan-christofer-barbosa-e1.jpg?1630176038" alt="item1" />
-                </div>
-                <div className='col-2'>
-                    <h3>Item 3</h3>
-                </div>
-                <div className='col-2'>
-                    <h3>Item 4</h3>
+                <div className='col p-5'>
+                    <h2>Sorts</h2>
+                    {spells.map((spell) => {
+                        return (
+                            <div key={spell.name}>
+                                <h2>{spell.name.split("_").join(" ")}</h2>
+                                <img src={`media/spells/${spell.name}.webp`}></img>
+                                <p>{spell.owned ? "Prix : " + spell.cost + " XP" : "Déjà possédé"}</p>
+                            </div>
+                        )
+                    }
+                    )}
                 </div>
             </div>
 
