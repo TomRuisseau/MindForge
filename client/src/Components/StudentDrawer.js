@@ -1,4 +1,5 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
+import '../Styles/studentDrawer.css'
 
 // import component
 import Drawer from 'react-modern-drawer'
@@ -28,7 +29,7 @@ const StudentDrawer = forwardRef((props, ref) => {
                 className='drawer'
                 size={500}
             >
-                <div className='mt-5'>
+                <div className='mt-5 drawerStudent'>
                     <button onClick={toggleDrawer} className="btn btn-primary">Menu</button>
                     <h2 onClick={() => { toggleDrawer(); props.onChoice("StudentProfile") }}>Mon profil</h2>
                     <h2 onClick={() => { toggleDrawer(); props.onChoice("StudentTeam") }}>Mon équipe</h2>
