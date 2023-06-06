@@ -20,6 +20,24 @@ function StudentTeam(props){
             });
     }, [props.data]);
 
+    //Recupère le skin de chaque élève de l'équipe
+    useEffect(() => {
+        team.map((student) => {
+            axios
+                .post("http://localhost:5000/getSkin", { id: student.id })
+                .then((res) => {
+                    student.skin = res.data;
+                    setTeam([...team]);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        })
+    }, [team]);
+
+
+
+
 
     return(
         <>
@@ -32,9 +50,12 @@ function StudentTeam(props){
                         return (
                             
                                 
-                                <div className='col-2 case'>
+                                <div className='col-3 case'>
                                     
-                                    <p>{student.first_name}</p>
+                                    <h3>{student.first_name}</h3>
+                                    <p>{student.hp}</p>
+                                    <p>{student.xp}</p>
+                                    <img src={`media/skin/${student.skin}.png`} alt="skin" className="skin"></img>
                                 </div>
                         
                         )
