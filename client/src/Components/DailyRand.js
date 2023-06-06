@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
 
 function DailyRand(props) {
   const options = [
@@ -6,22 +8,43 @@ function DailyRand(props) {
     "Le professeur organise un goûter la semaine prochaine",
     "On fera cours dehors s'il fait beau la semaine prochaine",
     "Le professeur vous laisse choisir le prochain exercice",
-    "Tu vas perdre des HP",
-    "Tu vas gagner des XP",
-    "Tu es dispensé de devoirs pour le prochain cours",
-    "Tu gagnes des Manas",
+    "Quelqu'un va perdre des HP",
+    "Quelqu'un va gagner des XP",
+    "Quelqu'un sera dispensé de devoirs pour le prochain cours",
+    "Quelqu'un va gagner du Mana",
     "Interro pour le prochain cours",
     'Tout le monde écrit une idée pour la case "Au choix "',
     "Au choix",
     "Au choix",
   ];
+  const [updatedStudent, setUpdatedStudent] = useState(null);
+  const [students, setStudents] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
+
+  const selectStudent = () => {
+    const randomIndex = Math.floor(Math.random() * students.length);
+    setUpdatedStudent(students[randomIndex]);
+    console.log(updatedStudent);
+  };
 
   const random = () => {
     const randomIndex = Math.floor(Math.random() * options.length);
     const selectedOption = options[randomIndex];
     setSelectedOption(selectedOption);
+    setUpdatedStudent(null);
   };
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:5000/getStudents", { email: props.id })
+      .then((res) => {
+        setStudents(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [props.id]);
 
   return (
     <div
@@ -35,12 +58,30 @@ function DailyRand(props) {
       <div className="p-5 w-75 h-75 border border-danger rounded text-center d-flex flex-column justify-content-center">
         <button
           onClick={random}
-          className="btn btn-danger btn-lg"
+          className="btn btn-danger btn-lg py-5"
           style={{ marginBottom: "10%" }}
         >
           Lancer
         </button>
         <h3>{selectedOption}</h3>
+        {selectedOption === "Quelqu'un va perdre des HP" ||
+        selectedOption === "Quelqu'un va gagner des XP" ||
+        selectedOption === "Quelqu'un va gagner du Mana" ||
+        selectedOption ===
+          "Quelqu'un sera dispensé de devoirs pour le prochain cours" ? (
+          <button
+            onClick={selectStudent}
+            className="btn btn-primary btn-lg "
+            style={{ marginBottom: "10%", marginTop: "10%" }}
+          >
+            Qui donc ?
+          </button>
+        ) : null}
+
+        <h2>
+          {updatedStudent &&
+            `C'est pour ${updatedStudent.first_name} ${updatedStudent.surname}`}
+        </h2>
       </div>
     </div>
   );
