@@ -552,6 +552,34 @@ app.post("/buy", (req, res) => {
   });
 });
 
+//equip an item
+app.post("/equip", (req, res) => {
+  //receive id and item name
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "UPDATE owned_item SET equiped = '0' WHERE student_id = '" +
+      req.body.id +
+      "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        connection.query(
+          "UPDATE owned_item SET equiped = '1' WHERE student_id = '" +
+          req.body.id +
+          "' AND item_name = '" +
+          req.body.name +
+          "'",
+          function (err, result, fields) {
+            if (err) throw err;
+            res.send("0");
+          }
+        );
+      }
+    );
+  });
+});
+
+
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });

@@ -68,7 +68,7 @@ function Shop(props) {
     }
 
     const equip = () => {
-        console.log(selected);
+        axios.post("http://localhost:5000/equip", { id: props.data[0].id, name: selected })
     }
 
 
