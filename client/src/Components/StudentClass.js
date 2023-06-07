@@ -1,17 +1,100 @@
 import React, {useState,useEffect} from "react";
-function StudentClass(){
+
+import axios from "axios";
+import { forwardRef, useImperativeHandle } from "react";
 
 
+const StudentClass = forwardRef((props,ref) => {
+
+    const [students, setStudents] = useState([]); //liste des élèves
+    const [count, setCount] = useState(0); //compteur de rechargement
+    const [selectedStudent, setSelectedStudent] = useState(0); //élève sélectionné
+
+    useImperativeHandle(ref, () => ({
+        forceReload: () => {
+          setCount(count + 1);
+        },
+      }));
+
+    const changeBackground = (studentId) => {
+    setStudents((prevStudents) =>
+      prevStudents.map((student) => {
+        if (student.id === studentId) {
+          setSelectedStudent(studentId);
+          props.onPass(studentId);
+          return { ...student, bgColor: "bg-danger" };
+        } else {
+          return { ...student, bgColor: "" };
+        }
+      })
+    );
+  };
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:5000/getStudents", { email: props.id })
+      .then((res) => {
+        // Ajouter la propriété bgColor initiale à chaque élève
+        const updatedStudents = res.data.map((student) => ({
+          ...student,
+        }));
+        setStudents(updatedStudents);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [props.id, count]);
 
 
     return(
         <>
+    function StudentClass(){
         <div className='row'>
             <div className='col-2'></div>
             <h1 className='col'>Ma classe</h1>
+            
+            <div
+      className="text-black w-50 m-5 px-5 py-2 border border-black rounded custom-scrollbar"
+      style={{ height: "78vh", overflow: "auto" }}
+    >
+      {Array.from(
+        students.reduce((teamMap, student) => {
+          if (teamMap.has(student.team)) {
+            teamMap.get(student.team).push(student);
+          } else {
+            teamMap.set(student.team, [student]);
+          }
+          return teamMap;
+        }, new Map())
+      ).map(([team, members]) => (
+        <React.Fragment key={team}>
+          <h2>{team}</h2>
+          <table className="mb-5">
+            <tbody>
+              {members.map((student) => (
+                <tr
+                  key={student.id}
+                  className={student.bgColor}
+                  onClick={() => changeBackground(student.id)}
+                >
+                  <td className="mx-5 px-5">{student.surname}</td>
+                  <td className="mx-5 px-5">{student.first_name}</td>
+                  <td className="mx-5 px-5">{student.id}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </React.Fragment>
+      ))}
+    </div>
+
+            
+
+
         </div>
-        </>
+}   </>
     )
 }
+);
 
 export default StudentClass;
