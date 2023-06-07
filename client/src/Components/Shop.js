@@ -117,7 +117,7 @@ function Shop(props) {
         <>
             <h1 className='text-center'>Boutique</h1>
             <h2 className="text-center">Vous avez {props.data[0].xp} xp</h2>
-            <div className='row'>
+            <div className='row m-0'>
                 <div className='col p-5'>
                     <h2>Sorts</h2>
                     <div className='d-flex flex-row'>

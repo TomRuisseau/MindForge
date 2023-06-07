@@ -22,33 +22,31 @@ function StudentDashboard(props) {
   };
   return (
     <div>
-      <h1 className="text-center titre">Student Dashboard</h1>
+      <button
+        onClick={() => childRef.current.toggleDrawerOutside()}
+        className="btn btn-gauche btn-primary position-absolute top-0 start-0"
+      >
+        Menu
+      </button>
+
       <StudentDrawer ref={childRef} onChoice={switchPage} />
-      <div className="row w-100 h-100">
-        <div className="pages col p-0">
-          <button
-            onClick={() => childRef.current.toggleDrawerOutside()}
-            className="btn btn-gauche btn-primary position-absolute"
-          >
-            Menu
-          </button>
-          {page === "StudentProfile" ? (
-            <StudentProfile data={props.data} />
-          ) : page === "StudentTeam" ? (
-            <StudentTeam data={props.data} />
-          ) : page === "Shop" ? (
-            <Shop data={props.data} />
-          ) : page === "Tutorial" ? (
-            <Tutorial />
-          ) : page === "StudentClass" ? (
-            <StudentClass data={props.data}/>
-          ) : page === "Quetes" ? (
-            <StudentQuests data={props.data} />
-          ) : (
-            <StudentMenu />
-          )}
-        </div>
-      </div>
+
+
+      {page === "StudentProfile" ? (
+        <StudentProfile data={props.data} />
+      ) : page === "StudentTeam" ? (
+        <StudentTeam data={props.data} />
+      ) : page === "Shop" ? (
+        <Shop data={props.data} />
+      ) : page === "Tutorial" ? (
+        <Tutorial />
+      ) : page === "StudentClass" ? (
+        <StudentClass data={props.data} />
+      ) : page === "Quetes" ? (
+        <StudentQuests data={props.data} />
+      ) : (
+        <StudentMenu />
+      )}
     </div>
   );
 }
