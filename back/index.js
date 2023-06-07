@@ -87,6 +87,31 @@ function addMana(connectionPool, id, mana) {
   });
 }
 
+function addHp(connectionPool, id, hp) {
+  connectionPool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT hp, class FROM student WHERE id = '" + id + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        let new_hp = parseInt(result[0].hp) + parseInt(hp);
+        new_hp = Math.min(new_hp, classMap.get(result[0].class).hp);
+        connection.query(
+          "UPDATE student SET hp ='" +
+          new_hp +
+          "' WHERE id = '" +
+          id +
+          "'",
+          function (err, result, fields) {
+            if (err) throw err;
+          }
+        );
+      }
+    );
+  });
+}
+
+
+
 
 
 app.get("/", (req, res) => {
@@ -104,7 +129,7 @@ app.post("/login/student", (req, res) => {
         if (result.length > 0) {
 
           if (
-            now - result[0].last_time >= 1000 * 60 &&
+            now - result[0].last_time >= 1000 * 60 * 60 * 24 &&
             result[0].mana < classMap.get(result[0].class).mana
           ) {
             //todo : mettre à 24h
@@ -682,6 +707,16 @@ app.post("/useAuraMagique", (req, res) => {
     );
   });
 });
+
+//use premiers_soins
+app.post("/usePremiersSoins", (req, res) => {
+  //receive id and target 
+  addHp(pool, req.body.target, 3);
+  removeMana(pool, req.body.id, SpellsCosts.get("premiers_soins"));
+  addXp(pool, req.body.id, SpellsCosts.get("premiers_soins"), res);
+});
+
+
 
 
 

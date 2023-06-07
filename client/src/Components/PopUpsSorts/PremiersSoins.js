@@ -23,7 +23,21 @@ function PremiersSoins(props) {
 
   const useSpell = (e) => {
     e.preventDefault(); // prevent page reload
-    console.log(student);
+    if (props.data[0].mana >= 2) {
+      axios
+        .post("http://localhost:5000/usePremiersSoins", { id: props.data[0].id, target: student })
+        .then(() => {
+          props.close();
+          props.data[0].mana -= 2;
+        })
+        .catch((err) => {
+          console.log(err);
+        }
+        );
+    }
+    else {
+      alert("Vous n'avez pas assez de mana pour utiliser ce sort !");
+    }
   };
 
   return (
