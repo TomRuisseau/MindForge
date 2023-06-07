@@ -70,7 +70,7 @@ function addMana(connectionPool, id, mana) {
       "SELECT mana, class FROM student WHERE id = '" + id + "'",
       function (err, result, fields) {
         if (err) throw err;
-        let new_mana = parseInt(result[0].mana) - parseInt(mana);
+        let new_mana = parseInt(result[0].mana) + parseInt(mana);
         new_mana = Math.min(new_mana, classMap.get(result[0].class).mana);
         connection.query(
           "UPDATE student SET mana ='" +
@@ -460,7 +460,6 @@ app.post("/getCompletedQuests", (req, res) => {
   });
 });
 
-//get quests except the ones already validated
 
 //delete a quest
 app.post("/deleteQuest", (req, res) => {
@@ -664,22 +663,24 @@ app.post("/useProtection", (req, res) => {
 
 //use aura_magique 
 app.post("/useAuraMagique", (req, res) => {
-  //receive id
-  connection.query(
-    "SELECT * FROM student WHERE team = '" +
-    req.body.team +
-    "' AND id != '" +
-    req.body.id +
-    "'",
-    function (err, result, fields) {
-      if (err) throw err;
-      result.forEach((student) => {
-        addMana(pool, student.id, 2);
-      });
-      removeMana(pool, req.body.id, SpellsCosts.get("aura_magique"));
-      addXp(pool, req.body.id, SpellsCosts.get("aura_magique"), res);
-    }
-  );
+  pool.getConnection(function (err, connection) {
+    //receive id
+    connection.query(
+      "SELECT * FROM student WHERE team = '" +
+      req.body.team +
+      "' AND id != '" +
+      req.body.id +
+      "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        result.forEach((student) => {
+          addMana(pool, student.id, 2);
+        });
+        removeMana(pool, req.body.id, (SpellsCosts.get("aura_magique")));
+        addXp(pool, req.body.id, SpellsCosts.get("aura_magique"), res);
+      }
+    );
+  });
 });
 
 
