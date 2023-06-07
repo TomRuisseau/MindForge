@@ -49,8 +49,8 @@ const BigList = forwardRef((props, ref) => {
   //affichage (render)
   return (
     <div
-      className="text-black w-50 m-5 px-5 py-2 border border-black rounded custom-scrollbar"
-      style={{ height: "78vh", overflow: "auto" }}
+      className="text-black w-50 m-5  px-5 py-2 border border-black rounded custom-scrollbar"
+      style={{ height: "75vh", overflow: "auto" }}
     >
       {Array.from(
         students.reduce((teamMap, student) => {

@@ -23,14 +23,14 @@ function TeacherDashboard(props) {
         <div className="col p-0">
           <button
             onClick={() => childRef.current.toggleDrawerOutside()}
-            className="btn btn-primary position-absolute btn-gauche"
+            className="btn btn-gauche btn-primary position-absolute top-0 start-0"
           >
             Menu
           </button>
           {page === "TeacherMenu" ? (
             <TeacherMenu />
-          ) : page === "TeacherQuiz" ? ( 
-            <TeacherQuiz id = {props.id} /> 
+          ) : page === "TeacherQuiz" ? (
+            <TeacherQuiz id={props.id} />
           ) : page === "StudentManager" ? (
             <StudentManager id={props.id} />
           ) : page === "Quests" ? (
