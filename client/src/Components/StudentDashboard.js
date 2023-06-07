@@ -41,7 +41,7 @@ function StudentDashboard(props) {
           ) : page === "Tutorial" ? (
             <Tutorial />
           ) : page === "StudentClass" ? (
-            <StudentClass />
+            <StudentClass data={props.data}/>
           ) : page === "Quetes" ? (
             <StudentQuests data={props.data} />
           ) : (
