@@ -73,7 +73,6 @@ const StudentManager = (props) => {
         />
       ) : null}
       <div className="col m-0 p-0 h-100 bg-secondary">
-        <h1 className="text-center">Actions</h1>
         <div className="m-5 d-flex flex-column align-content-between">
           <button
             className="btn btn-primary mt-5"

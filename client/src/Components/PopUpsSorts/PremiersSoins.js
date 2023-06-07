@@ -32,6 +32,7 @@ function PremiersSoins(props) {
         .then(() => {
           props.close();
           props.data[0].mana -= 2;
+          props.data[0].xp += 2;
         })
         .catch((err) => {
           console.log(err);
