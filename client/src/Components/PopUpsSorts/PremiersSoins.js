@@ -4,9 +4,12 @@ function PremiersSoins(props) {
   };
 
   return (
-    <div className="px-3 py-3 w-auto h-50 bg-light position-absolute top-50 start-50 translate-middle text-center border rounded border-success d-flex flex-column align-items-center justify-content-between">
-      <h1>Premiers soins</h1>
-      <div className="bg-secondary p-3 rounded">
+    <div className="px-3 py-3 w-50 h-50 bg-light position-absolute top-50 start-50 translate-middle text-center border rounded border-success d-flex flex-column align-items-center justify-content-between">
+      <div className="d-flex flex-row justify-content-between">
+        <h1 className="px-5">Premiers soins</h1>
+        <button className="btn-close h-auto" onClick={props.close}></button>
+      </div>
+      <div className="p-3 rounded">
         <p style={{ fontSize: "22px" }}>
           Rend <span className="text-danger">3 HP</span> à un teammate ou lui
           même.
