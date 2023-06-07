@@ -1,25 +1,14 @@
 .tab-class{
-    /*Affiche le tableau au milieu de la page*/
     margin: auto;
     top:20%;
     left: 10%;
-    /*Taille du tableau*/
     width: 80%;
-    /*Couleur de fond du tableau*/
-    background-color: #f1f1c1;
-    /*Couleur de la bordure du tableau*/
     border: solid 1px black;
-    /*Bordure arrondie*/
     border-radius: 10px;
-    /*Marge interne entre les bordures et le contenu du tableau*/
     padding: 10px;
-    /*Marge externe entre le tableau et le reste de la page*/
     margin-top: 10px;
-    /*Marge externe entre le tableau et le reste de la page*/
     margin-bottom: 10px;
-    /*Marge externe entre le tableau et le reste de la page*/
     margin-left: 10px;
-    /*Marge externe entre le tableau et le reste de la page*/
     margin-right: 10px;
 
 }
