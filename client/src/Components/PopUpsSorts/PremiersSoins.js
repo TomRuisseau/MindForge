@@ -25,17 +25,18 @@ function PremiersSoins(props) {
     e.preventDefault(); // prevent page reload
     if (props.data[0].mana >= 2) {
       axios
-        .post("http://localhost:5000/usePremiersSoins", { id: props.data[0].id, target: student })
+        .post("http://localhost:5000/usePremiersSoins", {
+          id: props.data[0].id,
+          target: student,
+        })
         .then(() => {
           props.close();
           props.data[0].mana -= 2;
         })
         .catch((err) => {
           console.log(err);
-        }
-        );
-    }
-    else {
+        });
+    } else {
       alert("Vous n'avez pas assez de mana pour utiliser ce sort !");
     }
   };
@@ -48,8 +49,8 @@ function PremiersSoins(props) {
       </div>
       <div className="p-3 rounded">
         <p style={{ fontSize: "22px" }}>
-          Rend <span className="text-danger">3 HP</span> à un teammate ou lui
-          même.
+          Rend <span className="text-danger">3 HP</span> à un membre de l'équipe
+          ou lui même.
         </p>
       </div>
       <h3>Coût en mana : 2</h3>
