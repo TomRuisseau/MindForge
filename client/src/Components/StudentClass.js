@@ -1,14 +1,13 @@
-//code à corriger pour avoir la liste des élèves de la classe
-
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import axios from "axios";
+import "../Styles/studentClass.css";
 
 const StudentClass = forwardRef((props,ref) => {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudents", { email: props.teacher_email })
+      .post("http://localhost:5000/getStudents", { email: props.data[0].teacher_email })
       .then((res) => {
         setStudents(res.data);
         console.log(res.data);
@@ -16,10 +15,10 @@ const StudentClass = forwardRef((props,ref) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [props.teacher_email]);
+  }, [props.data[0].teacher_email]);
 
   return (
-    <div className="start-0">
+    <div className="tab-class position-absolute">
       <h1>Ma classe</h1>
       <table>
         <thead>
@@ -32,7 +31,7 @@ const StudentClass = forwardRef((props,ref) => {
         <tbody>
           {students.map((student) => (
             <tr key={student.id}>
-              <td>{student.name}</td>
+              <td>{student.first_name}</td>
               <td>{student.hp}</td>
               <td>{student.id}</td>
             </tr>
