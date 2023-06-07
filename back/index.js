@@ -41,6 +41,28 @@ function addXp(connectionPool, id, xp, res) {
   });
 }
 
+function removeMana(connectionPool, id, mana) {
+  connectionPool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT mana FROM student WHERE id = '" + id + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        let new_mana = parseInt(result[0].mana) - parseInt(mana);
+        connection.query(
+          "UPDATE student SET mana ='" +
+          new_mana +
+          "' WHERE id = '" +
+          id +
+          "'",
+          function (err, result, fields) {
+            if (err) throw err;
+          }
+        );
+      }
+    );
+  });
+}
+
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -607,6 +629,15 @@ app.post("/getTanks", (req, res) => {
     );
   });
 });
+
+//use protection 
+app.post("/useProtection", (req, res) => {
+  //receive id
+  removeMana(pool, req.body.id, SpellsCosts.get("protection"));
+  addXp(pool, req.body.id, SpellsCosts.get("protection"), res);
+});
+
+
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

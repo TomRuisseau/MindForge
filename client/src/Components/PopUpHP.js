@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 function PopUpHP(props) {
   //state
   const [HP, setHP] = useState(0);
-  const [tanker, setTanker] = useState([]);
+  const [tanker, setTanker] = useState("0");
   const [first_name, setFirst_name] = useState("");
   const [surname, setSurname] = useState("");
   const [tanks, setTanks] = useState([]);
@@ -36,22 +36,52 @@ function PopUpHP(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
-    axios
-      .post("http://localhost:5000/removeHp", {
-        id: props.id,
-        damage: HP,
-      })
-      .then((res) => {
-        props.close();
-        props.addCounter(1);
-        if (res.data === "dead") {
-          props.isDead();
+    if (tanker === "0") {
+      axios
+        .post("http://localhost:5000/removeHp", {
+          id: props.id,
+          damage: HP,
+        })
+        .then((res) => {
+          props.close();
+          props.addCounter(1);
+          if (res.data === "dead") {
+            props.isDead();
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    else {
+      axios
+        .post("http://localhost:5000/removeHp", {
+          id: tanker,
+          damage: HP,
+        })
+        .then((res) => {
+          props.close();
+          props.addCounter(1);
+          if (res.data === "dead") {
+            props.isDead();
+          }
+        })
+        .catch((err) => {
+          console.log(err);
         }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        );
+      axios
+        .post("http://localhost:5000/useProtection", {
+          id: tanker,
+        })
+        .then((res) => { })
+        .catch((err) => {
+          console.log(err);
+        }
+        );
+    }
   };
+
 
   //affichage (render)
   return (
