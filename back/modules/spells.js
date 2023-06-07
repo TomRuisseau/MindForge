@@ -1,6 +1,6 @@
 exports.SpellsCosts = new Map();
 
-exports.SpellsCosts.set("protection", 6);
+exports.SpellsCosts.set("protection", 2);
 exports.SpellsCosts.set("imposition_des_mains", 4);
 exports.SpellsCosts.set("halo_salvateur", 6);
 exports.SpellsCosts.set("purification", 3);

@@ -4,9 +4,11 @@ import React, { useEffect } from "react";
 
 function PopUpHP(props) {
   //state
-  const [HP, setHP] = useState();
+  const [HP, setHP] = useState(0);
+  const [tanker, setTanker] = useState([]);
   const [first_name, setFirst_name] = useState("");
   const [surname, setSurname] = useState("");
+  const [tanks, setTanks] = useState([]);
 
   //comportement
 
@@ -16,10 +18,20 @@ function PopUpHP(props) {
       .then((res) => {
         setFirst_name(res.data[0].first_name);
         setSurname(res.data[0].surname);
+        axios
+          .post("http://localhost:5000/getTanks", { id: props.id, team: res.data[0].team })
+          .then((res) => {
+            setTanks(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          }
+          );
       })
       .catch((err) => {
         console.log(err);
       });
+
   }, [props.id]);
 
   const handleSubmit = (e) => {
@@ -68,6 +80,24 @@ function PopUpHP(props) {
             name="hp"
             required
           />
+          <label htmlFor="tanker" className="mt-3 text-white">
+            L'élève souhaite-t-il qu'un des tanks de son équipe utilise "protection" pour 2 points de mana afin de prendre les dégats à sa place ?
+          </label>
+          <select
+            name="tanker"
+            id="tanker-select"
+            className="rounded"
+            onChange={(e) => setTanker(e.target.value)}
+          >
+            <option value="0">Personne</option>
+            {tanks.map((tank) => {
+              return (
+                <option value={tank.id} key={tank.first_name}>
+                  {tank.first_name}
+                </option>
+              );
+            })}
+          </select>
           <button type="submit" className="btn btn-success mt-3">
             Valider
           </button>

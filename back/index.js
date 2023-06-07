@@ -588,7 +588,25 @@ app.post("/equip", (req, res) => {
   });
 });
 
-
+//get tanks that could protect 
+app.post("/getTanks", (req, res) => {
+  //receive id and team
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT * FROM student WHERE team = '" +
+      req.body.team +
+      "' AND id != '" +
+      req.body.id +
+      "' AND class = 'tank' AND mana >= '" +
+      SpellsCosts.get("protection") +
+      "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send(result);
+      }
+    );
+  });
+});
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
