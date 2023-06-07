@@ -54,25 +54,30 @@ app.post("/login/student", (req, res) => {
       function (err, result, fields) {
         if (err) throw err;
         let now = new Date().getTime();
-        if (
-          now - result[0].last_time >= 1000 * 60 &&
-          result[0].mana < classMap.get(result[0].class).mana &&
-          result.length > 0
-        ) {
-          //todo : mettre à 24h
-          connection.query(
-            "UPDATE student SET last_time = '" +
-            now +
-            "', mana = '" +
-            (result[0].mana + 1) +
-            "' WHERE id = '" +
-            req.body.code +
-            "'",
-            function (err, result2, fields) {
-              if (err) throw err;
-              res.send(result);
-            }
-          );
+        if (result.length > 0) {
+
+          if (
+            now - result[0].last_time >= 1000 * 60 &&
+            result[0].mana < classMap.get(result[0].class).mana
+          ) {
+            //todo : mettre à 24h
+            connection.query(
+              "UPDATE student SET last_time = '" +
+              now +
+              "', mana = '" +
+              (result[0].mana + 1) +
+              "' WHERE id = '" +
+              req.body.code +
+              "'",
+              function (err, result2, fields) {
+                if (err) throw err;
+                res.send(result);
+              }
+            );
+          }
+          else {
+            res.send(result);
+          }
         } else {
           res.send(result);
         }
