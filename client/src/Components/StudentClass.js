@@ -6,7 +6,7 @@ const StudentClass = forwardRef((props,ref) => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudents", { email: props.email })
+      .post("http://localhost:5000/getStudents", { email: props.id })
       .then((res) => {
         setStudents(res.data);
         console.log(res.data);
@@ -14,7 +14,7 @@ const StudentClass = forwardRef((props,ref) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [props.email]);
+  }, [props.id]);
 
   return (
     <div className="start-0">
