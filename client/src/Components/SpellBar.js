@@ -15,7 +15,11 @@ import Reviviscence from "./PopUpsSorts/Reviviscence";
 
 const SpellBar = (props) => {
   const [spells, setSpells] = useState([]); // liste des sorts
-  const [selectedSpell, setSelectedSpell] = useState(null); // sort sélectionné
+  const [selectedSpell, setSelectedSpell] = useState("hidden"); // sort sélectionné
+
+  function closePopUp() {
+    setSelectedSpell("hidden");
+  }
 
   const selectSpell = (spell) => {
     setSelectedSpell(spell);
@@ -60,7 +64,7 @@ const SpellBar = (props) => {
       {
         {
           protection: <Protection />,
-          aura_magique: <AuraMagique />,
+          aura_magique: <AuraMagique close={closePopUp} />,
           premiers_soins: <PremiersSoins />,
           apaisement_majeur: <ApaisementMajeur />,
           expansion_du_savoir: <ExpansionDuSavoir />,
@@ -72,6 +76,7 @@ const SpellBar = (props) => {
           vague_de_mana: <VagueDeMana />,
           reviviscence: <Reviviscence />,
 
+          hidden: null,
           default: null,
         }[selectedSpell]
       }

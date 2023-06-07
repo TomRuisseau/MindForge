@@ -3,11 +3,15 @@ import React from "react";
 function AuraMagique(props) {
   const useSpell = () => {
     console.log("AuraMagique");
+    props.close();
   };
 
   return (
     <div className="px-3 py-3 w-auto h-50 bg-light position-absolute top-50 start-50 translate-middle text-center border rounded border-success d-flex flex-column align-items-center justify-content-between">
-      <h1>Aura Magique</h1>
+      <div className="d-flex flex-row justify-content-between">
+        <h1 className="px-5">Aura Magique</h1>
+        <button className="btn-close h-auto" onClick={props.close}></button>
+      </div>
       <div className="bg-secondary p-3 rounded">
         <p style={{ fontSize: "22px" }}>
           Sort qui rendra <span className="text-danger">2 de mana</span> à tous
