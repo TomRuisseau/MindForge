@@ -42,11 +42,11 @@ const SpellBar = (props) => {
 
       {spells.map((spell) => {
         return (
-          <div
-            key={spell.item_name}
-            onClick={() => selectSpell(spell.item_name)}
-          >
-            <img src={`media/spells/${spell.item_name}.webp`}></img>
+          <div key={spell.item_name}>
+            <img
+              src={`media/spells/${spell.item_name}.webp`}
+              onClick={() => selectSpell(spell.item_name)}
+            ></img>
             <p>
               {spell.item_name.split("_").join(" ") +
                 " : " +
