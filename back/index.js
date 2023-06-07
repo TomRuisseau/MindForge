@@ -64,6 +64,31 @@ function removeMana(connectionPool, id, mana) {
 }
 
 
+function addMana(connectionPool, id, mana) {
+  connectionPool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT mana, class FROM student WHERE id = '" + id + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        let new_mana = parseInt(result[0].mana) - parseInt(mana);
+        new_mana = Math.min(new_mana, classMap.get(result[0].class).mana);
+        connection.query(
+          "UPDATE student SET mana ='" +
+          new_mana +
+          "' WHERE id = '" +
+          id +
+          "'",
+          function (err, result, fields) {
+            if (err) throw err;
+          }
+        );
+      }
+    );
+  });
+}
+
+
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
@@ -636,6 +661,27 @@ app.post("/useProtection", (req, res) => {
   removeMana(pool, req.body.id, SpellsCosts.get("protection"));
   addXp(pool, req.body.id, SpellsCosts.get("protection"), res);
 });
+
+//use aura_magique 
+app.post("/useAuraMagique", (req, res) => {
+  //receive id
+  connection.query(
+    "SELECT * FROM student WHERE team = '" +
+    req.body.team +
+    "' AND id != '" +
+    req.body.id +
+    "'",
+    function (err, result, fields) {
+      if (err) throw err;
+      result.forEach((student) => {
+        addMana(pool, student.id, 2);
+      });
+      removeMana(pool, req.body.id, SpellsCosts.get("aura_magique"));
+      addXp(pool, req.body.id, SpellsCosts.get("aura_magique"), res);
+    }
+  );
+});
+
 
 
 
