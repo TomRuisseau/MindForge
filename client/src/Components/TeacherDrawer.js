@@ -56,7 +56,11 @@ const TeacherDrawer = forwardRef((props, ref) => {
           >
             Quetes
           </h2>
-          <h2 onClick={toggleDrawer}>Quiz</h2>
+          <h2 onClick={() => {
+            toggleDrawer();
+            props.onChoice("TeacherQuiz");
+            }}>
+              Quiz</h2>
           <h2
             onClick={() => {
               toggleDrawer();

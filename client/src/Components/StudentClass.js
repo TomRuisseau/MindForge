@@ -23,7 +23,7 @@ const StudentClass = forwardRef((props,ref) => {
       <table>
         <thead>
           <tr>
-            <th>Nom</th>
+            <th>Prénom</th>
             <th>HP</th>
             <th>ID</th>
           </tr>

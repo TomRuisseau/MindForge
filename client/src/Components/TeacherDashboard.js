@@ -6,6 +6,7 @@ import SmallList from "./SmallList";
 import Quests from "./Quests";
 import DailyRand from "./DailyRand";
 import "../Styles/teacherDashboard.css";
+import TeacherQuiz from "./TeacherQuiz";
 
 function TeacherDashboard(props) {
   const [page, setPage] = useState("TeacherMenu"); // TeacherMenu, StudentManager, quests, quiz, dailyEvent, tutorial, settings
@@ -28,6 +29,8 @@ function TeacherDashboard(props) {
           </button>
           {page === "TeacherMenu" ? (
             <TeacherMenu />
+          ) : page === "TeacherQuiz" ? ( 
+            <TeacherQuiz id = {props.id} /> 
           ) : page === "StudentManager" ? (
             <StudentManager id={props.id} />
           ) : page === "Quests" ? (
