@@ -29,7 +29,9 @@ function StudentQuests(props) {
         e.preventDefault(); // prevent page reload
         axios.post("http://localhost:5000/questValidation", { quest_id: e.target.parentElement.parentElement.getAttribute("data-key"), student_id: props.data[0].id })
             .then((res) => {
+                props.data[0].xp += getReward(e.target.parentElement.parentElement.getAttribute("data-key"));
                 setCounter(counter + 1);
+
             }
             ).catch((err) => {
                 console.log(err);
@@ -46,37 +48,44 @@ function StudentQuests(props) {
         return false;
     }
 
+    const getReward = (quest_id) => {
+        for (let i = 0; i < quests.length; i++) {
+            if (quests[i].id == quest_id) {
+                return quests[i].reward;
+            }
+        }
+    }
 
 
     //affichage
     return (
         <>
-        <br></br>
-        <div className="row questRow position-absolute w-100">
-            <div className="col custom-scrollbar" style={{ height: "82vh", overflow: "auto" }}>
-                <h2 className="text-center">Liste de quêtes</h2>
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Description</th>
-                            <th scope="col">Récompense</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {quests.map((quest) => {
-                            return (
-                                <tr key={quest.id} data-key={quest.id}>
-                                    <td>{quest.description}</td>
-                                    <td>{quest.reward}</td>
-                                    {testCompletedQuests(quest.id) ? <td><p>Quête déjà terminée</p></td> : <td><button onClick={questValidation} className='btn btn-light'>Terminer la quête</button></td>}
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+            <br></br>
+            <div className="row questRow position-absolute w-100">
+                <div className="col custom-scrollbar" style={{ height: "82vh", overflow: "auto" }}>
+                    <h2 className="text-center">Liste de quêtes</h2>
+                    <table className="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Description</th>
+                                <th scope="col">Récompense</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {quests.map((quest) => {
+                                return (
+                                    <tr key={quest.id} data-key={quest.id}>
+                                        <td>{quest.description}</td>
+                                        <td>{quest.reward}</td>
+                                        {testCompletedQuests(quest.id) ? <td><p>Quête déjà terminée</p></td> : <td><button onClick={questValidation} className='btn btn-light'>Terminer la quête</button></td>}
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        </> 
+        </>
     )
 }
 
