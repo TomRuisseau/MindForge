@@ -56,26 +56,37 @@ function DailyRand(props) {
       }}
     >
       <div className="p-5 w-75 h-75 border border-danger rounded text-center d-flex flex-column justify-content-center">
-        <button
-          onClick={random}
-          className="btn btn-danger btn-lg py-5"
-          style={{ marginBottom: "10%" }}
-        >
-          Lancer
-        </button>
+        <div>
+          <button
+            onClick={random}
+            className="btn btn-danger btn-lg"
+            style={{
+              marginBottom: "10%",
+              fontSize: "50px",
+              paddingTop: "50px",
+              paddingBottom: "50px",
+              paddingLeft: "100px",
+              paddingRight: "100px",
+            }}
+          >
+            Lancer
+          </button>
+        </div>
         <h3>{selectedOption}</h3>
         {selectedOption === "Quelqu'un va perdre des HP" ||
         selectedOption === "Quelqu'un va gagner des XP" ||
         selectedOption === "Quelqu'un va gagner du Mana" ||
         selectedOption ===
           "Quelqu'un sera dispensé de devoirs pour le prochain cours" ? (
-          <button
-            onClick={selectStudent}
-            className="btn btn-primary btn-lg "
-            style={{ marginBottom: "10%", marginTop: "10%" }}
-          >
-            Qui donc ?
-          </button>
+          <div>
+            <button
+              onClick={selectStudent}
+              className="btn btn-primary btn-lg "
+              style={{ marginBottom: "10%", marginTop: "10%" }}
+            >
+              Qui donc ?
+            </button>
+          </div>
         ) : null}
 
         <h2>
