@@ -21,7 +21,10 @@ const SpellBar = (props) => {
 
             {spells.map((spell) => {
                 return (
-                    <img key={spell.name} src={`media/spells/${spell.item_name}.webp`}></img>
+                    <div>
+                        <img key={spell.item_name} src={`media/spells/${spell.item_name}.webp`}></img>
+                        <p>{spell.item_name.split("_").join(" ") + " : " + spell.manaCost + " points de mana"}</p>
+                    </div>
                 )
             }
             )}

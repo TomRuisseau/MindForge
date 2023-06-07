@@ -4,6 +4,7 @@ const port = 5000;
 var cors = require("cors");
 const mysql = require("mysql");
 const { classMap } = require("./modules/class.js");
+const { SpellsCosts } = require("./modules/spells.js");
 
 app.use(express.json()); //Used to parse JSON bodies
 app.use(cors()); //Prevent CORS errors
@@ -463,9 +464,12 @@ app.post("/getSpells", (req, res) => {
     connection.query(query,
       function (err, result, fields) {
         if (err) throw err;
+        result.forEach((spell) => {
+          spell.manaCost = SpellsCosts.get(spell.item_name);
+        }
+        );
         res.send(result);
-      }
-    );
+      });
   });
 });
 
