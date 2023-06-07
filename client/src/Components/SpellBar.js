@@ -63,18 +63,30 @@ const SpellBar = (props) => {
 
       {
         {
-          protection: <Protection />,
-          aura_magique: <AuraMagique close={closePopUp} />,
-          premiers_soins: <PremiersSoins />,
-          apaisement_majeur: <ApaisementMajeur />,
-          expansion_du_savoir: <ExpansionDuSavoir />,
-          halo_salvateur: <HaloSalvateur />,
-          purification: <Purification />,
-          imposition_des_mains: <ImpositionDesMains />,
-          soin_de_masse: <SoinDeMasse />,
-          truquage_du_destin: <TruquageDuDestin />,
-          vague_de_mana: <VagueDeMana />,
-          reviviscence: <Reviviscence />,
+          protection: <Protection data={props.data} close={closePopUp} />,
+          aura_magique: <AuraMagique data={props.data} close={closePopUp} />,
+          premiers_soins: (
+            <PremiersSoins data={props.data} close={closePopUp} />
+          ),
+          apaisement_majeur: (
+            <ApaisementMajeur data={props.data} close={closePopUp} />
+          ),
+          expansion_du_savoir: (
+            <ExpansionDuSavoir data={props.data} close={closePopUp} />
+          ),
+          halo_salvateur: (
+            <HaloSalvateur data={props.data} close={closePopUp} />
+          ),
+          purification: <Purification data={props.data} close={closePopUp} />,
+          imposition_des_mains: (
+            <ImpositionDesMains data={props.data} close={closePopUp} />
+          ),
+          soin_de_masse: <SoinDeMasse data={props.data} close={closePopUp} />,
+          truquage_du_destin: (
+            <TruquageDuDestin data={props.data} close={closePopUp} />
+          ),
+          vague_de_mana: <VagueDeMana data={props.data} close={closePopUp} />,
+          reviviscence: <Reviviscence data={props.data} close={closePopUp} />,
 
           hidden: null,
           default: null,
