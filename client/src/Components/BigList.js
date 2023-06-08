@@ -49,7 +49,7 @@ const BigList = forwardRef((props, ref) => {
   //affichage (render)
   return (
     <div
-      className="text-black w-50 m-4 px-5 py-2 border border-black rounded custom-scrollbar"
+      className="w-50 m-4 px-3 py-2 border border-black rounded custom-scrollbar"
       style={{ height: "75vh", overflow: "auto" }}
     >
       {Array.from(
@@ -63,7 +63,7 @@ const BigList = forwardRef((props, ref) => {
         }, new Map())
       ).map(([team, members]) => (
         <React.Fragment key={team}>
-          <h2>{team}</h2>
+          <h3>{team}</h3>
           <table className="mb-5">
             <tbody>
               {members.map((student) => (

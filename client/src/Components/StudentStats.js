@@ -25,14 +25,14 @@ function StudentStats(props) {
   }, [props.id, props.counter]);
 
   return (
-    <div className="w-50 m-5 px-5 py-2 border border-black rounded">
+    <div className="w-50 m-4 px-3 py-2 border border-black rounded">
       {studentStats.map((stat) => (
         <div key={stat.id}>
           <div className="d-flex flex-row justify-content-between">
-            <h2>
+            <h3>
               {stat.first_name} {stat.surname}
-            </h2>
-            <h2>Equipe : {stat.team}</h2>
+            </h3>
+            <h3>Equipe : {stat.team}</h3>
           </div>
           <p>Classe : {stat.class}</p>
           <p>XP : {stat.xp}</p>
