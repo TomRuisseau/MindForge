@@ -809,6 +809,14 @@ app.post("/usePurification", (req, res) => {
   res.send("0");
 });
 
+app.post("/useVagueDeMana", (req, res) => {
+  //receive id and target
+  removeMana(pool, req.body.id, SpellsCosts.get("vague_de_mana"));
+  addMana(pool, req.body.target, 5000);
+  addXp(pool, req.body.id, SpellsCosts.get("vague_de_mana"), res);
+});
+
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });

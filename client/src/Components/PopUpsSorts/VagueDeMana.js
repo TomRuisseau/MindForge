@@ -22,17 +22,15 @@ function VagueDeMana(props) {
 
   const useSpell = (e) => {
     e.preventDefault(); // prevent page reload
-    if (props.data[0].mana >= 2 && props.data[0].hp > 5) {
+    if (props.data[0].mana >= 6) {
       axios
-        .post("http://localhost:5000/useImpositionDesMains", {
-          //changer la route
+        .post("http://localhost:5000/useVagueDeMana", {
           id: props.data[0].id,
           target: student,
         })
         .then(() => {
-          props.data[0].mana -= 4;
-          props.data[0].xp += 4;
-          props.data[0].hp -= 5;
+          props.data[0].mana -= 6;
+          props.data[0].xp += 6;
           props.close();
         })
         .catch((err) => {

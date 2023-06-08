@@ -2,7 +2,7 @@ import axios from "axios";
 
 function Purification(props) {
   const useSpell = () => {
-    if (props.data[0].mana >= 4) {
+    if (props.data[0].mana >= 3) {
       axios
         .post("http://localhost:5000/usePurification", {
           //changer le nom de la route
