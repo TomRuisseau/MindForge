@@ -65,7 +65,7 @@ function VagueDeMana(props) {
         >
           <div className="d-flex flex-column">
             <label htmlFor="text" className="mt-3">
-              Choisir un membre de l'équipe sur qui utiliser le sort :
+              Choisis un membre de l'équipe sur qui utiliser le sort :
             </label>
             <select
               name="student"

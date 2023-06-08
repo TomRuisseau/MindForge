@@ -49,8 +49,8 @@ function ApaisementMajeur(props) {
       </div>
       <div className="p-3 rounded">
         <p style={{ fontSize: "22px" }}>
-          Rend <span className="text-danger">10 HP</span> à un membre de
-          l'équipe ou lui même.
+          Tu soignes de <span className="text-danger">10 HP</span> un membre de
+          l'équipe ou toi-même.
         </p>
       </div>
       <h3>Coût en mana : 6</h3>
@@ -61,7 +61,7 @@ function ApaisementMajeur(props) {
         >
           <div className="d-flex flex-column">
             <label htmlFor="text" className="mt-3">
-              Choisir un membre de l'équipe sur qui utiliser le sort :
+              Choisis un membre de l'équipe sur qui utiliser le sort :
             </label>
             <select
               name="student"

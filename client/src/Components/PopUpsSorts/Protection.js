@@ -7,7 +7,7 @@ function Protection(props) {
       </div>
       <div className="p-3 rounded">
         <p style={{ fontSize: "22px" }}>
-          Encaisse les dégats en HP à la place d'un membre de l'équipe.
+          Tu encaisses les dégats en HP à la place d'un membre de ton équipe.
         </p>
         <p style={{ fontSize: "22px" }}>
           (Est activé par le professeur lors de la mort de ton équipier){" "}

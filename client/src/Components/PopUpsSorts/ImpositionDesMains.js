@@ -38,7 +38,9 @@ function ImpositionDesMains(props) {
           console.log(err);
         });
     } else {
-      alert("Vous n'avez pas assez de mana ou de points de vie pour utiliser ce sort !");
+      alert(
+        "Vous n'avez pas assez de mana ou de points de vie pour utiliser ce sort !"
+      );
     }
   };
 
@@ -51,7 +53,7 @@ function ImpositionDesMains(props) {
       <div className="p-3 rounded">
         <p style={{ fontSize: "22px" }}>
           Tu t'infliges des dégats de <span className="text-danger">5 HP</span>{" "}
-          pour guérir un membre de <span className="text-primary">10 HP</span>.
+          pour soigner un membre de <span className="text-primary">10 HP</span>.
         </p>
       </div>
       <h3>Coût en mana : 6</h3>
@@ -62,7 +64,7 @@ function ImpositionDesMains(props) {
         >
           <div className="d-flex flex-column">
             <label htmlFor="text" className="mt-3">
-              Choisir un membre de l'équipe sur qui utiliser le sort :
+              Choisis un membre de l'équipe sur qui utiliser le sort :
             </label>
             <select
               name="student"
