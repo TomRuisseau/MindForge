@@ -21,19 +21,32 @@ const pool = mysql.createPool({
 function addXp(connectionPool, id, xp, res) {
   connectionPool.getConnection(function (err, connection) {
     connection.query(
-      "SELECT xp FROM student WHERE id = '" + id + "'",
+      "SELECT xp, minded FROM student WHERE id = '" + id + "'",
       function (err, result, fields) {
         if (err) throw err;
-        let new_xp = parseInt(result[0].xp) + parseInt(xp);
+        let new_xp = parseInt(result[0].xp) + parseInt(xp) * (parseInt(result[0].minded) + 1);
         connection.query(
           "UPDATE student SET xp ='" +
           new_xp +
           "' WHERE id = '" +
           id +
           "'",
-          function (err, result, fields) {
+          function (err, result2, fields) {
             if (err) throw err;
-            res.send("1");
+            if (parseInt(result[0].minded) === 0) {
+              res.send("1");
+            }
+            else {
+              connection.query(
+                "UPDATE student SET minded ='0' WHERE id = '" +
+                id +
+                "'",
+                function (err, result3, fields) {
+                  if (err) throw err;
+                  res.send("1");
+                }
+              );
+            }
           }
         );
       }
@@ -277,7 +290,7 @@ app.post("/addStudent", (req, res) => {
       let id = result.length + 1;
       let date = new Date().getTime();
       connection.query(
-        "INSERT INTO student(id,teacher_email, team, first_name, surname, class, hp, xp, mana, last_time) VALUES ('" +
+        "INSERT INTO student(id,teacher_email, team, first_name, surname, class, hp, xp, mana, last_time, protected, minded) VALUES ('" +
         id + //id
         "', '" +
         req.body.email +
@@ -297,6 +310,10 @@ app.post("/addStudent", (req, res) => {
         mana +
         "', '" + //mana
         date + //last_time
+        "', '" +
+        0 +
+        "', '" +
+        0 +
         "')",
         function (err, result, fields) {
           if (err) throw err;
