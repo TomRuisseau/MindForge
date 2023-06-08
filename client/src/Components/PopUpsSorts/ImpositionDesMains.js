@@ -7,8 +7,9 @@ function ImpositionDesMains(props) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudentsTeam", {
+      .post("http://localhost:5000/getStudentsTeamExcept", {
         team: props.data[0].team,
+        id: props.data[0].id,
       })
       .then((res) => {
         setStudents(res.data);
@@ -21,21 +22,23 @@ function ImpositionDesMains(props) {
 
   const useSpell = (e) => {
     e.preventDefault(); // prevent page reload
-    if (props.data[0].mana >= 2) {
+    if (props.data[0].mana >= 2 && props.data[0].hp > 5) {
       axios
-        .post("http://localhost:5000/usePremiersSoins", {
+        .post("http://localhost:5000/useImpositionDesMains", {
           id: props.data[0].id,
           target: student,
         })
         .then(() => {
+          props.data[0].mana -= 4;
+          props.data[0].xp += 4;
+          props.data[0].hp -= 5;
           props.close();
-          props.data[0].mana -= 2;
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
-      alert("Vous n'avez pas assez de mana pour utiliser ce sort !");
+      alert("Vous n'avez pas assez de mana ou de points de vie pour utiliser ce sort !");
     }
   };
 

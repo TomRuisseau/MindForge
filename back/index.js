@@ -110,6 +110,29 @@ function addHp(connectionPool, id, hp) {
   });
 }
 
+function removeHp(connectionPool, id, hp) {
+  connectionPool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT hp, class FROM student WHERE id = '" + id + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        let new_hp = parseInt(result[0].hp) - parseInt(hp);
+        new_hp = Math.min(new_hp, classMap.get(result[0].class).hp);
+        connection.query(
+          "UPDATE student SET hp ='" +
+          new_hp +
+          "' WHERE id = '" +
+          id +
+          "'",
+          function (err, result, fields) {
+            if (err) throw err;
+          }
+        );
+      }
+    );
+  });
+}
+
 
 
 
@@ -337,390 +360,410 @@ app.post("/getStudentsTeam", (req, res) => {
   });
 });
 
-//get a specific student
-app.post("/getStudent", (req, res) => {
-  //todo : send the skin too
+//get all student of a team except one 
+app.post("/getStudentsTeamExcept", (req, res) => {
   pool.getConnection(function (err, connection) {
     connection.query(
-      "SELECT * FROM student WHERE id = '" + req.body.id + "'",
-      function (err, result, fields) {
-        if (err) throw err;
-        res.send(result);
-      }
-    );
-  });
-});
-
-//get % of hp of a student
-app.post("/getHp", (req, res) => {
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT hp, class FROM student WHERE id = '" + req.body.id + "'",
-      function (err, result, fields) {
-        if (err) throw err;
-        let ratioHp = Math.floor(
-          (result[0].hp / classMap.get(result[0].class).hp) * 100
-        );
-        res.send(ratioHp.toString());
-      }
-    );
-  });
-});
-
-//get % mana of a student
-app.post("/getMana", (req, res) => {
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT mana, class FROM student WHERE id = '" + req.body.id + "'",
-      function (err, result, fields) {
-        if (err) throw err;
-        let ratioMana = Math.floor(
-          (result[0].mana / classMap.get(result[0].class).mana) * 100
-        );
-        res.send(ratioMana.toString());
-      }
-    );
-  });
-});
-
-//inflict damage to a student
-app.post("/removeHp", (req, res) => {
-  //receive id and damage
-
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT hp FROM student WHERE id = '" + req.body.id + "'",
-      function (err, result, fields) {
-        if (err) throw err;
-        let new_hp = result[0].hp - req.body.damage;
-        new_hp = new_hp < 0 ? 0 : new_hp;
-        connection.query(
-          "UPDATE student SET hp = '" +
-          new_hp +
-          "' WHERE id = '" +
-          req.body.id +
-          "'",
-          function (err, result, fields) {
-            if (err) throw err;
-            res.send(new_hp === 0 ? "dead" : "alive");
-          }
-        );
-      }
-    );
-  });
-});
-
-app.post("/giveXp", (req, res) => {
-  //receive id and xp
-  addXp(pool, req.body.id, req.body.xp, res);
-});
-
-//send skin of a student
-app.post("/getSkin", (req, res) => {
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT item_name FROM owned_item WHERE student_id = '" +
+      "SELECT * FROM student WHERE team = '" +
+      req.body.team +
+      "' AND id != '" +
       req.body.id +
-      "' AND equiped = '" +
-      1 +
       "'",
       function (err, result, fields) {
         if (err) throw err;
-        res.send(result[0].item_name);
-      }
-    );
-  });
-});
-
-//add quest
-app.post("/addQuest", (req, res) => {
-  //receive id and quest
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "INSERT INTO quest(id, teacher_email, reward, description) VALUES ('" +
-      new Date().getTime() +
-      "', '" +
-      req.body.email +
-      "', '" +
-      req.body.reward +
-      "', '" +
-      req.body.description +
-      "')",
-      function (err, result, fields) {
-        if (err) throw err;
-        res.send("0");
-      }
-    );
-  });
-});
-
-
-//get all quests of a teacher
-app.post("/getQuests", (req, res) => {
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT * FROM quest WHERE teacher_email = '" + req.body.email + "'",
-      function (err, result, fields) {
-        if (err) throw err;
         res.send(result);
       }
     );
   });
 });
 
-//get completed quests of a student
-app.post("/getCompletedQuests", (req, res) => {
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT quest.* FROM quest, completed_quest WHERE teacher_email = '"
-      + req.body.email +
-      "' AND completed_quest.student_id = '" +
-      req.body.id +
-      "' AND completed_quest.quest_id = quest.id",
-      function (err, result, fields) {
-        if (err) throw err;
-        res.send(result);
-      }
-    );
-  });
-});
-
-
-//delete a quest
-app.post("/deleteQuest", (req, res) => {
-  //receive id
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "DELETE FROM quest WHERE id = '" + req.body.id + "'",
-      function (err, result, fields) {
-        if (err) throw err;
-        connection.query(
-          "DELETE FROM completed_quest WHERE quest_id = '" + req.body.id + "'",
-          function (err, result, fields) {
-            if (err) throw err;
-            res.send("0");
-          }
-        );
-      }
-    );
-  });
-});
-
-//validate a quest
-app.post("/questValidation", (req, res) => {
-  //receive id
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "INSERT INTO completed_quest(student_id, quest_id) VALUES ('" +
-      req.body.student_id +
-      "', '" +
-      req.body.quest_id +
-      "')",
-      function (err, result, fields) {
-        if (err) throw err;
-        connection.query(
-          "SELECT reward FROM quest WHERE id = '" + req.body.quest_id + "'",
-          function (err, result, fields) {
-            if (err) throw err;
-            addXp(pool, req.body.student_id, result[0].reward, res);
-          }
-        );
-      }
-    );
-  });
-});
-
-//get spells of a student
-app.post("/getSpells", (req, res) => {
-  let query = "SELECT owned_item.item_name FROM owned_item, item WHERE owned_item.student_id = '"
-    + req.body.id
-    + "'"
-    + " AND owned_item.item_name = item.name AND item.type = 'spell_" + req.body.class + "'";
-  pool.getConnection(function (err, connection) {
-    connection.query(query,
-      function (err, result, fields) {
-        if (err) throw err;
-        result.forEach((spell) => {
-          spell.manaCost = SpellsCosts.get(spell.item_name);
+  //get a specific student
+  app.post("/getStudent", (req, res) => {
+    //todo : send the skin too
+    pool.getConnection(function (err, connection) {
+      connection.query(
+        "SELECT * FROM student WHERE id = '" + req.body.id + "'",
+        function (err, result, fields) {
+          if (err) throw err;
+          res.send(result);
         }
-        );
-        res.send(result);
-      });
+      );
+    });
   });
-});
 
-//get spells shop of a student
-app.post("/getSpellsShop", (req, res) => {
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT * FROM item WHERE type = 'spell_" + req.body.class + "'",
-      function (err, allSpells, fields) {
-        if (err) throw err;
-        connection.query(
-          "SELECT item_name FROM owned_item WHERE student_id = '"
-          + req.body.id
-          + "'",
-          function (err, result, fields) {
-            allSpells.forEach((spell) => {
-              spell.owned = false;
-              result.forEach((ownedSpell) => {
-                if (spell.name === ownedSpell.item_name) {
-                  spell.owned = true;
-                }
-              });
+  //get % of hp of a student
+  app.post("/getHp", (req, res) => {
+    pool.getConnection(function (err, connection) {
+      connection.query(
+        "SELECT hp, class FROM student WHERE id = '" + req.body.id + "'",
+        function (err, result, fields) {
+          if (err) throw err;
+          let ratioHp = Math.floor(
+            (result[0].hp / classMap.get(result[0].class).hp) * 100
+          );
+          res.send(ratioHp.toString());
+        }
+      );
+    });
+  });
+
+  //get % mana of a student
+  app.post("/getMana", (req, res) => {
+    pool.getConnection(function (err, connection) {
+      connection.query(
+        "SELECT mana, class FROM student WHERE id = '" + req.body.id + "'",
+        function (err, result, fields) {
+          if (err) throw err;
+          let ratioMana = Math.floor(
+            (result[0].mana / classMap.get(result[0].class).mana) * 100
+          );
+          res.send(ratioMana.toString());
+        }
+      );
+    });
+  });
+
+  //inflict damage to a student
+  app.post("/removeHp", (req, res) => {
+    //receive id and damage
+
+    pool.getConnection(function (err, connection) {
+      connection.query(
+        "SELECT hp FROM student WHERE id = '" + req.body.id + "'",
+        function (err, result, fields) {
+          if (err) throw err;
+          let new_hp = result[0].hp - req.body.damage;
+          new_hp = new_hp < 0 ? 0 : new_hp;
+          connection.query(
+            "UPDATE student SET hp = '" +
+            new_hp +
+            "' WHERE id = '" +
+            req.body.id +
+            "'",
+            function (err, result, fields) {
+              if (err) throw err;
+              res.send(new_hp === 0 ? "dead" : "alive");
             }
-            );
-            res.send(allSpells);
-          }
-        );
-      });
+          );
+        }
+      );
+    });
   });
-});
 
-app.post("/getSkinsShop", (req, res) => {
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT * FROM item WHERE type = 'skin'",
-      function (err, allSpells, fields) {
-        if (err) throw err;
-        connection.query(
-          "SELECT item_name, equiped FROM owned_item WHERE student_id = '"
-          + req.body.id
-          + "'",
-          function (err, result, fields) {
-            allSpells.forEach((spell) => {
-              spell.owned = false;
-              result.forEach((ownedSpell) => {
-                if (spell.name === ownedSpell.item_name) {
-                  spell.owned = true;
-                  spell.equiped = ownedSpell.equiped;
-                }
-              });
-            }
-            );
-            res.send(allSpells);
-          }
-        );
-      });
+  app.post("/giveXp", (req, res) => {
+    //receive id and xp
+    addXp(pool, req.body.id, req.body.xp, res);
   });
-});
 
-//buy a spell or item 
-app.post("/buy", (req, res) => {
-  //receive id and item name
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "INSERT INTO owned_item(student_id, item_name, equiped) VALUES ('" +
-      req.body.id +
-      "', '" +
-      req.body.name +
-      "', '0')",
-      function (err, result, fields) {
-        if (err) throw err;
-        connection.query(
-          "UPDATE student SET xp = '" +
-          req.body.newXp +
-          "' WHERE id = '" +
-          req.body.id +
-          "'",
-          function (err, result, fields) {
-            if (err) throw err;
-            res.send("0");
-          }
-        );
-      }
-    );
+  //send skin of a student
+  app.post("/getSkin", (req, res) => {
+    pool.getConnection(function (err, connection) {
+      connection.query(
+        "SELECT item_name FROM owned_item WHERE student_id = '" +
+        req.body.id +
+        "' AND equiped = '" +
+        1 +
+        "'",
+        function (err, result, fields) {
+          if (err) throw err;
+          res.send(result[0].item_name);
+        }
+      );
+    });
   });
-});
 
-//equip an item
-app.post("/equip", (req, res) => {
-  //receive id and item name
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "UPDATE owned_item SET equiped = '0' WHERE student_id = '" +
-      req.body.id +
-      "'",
-      function (err, result, fields) {
-        if (err) throw err;
-        connection.query(
-          "UPDATE owned_item SET equiped = '1' WHERE student_id = '" +
-          req.body.id +
-          "' AND item_name = '" +
-          req.body.name +
-          "'",
-          function (err, result, fields) {
-            if (err) throw err;
-            res.send("0");
-          }
-        );
-      }
-    );
+  //add quest
+  app.post("/addQuest", (req, res) => {
+    //receive id and quest
+    pool.getConnection(function (err, connection) {
+      connection.query(
+        "INSERT INTO quest(id, teacher_email, reward, description) VALUES ('" +
+        new Date().getTime() +
+        "', '" +
+        req.body.email +
+        "', '" +
+        req.body.reward +
+        "', '" +
+        req.body.description +
+        "')",
+        function (err, result, fields) {
+          if (err) throw err;
+          res.send("0");
+        }
+      );
+    });
   });
-});
 
-//get tanks that could protect 
-app.post("/getTanks", (req, res) => {
-  //receive id and team
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT * FROM student WHERE team = '" +
-      req.body.team +
-      "' AND id != '" +
-      req.body.id +
-      "' AND class = 'tank' AND mana >= '" +
-      SpellsCosts.get("protection") +
-      "'",
-      function (err, result, fields) {
-        if (err) throw err;
-        res.send(result);
-      }
-    );
+
+  //get all quests of a teacher
+  app.post("/getQuests", (req, res) => {
+    pool.getConnection(function (err, connection) {
+      connection.query(
+        "SELECT * FROM quest WHERE teacher_email = '" + req.body.email + "'",
+        function (err, result, fields) {
+          if (err) throw err;
+          res.send(result);
+        }
+      );
+    });
   });
-});
 
-//use protection 
-app.post("/useProtection", (req, res) => {
-  //receive id
-  removeMana(pool, req.body.id, SpellsCosts.get("protection"));
-  addXp(pool, req.body.id, SpellsCosts.get("protection"), res);
-});
+  //get completed quests of a student
+  app.post("/getCompletedQuests", (req, res) => {
+    pool.getConnection(function (err, connection) {
+      connection.query(
+        "SELECT quest.* FROM quest, completed_quest WHERE teacher_email = '"
+        + req.body.email +
+        "' AND completed_quest.student_id = '" +
+        req.body.id +
+        "' AND completed_quest.quest_id = quest.id",
+        function (err, result, fields) {
+          if (err) throw err;
+          res.send(result);
+        }
+      );
+    });
+  });
 
-//use aura_magique 
-app.post("/useAuraMagique", (req, res) => {
-  pool.getConnection(function (err, connection) {
+
+  //delete a quest
+  app.post("/deleteQuest", (req, res) => {
     //receive id
-    connection.query(
-      "SELECT * FROM student WHERE team = '" +
-      req.body.team +
-      "' AND id != '" +
-      req.body.id +
-      "'",
-      function (err, result, fields) {
-        if (err) throw err;
-        result.forEach((student) => {
-          addMana(pool, student.id, 2);
-        });
-        removeMana(pool, req.body.id, (SpellsCosts.get("aura_magique")));
-        addXp(pool, req.body.id, SpellsCosts.get("aura_magique"), res);
-      }
-    );
+    pool.getConnection(function (err, connection) {
+      connection.query(
+        "DELETE FROM quest WHERE id = '" + req.body.id + "'",
+        function (err, result, fields) {
+          if (err) throw err;
+          connection.query(
+            "DELETE FROM completed_quest WHERE quest_id = '" + req.body.id + "'",
+            function (err, result, fields) {
+              if (err) throw err;
+              res.send("0");
+            }
+          );
+        }
+      );
+    });
   });
-});
 
-//use premiers_soins
-app.post("/usePremiersSoins", (req, res) => {
-  //receive id and target 
-  addHp(pool, req.body.target, 3);
-  removeMana(pool, req.body.id, SpellsCosts.get("premiers_soins"));
-  addXp(pool, req.body.id, SpellsCosts.get("premiers_soins"), res);
-});
+  //validate a quest
+  app.post("/questValidation", (req, res) => {
+    //receive id
+    pool.getConnection(function (err, connection) {
+      connection.query(
+        "INSERT INTO completed_quest(student_id, quest_id) VALUES ('" +
+        req.body.student_id +
+        "', '" +
+        req.body.quest_id +
+        "')",
+        function (err, result, fields) {
+          if (err) throw err;
+          connection.query(
+            "SELECT reward FROM quest WHERE id = '" + req.body.quest_id + "'",
+            function (err, result, fields) {
+              if (err) throw err;
+              addXp(pool, req.body.student_id, result[0].reward, res);
+            }
+          );
+        }
+      );
+    });
+  });
+
+  //get spells of a student
+  app.post("/getSpells", (req, res) => {
+    let query = "SELECT owned_item.item_name FROM owned_item, item WHERE owned_item.student_id = '"
+      + req.body.id
+      + "'"
+      + " AND owned_item.item_name = item.name AND item.type = 'spell_" + req.body.class + "'";
+    pool.getConnection(function (err, connection) {
+      connection.query(query,
+        function (err, result, fields) {
+          if (err) throw err;
+          result.forEach((spell) => {
+            spell.manaCost = SpellsCosts.get(spell.item_name);
+          }
+          );
+          res.send(result);
+        });
+    });
+  });
+
+  //get spells shop of a student
+  app.post("/getSpellsShop", (req, res) => {
+    pool.getConnection(function (err, connection) {
+      connection.query(
+        "SELECT * FROM item WHERE type = 'spell_" + req.body.class + "'",
+        function (err, allSpells, fields) {
+          if (err) throw err;
+          connection.query(
+            "SELECT item_name FROM owned_item WHERE student_id = '"
+            + req.body.id
+            + "'",
+            function (err, result, fields) {
+              allSpells.forEach((spell) => {
+                spell.owned = false;
+                result.forEach((ownedSpell) => {
+                  if (spell.name === ownedSpell.item_name) {
+                    spell.owned = true;
+                  }
+                });
+              }
+              );
+              res.send(allSpells);
+            }
+          );
+        });
+    });
+  });
+
+  app.post("/getSkinsShop", (req, res) => {
+    pool.getConnection(function (err, connection) {
+      connection.query(
+        "SELECT * FROM item WHERE type = 'skin'",
+        function (err, allSpells, fields) {
+          if (err) throw err;
+          connection.query(
+            "SELECT item_name, equiped FROM owned_item WHERE student_id = '"
+            + req.body.id
+            + "'",
+            function (err, result, fields) {
+              allSpells.forEach((spell) => {
+                spell.owned = false;
+                result.forEach((ownedSpell) => {
+                  if (spell.name === ownedSpell.item_name) {
+                    spell.owned = true;
+                    spell.equiped = ownedSpell.equiped;
+                  }
+                });
+              }
+              );
+              res.send(allSpells);
+            }
+          );
+        });
+    });
+  });
+
+  //buy a spell or item 
+  app.post("/buy", (req, res) => {
+    //receive id and item name
+    pool.getConnection(function (err, connection) {
+      connection.query(
+        "INSERT INTO owned_item(student_id, item_name, equiped) VALUES ('" +
+        req.body.id +
+        "', '" +
+        req.body.name +
+        "', '0')",
+        function (err, result, fields) {
+          if (err) throw err;
+          connection.query(
+            "UPDATE student SET xp = '" +
+            req.body.newXp +
+            "' WHERE id = '" +
+            req.body.id +
+            "'",
+            function (err, result, fields) {
+              if (err) throw err;
+              res.send("0");
+            }
+          );
+        }
+      );
+    });
+  });
+
+  //equip an item
+  app.post("/equip", (req, res) => {
+    //receive id and item name
+    pool.getConnection(function (err, connection) {
+      connection.query(
+        "UPDATE owned_item SET equiped = '0' WHERE student_id = '" +
+        req.body.id +
+        "'",
+        function (err, result, fields) {
+          if (err) throw err;
+          connection.query(
+            "UPDATE owned_item SET equiped = '1' WHERE student_id = '" +
+            req.body.id +
+            "' AND item_name = '" +
+            req.body.name +
+            "'",
+            function (err, result, fields) {
+              if (err) throw err;
+              res.send("0");
+            }
+          );
+        }
+      );
+    });
+  });
+
+  //get tanks that could protect 
+  app.post("/getTanks", (req, res) => {
+    //receive id and team
+    pool.getConnection(function (err, connection) {
+      connection.query(
+        "SELECT * FROM student WHERE team = '" +
+        req.body.team +
+        "' AND id != '" +
+        req.body.id +
+        "' AND class = 'tank' AND mana >= '" +
+        SpellsCosts.get("protection") +
+        "'",
+        function (err, result, fields) {
+          if (err) throw err;
+          res.send(result);
+        }
+      );
+    });
+  });
+
+  //use protection 
+  app.post("/useProtection", (req, res) => {
+    //receive id
+    removeMana(pool, req.body.id, SpellsCosts.get("protection"));
+    addXp(pool, req.body.id, SpellsCosts.get("protection"), res);
+  });
+
+  //use aura_magique 
+  app.post("/useAuraMagique", (req, res) => {
+    pool.getConnection(function (err, connection) {
+      //receive id
+      connection.query(
+        "SELECT * FROM student WHERE team = '" +
+        req.body.team +
+        "' AND id != '" +
+        req.body.id +
+        "'",
+        function (err, result, fields) {
+          if (err) throw err;
+          result.forEach((student) => {
+            addMana(pool, student.id, 2);
+          });
+          removeMana(pool, req.body.id, (SpellsCosts.get("aura_magique")));
+          addXp(pool, req.body.id, SpellsCosts.get("aura_magique"), res);
+        }
+      );
+    });
+  });
+
+  app.post("/usePremiersSoins", (req, res) => {
+    //receive id and target 
+    addHp(pool, req.body.target, 3);
+    removeMana(pool, req.body.id, SpellsCosts.get("premiers_soins"));
+    addXp(pool, req.body.id, SpellsCosts.get("premiers_soins"), res);
+  });
+
+  app.post("/useImpositionDesMains", (req, res) => {
+    //receive id and target
+    addHp(pool, req.body.target, 10);
+    removeMana(pool, req.body.id, SpellsCosts.get("imposition_des_mains"));
+    removeHp(pool, req.body.id, 5);
+    addXp(pool, req.body.id, SpellsCosts.get("imposition_des_mains"), res);
+  });
 
 
-
-
-
-
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`);
-});
+  app.listen(port, () => {
+    console.log(`Server listening at http://localhost:${port}`);
+  });
