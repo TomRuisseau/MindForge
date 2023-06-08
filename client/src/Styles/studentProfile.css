@@ -2,17 +2,30 @@
     display: flex;
 }
 
-.col-skin{
-    flex: 1;
-}
+
 
 .col-skin img{
     max-width: 75%;
     height: auto;
-
+    left: 50%;
 }
 
 .col-details{
     flex: 1;
-    top: 100px;
+    top: 50px;
 }
+
+.stripe{
+    height: 1px;
+    background: black;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+
+.spellBar{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+

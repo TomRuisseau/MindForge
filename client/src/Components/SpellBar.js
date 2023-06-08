@@ -12,6 +12,7 @@ import SoinDeMasse from "./PopUpsSorts/SoinDeMasse";
 import TruquageDuDestin from "./PopUpsSorts/TruquageDuDestin";
 import VagueDeMana from "./PopUpsSorts/VagueDeMana";
 import Reviviscence from "./PopUpsSorts/Reviviscence";
+import '../Styles/studentProfile.css';
 
 const SpellBar = (props) => {
   const [spells, setSpells] = useState([]); // liste des sorts
@@ -41,9 +42,9 @@ const SpellBar = (props) => {
 
   return (
     <div>
-      <br></br>
       <h2>SpellBar</h2>
 
+      <div className="spellBar">
       {spells.map((spell) => {
         return (
           <div key={spell.item_name}>
@@ -51,15 +52,16 @@ const SpellBar = (props) => {
               src={`media/spells/${spell.item_name}.webp`}
               onClick={() => selectSpell(spell.item_name)}
             ></img>
-            <p>
+            {/* <p>
               {spell.item_name.split("_").join(" ") +
                 " : " +
                 spell.manaCost +
                 " points de mana"}
-            </p>
+            </p> */}
           </div>
         );
       })}
+      </div>
 
       {
         {
