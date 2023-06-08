@@ -816,6 +816,25 @@ app.post("/useVagueDeMana", (req, res) => {
   addXp(pool, req.body.id, SpellsCosts.get("vague_de_mana"), res);
 });
 
+app.post("/useSoinDeMasse", (req, res) => {
+  //receive id and team
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT * FROM student WHERE team = '" +
+      req.body.team + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        result.forEach((student) => {
+          addHp(pool, student.id, 2);
+        });
+        removeMana(pool, req.body.id, SpellsCosts.get("soin_de_masse"));
+        addXp(pool, req.body.id, SpellsCosts.get("soin_de_masse"), res);
+      }
+    );
+  });
+});
+
+
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

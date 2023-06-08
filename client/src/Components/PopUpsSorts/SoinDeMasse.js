@@ -4,7 +4,7 @@ function SoinDeMasse(props) {
   const useSpell = () => {
     if (props.data[0].mana >= 4) {
       axios
-        .post("http://localhost:5000/useAuraMagique", {
+        .post("http://localhost:5000/useSoinDeMasse", {
           //changer le nom de la route
           id: props.data[0].id,
           team: props.data[0].team,
@@ -12,6 +12,8 @@ function SoinDeMasse(props) {
         .then(() => {
           props.close();
           props.data[0].mana -= 6;
+          props.data[0].xp += 6;
+          props.data[0].hp += 2;
         })
         .catch((err) => {
           console.log(err);
