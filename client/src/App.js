@@ -6,6 +6,7 @@ import StudentDashboard from './Components/StudentDashboard';
 import TeacherDashboard from './Components/TeacherDashboard';
 import './Styles/BoutonPrincipal.css'
 
+
 function App() {
   const [currentPage, setCurrentPage] = useState('Choice'); // ['Choice', 'TeacherLogger', 'StudentLogger', 'StudentDashboard', 'TeacherDashboard']
   const [logId, setLogId] = useState('');

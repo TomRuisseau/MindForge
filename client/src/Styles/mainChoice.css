@@ -1,8 +1,15 @@
+
+
 .mainChoice{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+.accueil, .fleche{
+    color: #ffbb00;
+    text-align: center;
 }
 
