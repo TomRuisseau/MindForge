@@ -1,0 +1,18 @@
+.row-profil{
+    display: flex;
+}
+
+.col-skin{
+    flex: 1;
+}
+
+.col-skin img{
+    max-width: 75%;
+    height: auto;
+
+}
+
+.col-details{
+    flex: 1;
+    top: 100px;
+}
