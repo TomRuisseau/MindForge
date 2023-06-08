@@ -8,7 +8,8 @@ function ExpansionDuSavoir(props) {
   useEffect(() => {
     axios
       .post("http://localhost:5000/getStudentsTeam", {
-        //changer le nom de la route
+        id: props.data[0].id,
+        team: props.data[0].team,
       })
       .then((res) => {
         setStudents(res.data);
@@ -23,15 +24,13 @@ function ExpansionDuSavoir(props) {
     e.preventDefault(); // prevent page reload
     if (props.data[0].mana >= 2) {
       axios
-        .post("http://localhost:5000/useApaisementMajeur", {
-          //changer le nom de la route
+        .post("http://localhost:5000/useExpansionDuSavoir", {
           id: props.data[0].id,
           target: student,
         })
         .then(() => {
           props.close();
           props.data[0].mana -= 4;
-          props.data[0].xp += 6;
         })
         .catch((err) => {
           console.log(err);

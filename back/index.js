@@ -351,7 +351,6 @@ app.post("/addStudent", (req, res) => {
 //get all teams of a teacher ordered by team
 app.post("/getStudents", (req, res) => {
   pool.getConnection(function (err, connection) {
-    let studentsMap = new Map();
     connection.query(
       "SELECT * FROM student WHERE teacher_email = '" +
       req.body.email +
@@ -851,7 +850,21 @@ app.post("/useSoinDeMasse", (req, res) => {
   });
 });
 
-
+app.post("/useExpansionDuSavoir", (req, res) => {
+  //receive id and target
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "UPDATE student SET minded = '1' WHERE id = '" +
+      req.body.target +
+      "'",
+      function (err, result, fields) {
+        if (err) throw err;
+      }
+    );
+  });
+  removeMana(pool, req.body.id, SpellsCosts.get("expansion_du_savoir"));
+  res.send("0");
+});
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
