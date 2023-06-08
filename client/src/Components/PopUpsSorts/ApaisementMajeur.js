@@ -23,7 +23,7 @@ function ApaisementMajeur(props) {
     e.preventDefault(); // prevent page reload
     if (props.data[0].mana >= 2) {
       axios
-        .post("http://localhost:5000/usePremiersSoins", {
+        .post("http://localhost:5000/useApaisementMajeur", {
           //changer le nom de la route
           id: props.data[0].id,
           target: student,
