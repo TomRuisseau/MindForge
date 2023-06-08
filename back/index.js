@@ -719,6 +719,27 @@ app.post("/getTanks", (req, res) => {
   });
 });
 
+//get healers that could revive
+app.post("/getHealers", (req, res) => {
+  //receive id and team
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT * FROM student WHERE team = '" +
+      req.body.team +
+      "' AND id != '" +
+      req.body.id +
+      "' AND class = 'healer' AND mana >= '" +
+      SpellsCosts.get("reviviscence") +
+      "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send(result);
+      }
+    );
+  });
+});
+
+
 //use protection 
 app.post("/useProtection", (req, res) => {
   //receive id
@@ -762,8 +783,6 @@ app.post("/useApaisementMajeur", (req, res) => {
   addXp(pool, req.body.id, SpellsCosts.get("apaisement_majeur"), res);
 });
 
-
-
 app.post("/useImpositionDesMains", (req, res) => {
   //receive id and target
   addHp(pool, req.body.target, 10);
@@ -772,6 +791,11 @@ app.post("/useImpositionDesMains", (req, res) => {
   addXp(pool, req.body.id, SpellsCosts.get("imposition_des_mains"), res);
 });
 
+app.post("/useRevivification", (req, res) => {
+  //receive id 
+  removeMana(pool, req.body.id, SpellsCosts.get("reviviscence"));
+  addXp(pool, req.body.id, SpellsCosts.get("reviviscence"), res);
+});
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

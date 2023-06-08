@@ -5,6 +5,9 @@ function PopUpDead(props) {
   const [first_name, setFirst_name] = useState("");
   const [surname, setSurname] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
+  const [healers, setHealers] = useState([]);
+  const [healer, setHealer] = useState("0");
+
   const options = [
     "L'équipe organise un goûter",
     "Coup de bol",
@@ -27,6 +30,17 @@ function PopUpDead(props) {
   };
 
   const backToLife = () => {
+    if (healer !== "0") {
+      axios
+        .post("http://localhost:5000/useRevivification", {
+          id: healer,
+        })
+        .then((res) => {
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
     axios
       .post("http://localhost:5000/removeHp", {
         id: props.id,
@@ -46,10 +60,22 @@ function PopUpDead(props) {
       .then((res) => {
         setFirst_name(res.data[0].first_name);
         setSurname(res.data[0].surname);
+        axios
+          .post("http://localhost:5000/getHealers", { id: props.id, team: res.data[0].team })
+          .then((res) => {
+            setHealers(res.data);
+            console.log(res.data);
+          }
+          )
+          .catch((err) => {
+            console.log(err);
+          }
+          );
       })
       .catch((err) => {
         console.log(err);
       });
+
   }, [props.id]);
 
   return (
@@ -68,6 +94,24 @@ function PopUpDead(props) {
         </h2>
 
         <br></br>
+        <label htmlFor="tanker" className="mt-3 text-white">
+          L'élève souhaite-t-il qu'un des soigneurs de son équipe utilise "reviviscence" pour 6 points de mana afin d'annuler le malus ?
+        </label>
+        <select
+          name="healer"
+          id="healer-select"
+          className="rounded"
+          onChange={(e) => setHealer(e.target.value)}
+        >
+          <option value="0">Personne</option>
+          {healers.map((_healer) => {
+            return (
+              <option value={_healer.id} key={_healer.first_name}>
+                {_healer.first_name}
+              </option>
+            );
+          })}
+        </select>
         {selectedOption ? (
           <h1 className="h-5 m-5">{selectedOption}</h1>
         ) : (
