@@ -802,6 +802,13 @@ app.post("/useRevivification", (req, res) => {
   addXp(pool, req.body.id, SpellsCosts.get("reviviscence"), res);
 });
 
+app.post("/usePurification", (req, res) => {
+  //receive id
+  removeMana(pool, req.body.id, SpellsCosts.get("purification"));
+  addHp(pool, req.body.id, 2);
+  res.send("0");
+});
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });

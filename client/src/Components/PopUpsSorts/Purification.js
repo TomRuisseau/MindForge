@@ -4,10 +4,9 @@ function Purification(props) {
   const useSpell = () => {
     if (props.data[0].mana >= 4) {
       axios
-        .post("http://localhost:5000/useAuraMagique", {
+        .post("http://localhost:5000/usePurification", {
           //changer le nom de la route
           id: props.data[0].id,
-          team: props.data[0].team,
         })
         .then(() => {
           props.close();
