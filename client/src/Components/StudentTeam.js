@@ -41,16 +41,16 @@ function StudentTeam(props){
 
     return(
         <>
-            <div className='row'>
-                <div className='col-2'></div>
-                <h1 className='col'>Mon équipe</h1>
-                <div className='row'>
-                    <div className='col-2'></div>
+            <div className='row row-team'>
+                <div className='col-2 col-team'></div>
+                <h1 className='col col-team'>Mon équipe</h1>
+                <div className='row row-team'>
+                    <div className='col-2 col-team'></div>
                     {team.map((student) => {
                         return (
                             
                                 
-                                <div className='col-3'>
+                                <div className='col-3 col-team'>
                                     
                                     <h3>{student.first_name}</h3>
                                     <h5>Vie:</h5><p>{student.hp}</p>

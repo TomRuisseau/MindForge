@@ -3,17 +3,17 @@
     border-color: black;
     border-width: 1px;
     border-style: solid;
-}
+} 
 
-.row{
+.row-team{
     display: flex;
 }
 
-.col{
+.col-team{
     flex: 1;
 }
 
-.col img{
+.col-team img{
     max-width: 75%;
     height: auto;
 
