@@ -11,6 +11,9 @@ function Reviviscence(props) {
           <span className="text-danger">1 HP</span> sans subir le malus
           aléatoire.
         </p>
+        <p style={{ fontSize: "22px" }}>
+          (Est activé par le professeur lors de la mort de ton équipier){" "}
+        </p>
       </div>
       <h3>Coût en mana : 6</h3>
     </div>

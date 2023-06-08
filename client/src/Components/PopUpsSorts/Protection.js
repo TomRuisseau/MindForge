@@ -9,6 +9,9 @@ function Protection(props) {
         <p style={{ fontSize: "22px" }}>
           Encaisse les dégats en HP à la place d'un membre de l'équipe.
         </p>
+        <p style={{ fontSize: "22px" }}>
+          (Est activé par le professeur lors de la mort de ton équipier){" "}
+        </p>
       </div>
       <h3>Coût en mana : 2</h3>
     </div>
