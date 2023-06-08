@@ -455,6 +455,11 @@ app.post("/giveXp", (req, res) => {
   addXp(pool, req.body.id, req.body.xp, res);
 });
 
+app.post("/giveMana", (req, res) => {
+  //receive id and mana
+  addMana(pool, req.body.id, req.body.mana);
+  res.send("0");
+});
 //send skin of a student
 app.post("/getSkin", (req, res) => {
   pool.getConnection(function (err, connection) {
