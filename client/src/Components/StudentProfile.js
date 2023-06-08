@@ -39,7 +39,8 @@ function StudentProfile(props) {
 
     return (
         <>
-            <div className='row row-profile position-absolute'>
+            <div className='div-main position-absolute'>
+            <div className='row row-profile position-relative'>
                 <div className='col-8 col-skin position-relative'>
                     <img src={`media/skin/${skin}.png`} className='w-100'></img>
                 </div>
@@ -58,6 +59,7 @@ function StudentProfile(props) {
 
                 </div>
 
+            </div>
             </div>
         </>
     )
