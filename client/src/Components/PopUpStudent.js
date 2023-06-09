@@ -26,20 +26,32 @@ function PopUpStudent(props) {
     e.preventDefault(); // prevent page reload
     //number of students in the team must not exceeds 5
     axios
-      .post("http://localhost:5000/addStudent", {
-        email: props.id,
-        surname: nomEleve,
-        first_name: prenomEleve,
-        class: classe,
-        team: team,
-      })
+      .post("http://localhost:5000/getTeamSize", { team: team })
       .then((res) => {
-        props.reload();
-        props.close();
+        if (res.data[0].size < 4) {
+          axios
+            .post("http://localhost:5000/addStudent", {
+              email: props.id,
+              surname: nomEleve,
+              first_name: prenomEleve,
+              class: classe,
+              team: team,
+            })
+            .then((res) => {
+              props.reload();
+              props.close();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          alert("L'équipe est déjà complète");
+        }
       })
       .catch((err) => {
         console.log(err);
-      });
+      }
+      );
   };
 
   //affichage (render)

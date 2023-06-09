@@ -294,6 +294,21 @@ app.post("/getTeams", (req, res) => {
   });
 });
 
+//get team size 
+app.post("/getTeamSize", (req, res) => {
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT COUNT(*) AS size FROM student WHERE team = '" +
+      req.body.team +
+      "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send(result);
+      }
+    );
+  });
+});
+
 //add a new student
 app.post("/addStudent", (req, res) => {
   pool.getConnection(function (err, connection) {
@@ -907,7 +922,7 @@ app.post("/useHaloSalvateur", (req, res) => {
   });
   removeMana(pool, req.body.id, SpellsCosts.get("halo_salvateur"));
   res.send("0");
-});   
+});
 
 
 app.listen(port, () => {
