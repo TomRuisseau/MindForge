@@ -5,25 +5,59 @@ import React from 'react';
 
 
 function Choice(props) {
+    const [activeTab, setActiveTab] = React.useState('Tank');
+
     return (
         <>
-            <div className="accueil">
-                <h1>Laissez nous vous aider à apprendre</h1>
+            <div className="containerAccueil">
+                <h1>Nom du Site</h1>
+                <h2>Laissez nous vous aider à apprendre</h2>
             </div>
 
             <div className="fleche">
                 <p>voir plus</p>
-                <p> fleche vers le bas</p>
+                <p>fleche vers le bas</p>
             </div>
 
-            <div className="accueil">
+            <div className="containerAccueil">
+                <h1>Le principe?</h1>
+                <p>blah blah on explique</p>
+
+                <div class="tab">
+                    <button class="tablinks" onClick={() => setActiveTab('Tank')}>Tank</button>
+                    <button class="tablinks" onClick={() => setActiveTab('Healer')}>Healer</button>
+                    <button class="tablinks"  onClick={() => setActiveTab('Mage')}>Mage</button>
+                </div>
+
+                <div id="Tank" class={`tabcontent ${activeTab === 'Tank' ? 'active' : ''}`}>
+                    <h3>Tank</h3>
+                    <p>Le tank aide à protéger ses coéquipiers.</p>
+                </div>
+
+                <div id="Healer" class={`tabcontent ${activeTab === 'Healer' ? 'active' : ''}`}>
+                    <h3>Healer</h3>
+                </div>
+
+                <div id="Mage" class={`tabcontent ${activeTab === 'Mage' ? 'active' : ''}`}>
+                    <h3>Mage</h3>
+                </div>
+
+            </div>
+
+            <div className="containerAccueil">
                 <h1>Qui sommes-nous?</h1>
                 <p> Etudiants en 3ème année en école d'ingénieur, nous cherchons à aider 
                     professeurs et élèves dans leur vie scolaire.
                 </p>
             </div>
 
-            <div className="accueil">
+            <div className="containerAccueil">
+                <h1>Comment jouer?</h1>
+                <p>Blah Blah Blah</p>
+            </div>
+
+
+            <div className="containerAccueil">
                 <h1>Tentez d'apprendre?</h1>
                     <div className="mainChoice">
                         <h1>Vous êtes :</h1>
@@ -35,6 +69,9 @@ function Choice(props) {
             </div>
 
         
+            <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"Q>
+                <p>2023</p>
+            </footer>
 
             
         </>
