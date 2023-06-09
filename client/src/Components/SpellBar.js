@@ -20,6 +20,7 @@ const SpellBar = (props) => {
 
   function closePopUp() {
     setSelectedSpell("hidden");
+    props.refresh();
   }
 
   const selectSpell = (spell) => {
@@ -45,22 +46,22 @@ const SpellBar = (props) => {
       <h2>SpellBar</h2>
 
       <div className="spellBar">
-      {spells.map((spell) => {
-        return (
-          <div key={spell.item_name}>
-            <img
-              src={`media/spells/${spell.item_name}.webp`}
-              onClick={() => selectSpell(spell.item_name)}
-            ></img>
-            {/* <p>
+        {spells.map((spell) => {
+          return (
+            <div key={spell.item_name}>
+              <img
+                src={`media/spells/${spell.item_name}.webp`}
+                onClick={() => selectSpell(spell.item_name)}
+              ></img>
+              {/* <p>
               {spell.item_name.split("_").join(" ") +
                 " : " +
                 spell.manaCost +
                 " points de mana"}
             </p> */}
-          </div>
-        );
-      })}
+            </div>
+          );
+        })}
       </div>
 
       {

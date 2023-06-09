@@ -11,7 +11,6 @@ function AuraMagique(props) {
         })
         .then(() => {
           props.close();
-          props.data[0].mana -= 4;
         })
         .catch((err) => {
           console.log(err);

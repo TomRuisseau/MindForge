@@ -29,8 +29,6 @@ function VagueDeMana(props) {
           target: student,
         })
         .then(() => {
-          props.data[0].mana -= 6;
-          props.data[0].xp += 6;
           props.close();
         })
         .catch((err) => {

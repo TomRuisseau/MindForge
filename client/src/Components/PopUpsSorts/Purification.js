@@ -10,7 +10,6 @@ function Purification(props) {
         })
         .then(() => {
           props.close();
-          props.data[0].mana -= 3;
         })
         .catch((err) => {
           console.log(err);

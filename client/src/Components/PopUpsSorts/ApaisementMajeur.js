@@ -30,8 +30,6 @@ function ApaisementMajeur(props) {
         })
         .then(() => {
           props.close();
-          props.data[0].mana -= 6;
-          props.data[0].xp += 6;
         })
         .catch((err) => {
           console.log(err);

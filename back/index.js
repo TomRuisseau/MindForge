@@ -907,7 +907,7 @@ app.post("/useHaloSalvateur", (req, res) => {
   });
   removeMana(pool, req.body.id, SpellsCosts.get("halo_salvateur"));
   res.send("0");
-});
+});   
 
 
 app.listen(port, () => {

@@ -29,8 +29,6 @@ function ImpositionDesMains(props) {
           target: student,
         })
         .then(() => {
-          props.data[0].mana -= 4;
-          props.data[0].xp += 4;
           props.close();
         })
         .catch((err) => {
