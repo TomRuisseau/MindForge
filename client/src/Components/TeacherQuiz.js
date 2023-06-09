@@ -44,8 +44,17 @@ const TeacherQuiz = (props) => {
       </h2>
 
       <div className="d-flex flex-row justify-content-between m-5">
-        <div className="text-center w-50 border border-white rounded d-flex flex-column align-items-center">
-          <h4 className="m-4">Questions définies par le professeur !</h4>
+        <div className="text-center  w-auto border border-white rounded d-flex flex-column align-items-center">
+          <h4 className="m-4 text-nowrap">
+            Questions aléatoires de culture générale !
+          </h4>
+          <p>question</p>
+          <button className="btn btn-success mt-3">+ 2 XP</button>
+        </div>
+        <div className="text-center w-auto border border-white rounded d-flex flex-column align-items-center">
+          <h4 className="m-4 text-nowrap">
+            Questions définies par le professeur !
+          </h4>
           <p>Écoutez bien !</p>
           <form onSubmit={handleSubmit}>
             <div className="d-flex flex-column align-items-center">
@@ -81,11 +90,6 @@ const TeacherQuiz = (props) => {
             </div>
           </form>
         </div>
-
-        <div className="w-50">
-          <p>une grosse div tempo</p>
-        </div>
-
         <div
           className="col-2 w-25 border border-white rounded custom-scrollbar d-flex flex-column justify-content-between"
           style={{
