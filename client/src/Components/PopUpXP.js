@@ -52,7 +52,16 @@ function PopUpXP(props) {
           </label>
           <input
             value={XP}
-            onChange={(e) => setXP(e.target.value)}
+            onChange={(e) => {
+              if (e.target.value >= 0) {
+                setXP(e.target.value);
+              }
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "-" || e.key === "e" || e.key === "E") {
+                e.preventDefault();
+              }
+            }}
             type="number"
             className="form-control"
             placeholder="0"
