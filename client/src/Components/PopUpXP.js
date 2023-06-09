@@ -6,6 +6,9 @@ function PopUpXP(props) {
   const [XP, setXP] = useState(0);
   const [first_name, setFirst_name] = useState("");
   const [surname, setSurname] = useState("");
+  const [mages, setMages] = useState([]);
+  const [mage, setMage] = useState("0");
+
 
   useEffect(() => {
     axios
@@ -13,6 +16,17 @@ function PopUpXP(props) {
       .then((res) => {
         setFirst_name(res.data[0].first_name);
         setSurname(res.data[0].surname);
+        axios
+          .post("http://localhost:5000/getMages", {
+            id: props.id,
+            team: res.data[0].team,
+          })
+          .then((res) => {
+            setMages(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -22,19 +36,46 @@ function PopUpXP(props) {
   //comportement
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
-    axios
-      .post("http://localhost:5000/giveXP", {
-        id: props.id,
-        xp: XP,
-      })
-      .then((res) => {
-        props.close();
-        props.addCounter(1);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (mage === "0") {
+
+      axios
+        .post("http://localhost:5000/giveXP", {
+          id: props.id,
+          xp: XP,
+        })
+        .then((res) => {
+          props.close();
+          props.addCounter(1);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    else {
+      axios
+        .post("http://localhost:5000/useTruquageDuDestin", {
+          id: props.id,
+          team: getTeam(mage),
+          xp: XP,
+        })
+        .then((res) => {
+          props.close();
+          props.addCounter(1);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
+
+  const getTeam = (mage) => {
+    for (let i = 0; i < mages.length; i++) {
+      if (mages[i].id === mage) {
+        return mages[i].team;
+      }
+    }
+  };
+
 
   //affichage (render)
   return (
@@ -69,6 +110,27 @@ function PopUpXP(props) {
             name="xp"
             required
           />
+
+          <label htmlFor="mage" className="mt-3 text-white">
+            L'élève souhaite-t-il qu'un des mages de son équipe utilise
+            "truquage du destin" pour 5 points de mana afin de faire gagner cet XP à toute l'équipe ?
+          </label>
+          <select
+            name="mage"
+            id="mage-select"
+            className="rounded"
+            value={mage}
+            onChange={(e) => setMage(e.target.value)}
+          >
+            <option value="0">Personne</option>
+            {mages.map((_mage) => (
+              <option value={_mage.id} key={_mage.id}>
+                {_mage.first_name}
+              </option>
+            ))}
+          </select>
+
+
           <button type="submit" className="btn btn-success mt-3">
             Valider
           </button>

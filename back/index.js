@@ -54,6 +54,40 @@ function addXp(connectionPool, id, xp, res) {
   });
 }
 
+function addXpWithoutSend(connectionPool, id, xp) {
+  connectionPool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT xp, minded FROM student WHERE id = '" + id + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        let new_xp = parseInt(result[0].xp) + parseInt(xp) * (parseInt(result[0].minded) + 1);
+        connection.query(
+          "UPDATE student SET xp ='" +
+          new_xp +
+          "' WHERE id = '" +
+          id +
+          "'",
+          function (err, result2, fields) {
+            if (err) throw err;
+            if (parseInt(result[0].minded) === 0) {
+            }
+            else {
+              connection.query(
+                "UPDATE student SET minded ='0' WHERE id = '" +
+                id +
+                "'",
+                function (err, result3, fields) {
+                  if (err) throw err;
+                }
+              );
+            }
+          }
+        );
+      }
+    );
+  });
+}
+
 function removeMana(connectionPool, id, mana) {
   connectionPool.getConnection(function (err, connection) {
     connection.query(
@@ -852,6 +886,26 @@ app.post("/getHealers", (req, res) => {
   });
 });
 
+
+//get mages that could use truquage_du_destin
+app.post("/getMages", (req, res) => {
+  //receive id and team
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT student.* FROM student, owned_item WHERE student.team = '" +
+      req.body.team +
+      "' AND student.mana >= '" +
+      SpellsCosts.get("truquage_du_destin") +
+      "' AND owned_item.student_id = student.id AND owned_item.item_name = 'truquage_du_destin'",
+      function (err, result, fields) {
+        if (err) throw err;
+        res.send(result);
+      }
+    );
+  });
+});
+
+
 //use protection 
 app.post("/useProtection", (req, res) => {
   //receive id
@@ -971,6 +1025,24 @@ app.post("/useHaloSalvateur", (req, res) => {
   });
   removeMana(pool, req.body.id, SpellsCosts.get("halo_salvateur"));
   res.send("0");
+});
+
+app.post("/useTruquageDuDestin", (req, res) => {
+  //receive team and XP
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT * FROM student WHERE team = '" +
+      req.body.team + "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        result.forEach((student) => {
+          addXpWithoutSend(pool, student.id, req.body.xp);
+        });
+        removeMana(pool, req.body.id, SpellsCosts.get("truquage_du_destin"));
+        res.send("0");
+      }
+    )
+  });
 });
 
 
