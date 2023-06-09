@@ -837,13 +837,13 @@ app.post("/getHealers", (req, res) => {
   //receive id and team
   pool.getConnection(function (err, connection) {
     connection.query(
-      "SELECT * FROM student WHERE team = '" +
+      "SELECT student.* FROM student, owned_item WHERE student.team = '" +
       req.body.team +
-      "' AND id != '" +
+      "' AND student.id != '" +
       req.body.id +
-      "' AND class = 'healer' AND mana >= '" +
+      "' AND student.class = 'healer' AND mana >= '" +
       SpellsCosts.get("reviviscence") +
-      "'",
+      "' AND owned_item.student_id = student.id AND owned_item.item_name = 'reviviscence'",
       function (err, result, fields) {
         if (err) throw err;
         res.send(result);
