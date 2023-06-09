@@ -124,25 +124,40 @@ function addHp(connectionPool, id, hp) {
 }
 
 function removeHp(connectionPool, id, hp) {
+
   connectionPool.getConnection(function (err, connection) {
     connection.query(
-      "SELECT hp, class FROM student WHERE id = '" + id + "'",
+      "SELECT hp, protected FROM student WHERE id = '" + id + "'",
       function (err, result, fields) {
         if (err) throw err;
-        let new_hp = parseInt(result[0].hp) - parseInt(hp);
-        new_hp = Math.min(new_hp, classMap.get(result[0].class).hp);
-        connection.query(
-          "UPDATE student SET hp ='" +
+        let new_hp = parseInt(result[0].protected) === 1 ? result[0].hp : (result[0].hp - hp);
+        new_hp = new_hp < 0 ? 0 : new_hp;
+        connectionPool.query(
+          "UPDATE student SET hp = '" +
           new_hp +
           "' WHERE id = '" +
           id +
           "'",
-          function (err, result, fields) {
+          function (err, result2, fields) {
             if (err) throw err;
+            if (result[0].protected === 1) {
+              connectionPool.query(
+                "UPDATE student SET protected = '" +
+                0 +
+                "' WHERE id = '" +
+                id +
+                "'",
+                function (err, result3, fields) {
+                  if (err) throw err;
+                  return;
+                }
+              );
+            } else {
+              return;
+            }
           }
         );
-      }
-    );
+      });
   });
 }
 
@@ -445,10 +460,10 @@ app.post("/removeHp", (req, res) => {
 
   pool.getConnection(function (err, connection) {
     connection.query(
-      "SELECT hp FROM student WHERE id = '" + req.body.id + "'",
+      "SELECT hp, protected FROM student WHERE id = '" + req.body.id + "'",
       function (err, result, fields) {
         if (err) throw err;
-        let new_hp = result[0].hp - req.body.damage;
+        let new_hp = parseInt(result[0].protected) === 1 ? result[0].hp : (result[0].hp - req.body.damage);
         new_hp = new_hp < 0 ? 0 : new_hp;
         connection.query(
           "UPDATE student SET hp = '" +
@@ -456,13 +471,26 @@ app.post("/removeHp", (req, res) => {
           "' WHERE id = '" +
           req.body.id +
           "'",
-          function (err, result, fields) {
+          function (err, result2, fields) {
             if (err) throw err;
-            res.send(new_hp === 0 ? "dead" : "alive");
+            if (result[0].protected === 1) {
+              connection.query(
+                "UPDATE student SET protected = '" +
+                0 +
+                "' WHERE id = '" +
+                req.body.id +
+                "'",
+                function (err, result3, fields) {
+                  if (err) throw err;
+                  res.send(new_hp === 0 ? "dead" : "alive");
+                }
+              );
+            } else {
+              res.send(new_hp === 0 ? "dead" : "alive");
+            }
           }
         );
-      }
-    );
+      });
   });
 });
 

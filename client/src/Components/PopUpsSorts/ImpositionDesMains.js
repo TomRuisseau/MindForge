@@ -31,7 +31,6 @@ function ImpositionDesMains(props) {
         .then(() => {
           props.data[0].mana -= 4;
           props.data[0].xp += 4;
-          props.data[0].hp -= 5;
           props.close();
         })
         .catch((err) => {
