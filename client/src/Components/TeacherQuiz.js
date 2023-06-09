@@ -5,27 +5,53 @@ const TeacherQuiz = (props) => {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
-    // Appel à l'API pour récupérer la liste des élèves
     axios
-      .post("http://localhost:5000/getStudents", { email: props.data[0].teacher_email })
-      .then((response) => {
-        setStudents(response.data);
+      .post("http://localhost:5000/getStudents", { email: props.id })
+      .then((res) => {
+        setStudents(res.data);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        console.log(err);
       });
-  }, [props.data[0].teacher_email]);
+  }, [props.id]);
 
   return (
-    <div>
-      <h1>Liste des élèves</h1>
-      <ul>
-        {students.map((student) => (
-          <li key={student.id}>
-            {student.name} ({student.grade})
-          </li>
-        ))}
-      </ul>
+    <div className="m-3">
+      <h2 className="text-center">Selectionnez l'élève qui gagne de l'XP</h2>
+      <div className="d-flex flex-row justify-content-between">
+        <div className="w-50">
+          <p>une grosse div tempo</p>
+        </div>
+
+        <div
+          className="text-white col-2 m-5 border border-white rounded custom-scrollbar d-flex flex-column justify-content-between"
+          style={{
+            height: "auto",
+            maxHeight: "65vh",
+            minHeight: "60vh",
+            overflow: "auto",
+          }}
+        >
+          <table className="mx-3">
+            <thead>
+              <tr>
+                <th className="pb-3 pt-2">Prénom</th>
+                <th className="pb-3 pt-2">Nom</th>
+                <th className="pb-3 pt-2">XP</th>
+              </tr>
+            </thead>
+            <tbody>
+              {students.map((student) => (
+                <tr key={student.id}>
+                  <td className="mx-3">{student.first_name}</td>
+                  <td className="mx-3">{student.surname}</td>
+                  <td className="mx-3">{student.xp}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };

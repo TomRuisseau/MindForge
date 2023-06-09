@@ -36,11 +36,13 @@ function TeacherDashboard(props) {
           ) : page === "Quests" ? (
             <Quests id={props.id} />
           ) : page === "DailyRand" ? (
-            <DailyRand id={props.id}/>
+            <DailyRand id={props.id} />
           ) : null}
         </div>
 
-        {page === "StudentManager" ? null : <SmallList id={props.id} />}
+        {page === "StudentManager" || page === "TeacherQuiz" ? null : (
+          <SmallList id={props.id} />
+        )}
       </div>
     </div>
   );
