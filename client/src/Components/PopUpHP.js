@@ -19,19 +19,20 @@ function PopUpHP(props) {
         setFirst_name(res.data[0].first_name);
         setSurname(res.data[0].surname);
         axios
-          .post("http://localhost:5000/getTanks", { id: props.id, team: res.data[0].team })
+          .post("http://localhost:5000/getTanks", {
+            id: props.id,
+            team: res.data[0].team,
+          })
           .then((res) => {
             setTanks(res.data);
           })
           .catch((err) => {
             console.log(err);
-          }
-          );
+          });
       })
       .catch((err) => {
         console.log(err);
       });
-
   }, [props.id]);
 
   const handleSubmit = (e) => {
@@ -52,8 +53,7 @@ function PopUpHP(props) {
         .catch((err) => {
           console.log(err);
         });
-    }
-    else {
+    } else {
       axios
         .post("http://localhost:5000/removeHp", {
           id: tanker,
@@ -68,20 +68,17 @@ function PopUpHP(props) {
         })
         .catch((err) => {
           console.log(err);
-        }
-        );
+        });
       axios
         .post("http://localhost:5000/useProtection", {
           id: tanker,
         })
-        .then((res) => { })
+        .then((res) => {})
         .catch((err) => {
           console.log(err);
-        }
-        );
+        });
     }
   };
-
 
   //affichage (render)
   return (
@@ -102,7 +99,16 @@ function PopUpHP(props) {
           </label>
           <input
             value={HP}
-            onChange={(e) => setHP(e.target.value)}
+            onChange={(e) => {
+              if (e.target.value >= 0) {
+                setHP(e.target.value);
+              }
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "-" || e.key === "e" || e.key === "E") {
+                e.preventDefault();
+              }
+            }}
             type="number"
             className="form-control"
             placeholder="0"
@@ -111,7 +117,9 @@ function PopUpHP(props) {
             required
           />
           <label htmlFor="tanker" className="mt-3 text-white">
-            L'élève souhaite-t-il qu'un des tanks de son équipe utilise "protection" pour 2 points de mana afin de prendre les dégats à sa place ?
+            L'élève souhaite-t-il qu'un des tanks de son équipe utilise
+            "protection" pour 2 points de mana afin de prendre les dégats à sa
+            place ?
           </label>
           <select
             name="tanker"
