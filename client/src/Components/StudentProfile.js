@@ -66,9 +66,12 @@ function StudentProfile(props) {
                         <div className='stripe'></div>
 
 
+                        {/* //todo : mettre des icones  icones pour les 4 trucs qui suvent   */}
                         <progress className="progress-bar" role="progressbar" id="file" max="100" value={hpRatio}></progress>
                         <h2>{props.data[0].mana + " points de mana"}</h2>
                         <h2>{props.data[0].xp + " points d'XP"}</h2>
+                        {parseInt(props.data[0].protected) ? <h2>Vous êtes protégé par un halo </h2> : null}
+                        {parseInt(props.data[0].minded) ? <h2>Votre prochain gain d'XP sera doublé </h2> : null}
 
 
                     </div>

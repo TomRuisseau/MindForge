@@ -83,6 +83,7 @@ function Quests(props) {
                         <tr>
                             <th scope="col">Description</th>
                             <th scope="col">Récompense</th>
+                            <th scope="col">Terminée par </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -91,6 +92,7 @@ function Quests(props) {
                                 <tr key={quest.id} onClick={select} data-key={quest.id} className={quest.bg}>
                                     <td>{quest.description}</td>
                                     <td>{quest.reward}</td>
+                                    <td>{quest.nbCompleted + " étudiants"}</td>
                                 </tr>
                             );
                         })}
