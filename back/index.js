@@ -788,7 +788,6 @@ app.post("/getHealers", (req, res) => {
   });
 });
 
-
 //use protection 
 app.post("/useProtection", (req, res) => {
   //receive id
@@ -893,6 +892,23 @@ app.post("/useExpansionDuSavoir", (req, res) => {
   removeMana(pool, req.body.id, SpellsCosts.get("expansion_du_savoir"));
   res.send("0");
 });
+
+app.post("/useHaloSalvateur", (req, res) => {
+  //receive id
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "UPDATE student SET protected = '1' WHERE id = '" +
+      req.body.id +
+      "'",
+      function (err, result, fields) {
+        if (err) throw err;
+      }
+    );
+  });
+  removeMana(pool, req.body.id, SpellsCosts.get("halo_salvateur"));
+  res.send("0");
+});
+
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

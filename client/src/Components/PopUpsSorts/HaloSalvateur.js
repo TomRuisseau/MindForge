@@ -1,6 +1,17 @@
+import axios from "axios";
+
 function HaloSalvateur(props) {
   const useSpell = () => {
-    console.log("HaloSalvateur");
+    axios
+      .post("http://localhost:5000/useHaloSalvateur", {
+        id: props.data[0].id,
+      })
+      .then((res) => {
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     props.close();
   };
 
