@@ -16,7 +16,7 @@ const TeacherQuiz = (props) => {
   }, [props.id]);
 
   return (
-    <div className="m-3">
+    <div className="m-3 text-white">
       <h2 className="text-center">Selectionnez l'élève qui gagne de l'XP</h2>
       <div className="d-flex flex-row justify-content-between">
         <div className="w-50">
@@ -24,11 +24,9 @@ const TeacherQuiz = (props) => {
         </div>
 
         <div
-          className="text-white col-2 m-5 border border-white rounded custom-scrollbar d-flex flex-column justify-content-between"
+          className="col-2 m-5 border border-white rounded custom-scrollbar d-flex flex-column justify-content-between"
           style={{
-            height: "auto",
-            maxHeight: "65vh",
-            minHeight: "60vh",
+            height: "70vh",
             overflow: "auto",
           }}
         >
