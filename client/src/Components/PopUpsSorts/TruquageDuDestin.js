@@ -7,11 +7,10 @@ function TruquageDuDestin(props) {
       </div>
       <div className="p-3 rounded">
         <p style={{ fontSize: "22px" }}>
-          Tu fais relancer la roue quotidienne.
+          Permet de généraliser un gain d'XP individuel à toute l'équipe.
         </p>
         <p style={{ fontSize: "22px" }}>
-          (Est activé par le professeur après le lancement de la roue
-          quotidienne)
+          (Est activé par le professeur pendant l'attribution d'une récompense)
         </p>
       </div>
       <h3>Coût en mana : 5</h3>
