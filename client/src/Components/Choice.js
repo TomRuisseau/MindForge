@@ -6,11 +6,27 @@ import React from 'react';
 
 function Choice(props) {
     const [activeTab, setActiveTab] = React.useState('Tank');
-    
+    const [isScrollNavbar, setIsScrollNavbar] = React.useState(false);
+  
+    React.useEffect(() => {
+      const handleScroll = () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollThreshold = 100; // Définissez votre seuil de défilement
+        
+        if (scrollTop > scrollThreshold) {
+          setIsScrollNavbar(true);
+        } else {
+          setIsScrollNavbar(false);
+        }
+      };
+      
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
         <>
-            <div className="containerAccueil centeredDiv">
+            <div className="containerAccueil centeredDiv ${isScrollNavbar ? 'scrollNavbar' : ''}`}">
                 <h1>Nom du Site</h1>
                 <h2>Laissez nous vous aider à apprendre</h2>
                 
@@ -20,6 +36,9 @@ function Choice(props) {
                 </div>
             </div>
 
+            <div className={`containerAccueil ${isScrollNavbar ? 'scrollNavbar' : ''}`}>
+                <h1>Se connecter</h1>
+            </div>
 
             <div className="containerAccueil centeredDiv">
                 <h1>Le principe?</h1>

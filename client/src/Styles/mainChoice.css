@@ -18,6 +18,17 @@
     }
 
 
+    .scrollNavbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        z-index: 100;
+        /* Ajoutez d'autres styles selon vos besoins */
+      }
+
+
 
 /* -- CHARACTERS' TABLE --*/ 
     /* Style the tab */
