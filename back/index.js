@@ -563,7 +563,6 @@ app.post("/giveMana", (req, res) => {
 });
 //send skin of a student
 app.post("/getSkin", (req, res) => {
-  console.log("Starting getSkin");
   pool.getConnection(function (err, connection) {
     connection.query(
       "SELECT item_name FROM owned_item WHERE student_id = '" +
@@ -573,7 +572,6 @@ app.post("/getSkin", (req, res) => {
       "'",
       function (err, result, fields) {
         if (err) throw err;
-        console.log("finishing getSkin");
         res.send(result[0].item_name);
       }
     );
@@ -606,12 +604,6 @@ app.post("/addQuest", (req, res) => {
 //get all quests of a teacher
 app.post("/getQuests", (req, res) => {
   pool.getConnection(function (err, connection) {
-    if (err) {
-      console.error(err);
-      res.status(500).send("Error retrieving quests");
-      return;
-    }
-
     connection.query(
       "SELECT * FROM quest WHERE teacher_email = '" + req.body.email + "'",
       function (err, result, fields) {
@@ -775,7 +767,6 @@ app.post("/getSpells", (req, res) => {
 // });
 
 app.post("/getSkinsShop", (req, res) => {
-  console.log("start");
   pool.getConnection(function (err, connection) {
     let respons = { skins: [], spells: [] }
     connection.query(
@@ -817,7 +808,6 @@ app.post("/getSkinsShop", (req, res) => {
                     }
                     );
                     respons.spells = allSpells;
-                    console.log("finish");
                     res.send(respons);
                   }
                 );
@@ -973,9 +963,11 @@ app.post("/useAuraMagique", (req, res) => {
 
 app.post("/usePremiersSoins", (req, res) => {
   //receive id and target 
+  console.log("début premiers soins");
   addHp(pool, req.body.target, 3);
   removeMana(pool, req.body.id, SpellsCosts.get("premiers_soins"));
   addXp(pool, req.body.id, SpellsCosts.get("premiers_soins"), res);
+  console.log("fin premiers soins");
 });
 
 app.post("/useApaisementMajeur", (req, res) => {

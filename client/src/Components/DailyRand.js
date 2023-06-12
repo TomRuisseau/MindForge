@@ -41,41 +41,38 @@ function DailyRand(props) {
     //random number between 1 and 10
     const randomXP = Math.floor(Math.random() * 10) + 1;
     setShow(true);
-    // axios
-    //   .post("http://localhost:5000/giveXP", {
-    //     id: updatedStudent.id,
-    //     xp: randomXP,
-    //   })
-    //   .then(() => {
-    //     props.data[0].xp += randomXP;
     setToAddXP(randomXP);
-    //   props.close();
-    //   console.log(toAddXP);
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // });
+    axios
+      .post("http://localhost:5000/giveXP", {
+        id: updatedStudent.id,
+        xp: randomXP,
+      })
+      .then(() => {
+        props.close();
+        console.log(toAddXP);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const addMana = () => {
     //random number between 1 and 10
     const randomMana = Math.floor(Math.random() * 10) + 1;
     setShow(true);
-
-    // axios
-    //   .post("http://localhost:5000/giveMana", {
-    //     id: updatedStudent.id,
-    //     mana: randomMana,
-    //   })
-    //   .then(() => {
     setToAddMana(randomMana);
-    //   props.data[0].mana += randomMana;
-    //   props.close();
-    //   console.log(toAddMana);
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // });
+
+    axios
+      .post("http://localhost:5000/giveMana", {
+        id: updatedStudent.id,
+        mana: randomMana,
+      })
+      .then(() => {
+        props.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const removeHP = () => {
@@ -83,20 +80,18 @@ function DailyRand(props) {
     const randomHP = Math.floor(Math.random() * 10) + 1;
     setShow(true);
 
-    // axios
-    //   .post("http://localhost:5000/removeHP", {
-    //     id: updatedStudent.id,
-    //     damage: randomHP,
-    //   })
-    //   .then(() => {
     setToRemoveHP(randomHP);
-    //   props.data[0].hp -= randomHP;
-    //   props.close();
-    //   console.log(toRemoveHP);
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // });
+    axios
+      .post("http://localhost:5000/removeHP", {
+        id: updatedStudent.id,
+        damage: randomHP,
+      })
+      .then(() => {
+        props.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const random = () => {
@@ -152,9 +147,9 @@ function DailyRand(props) {
         <h3>{selectedOption}</h3>
         <div className="d-flex flex-row text-center my-5 justify-content-between">
           {selectedOption === "Quelqu'un va perdre des HP" ||
-          selectedOption === "Quelqu'un va gagner des XP" ||
-          selectedOption === "Quelqu'un va gagner du Mana" ||
-          selectedOption ===
+            selectedOption === "Quelqu'un va gagner des XP" ||
+            selectedOption === "Quelqu'un va gagner du Mana" ||
+            selectedOption ===
             "Quelqu'un sera dispensé de devoirs pour le prochain cours" ? (
             <div>
               <button
