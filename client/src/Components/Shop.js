@@ -23,9 +23,9 @@ function Shop(props) {
             isMountedRef.current = true;
             axios.post("http://localhost:5000/getSkinsShop", { id: props.data[0].id, class: props.data[0].class })
                 .then((res) => {
-                    console.log(res.data);
                     setSkins(res.data.skins);
                     setSpells(res.data.spells);
+                    isMountedRef.current = false;
                 }
                 ).catch((err) => {
                     console.log(err);
