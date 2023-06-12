@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import SpellBar from './SpellBar';
 import axios from 'axios';
 import '../Styles/studentProfile.css';
@@ -17,36 +17,41 @@ function StudentProfile(props) {
     const [skin, setSkin] = useState("toutNu");
     const [counter, setCounter] = useState(0); // pour forcer le rechargement de la page
 
+
+    const isMountedRef = useRef(false);
+
     const addCounter = () => {
         setCounter(counter + 1);
     };
 
     useEffect(() => {
-        axios
-            .post("http://localhost:5000/getSkin", { id: props.data[0].id })
-            .then((res) => {
-                setSkin(res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        axios
-            .post("http://localhost:5000/getStudent", { id: props.data[0].id })
-            .then((res) => {
-                props.data[0] = res.data[0];
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        axios
-            .post("http://localhost:5000/getHp", { id: props.data[0].id })
-            .then((res) => {
-                setHpRatio(res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-
+        if (!isMountedRef.current) {
+            isMountedRef.current = true;
+            axios
+                .post("http://localhost:5000/getSkin", { id: props.data[0].id })
+                .then((res) => {
+                    setSkin(res.data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            axios
+                .post("http://localhost:5000/getStudent", { id: props.data[0].id })
+                .then((res) => {
+                    props.data[0] = res.data[0];
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            axios
+                .post("http://localhost:5000/getHp", { id: props.data[0].id })
+                .then((res) => {
+                    setHpRatio(res.data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
     }, [props.data, counter]);
 
 

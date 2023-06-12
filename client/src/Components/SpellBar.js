@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Protection from "./PopUpsSorts/Protection";
 import AuraMagique from "./PopUpsSorts/AuraMagique";
@@ -18,6 +18,8 @@ const SpellBar = (props) => {
   const [spells, setSpells] = useState([]); // liste des sorts
   const [selectedSpell, setSelectedSpell] = useState("hidden"); // sort sélectionné
 
+  const isMountedRef = useRef(false);
+
   function closePopUp() {
     setSelectedSpell("hidden");
     props.refresh();
@@ -28,17 +30,20 @@ const SpellBar = (props) => {
   };
 
   useEffect(() => {
-    axios
-      .post("http://localhost:5000/getSpells", {
-        id: props.data[0].id,
-        class: props.data[0].class,
-      })
-      .then((res) => {
-        setSpells(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (!isMountedRef.current) {
+      isMountedRef.current = true;
+      axios
+        .post("http://localhost:5000/getSpells", {
+          id: props.data[0].id,
+          class: props.data[0].class,
+        })
+        .then((res) => {
+          setSpells(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [props.data]);
 
   return (

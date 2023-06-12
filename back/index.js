@@ -563,6 +563,7 @@ app.post("/giveMana", (req, res) => {
 });
 //send skin of a student
 app.post("/getSkin", (req, res) => {
+  console.log("Starting getSkin");
   pool.getConnection(function (err, connection) {
     connection.query(
       "SELECT item_name FROM owned_item WHERE student_id = '" +
@@ -572,6 +573,7 @@ app.post("/getSkin", (req, res) => {
       "'",
       function (err, result, fields) {
         if (err) throw err;
+        console.log("finishing getSkin");
         res.send(result[0].item_name);
       }
     );
