@@ -1,0 +1,229 @@
+{
+    "questions": [
+      {
+        "question": "Quel est le plus petit pays du monde en termes de superficie ?",
+        "answer": "Le Vatican"
+      },
+      {
+        "question": "Quelle est la date de la bataille de Waterloo ?",
+        "answer": "18 juin 1815"
+      },
+      {
+        "question": "Quel est le compositeur de la Symphonie n°9, également appelée \"Symphonie du Nouveau Monde\" ?",
+        "answer": "Antonín Dvořák"
+      },
+      {
+        "question": "Quel est le nom de la première femme à avoir reçu le prix Nobel de littérature ?",
+        "answer": "Selma Lagerlöf"
+      },
+      {
+        "question": "Quel est le plus grand lac d'Amérique du Nord ?",
+        "answer": "Le lac Supérieur"
+      },
+      {
+        "question": "Quelle est la formule chimique du dioxyde de carbone ?",
+        "answer": "CO₂"
+      },
+      {
+        "question": "Quel est le nom du philosophe grec qui a fondé l'école de pensée appelée le stoïcisme ?",
+        "answer": "Zénon de Citium"
+      },
+      {
+        "question": "Quel est le nom de l'astronaute américain qui a été le premier homme à marcher sur la Lune ?",
+        "answer": "Neil Armstrong"
+      },
+      {
+        "question": "Quel est le tableau le plus célèbre de Pablo Picasso ?",
+        "answer": "Les Demoiselles d'Avignon"
+      },
+      {
+        "question": "Quel est le plus grand océan du monde en termes de superficie ?",
+        "answer": "L'océan Pacifique"
+      },
+      {
+        "question": "Quel est le roman de F. Scott Fitzgerald qui décrit la vie des riches dans les années 1920 aux États-Unis ?",
+        "answer": "Gatsby le Magnifique"
+      },
+      {
+        "question": "Quelle est la première personne à avoir remporté deux prix Nobel dans des domaines différents ?",
+        "answer": "Marie Curie"
+      },
+      {
+        "question": "Quel est le philosophe allemand connu pour sa théorie de la relativité restreinte ?",
+        "answer": "Albert Einstein"
+      },
+      {
+        "question": "Quel est le nom du volcan situé en Sicile qui est l'un des plus actifs au monde ?",
+        "answer": "L'Etna"
+      },
+      {
+        "question": "Quel est le pays d'origine de l'écrivain Gabriel García Márquez, auteur de \"Cent ans de solitude\" ?",
+        "answer": "La Colombie"
+      },
+      {
+        "question": "Quelle est la première pièce de théâtre écrite par William Shakespeare ?",
+        "answer": "Henri VI"
+      },
+      {
+        "question": "Quel est le nom du général romain qui a conquis la Gaule au 1er siècle avant J.-C. ?",
+        "answer": "Jules César"
+      },
+      {
+        "question": "Quel est le nom du compositeur russe qui a écrit \"Le Lac des cygnes\" ?",
+        "answer": "Piotr Ilitch Tchaïkovski"
+      },
+      {
+        "question": "Quel est le plus grand désert chaud du monde ?",
+        "answer": "Le désert du Sahara"
+      },
+      {
+        "question": "Quel est le philosophe allemand connu pour sa théorie de la volonté de puissance et du surhomme ?",
+        "answer": "Friedrich Nietzsche"
+      },
+      {
+        "question": "Quel est le nom de la scientifique polonaise qui a découvert la radioactivité ?",
+        "answer": "Marie Curie"
+      },
+      {
+        "question": "Quel est le nom du roi de Macédoine qui a conquis un vaste empire en Asie et est considéré comme l'un des plus grands conquérants de l'histoire ?",
+        "answer": "Alexandre le Grand"
+      },
+      {
+        "question": "Quel est le tableau le plus célèbre de Léonard de Vinci ?",
+        "answer": "La Joconde"
+      },
+      {
+        "question": "Quel est le nom de l'architecte français qui a conçu la Tour Eiffel ?",
+        "answer": "Gustave Eiffel"
+      },
+      {
+        "question": "Quel est le nom de l'empereur romain qui a promulgué le Code civil connu sous le nom de Code Justinien ?",
+        "answer": "Justinien"
+      },
+      {
+        "question": "Quelle est la formule mathématique pour calculer la dérivée d'une fonction ?",
+        "answer": "La formule de la dérivée est f'(x) = lim(h→0) [f(x+h) - f(x)] / h"
+      },
+      {
+        "question": "Quel est le nom du philosophe français connu pour sa citation \"Je pense donc je suis\" ?",
+        "answer": "René Descartes"
+      },
+      {
+        "question": "Quel est le nom de la comédie musicale de Broadway qui raconte l'histoire d'Alexander Hamilton, l'un des pères fondateurs des États-Unis ?",
+        "answer": "Hamilton"
+      },
+      {
+        "question": "Quel est le pays d'origine du peintre Vincent van Gogh ?",
+        "answer": "Les Pays-Bas"
+      },
+      {
+        "question": "Que signifie ADN (molécule chimique) ?",
+        "answer": "ADN signifie acide désoxyribonucléique"
+      },
+      {
+        "question": "Quel est le nom du roi de France qui a construit le château de Versailles ?",
+        "answer": "Louis XIV"
+      },
+      {
+        "question": "Quel est le nom du compositeur autrichien de la Symphonie n°5 en ut mineur, également connue sous le nom de \"Symphonie du Destin\" ?",
+        "answer": "Ludwig van Beethoven"
+      },
+      {
+        "question": "Quel est le nom de la philosophie chinoise basée sur le principe du yin et du yang ?",
+        "answer": "Le taoïsme"
+      },
+      {
+        "question": "Quel est le plus grand lac d'Afrique en termes de superficie ?",
+        "answer": "Le lac Victoria"
+      },
+      {
+        "question": "Quel est le nom de l'écrivain français connu pour son œuvre \"À la recherche du temps perdu\" ?",
+        "answer": "Marcel Proust"
+      },
+      {
+        "question": "Quel est le nom de l'explorateur portugais qui a fait le premier tour du monde ?",
+        "answer": "Ferdinand Magellan"
+      },
+      {
+        "question": "Quel est le nom de l'artiste surréaliste espagnol qui a peint \"La Persistance de la mémoire\" ?",
+        "answer": "Salvador Dalí"
+      },
+      {
+        "question": "Quel est le nom du roi de Babylone qui a fait établir le premier code de lois écrit connu sous le nom de Code de Hammurabi ?",
+        "answer": "Hammurabi"
+      },
+      {
+        "question": "Quelle est la formule mathématique pour calculer la somme des termes d'une suite arithmétique ?",
+        "answer": "La formule de la somme est S = (n/2) * (a + b), où n est le nombre de termes, a est le premier terme et b est le dernier terme"
+      },
+      {
+        "question": "Quel est le nom du roi de Macédoine qui a conquis l'Égypte et fondé la ville d'Alexandrie ?",
+        "answer": "Alexandre le Grand"
+      },
+      {
+        "question": "Quel est le nom de l'œuvre de Miguel de Cervantes considérée comme l'un des romans les plus importants de la littérature espagnole ?",
+        "answer": "Don Quichotte"
+      },
+      {
+        "question": "Quel est le nom du compositeur italien de l'opéra \"La Traviata\" ?",
+        "answer": "Giuseppe Verdi"
+      },
+      {
+        "question": "Quel est le nom de la plus grande île du monde ?",
+        "answer": "Le Groenland"
+      },
+      {
+        "question": "Quel est le nom de la célèbre savante polonaise qui a remporté deux prix Nobel dans des domaines différents ?",
+        "answer": "Marie Curie"
+      },
+      {
+        "question": "Quel est le nom du philosophe allemand du 19e siècle qui a développé la théorie de l'évolution par sélection naturelle ?",
+        "answer": "Charles Darwin"
+      },
+      {
+        "question": "Quel est le nom de la période de l'histoire de France marquée par l'épanouissement des arts et de la culture qui s'étend du 16e siècle au 18e siècle ?",
+        "answer": "La Renaissance"
+      },
+      {
+        "question": "Quel est le nom du compositeur autrichien qui a composé la Symphonie n°9, également connue sous le nom de \"Symphonie du Chant de la Terre\" ?",
+        "answer": "Gustav Mahler"
+      },
+      {
+        "question": "Quel est le nom du roi d'Angleterre qui a été exécuté lors de la Révolution anglaise en 1649 ?",
+        "answer": "Charles Ier"
+      },
+      {
+        "question": "Quelle est la formule chimique du glucose, un sucre simple présent dans de nombreux aliments ?",
+        "answer": "C₆H₁₂O₆"
+      },
+      {
+        "question": "Quel est le nom de l'empereur romain qui a régné pendant la construction du Colisée à Rome ?",
+        "answer": "Vespasien"
+      },
+      {
+        "question": "Quel est le nom du mathématicien français connu pour avoir formulé le théorème de Fermat ?",
+        "answer": "Pierre de Fermat"
+      },
+      {
+        "question": "Quel est le nom du mouvement artistique du début du 20e siècle qui a révolutionné la peinture et la sculpture ?",
+        "answer": "Le cubisme"
+      },
+      {
+        "question": "Quel est le nom du philosophe allemand du 19e siècle connu pour sa théorie de la lutte des classes ?",
+        "answer": "Karl Marx"
+      },
+      {
+        "question": "Quel est le nom du roi de France qui a ordonné la construction de la cathédrale Notre-Dame de Paris ?",
+        "answer": "Louis IX"
+      },
+      {
+        "question": "Quel est le nom de l'explorateur italien qui a découvert l'Amérique en 1492 ?",
+        "answer": "Christophe Colomb"
+      },
+      {
+        "question": "Quelle est la formule mathématique pour calculer l'aire d'un triangle ?",
+        "answer": "Aire = (base * hauteur) / 2"
+      }
+    ]
+  }
+  

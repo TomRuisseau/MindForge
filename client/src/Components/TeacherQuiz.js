@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import QuizAleatoire from "./QuizAleatoire";
 
 const TeacherQuiz = (props) => {
   const [students, setStudents] = useState([]);
@@ -44,11 +45,14 @@ const TeacherQuiz = (props) => {
       </h2>
 
       <div className="d-flex flex-row justify-content-between m-5">
-        <div className="text-center  w-auto border border-white rounded d-flex flex-column align-items-center">
+        <div
+          className="text-center border border-white rounded d-flex flex-column align-items-center"
+          style={{ width: "35%" }}
+        >
           <h4 className="m-4 text-nowrap">
             Questions aléatoires de culture générale !
           </h4>
-          <p>question</p>
+          <QuizAleatoire />
           <button className="btn btn-success mt-3">+ 2 XP</button>
         </div>
         <div className="text-center w-auto border border-white rounded d-flex flex-column align-items-center">
