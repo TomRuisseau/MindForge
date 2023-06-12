@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import "../Styles/boutique.css"
 
@@ -8,22 +8,30 @@ function Shop(props) {
     const [selected, setSelected] = useState(""); // liste des skins
     const [counter, setCounter] = useState(0); // pour forcer le rechargement de la page quand valide une quête
 
+    const isMountedRef = useRef(false);
+
+
     useEffect(() => {
-        axios.post("http://localhost:5000/getSpellsShop", { id: props.data[0].id, class: props.data[0].class })
-            .then((res) => {
-                setSpells(res.data);
-            }).catch((err) => {
-                console.log(err);
-            }
-            );
-        axios.post("http://localhost:5000/getSkinsShop", { id: props.data[0].id })
-            .then((res) => {
-                setSkins(res.data);
-            }
-            ).catch((err) => {
-                console.log(err);
-            }
-            );
+        // axios.post("http://localhost:5000/getSpellsShop", { id: props.data[0].id, class: props.data[0].class })
+        //     .then((res) => {
+        //         setSpells(res.data);
+        //     }).catch((err) => {
+        //         console.log(err);
+        //     }
+        //     );
+        if (!isMountedRef.current) {
+            isMountedRef.current = true;
+            axios.post("http://localhost:5000/getSkinsShop", { id: props.data[0].id, class: props.data[0].class })
+                .then((res) => {
+                    console.log(res.data);
+                    setSkins(res.data.skins);
+                    setSpells(res.data.spells);
+                }
+                ).catch((err) => {
+                    console.log(err);
+                }
+                );
+        }
     }, [props.data, counter]);
 
     const select = (e) => {

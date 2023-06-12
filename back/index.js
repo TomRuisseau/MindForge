@@ -18,6 +18,14 @@ const pool = mysql.createPool({
   database: "u495496740_Propro",
 });
 
+// const pool = mysql.createPool({
+//   host: "localhost",
+//   user: "root",
+//   database: "test",
+// });
+
+
+
 function addXp(connectionPool, id, xp, res) {
   connectionPool.getConnection(function (err, connection) {
     connection.query(
@@ -737,45 +745,47 @@ app.post("/getSpells", (req, res) => {
 });
 
 //get spells shop of a student
-app.post("/getSpellsShop", (req, res) => {
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT * FROM item WHERE type = 'spell_" + req.body.class + "'",
-      function (err, allSpells, fields) {
-        if (err) throw err;
-        connection.query(
-          "SELECT item_name FROM owned_item WHERE student_id = '"
-          + req.body.id
-          + "'",
-          function (err, result, fields) {
-            allSpells.forEach((spell) => {
-              spell.owned = false;
-              result.forEach((ownedSpell) => {
-                if (spell.name === ownedSpell.item_name) {
-                  spell.owned = true;
-                }
-              });
-            }
-            );
-            res.send(allSpells);
-          }
-        );
-      });
-  });
-});
+// app.post("/getSpellsShop", (req, res) => {
+//   pool.getConnection(function (err, connection) {
+//     connection.query(
+//       "SELECT * FROM item WHERE type = 'spell_" + req.body.class + "'",
+//       function (err, allSpells, fields) {
+//         if (err) throw err;
+//         connection.query(
+//           "SELECT item_name FROM owned_item WHERE student_id = '"
+//           + req.body.id
+//           + "'",
+//           function (err, result, fields) {
+//             allSpells.forEach((spell) => {
+//               spell.owned = false;
+//               result.forEach((ownedSpell) => {
+//                 if (spell.name === ownedSpell.item_name) {
+//                   spell.owned = true;
+//                 }
+//               });
+//             }
+//             );
+//             res.send(allSpells);
+//           }
+//         );
+//       });
+//   });
+// });
 
 app.post("/getSkinsShop", (req, res) => {
+  console.log("start");
   pool.getConnection(function (err, connection) {
+    let respons = { skins: [], spells: [] }
     connection.query(
       "SELECT * FROM item WHERE type = 'skin'",
-      function (err, allSpells, fields) {
+      function (err, allSkins, fields) {
         if (err) throw err;
         connection.query(
           "SELECT item_name, equiped FROM owned_item WHERE student_id = '"
           + req.body.id
           + "'",
           function (err, result, fields) {
-            allSpells.forEach((spell) => {
+            allSkins.forEach((spell) => {
               spell.owned = false;
               result.forEach((ownedSpell) => {
                 if (spell.name === ownedSpell.item_name) {
@@ -785,7 +795,31 @@ app.post("/getSkinsShop", (req, res) => {
               });
             }
             );
-            res.send(allSpells);
+            respons.skins = allSkins;
+            connection.query(
+              "SELECT * FROM item WHERE type = 'spell_" + req.body.class + "'",
+              function (err, allSpells, fields) {
+                if (err) throw err;
+                connection.query(
+                  "SELECT item_name FROM owned_item WHERE student_id = '"
+                  + req.body.id
+                  + "'",
+                  function (err, result, fields) {
+                    allSpells.forEach((spell) => {
+                      spell.owned = false;
+                      result.forEach((ownedSpell) => {
+                        if (spell.name === ownedSpell.item_name) {
+                          spell.owned = true;
+                        }
+                      });
+                    }
+                    );
+                    respons.spells = allSpells;
+                    console.log("finish");
+                    res.send(respons);
+                  }
+                );
+              });
           }
         );
       });
