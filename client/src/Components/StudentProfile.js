@@ -61,9 +61,9 @@ function StudentProfile(props) {
             <div className='div-main position-absolute'>
                 <div className='row row-profile position-relative'>
                     <div className='col-8 col-skin position-relative'>
-                        <img src={`media/skin/${skin}.png`} className='w-100'></img>
+                        <img src={`media/skin/${skin}.png`} className='w-100 lol-image'></img>
                     </div>
-                    <div className='col-4 position-relative col-details'>
+                    <div className='col-4 position-relative lol-box'>
                         <h3>{props.data[0].team}</h3>
                         <div className='stripe'></div>
                         <h1>{props.data[0].first_name + " " + props.data[0].surname}</h1>

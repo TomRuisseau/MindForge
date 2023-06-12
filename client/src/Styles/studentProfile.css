@@ -1,3 +1,52 @@
+:root {
+    --couleur-principale: #1e1e1e; /* Couleur de fond principale */
+    --couleur-bordure: #ffcc00; /* Couleur de bordure */
+    --couleur-texte: #ffffff; /* Couleur du texte */
+  }
+  
+  /* Styles de la boîte */
+  .lol-box {
+    background-color: var(--couleur-principale);
+    border: 2px solid var(--couleur-bordure);
+    color: var(--couleur-texte);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    max-height: 400px; /* Hauteur maximale de la boîte */
+    overflow: auto; /* Ajout d'une barre de défilement si nécessaire */
+    opacity: 0; /* Opacité initiale à 0 */
+    animation: fade-in 0.5s forwards; /* Animation de fondu */
+    top: 50px;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+
+  .lol-image {
+    border: 5px solid #ffcc00; /* Couleur de la bordure */
+    border-radius: 25%; /* Forme arrondie */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ombre */
+    transition: transform 0.3s ease-in-out; /* Transition au survol */
+  }
+  
+  /* Effet de survol */
+  .lol-image:hover {
+    transform: scale(1.1); /* Agrandissement de l'image */
+  }
+
+
+
+
 .div-main{
     top: 50px;
     color: white;
