@@ -52,7 +52,7 @@ const QuizAleatoire = () => {
           )}
           {showAnswer && (
             <div>
-              <h3 className="my-5">Réponse :</h3>
+              <h3 className="mt-5">Réponse :</h3>
               <p className="mx-2 my-2">{currentQuestion.answer}</p>
             </div>
           )}
