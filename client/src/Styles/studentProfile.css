@@ -35,10 +35,11 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background-image: url('https://lolstatic-a.akamaihd.net/frontpage/apps/prod/preseason-2018/fr_FR/a6708b7ae3dbc0b25463f9c8e259a513d2c4c7e6/assets/img/runeBuilder/assets/construct/8300/environment.png'); /* Chemin vers l'image d'animation spécifique à League of Legends */
+    /*background-image: url('https://png.pngtree.com/thumb_back/fw800/back_our/20190628/ourmid/pngtree-league-of-legends-electronic-warfare-background-image_276414.jpg'); /* Chemin vers l'image d'animation spécifique à League of Legends */
     background-repeat: no-repeat;
+    background-color: rgb(71, 19, 19);
     background-size: cover;
-    transition: left 0.2s ease;
+    transition: left 2s ease;
     z-index: -1;
   }
 
