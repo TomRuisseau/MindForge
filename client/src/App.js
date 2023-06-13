@@ -1,40 +1,45 @@
-import Choice from './Components/Choice';
-import TeacherLogger from './Components/TeacherLogger';
-import StrudentLogger from './Components/StudentLogger';
-import React, { useState } from 'react';
-import StudentDashboard from './Components/StudentDashboard';
-import TeacherDashboard from './Components/TeacherDashboard';
-import './Styles/BoutonPrincipal.css'
-
+import Choice from "./Components/Choice";
+import TeacherLogger from "./Components/TeacherLogger";
+import StrudentLogger from "./Components/StudentLogger";
+import React, { useState } from "react";
+import StudentDashboard from "./Components/StudentDashboard";
+import TeacherDashboard from "./Components/TeacherDashboard";
+import "./Styles/BoutonPrincipal.css";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('Choice'); // ['Choice', 'TeacherLogger', 'StudentLogger', 'StudentDashboard', 'TeacherDashboard']
-  const [logId, setLogId] = useState('');
+  const [currentPage, setCurrentPage] = useState("Choice"); // ['Choice', 'TeacherLogger', 'StudentLogger', 'StudentDashboard', 'TeacherDashboard']
+  const [logId, setLogId] = useState("");
 
   const switchPage = (page) => {
     setCurrentPage(page);
-  }
+  };
 
   const passId = (id) => {
     setLogId(id);
-  }
-
-
-
-
+  };
 
   return (
-    <div className="App w-100 h-100">
-      <button onClick={() => { switchPage("Choice") }} className='btn btn-primary btn-principal position-absolute'>Menu principal</button>
+    <div className="App w-100 h-100 text-white">
+      <button
+        onClick={() => {
+          switchPage("Choice");
+        }}
+        className="btn btn-primary btn-principal position-absolute"
+      >
+        Menu principal
+      </button>
 
-      {
-        currentPage === "Choice" ? <Choice onChoice={switchPage} /> :
-          currentPage === "TeacherLogger" ? <TeacherLogger onValidation={switchPage} onPass={passId} /> :
-            currentPage === "StudentLogger" ? <StrudentLogger onValidation={switchPage} onPass={passId} /> :
-              currentPage === "StudentDashboard" ? <StudentDashboard data={logId} /> :
-                <TeacherDashboard id={logId} />
-
-      }
+      {currentPage === "Choice" ? (
+        <Choice onChoice={switchPage} />
+      ) : currentPage === "TeacherLogger" ? (
+        <TeacherLogger onValidation={switchPage} onPass={passId} />
+      ) : currentPage === "StudentLogger" ? (
+        <StrudentLogger onValidation={switchPage} onPass={passId} />
+      ) : currentPage === "StudentDashboard" ? (
+        <StudentDashboard data={logId} />
+      ) : (
+        <TeacherDashboard id={logId} />
+      )}
     </div>
   );
 }

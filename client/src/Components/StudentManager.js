@@ -72,37 +72,43 @@ const StudentManager = (props) => {
           addCounter={setCounter}
         />
       ) : null}
-      <div className="col m-0 p-0 h-75">
-        <div className="m-3 d-flex flex-column h-100 justify-content-between">
-          <button
-            className="btn btn-primary mt-5"
-            onClick={() => setPopUp("addTeam")}
-          >
-            Ajouter une équipe
-          </button>
+      <div className="col m-0 p-0 h-75 w-auto">
+        <div className=" my-5 h-25">
+          <div className="m-3 d-flex flex-column h-100 justify-content-between">
+            <button
+              className="btn btn-primary mt-5"
+              onClick={() => setPopUp("addTeam")}
+            >
+              Ajouter une équipe
+            </button>
 
-          <button
-            className="btn btn-primary mt-10"
-            onClick={() => setPopUp("addStudent")}
-          >
-            Ajouter un élève
-          </button>
-          {student === 0 ? null : (
             <button
               className="btn btn-primary mt-10"
-              onClick={() => setPopUp("removeHp")}
+              onClick={() => setPopUp("addStudent")}
             >
-              Retirer des HP à l'élève sélectionné
+              Ajouter un élève
             </button>
-          )}
-          {student === 0 ? null : (
-            <button
-              className="btn btn-primary mt-10"
-              onClick={() => setPopUp("removeXp")}
-            >
-              Ajouter de l'XP à l'élève sélectionné
-            </button>
-          )}
+          </div>
+        </div>
+        <div className=" my-5 h-25">
+          <div className="m-3 d-flex flex-column h-100 justify-content-between">
+            {student === 0 ? null : (
+              <button
+                className="btn btn-primary mt-5"
+                onClick={() => setPopUp("removeHp")}
+              >
+                Retirer des HP à l'élève sélectionné
+              </button>
+            )}
+            {student === 0 ? null : (
+              <button
+                className="btn btn-primary mt-10"
+                onClick={() => setPopUp("removeXp")}
+              >
+                Ajouter de l'XP à l'élève sélectionné
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
