@@ -72,8 +72,8 @@ const StudentManager = (props) => {
           addCounter={setCounter}
         />
       ) : null}
-      <div className="col m-0 p-0 h-100 bg-secondary">
-        <div className="m-5 d-flex flex-column align-content-between">
+      <div className="col m-0 p-0 h-100">
+        <div className="m-3 d-flex flex-column h-100 justify-content-between">
           <button
             className="btn btn-primary mt-5"
             onClick={() => setPopUp("addTeam")}
