@@ -59,14 +59,14 @@ const TeacherQuiz = (props) => {
   };
 
   return (
-    <div className="m-3 text-white">
+    <div className="m-3">
       <h2 className="text-center">
         QUIZ : Sélectionnez l'élève qui gagne de l'XP
       </h2>
 
       <div className="d-flex flex-row justify-content-between m-5">
         <div
-          className="text-center border border-white rounded d-flex flex-column align-items-center"
+          className="text-center text-white border border-white rounded d-flex flex-column align-items-center"
           style={{ width: "35%" }}
         >
           <h4 className="m-4 text-nowrap">
@@ -81,7 +81,7 @@ const TeacherQuiz = (props) => {
             + 2 XP
           </button>
         </div>
-        <div className="text-center w-auto border border-white rounded d-flex flex-column align-items-center">
+        <div className="text-center text-white w-auto border border-white rounded d-flex flex-column align-items-center">
           <h4 className="m-4 text-nowrap">
             Questions définies par le professeur !
           </h4>

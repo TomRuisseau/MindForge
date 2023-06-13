@@ -25,20 +25,18 @@ const TeacherDrawer = forwardRef((props, ref) => {
         open={isOpen}
         onClose={toggleDrawer}
         direction="left"
-        className="drawer"
-        size={500}
+        className="drawer text-warning"
+        style={{ backgroundColor: "#24445C" }}
+        size={280}
       >
-        <div className="mt-5 drawerTeacher">
-          <button onClick={toggleDrawer} className="btn btn-primary">
-            Menu
-          </button>
+        <div className="h-75 mt-5 drawerTeacher d-flex flex-column justify-content-between">
           <h2
             onClick={() => {
               toggleDrawer();
               props.onChoice("TeacherMenu");
             }}
           >
-            Ecran principal
+            Accueil
           </h2>
           <h2
             onClick={() => {
@@ -46,7 +44,7 @@ const TeacherDrawer = forwardRef((props, ref) => {
               props.onChoice("StudentManager");
             }}
           >
-            Gérer les élèves (ajouter/dégats/récompenses)
+            Élèves
           </h2>
           <h2
             onClick={() => {
@@ -54,20 +52,23 @@ const TeacherDrawer = forwardRef((props, ref) => {
               props.onChoice("Quests");
             }}
           >
-            Quetes
+            Quêtes
           </h2>
-          <h2 onClick={() => {
-            toggleDrawer();
-            props.onChoice("TeacherQuiz");
-            }}>
-              Quiz</h2>
+          <h2
+            onClick={() => {
+              toggleDrawer();
+              props.onChoice("TeacherQuiz");
+            }}
+          >
+            Quiz
+          </h2>
           <h2
             onClick={() => {
               toggleDrawer();
               props.onChoice("DailyRand");
             }}
           >
-            Evènement journalier
+            Roue du destin
           </h2>
           <h2 onClick={toggleDrawer}>Tutoriel</h2>
           <h2 onClick={toggleDrawer}>Paramètres</h2>
