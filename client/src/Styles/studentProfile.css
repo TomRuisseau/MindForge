@@ -22,9 +22,9 @@
     overflow: auto; /* Ajout d'une barre de défilement si nécessaire */
     opacity: 0; /* Opacité initiale à 0 */
     animation: fade-in 0.5s forwards; /* Animation de fondu */
-    top: 50px;
+    top: 0px;
     overflow: hidden;
-
+    position: relative;
 
   }
 
@@ -38,7 +38,7 @@
     background-image: url('https://lolstatic-a.akamaihd.net/frontpage/apps/prod/preseason-2018/fr_FR/a6708b7ae3dbc0b25463f9c8e259a513d2c4c7e6/assets/img/runeBuilder/assets/construct/8300/environment.png'); /* Chemin vers l'image d'animation spécifique à League of Legends */
     background-repeat: no-repeat;
     background-size: cover;
-    transition: left 1s ease;
+    transition: left 0.2s ease;
     z-index: -1;
   }
 
