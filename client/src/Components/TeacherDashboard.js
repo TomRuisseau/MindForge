@@ -28,7 +28,7 @@ function TeacherDashboard(props) {
             Menu
           </button>
           {page === "TeacherMenu" ? (
-            <TeacherMenu />
+            <TeacherMenu id={props.id} />
           ) : page === "TeacherQuiz" ? (
             <TeacherQuiz id={props.id} />
           ) : page === "StudentManager" ? (

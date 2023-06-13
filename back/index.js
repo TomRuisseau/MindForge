@@ -437,6 +437,25 @@ app.post("/getStudents", (req, res) => {
   });
 });
 
+//get a random student of a teacher 
+app.post("/getRandomStudent", (req, res) => {
+  pool.getConnection(function (err, connection) {
+    connection.query(
+      "SELECT * FROM student WHERE teacher_email = '" +
+      req.body.id +
+      "'",
+      function (err, result, fields) {
+        if (err) throw err;
+        let length = result.length;
+        let random = Math.floor(Math.random() * (length - 1));
+        console.log(result[random]);
+        res.send(result[random]);
+      }
+    );
+  });
+});
+
+
 //get all students of a team
 app.post("/getStudentsTeam", (req, res) => {
   pool.getConnection(function (err, connection) {
