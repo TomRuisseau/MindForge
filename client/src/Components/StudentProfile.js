@@ -17,15 +17,18 @@ function StudentProfile(props) {
     const [skin, setSkin] = useState("toutNu");
     const [counter, setCounter] = useState(0); // pour forcer le rechargement de la page
 
+    const [updated, setUpdated] = useState(false); // pour forcer le rechargement de la page aussi
 
     const isMountedRef = useRef(false);
 
     const addCounter = () => {
+        isMountedRef.current = false;
         setCounter(counter + 1);
     };
 
     useEffect(() => {
         if (!isMountedRef.current) {
+            alert("useEffect");
             isMountedRef.current = true;
             axios
                 .post("http://localhost:5000/getSkin", { id: props.data[0].id })
@@ -38,7 +41,9 @@ function StudentProfile(props) {
             axios
                 .post("http://localhost:5000/getStudent", { id: props.data[0].id })
                 .then((res) => {
+                    console.log(res.data);
                     props.data[0] = res.data[0];
+                    setUpdated(!updated);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -52,7 +57,7 @@ function StudentProfile(props) {
                     console.log(err);
                 });
         }
-    }, [props.data, counter]);
+    }, [props.data, counter, updated]);
 
 
 

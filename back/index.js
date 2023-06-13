@@ -20,7 +20,9 @@ const pool = mysql.createPool({
 
 // const pool = mysql.createPool({
 //   host: "localhost",
-//   user: "root",
+//   port: "3306",
+//   password: "motdepasse",
+//   user: "taume",
 //   database: "test",
 // });
 
@@ -563,6 +565,7 @@ app.post("/giveMana", (req, res) => {
 });
 //send skin of a student
 app.post("/getSkin", (req, res) => {
+  console.log("début profile")
   pool.getConnection(function (err, connection) {
     connection.query(
       "SELECT item_name FROM owned_item WHERE student_id = '" +
@@ -572,6 +575,7 @@ app.post("/getSkin", (req, res) => {
       "'",
       function (err, result, fields) {
         if (err) throw err;
+        console.log("fin profile")
         res.send(result[0].item_name);
       }
     );
@@ -768,6 +772,7 @@ app.post("/getSpells", (req, res) => {
 
 app.post("/getSkinsShop", (req, res) => {
   pool.getConnection(function (err, connection) {
+    console.log("début boutique")
     let respons = { skins: [], spells: [] }
     connection.query(
       "SELECT * FROM item WHERE type = 'skin'",
@@ -808,6 +813,7 @@ app.post("/getSkinsShop", (req, res) => {
                     }
                     );
                     respons.spells = allSpells;
+                    console.log("fin boutique")
                     res.send(respons);
                   }
                 );
@@ -1007,6 +1013,7 @@ app.post("/useVagueDeMana", (req, res) => {
 
 app.post("/useSoinDeMasse", (req, res) => {
   //receive id and team
+  console.log("début soin de masse")
   pool.getConnection(function (err, connection) {
     connection.query(
       "SELECT * FROM student WHERE team = '" +
@@ -1017,6 +1024,7 @@ app.post("/useSoinDeMasse", (req, res) => {
           addHp(pool, student.id, 2);
         });
         removeMana(pool, req.body.id, SpellsCosts.get("soin_de_masse"));
+        console.log("fin soin de masse");
         addXp(pool, req.body.id, SpellsCosts.get("soin_de_masse"), res);
       }
     );
