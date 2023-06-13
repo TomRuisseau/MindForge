@@ -75,7 +75,7 @@ const TeacherQuiz = (props) => {
           <QuizAleatoire />
           <button
             className="btn btn-success position-absolute"
-            style={{ bottom: "20%" }}
+            style={{ bottom: "30%" }}
             onClick={addXP}
           >
             + 2 XP

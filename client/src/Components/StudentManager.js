@@ -72,7 +72,7 @@ const StudentManager = (props) => {
           addCounter={setCounter}
         />
       ) : null}
-      <div className="col m-0 p-0 h-100">
+      <div className="col m-0 p-0 h-75">
         <div className="m-3 d-flex flex-column h-100 justify-content-between">
           <button
             className="btn btn-primary mt-5"
