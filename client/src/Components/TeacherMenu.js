@@ -7,6 +7,8 @@ function TeacherMenu(props) {
     const [value, setValue] = useState(new Date());
     const [student, setStudent] = useState({});
     const [skin, setSkin] = useState("toutNu");
+    const [quests, setQuests] = useState([]); // liste des quêtes
+
 
     const isMountedRef = useRef(false);
 
@@ -26,6 +28,14 @@ function TeacherMenu(props) {
                             console.log(err);
                         }
                         );
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            axios
+                .post("http://localhost:5000/getQuests", { email: props.id })
+                .then((res) => {
+                    setQuests(res.data);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -51,8 +61,35 @@ function TeacherMenu(props) {
                         <Clock value={value} size={200} />
                     </div>
 
-                    <div>
-                        <h3 className='text-center'>List de quêtes</h3>
+                    <h2 className="text-center">Liste de quêtes</h2>
+                    <div
+                        className="m-1 custom-scrollbar"
+                        style={{ height: "50vh", overflow: "auto" }}
+                    >
+                        <table className="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Récompense</th>
+                                    <th scope="col">Terminée par </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {quests.map((quest) => {
+                                    return (
+                                        <tr
+                                            key={quest.id}
+                                            data-key={quest.id}
+                                            className={quest.bg}
+                                        >
+                                            <td>{quest.description}</td>
+                                            <td>{quest.reward}</td>
+                                            <td>{quest.nbCompleted + " étudiants"}</td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div className='col-5'>
