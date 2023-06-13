@@ -4,6 +4,9 @@
     --couleur-texte: #ffffff; /* Couleur du texte */
   }
   
+
+
+  
   /* Styles de la boîte */
   .lol-box {
     background-color: var(--couleur-principale);
@@ -34,12 +37,33 @@
 
 
   .lol-image {
-    border: 5px solid #ffcc00; /* Couleur de la bordure */
-    border-radius: 25%; /* Forme arrondie */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ombre */
-    transition: transform 0.3s ease-in-out; /* Transition au survol */
+    display: block;
+    width: 200px; /* Largeur de l'image */
+    height: auto; /* Hauteur automatique pour préserver les proportions */
+    border-radius: 50%; /* Transformer l'image en un cercle */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); /* Ombre portée */
+    filter: grayscale(100%); /* Convertir l'image en noir et blanc */
+    transition: all 0.3s ease; /* Animation de transition pour les effets */
+
+  }
+
+  .lol-image:hover{
+    filter: grayscale(0%); /* Restaurer les couleurs d'origine au survol */
+    transform: scale(1.1); /* Effectuer un léger zoom au survol */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8); /* Renforcer l'ombre portée au survol */
   }
   
+.col-4{
+
+  justify-content: center;
+  align-items: center;
+
+}
+
+.col-6{
+
+}
+
   /* Effet de survol */
   .lol-image:hover {
     transform: scale(1.1); /* Agrandissement de l'image */
@@ -48,10 +72,6 @@
 
 
 
-.div-main{
-    top: 50px;
-    color: white;
-}
 
 .row-profil{
     top: 50%;
@@ -72,10 +92,7 @@
     left: 50%;
 }
 
-.col-details{
-    flex: 1;
-    top: 1000px;
-}
+
 
 .stripe{
     height: 1px;
@@ -96,5 +113,9 @@
   justify-content: center;
   align-items: center; 
   position: relative;
+  top: 100px;
+  width: 100%;
+  align-content: center;
+  align-self: center;
 }
 
