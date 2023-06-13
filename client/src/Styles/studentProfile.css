@@ -15,7 +15,7 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    font-family: "Arial", sans-serif;
+    font-family: "Arial Black", sans-serif;
     font-size: 16px;
     line-height: 1.5;
     max-height: 500px; /* Hauteur maximale de la boîte */
@@ -23,7 +23,27 @@
     opacity: 0; /* Opacité initiale à 0 */
     animation: fade-in 0.5s forwards; /* Animation de fondu */
     top: 50px;
+    overflow: hidden;
 
+
+  }
+
+  .lol-box::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://lolstatic-a.akamaihd.net/frontpage/apps/prod/preseason-2018/fr_FR/a6708b7ae3dbc0b25463f9c8e259a513d2c4c7e6/assets/img/runeBuilder/assets/construct/8300/environment.png'); /* Chemin vers l'image d'animation spécifique à League of Legends */
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: left 1s ease;
+    z-index: -1;
+  }
+
+  .lol-box:hover::before{ 
+    left: 0;
   }
 
   @keyframes fade-in {
@@ -53,16 +73,14 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.8); /* Renforcer l'ombre portée au survol */
   }
   
-.col-4{
+.col-skins{
 
   justify-content: center;
   align-items: center;
 
 }
 
-.col-6{
 
-}
 
   /* Effet de survol */
   .lol-image:hover {
@@ -73,10 +91,16 @@
 
 
 
-.row-profil{
+.row-profile{
     top: 50%;
     position: absolute;
     display: flex;
+    justify-content: center;
+    align-items: center; 
+    top: 100px;
+    width: 100%;
+    align-content: center;
+    align-self: center;
 }
 
 .col-skin{
@@ -108,14 +132,5 @@
     margin-bottom: 5px;
 }
 
-.row{
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-  position: relative;
-  top: 100px;
-  width: 100%;
-  align-content: center;
-  align-self: center;
-}
+
 
