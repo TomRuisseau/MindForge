@@ -3,18 +3,28 @@
     border-color: black;
     border-width: 1px;
     border-style: solid;
-} 
+   
+  }
+
 
 .row-team{
     display: flex;
+    text-align: center; /* Pour centrer le texte */
+    color: orange; /* Pour définir la couleur du texte */
+    border: 1px solid white; /* Pour définir une bordure d'épaisseur 1 pixel et de couleur noire */
+    padding: 10px; /* Pour ajouter un espacement interne à la bordure */
+ 
 }
 
 .col-team{
     flex: 1;
+    
+    
+
 }
 
 .col-team img{
     max-width: 75%;
     height: auto;
-
+    
 }
