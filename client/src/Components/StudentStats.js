@@ -25,7 +25,7 @@ function StudentStats(props) {
   }, [props.id, props.counter]);
 
   return (
-    <div className="w-50 m-4 px-3 py-2 border border-black rounded">
+    <div className="w-50 m-4 px-3 py-2 border border-white rounded">
       {studentStats.map((stat) => (
         <div key={stat.id}>
           <div className="d-flex flex-row justify-content-between">

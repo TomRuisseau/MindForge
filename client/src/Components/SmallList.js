@@ -22,7 +22,7 @@ const SmallList = (props) => {
 
   return (
     <div
-      className="position-absolute text-white border border-white rounded custom-scrollbar"
+      className="position-absolute border border-white rounded custom-scrollbar"
       style={{
         width: "20%",
         height: "80vh",

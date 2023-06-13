@@ -29,7 +29,7 @@ const StudentManager = (props) => {
 
   return (
     <div className="row p-0 m-0 w-100 h-100">
-      <div className="col-10 m-0 p-0">
+      <div className="col-10 my-4 p-0">
         <div className="d-flex flex-row my-5">
           <BigList id={props.id} ref={childRef} onPass={pass} />
           {student === 0 ? null : (

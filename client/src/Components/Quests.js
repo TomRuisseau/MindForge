@@ -80,7 +80,7 @@ function Quests(props) {
         style={{ height: "85vh", overflow: "auto" }}
       >
         <h2 className="text-center">Liste de quêtes</h2>
-        <table className="table table-striped">
+        <table className="table table-striped text-white">
           <thead>
             <tr>
               <th scope="col">Description</th>
@@ -97,9 +97,11 @@ function Quests(props) {
                   data-key={quest.id}
                   className={quest.bg}
                 >
-                  <td>{quest.description}</td>
-                  <td>{quest.reward}</td>
-                  <td>{quest.nbCompleted + " étudiants"}</td>
+                  <td className="text-white">{quest.description}</td>
+                  <td className="text-white">{quest.reward}</td>
+                  <td className="text-white">
+                    {quest.nbCompleted + " étudiants"}
+                  </td>
                 </tr>
               );
             })}
