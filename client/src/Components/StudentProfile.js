@@ -65,10 +65,8 @@ function StudentProfile(props) {
         <>
             <div className='div-main position-absolute'>
                 <div className='row row-profile position-relative'>
-                    <div className='col-8 col-skin position-relative'>
-                        <img src={`media/skin/${skin}.png`} className='w-100 lol-image'></img>
-                    </div>
-                    <div className='col-4 position-relative lol-box'>
+
+                    <div className='col-6 position-relative lol-box'>
                         <h3>{props.data[0].team}</h3>
                         <div className='stripe'></div>
                         <h1>{props.data[0].first_name + " " + props.data[0].surname}</h1>
@@ -84,6 +82,9 @@ function StudentProfile(props) {
                         {parseInt(props.data[0].minded) ? <h2>Votre prochain gain d'XP sera doublé </h2> : null}
 
 
+                    </div>
+                    <div className='col-4 col-skin position-relative'>
+                        <img src={`media/skin/${skin}.png`} className='w-100 lol-image'></img>
                     </div>
 
                 </div>
