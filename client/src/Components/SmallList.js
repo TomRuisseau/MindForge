@@ -22,8 +22,8 @@ const SmallList = (props) => {
 
   return (
     <div
-      className="col-2 m-5 text-muted border border-black rounded custom-scrollbar"
-      style={{ height: "80vh", overflow: "auto" }}
+      className="col-2 m-5 text-white border border-white rounded custom-scrollbar"
+      style={{ width: "20%", height: "80vh", overflowY: "auto" }}
     >
       {Array.from(
         students.reduce((teamMap, student) => {
