@@ -12,7 +12,7 @@ import SoinDeMasse from "./PopUpsSorts/SoinDeMasse";
 import TruquageDuDestin from "./PopUpsSorts/TruquageDuDestin";
 import VagueDeMana from "./PopUpsSorts/VagueDeMana";
 import Reviviscence from "./PopUpsSorts/Reviviscence";
-import '../Styles/studentProfile.css';
+import "../Styles/studentProfile.css";
 
 const SpellBar = (props) => {
   const [spells, setSpells] = useState([]); // liste des sorts
