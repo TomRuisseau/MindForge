@@ -50,7 +50,7 @@ function StudentTeam(props){
                         return (
                             
                                 
-                                <div className='col-3 col-team'>
+                                <div className='col-2 col-team'>
                                     
                                     <h3>{student.first_name}</h3>
                                     <h5>Vie:</h5><p>{student.hp}</p>
