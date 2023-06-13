@@ -16,22 +16,42 @@ const TeacherQuiz = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [props.id]);
+  }, [selectedStudent]);
 
   const handleClick = (studentId) => {
     setSelectedStudent(studentId);
   };
 
+  const addXP = () => {
+    if (selectedStudent !== null) {
+      axios
+        .post("http://localhost:5000/giveXP", {
+          id: selectedStudent,
+          xp: 2,
+        })
+        .then((res) => {
+          props.close();
+          setXP(0);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else alert("Veuillez sélectionner un élève !");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
+    if (selectedStudent === null) {
+      alert("Veuillez sélectionner un élève !");
+    }
     axios
       .post("http://localhost:5000/giveXP", {
-        id: props.id,
+        id: selectedStudent,
         xp: XP,
       })
       .then((res) => {
         props.close();
-        props.addCounter(1);
+        setXP(0);
       })
       .catch((err) => {
         console.log(err);
@@ -53,7 +73,13 @@ const TeacherQuiz = (props) => {
             Questions aléatoires de culture générale !
           </h4>
           <QuizAleatoire />
-          <button className="btn btn-success mt-3">+ 2 XP</button>
+          <button
+            className="btn btn-success position-absolute"
+            style={{ bottom: "20%" }}
+            onClick={addXP}
+          >
+            + 2 XP
+          </button>
         </div>
         <div className="text-center w-auto border border-white rounded d-flex flex-column align-items-center">
           <h4 className="m-4 text-nowrap">
