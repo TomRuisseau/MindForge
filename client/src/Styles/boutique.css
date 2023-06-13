@@ -1,4 +1,28 @@
 .selected {
     background-color: #28284667;
     border-radius: 5px;
+    
+}
+.text-center{
+    color: orange;
+}
+
+
+
+
+.col h2{
+    text-align: center; 
+  color: whitesmoke;
+}
+.row{
+    border: 1px solid orange; 
+  padding: 10px;
+}
+.h2 {
+    color: orange;
+
+}
+.d-flex {
+    color: orange;
+
 }
