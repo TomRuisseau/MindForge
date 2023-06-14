@@ -20,15 +20,6 @@ function App() {
 
   return (
     <div className="App w-100 h-100 text-black">
-      <button
-        onClick={() => {
-          switchPage("Choice");
-        }}
-        className="btn btn-primary btn-principal position-absolute"
-      >
-        Menu principal
-      </button>
-
       {currentPage === "Choice" ? (
         <Choice onChoice={switchPage} />
       ) : currentPage === "TeacherLogger" ? (
