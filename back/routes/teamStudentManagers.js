@@ -4,14 +4,14 @@ exports.setPostManagers = function setPostManagers(app, pool, classMap) {
     app.post("/addTeam", (req, res) => {
         pool.getConnection(function (err, connection) {
             connection.query(
-                "SELECT * FROM team WHERE name = '" + req.body.name + "'",
+                "SELECT * FROM team WHERE name = '" + req.body.name.replace('\'', " ") + "'",
                 function (err, result, fields) {
                     if (err) throw err;
                     if (result.length > 0) res.send("1"); //test if name already used
                     else {
                         connection.query(
                             "INSERT INTO team(name,teacher_email) VALUES ('" +
-                            req.body.name +
+                            req.body.name.replace('\'', " ") +
                             "', '" +
                             req.body.email +
                             "')",
