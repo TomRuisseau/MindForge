@@ -49,8 +49,13 @@ const BigList = forwardRef((props, ref) => {
   //affichage (render)
   return (
     <div
-      className="w-50 m-4 px-3 py-2 border border-white rounded custom-scrollbar"
-      style={{ height: "75vh", overflow: "auto" }}
+      className="w-50 m-4 px-3 py-2 rounded custom-scrollbar"
+      style={{
+        height: "75vh",
+        overflow: "auto",
+        border: "solid 3px",
+        borderColor: "#7C80FC",
+      }}
     >
       {Array.from(
         students.reduce((teamMap, student) => {
@@ -63,8 +68,8 @@ const BigList = forwardRef((props, ref) => {
         }, new Map())
       ).map(([team, members]) => (
         <React.Fragment key={team}>
-          <h3>{team}</h3>
-          <table className="mb-5">
+          <h3 style={{ color: "#7C80FC" }}>{team}</h3>
+          <table className="mb-5" style={{ color: "#7C80FC" }}>
             <tbody>
               {members.map((student) => (
                 <tr

@@ -7,6 +7,8 @@ import PopUpDead from "./PopUpDead";
 import BigList from "./BigList";
 import StudentStats from "./StudentStats";
 import { useRef } from "react";
+import { motion } from "framer-motion";
+import "../Styles/Buttons.css";
 
 const StudentManager = (props) => {
   const [popUp, setPopUp] = useState("hidden"); //[hidden, addTeam, addStudent, removeHp, removeXp]
@@ -75,38 +77,45 @@ const StudentManager = (props) => {
       <div className="col m-0 p-0 h-75 w-auto">
         <div className=" my-5 h-25">
           <div className="m-3 d-flex flex-column h-100 justify-content-between">
-            <button
-              className="btn btn-primary mt-5"
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              className="mt-5 btn-act-students"
               onClick={() => setPopUp("addTeam")}
             >
               Ajouter une équipe
-            </button>
+            </motion.button>
 
-            <button
-              className="btn btn-primary mt-10"
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              className="btn-act-students mt-10"
+              style={{ backgroundColor: "#7C80FC" }}
               onClick={() => setPopUp("addStudent")}
             >
               Ajouter un élève
-            </button>
+            </motion.button>
           </div>
         </div>
         <div className=" my-5 h-25">
           <div className="m-3 d-flex flex-column h-100 justify-content-between">
             {student === 0 ? null : (
-              <button
-                className="btn btn-primary mt-5"
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                className="btn-act-students mt-5"
+                style={{ backgroundColor: "#7C80FC" }}
                 onClick={() => setPopUp("removeHp")}
               >
                 Retirer des HP à l'élève sélectionné
-              </button>
+              </motion.button>
             )}
             {student === 0 ? null : (
-              <button
-                className="btn btn-primary mt-10"
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                className="btn-act-students mt-10"
+                style={{ backgroundColor: "#7C80FC" }}
                 onClick={() => setPopUp("removeXp")}
               >
                 Ajouter de l'XP à l'élève sélectionné
-              </button>
+              </motion.button>
             )}
           </div>
         </div>
