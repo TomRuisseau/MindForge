@@ -21,13 +21,14 @@ const StudentDrawer = forwardRef((props, ref) => {
 
     return (
         <>
-
+            <div className='menu-student'>
             <Drawer
                 open={isOpen}
                 onClose={toggleDrawer}
                 direction='left'
                 className='drawer'
                 size={500}
+                style={{ backgroundColor: "#0f3c4c", color: "white" }}
             >
                 <div className='mt-5 drawerStudent'>
                     <button onClick={toggleDrawer} className="btn btn-primary">Menu</button>
@@ -40,6 +41,7 @@ const StudentDrawer = forwardRef((props, ref) => {
                     <h2 onClick={toggleDrawer}>Paramètres</h2>
                 </div>
             </Drawer>
+            </div>
         </>
     )
 });

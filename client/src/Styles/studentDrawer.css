@@ -3,5 +3,10 @@
   flex-shrink: 0;
   left: 20px;
   position: inherit;
+  background-color: #0f3c4c;
 }
 
+
+.menu-student{
+  background-color: #0f3c4c;
+}

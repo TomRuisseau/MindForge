@@ -72,6 +72,7 @@
     filter: grayscale(0%); /* Restaurer les couleurs d'origine au survol */
     transform: scale(1.1); /* Effectuer un léger zoom au survol */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.8); /* Renforcer l'ombre portée au survol */
+    background-color: gray;
   }
   
 .col-skins{
