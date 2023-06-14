@@ -19,7 +19,7 @@ function App() {
   };
 
   return (
-    <div className="App w-100 h-100 text-white">
+    <div className="App w-100 h-100 text-black">
       <button
         onClick={() => {
           switchPage("Choice");
