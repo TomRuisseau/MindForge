@@ -4,6 +4,7 @@ import React from "react";
 import { forwardRef, useImperativeHandle } from "react";
 import "../Styles/Scroll.css";
 import "../Styles/Glass.css";
+import "../Styles/Textes.css";
 
 const BigList = forwardRef((props, ref) => {
   //state
@@ -24,9 +25,9 @@ const BigList = forwardRef((props, ref) => {
         if (student.id === studentId) {
           setSelectedStudent(studentId);
           props.onPass(studentId);
-          return { ...student, bgColor: "bg-info" };
+          return { ...student, bgColor: "#232826", supclass: "classe-sup" };
         } else {
-          return { ...student, bgColor: "" };
+          return { ...student, bgColor: "", supclass: "" };
         }
       })
     );
@@ -50,7 +51,7 @@ const BigList = forwardRef((props, ref) => {
   //affichage (render)
   return (
     <div
-      className="glass1 w-50 m-4 px-3 py-2 rounded custom-scrollbar"
+      className="glass1 w-50 m-4 p-4 rounded custom-scrollbar"
       style={{
         height: "75vh",
         overflow: "auto",
@@ -67,18 +68,30 @@ const BigList = forwardRef((props, ref) => {
         }, new Map())
       ).map(([team, members]) => (
         <React.Fragment key={team}>
-          <h3>{team}</h3>
+          <h1 className="lignes-tab">{team}</h1>
           <table className="mb-5">
             <tbody>
               {members.map((student) => (
                 <tr
                   key={student.id}
-                  className={student.bgColor}
+                  style={{ backgroundColor: student.bgColor }}
                   onClick={() => changeBackground(student.id)}
                 >
-                  <td className="mx-5 px-5">{student.surname}</td>
-                  <td className="mx-5 px-5">{student.first_name}</td>
-                  <td className="mx-5 px-5">{student.id}</td>
+                  <td
+                    className={`mx-5 px-5 lignes-tab taille-lignes-tab ${student.supclass}`}
+                  >
+                    {student.surname}
+                  </td>
+                  <td
+                    className={`mx-5 px-5 lignes-tab taille-lignes-tab ${student.supclass}`}
+                  >
+                    {student.first_name}
+                  </td>
+                  <td
+                    className={`mx-5 px-5 lignes-tab taille-lignes-tab ${student.supclass}`}
+                  >
+                    {student.id}
+                  </td>
                 </tr>
               ))}
             </tbody>

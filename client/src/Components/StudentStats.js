@@ -26,7 +26,7 @@ function StudentStats(props) {
   }, [props.id, props.counter]);
 
   return (
-    <div className="w-50 m-4 px-3 py-2 border border-white rounded">
+    <div className="w-50 m-4 px-3 py-2 border border-white rounded glass1">
       {studentStats.map((stat) => (
         <div key={stat.id}>
           <div className="d-flex flex-row justify-content-between">
@@ -41,7 +41,7 @@ function StudentStats(props) {
           <img
             src={`media/skin/${skin}.png`}
             className="position-absolute"
-            style={{ bottom: "15%", right: "20%", width: "25%" }}
+            style={{ bottom: "15%", right: "20%", width: "50%" }}
           />
         </div>
       ))}
