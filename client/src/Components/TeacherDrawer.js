@@ -27,12 +27,12 @@ const TeacherDrawer = forwardRef((props, ref) => {
         onClose={toggleDrawer}
         direction="left"
         className="drawer"
-        style={{ backgroundColor: "#0f3c4c", color: "white" }}
+        style={{ backgroundColor: "#8C9C7C", color: "white" }}
         size={300}
       >
         <div className="h-75 mt-5 drawerTeacher d-flex flex-column justify-content-between">
           <motion.h2
-            whileHover={{ color: "orange", scale: 1.2, originX: 0 }}
+            whileHover={{ color: "#E8EACC", scale: 1.2, originX: 0 }}
             onClick={() => {
               toggleDrawer();
               props.onChoice("TeacherMenu");
@@ -41,7 +41,7 @@ const TeacherDrawer = forwardRef((props, ref) => {
             Accueil
           </motion.h2>
           <motion.h2
-            whileHover={{ color: "orange", scale: 1.2, originX: 0 }}
+            whileHover={{ color: "#E8EACC", scale: 1.2, originX: 0 }}
             onClick={() => {
               toggleDrawer();
               props.onChoice("StudentManager");
@@ -50,7 +50,7 @@ const TeacherDrawer = forwardRef((props, ref) => {
             Élèves
           </motion.h2>
           <motion.h2
-            whileHover={{ color: "orange", scale: 1.2, originX: 0 }}
+            whileHover={{ color: "#E8EACC", scale: 1.2, originX: 0 }}
             onClick={() => {
               toggleDrawer();
               props.onChoice("Quests");
@@ -59,7 +59,7 @@ const TeacherDrawer = forwardRef((props, ref) => {
             Quêtes
           </motion.h2>
           <motion.h2
-            whileHover={{ color: "orange", scale: 1.2, originX: 0 }}
+            whileHover={{ color: "#E8EACC", scale: 1.2, originX: 0 }}
             onClick={() => {
               toggleDrawer();
               props.onChoice("TeacherQuiz");
@@ -68,7 +68,7 @@ const TeacherDrawer = forwardRef((props, ref) => {
             Quiz
           </motion.h2>
           <motion.h2
-            whileHover={{ color: "orange", scale: 1.2, originX: 0 }}
+            whileHover={{ color: "#E8EACC", scale: 1.2, originX: 0 }}
             onClick={() => {
               toggleDrawer();
               props.onChoice("DailyRand");
@@ -77,13 +77,13 @@ const TeacherDrawer = forwardRef((props, ref) => {
             Roue du destin
           </motion.h2>
           <motion.h2
-            whileHover={{ color: "orange", scale: 1.2, originX: 0 }}
+            whileHover={{ color: "#E8EACC", scale: 1.2, originX: 0 }}
             onClick={toggleDrawer}
           >
             Tutoriel
           </motion.h2>
           <motion.h2
-            whileHover={{ color: "orange", scale: 1.2, originX: 0 }}
+            whileHover={{ color: "#E8EACC", scale: 1.2, originX: 0 }}
             onClick={toggleDrawer}
           >
             Paramètres
