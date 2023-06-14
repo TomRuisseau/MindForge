@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import "../Styles/Glass.css";
+import "../Styles/Textes.css";
 
 function StudentStats(props) {
   const [studentStats, setStudentStats] = useState([]);
@@ -26,18 +28,20 @@ function StudentStats(props) {
   }, [props.id, props.counter]);
 
   return (
-    <div className="w-50 m-4 px-3 py-2 rounded glass1">
+    <div className="hug w-50 m-4 px-3 py-2 rounded glass1">
       {studentStats.map((stat) => (
         <div key={stat.id}>
-          <div className="d-flex flex-row justify-content-between">
+          <div className="just-color-yellow d-flex flex-row justify-content-between">
             <h3>
               {stat.first_name} {stat.surname}
             </h3>
             <h3>Equipe : {stat.team}</h3>
           </div>
-          <p>Classe : {stat.class}</p>
-          <p>XP : {stat.xp}</p>
-          <p>HP : {stat.hp}</p>
+          <div className="just-color-white">
+            <p>Classe : {stat.class}</p>
+            <p>XP : {stat.xp}</p>
+            <p>HP : {stat.hp}</p>
+          </div>
           <img
             src={`media/skin/${skin}.png`}
             className="position-absolute"

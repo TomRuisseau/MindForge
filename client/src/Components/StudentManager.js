@@ -79,7 +79,7 @@ const StudentManager = (props) => {
           <div className="m-3 d-flex flex-column h-100 justify-content-between">
             <motion.button
               whileHover={{ scale: 1.05 }}
-              className="mt-5 btn-act-students"
+              className="mt-5 btn-act-students-classique"
               onClick={() => setPopUp("addTeam")}
             >
               Ajouter une équipe
@@ -87,7 +87,7 @@ const StudentManager = (props) => {
 
             <motion.button
               whileHover={{ scale: 1.05 }}
-              className="btn-act-students mt-10"
+              className="btn-act-students-classique mt-5"
               onClick={() => setPopUp("addStudent")}
             >
               Ajouter un élève
@@ -99,7 +99,7 @@ const StudentManager = (props) => {
             {student === 0 ? null : (
               <motion.button
                 whileHover={{ scale: 1.05 }}
-                className="btn-act-students mt-5"
+                className="btn-act-students-new mt-5"
                 onClick={() => setPopUp("removeHp")}
               >
                 Retirer des HP à l'élève sélectionné
@@ -108,7 +108,7 @@ const StudentManager = (props) => {
             {student === 0 ? null : (
               <motion.button
                 whileHover={{ scale: 1.05 }}
-                className="btn-act-students mt-10"
+                className="btn-act-students-new mt-5"
                 onClick={() => setPopUp("removeXp")}
               >
                 Ajouter de l'XP à l'élève sélectionné
