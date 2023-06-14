@@ -37,7 +37,7 @@
     width: 600px;
     height: 120px;
     background: linear-gradient(transparent, #ffcc00,#ffcc00,#ffcc00, transparent);
-    animation: animate 4s linear infinite;
+    animation: animate 10s linear infinite;
   }
 
   @keyframes animate{
