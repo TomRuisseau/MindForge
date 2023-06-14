@@ -28,7 +28,6 @@ function StudentProfile(props) {
 
     useEffect(() => {
         if (!isMountedRef.current) {
-            alert("useEffect");
             isMountedRef.current = true;
             axios
                 .post("http://localhost:5000/getSkin", { id: props.data[0].id })
