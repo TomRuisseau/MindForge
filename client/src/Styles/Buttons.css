@@ -1,7 +1,14 @@
 .btn-act-students{
-    background-color: #89987a;
+    
     border-radius: 30px;
-    border: none;
+    
     height: 50px;
     color: white;
+/* From https://css.glass */
+background: rgba(158, 194, 147, 0.41);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(7.9px);
+-webkit-backdrop-filter: blur(7.9px);
+border: 1px solid rgba(158, 194, 147, 0.38);
 }
