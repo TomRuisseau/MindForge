@@ -9,6 +9,7 @@ const { SpellsCosts } = require("./modules/spells.js");
 const { functions } = require("./modules/addRemFunctions.js");
 const { setPostLogin } = require("./routes/loggers.js");
 const { setPostManagers } = require("./routes/teamStudentManagers.js");
+const { setPostStudentsGetters } = require("./routes/studentsGetters.js")
 
 addXp = functions.addXp;
 addXpWithoutSend = functions.addXpWithoutSend;
@@ -41,6 +42,7 @@ const pool = mysql.createPool({
 
 setPostLogin(app, pool, classMap);
 setPostManagers(app, pool, classMap);
+setPostStudentsGetters(app, pool);
 
 
 app.get("/", (req, res) => {
@@ -59,86 +61,6 @@ app.post("/getTeamSize", (req, res) => {
       "SELECT COUNT(*) AS size FROM student WHERE team = '" +
       req.body.team +
       "'",
-      function (err, result, fields) {
-        if (err) throw err;
-        res.send(result);
-      }
-    );
-  });
-});
-
-
-
-//get all teams of a teacher ordered by team
-app.post("/getStudents", (req, res) => {
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT * FROM student WHERE teacher_email = '" +
-      req.body.email +
-      "' ORDER BY team",
-      function (err, result, fields) {
-        if (err) throw err;
-        res.send(result);
-      }
-    );
-  });
-});
-
-//get a random student of a teacher 
-app.post("/getRandomStudent", (req, res) => {
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT * FROM student WHERE teacher_email = '" +
-      req.body.id +
-      "'",
-      function (err, result, fields) {
-        if (err) throw err;
-        let length = result.length;
-        let random = Math.floor(Math.random() * (length - 1));
-        console.log(result[random]);
-        res.send(result[random]);
-      }
-    );
-  });
-});
-
-
-//get all students of a team
-app.post("/getStudentsTeam", (req, res) => {
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT * FROM student WHERE team = '" + req.body.team + "'",
-      function (err, result, fields) {
-        if (err) throw err;
-        res.send(result);
-      }
-    );
-  });
-});
-
-//get all student of a team except one 
-app.post("/getStudentsTeamExcept", (req, res) => {
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT * FROM student WHERE team = '" +
-      req.body.team +
-      "' AND id != '" +
-      req.body.id +
-      "'",
-      function (err, result, fields) {
-        if (err) throw err;
-        res.send(result);
-      }
-    );
-  });
-});
-
-//get a specific student
-app.post("/getStudent", (req, res) => {
-  //todo : send the skin too
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT * FROM student WHERE id = '" + req.body.id + "'",
       function (err, result, fields) {
         if (err) throw err;
         res.send(result);
