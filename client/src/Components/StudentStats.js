@@ -30,22 +30,42 @@ function StudentStats(props) {
   return (
     <div className="hug w-50 m-4 px-3 py-2 rounded glass1">
       {studentStats.map((stat) => (
-        <div key={stat.id}>
-          <div className="just-color-yellow d-flex flex-row justify-content-between">
+        <div key={stat.id} className="h-100">
+          <div className="m-3 just-color-yellow d-flex flex-row justify-content-between">
             <h3>
               {stat.first_name} {stat.surname}
             </h3>
             <h3>Equipe : {stat.team}</h3>
           </div>
-          <div className="just-color-white">
-            <p>Classe : {stat.class}</p>
-            <p>XP : {stat.xp}</p>
-            <p>HP : {stat.hp}</p>
+          <div className="h-50 m-5 d-flex just-color-white flex-column justify-content-between">
+            <h4>Classe : {stat.class}</h4>
+            <div className="h-25 w-25 d-flex align-items-center">
+              <img
+                src={"media/logos/etoile.png"}
+                style={{ width: "50px", height: "auto" }}
+              />
+              <p className="mx-3 mb-0 text-warning">{stat.xp}</p>
+            </div>
+            <div className="h-25 w-25 d-flex align-items-center">
+              <img
+                src={"media/logos/coeur.png"}
+                style={{ width: "50px", height: "auto" }}
+              />
+              <p className="mx-3 mb-0 just-color-dark-red">{stat.hp}</p>
+            </div>
+            <div className="h-25 w-25 d-flex align-items-center">
+              <img
+                src={"media/logos/mana.png"}
+                style={{ width: "50px", height: "auto" }}
+              />
+              <p className="mx-3 mb-0 just-color-blue">{stat.mana}</p>
+            </div>
           </div>
           <img
             src={`media/skin/${skin}.png`}
             className="position-absolute"
             style={{ bottom: "0%", right: "-10%", width: "75%" }}
+            alt="Skin"
           />
         </div>
       ))}
