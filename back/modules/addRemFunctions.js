@@ -91,7 +91,7 @@ function removeMana(connectionPool, id, mana) {
 }
 
 
-function addMana(connectionPool, id, mana) {
+function addMana(connectionPool, id, mana, classMap) {
     connectionPool.getConnection(function (err, connection) {
         connection.query(
             "SELECT mana, class FROM student WHERE id = '" + id + "'",
@@ -114,7 +114,7 @@ function addMana(connectionPool, id, mana) {
     });
 }
 
-function addHp(connectionPool, id, hp) {
+function addHp(connectionPool, id, hp, classMap) {
     connectionPool.getConnection(function (err, connection) {
         connection.query(
             "SELECT hp, class FROM student WHERE id = '" + id + "'",

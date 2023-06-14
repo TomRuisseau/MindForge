@@ -11,6 +11,7 @@ const { setPostLogin } = require("./routes/loggers.js");
 const { setPostManagers } = require("./routes/teamStudentManagers.js");
 const { setPostStudentsGetters } = require("./routes/studentsGetters.js")
 const { setPostInfosGetters } = require("./routes/infosGetter.js");
+const { setPostQuests } = require("./routes/questsManager.js");
 
 addXp = functions.addXp;
 addXpWithoutSend = functions.addXpWithoutSend;
@@ -45,6 +46,7 @@ setPostLogin(app, pool, classMap);
 setPostManagers(app, pool, classMap);
 setPostStudentsGetters(app, pool);
 setPostInfosGetters(app, pool, classMap, SpellsCosts);
+setPostQuests(app, pool, addXp);
 
 
 app.get("/", (req, res) => {
@@ -99,150 +101,11 @@ app.post("/giveXp", (req, res) => {
 
 app.post("/giveMana", (req, res) => {
   //receive id and mana
-  addMana(pool, req.body.id, req.body.mana);
+  addMana(pool, req.body.id, req.body.mana, classMap);
   res.send("0");
 });
 
-//add quest
-app.post("/addQuest", (req, res) => {
-  //receive id and quest
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "INSERT INTO quest(id, teacher_email, reward, description) VALUES ('" +
-      new Date().getTime() +
-      "', '" +
-      req.body.email +
-      "', '" +
-      req.body.reward +
-      "', '" +
-      req.body.description +
-      "')",
-      function (err, result, fields) {
-        if (err) throw err;
-        res.send("0");
-      }
-    );
-  });
-});
 
-
-//get all quests of a teacher
-app.post("/getQuests", (req, res) => {
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT * FROM quest WHERE teacher_email = '" + req.body.email + "'",
-      function (err, result, fields) {
-        if (err) {
-          console.error(err);
-          res.status(500).send("Error retrieving quests");
-          return;
-        }
-
-        const quests = result;
-
-        // Helper function to get the number of completed quests for a specific quest
-        const getCompletedQuestsCount = (quest) => {
-          return new Promise((resolve, reject) => {
-            connection.query(
-              "SELECT COUNT(*) AS number FROM completed_quest WHERE quest_id = '" + quest.id + "'",
-              function (err, result, fields) {
-                if (err) {
-                  reject(err);
-                  return;
-                }
-                resolve(result[0].number);
-              }
-            );
-          });
-        };
-
-        // Array to store the promises for each quest's completed count
-        const promises = quests.map((quest) => getCompletedQuestsCount(quest));
-
-        // Wait for all promises to resolve
-        Promise.all(promises)
-          .then((completedCounts) => {
-            // Assign the completed counts to the respective quests
-            quests.forEach((quest, index) => {
-              quest.nbCompleted = completedCounts[index];
-            });
-
-            res.send(quests);
-          })
-          .catch((err) => {
-            console.error(err);
-            res.status(500).send("Error retrieving quests");
-          })
-          .finally(() => {
-            connection.release();
-          });
-      }
-    );
-  });
-});
-
-
-//get completed quests of a student
-app.post("/getCompletedQuests", (req, res) => {
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT quest.* FROM quest, completed_quest WHERE teacher_email = '"
-      + req.body.email +
-      "' AND completed_quest.student_id = '" +
-      req.body.id +
-      "' AND completed_quest.quest_id = quest.id",
-      function (err, result, fields) {
-        if (err) throw err;
-        res.send(result);
-      }
-    );
-  });
-});
-
-
-//delete a quest
-app.post("/deleteQuest", (req, res) => {
-  //receive id
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "DELETE FROM quest WHERE id = '" + req.body.id + "'",
-      function (err, result, fields) {
-        if (err) throw err;
-        connection.query(
-          "DELETE FROM completed_quest WHERE quest_id = '" + req.body.id + "'",
-          function (err, result, fields) {
-            if (err) throw err;
-            res.send("0");
-          }
-        );
-      }
-    );
-  });
-});
-
-//validate a quest
-app.post("/questValidation", (req, res) => {
-  //receive id
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "INSERT INTO completed_quest(student_id, quest_id) VALUES ('" +
-      req.body.student_id +
-      "', '" +
-      req.body.quest_id +
-      "')",
-      function (err, result, fields) {
-        if (err) throw err;
-        connection.query(
-          "SELECT reward FROM quest WHERE id = '" + req.body.quest_id + "'",
-          function (err, result, fields) {
-            if (err) throw err;
-            addXp(pool, req.body.student_id, result[0].reward, res);
-          }
-        );
-      }
-    );
-  });
-});
 
 
 app.post("/getSkinsShop", (req, res) => {
@@ -433,7 +296,7 @@ app.post("/useAuraMagique", (req, res) => {
       function (err, result, fields) {
         if (err) throw err;
         result.forEach((student) => {
-          addMana(pool, student.id, 2);
+          addMana(pool, student.id, 2, classMap);
         });
         removeMana(pool, req.body.id, (SpellsCosts.get("aura_magique")));
         addXp(pool, req.body.id, SpellsCosts.get("aura_magique"), res);
@@ -445,7 +308,7 @@ app.post("/useAuraMagique", (req, res) => {
 app.post("/usePremiersSoins", (req, res) => {
   //receive id and target 
   console.log("début premiers soins");
-  addHp(pool, req.body.target, 3);
+  addHp(pool, req.body.target, 3, classMap);
   removeMana(pool, req.body.id, SpellsCosts.get("premiers_soins"));
   addXp(pool, req.body.id, SpellsCosts.get("premiers_soins"), res);
   console.log("fin premiers soins");
@@ -453,14 +316,14 @@ app.post("/usePremiersSoins", (req, res) => {
 
 app.post("/useApaisementMajeur", (req, res) => {
   //receive id and target 
-  addHp(pool, req.body.target, 10);
+  addHp(pool, req.body.target, 10, classMap);
   removeMana(pool, req.body.id, SpellsCosts.get("apaisement_majeur"));
   addXp(pool, req.body.id, SpellsCosts.get("apaisement_majeur"), res);
 });
 
 app.post("/useImpositionDesMains", (req, res) => {
   //receive id and target
-  addHp(pool, req.body.target, 10);
+  addHp(pool, req.body.target, 10, classMap);
   removeMana(pool, req.body.id, SpellsCosts.get("imposition_des_mains"));
   removeHp(pool, req.body.id, 5);
   addXp(pool, req.body.id, SpellsCosts.get("imposition_des_mains"), res);
@@ -475,14 +338,14 @@ app.post("/useRevivification", (req, res) => {
 app.post("/usePurification", (req, res) => {
   //receive id
   removeMana(pool, req.body.id, SpellsCosts.get("purification"));
-  addHp(pool, req.body.id, 2);
+  addHp(pool, req.body.id, 2, classMap);
   res.send("0");
 });
 
 app.post("/useVagueDeMana", (req, res) => {
   //receive id and target
   removeMana(pool, req.body.id, SpellsCosts.get("vague_de_mana"));
-  addMana(pool, req.body.target, 5000);
+  addMana(pool, req.body.target, 5000, classMap);
   addXp(pool, req.body.id, SpellsCosts.get("vague_de_mana"), res);
 });
 
@@ -496,7 +359,7 @@ app.post("/useSoinDeMasse", (req, res) => {
       function (err, result, fields) {
         if (err) throw err;
         result.forEach((student) => {
-          addHp(pool, student.id, 2);
+          addHp(pool, student.id, 2, classMap);
         });
         removeMana(pool, req.body.id, SpellsCosts.get("soin_de_masse"));
         console.log("fin soin de masse");
