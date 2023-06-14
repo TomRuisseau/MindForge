@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'hug';
+    src: url("../Fonts/TheStudentsTeacher-Regular.ttf");
+}
+
+.lignes-tab{
+    color: #ffffff;
+    font-family: 'hug'; 
+}
+
+.taille-lignes-tab{
+    font-size: 25px;
+}
+
+.classe-sup{
+    color: #232826;
+    font-family: 'hug';
+    background-color: #fdfdfb;
+}
