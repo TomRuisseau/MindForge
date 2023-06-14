@@ -88,7 +88,6 @@ const StudentManager = (props) => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               className="btn-act-students mt-10"
-              style={{ backgroundColor: "#7C80FC" }}
               onClick={() => setPopUp("addStudent")}
             >
               Ajouter un élève
@@ -101,7 +100,6 @@ const StudentManager = (props) => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 className="btn-act-students mt-5"
-                style={{ backgroundColor: "#7C80FC" }}
                 onClick={() => setPopUp("removeHp")}
               >
                 Retirer des HP à l'élève sélectionné
@@ -111,7 +109,6 @@ const StudentManager = (props) => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 className="btn-act-students mt-10"
-                style={{ backgroundColor: "#7C80FC" }}
                 onClick={() => setPopUp("removeXp")}
               >
                 Ajouter de l'XP à l'élève sélectionné

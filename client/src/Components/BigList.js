@@ -3,6 +3,7 @@ import axios from "axios";
 import React from "react";
 import { forwardRef, useImperativeHandle } from "react";
 import "../Styles/Scroll.css";
+import "../Styles/Glass.css";
 
 const BigList = forwardRef((props, ref) => {
   //state
@@ -49,12 +50,10 @@ const BigList = forwardRef((props, ref) => {
   //affichage (render)
   return (
     <div
-      className="w-50 m-4 px-3 py-2 rounded custom-scrollbar"
+      className="glass1 w-50 m-4 px-3 py-2 rounded custom-scrollbar"
       style={{
         height: "75vh",
         overflow: "auto",
-        border: "solid 3px",
-        borderColor: "#7C80FC",
       }}
     >
       {Array.from(
@@ -68,8 +67,8 @@ const BigList = forwardRef((props, ref) => {
         }, new Map())
       ).map(([team, members]) => (
         <React.Fragment key={team}>
-          <h3 style={{ color: "#7C80FC" }}>{team}</h3>
-          <table className="mb-5" style={{ color: "#7C80FC" }}>
+          <h3>{team}</h3>
+          <table className="mb-5">
             <tbody>
               {members.map((student) => (
                 <tr
