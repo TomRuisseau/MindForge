@@ -51,20 +51,24 @@ function StudentStats(props) {
                 src={"media/logos/coeur.png"}
                 style={{ width: "50px", height: "auto" }}
               />
-              <p className="mx-3 mb-0 just-color-dark-red size-digits">{stat.hp}</p>
+              <p className="mx-3 mb-0 just-color-dark-red size-digits">
+                {stat.hp}
+              </p>
             </div>
             <div className="h-25 w-25 d-flex align-items-center">
               <img
                 src={"media/logos/mana.png"}
                 style={{ width: "50px", height: "auto" }}
               />
-              <p className="mx-3 mb-0 just-color-blue size-digits">{stat.mana}</p>
+              <p className="mx-3 mb-0 just-color-blue size-digits">
+                {stat.mana}
+              </p>
             </div>
           </div>
           <img
             src={`media/skin/${skin}.png`}
             className="position-absolute"
-            style={{ bottom: "0%", right: "-10%", width: "75%" }}
+            style={{ bottom: "-5%", right: "-2%", width: "75%" }}
             alt="Skin"
           />
         </div>
