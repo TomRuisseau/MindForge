@@ -6,6 +6,8 @@ import Quests from "./Quests";
 import DailyRand from "./DailyRand";
 import "../Styles/teacherDashboard.css";
 import TeacherQuiz from "./TeacherQuiz";
+import "../Styles/animations.css";
+import { motion } from "framer-motion";
 
 function TeacherDashboard(props) {
   const [page, setPage] = useState("TeacherMenu"); // TeacherMenu, StudentManager, quests, quiz, dailyEvent, tutorial, settings
@@ -20,12 +22,19 @@ function TeacherDashboard(props) {
       <TeacherDrawer ref={childRef} onChoice={switchPage} />
       <div className="row m-0 w-100 h-100">
         <div className="col h-100 p-0">
-          <button
+          <motion.div
+            whileHover={{
+              scale: 1.4,
+              originX: 0,
+              cursor: "pointer",
+            }}
+            className="position-absolute m-3"
             onClick={() => childRef.current.toggleDrawerOutside()}
-            className="btn btn-gauche btn-primary position-absolute top-0 start-0"
           >
-            Menu
-          </button>
+            <div className="menu-animation"></div>
+            <div className="menu-animation"></div>
+            <div className="menu-animation"></div>
+          </motion.div>
           {page === "TeacherMenu" ? (
             <TeacherMenu id={props.id} />
           ) : page === "TeacherQuiz" ? (

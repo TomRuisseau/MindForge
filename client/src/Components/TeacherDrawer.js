@@ -27,7 +27,7 @@ const TeacherDrawer = forwardRef((props, ref) => {
         onClose={toggleDrawer}
         direction="left"
         className="drawer"
-        style={{ backgroundColor: "#EB9F04", color: "white" }}
+        style={{ backgroundColor: "#ebbd3f", color: "white" }}
         size={300}
       >
         <div className="h-75 mt-5 drawerTeacher d-flex flex-column justify-content-between">
