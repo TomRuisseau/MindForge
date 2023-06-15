@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import SmallList from "./SmallList.js";
 import "../Styles/Scroll.css";
+import "../Styles/Glass.css";
+import "../Styles/Textes.css";
 
 function Quests(props) {
-  //state
+  // state
   const [description, setDescription] = useState("");
   const [reward, setReward] = useState(0);
   const [counter, setCounter] = useState(0); // pour forcer le rechargement de la page quand on ajoute une quête
   const [quests, setQuests] = useState([]); // liste des quêtes
   const [selectedQuest, setSelectedQuest] = useState(0); // quête sélectionnée
 
-  //comportement
+  // comportement
   useEffect(() => {
     axios
       .post("http://localhost:5000/getQuests", { email: props.id })
@@ -72,78 +75,86 @@ function Quests(props) {
       });
   };
 
-  //affichage
+  // affichage
   return (
-    <div className="row w-75">
-      <div
-        className="col m-5 custom-scrollbar"
-        style={{ height: "85vh", overflow: "auto" }}
-      >
-        <h2 className="text-center">Liste de quêtes</h2>
-        <table className="table table-striped text-white">
-          <thead>
-            <tr>
-              <th scope="col">Description</th>
-              <th scope="col">Récompense</th>
-              <th scope="col">Terminée par </th>
-            </tr>
-          </thead>
-          <tbody>
-            {quests.map((quest) => {
-              return (
-                <tr
-                  key={quest.id}
-                  onClick={select}
-                  data-key={quest.id}
-                  className={quest.bg}
-                >
-                  <td className="text-white">{quest.description}</td>
-                  <td className="text-white">{quest.reward}</td>
-                  <td className="text-white">
-                    {quest.nbCompleted + " étudiants"}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      <div className="col-4 m-5">
-        <h2>Ajouter une quête : </h2>
-        <form onSubmit={handleSubmit} className="d-flex flex-column">
-          <label htmlFor="text" className="mt-3">
-            Description :
-          </label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            type="text"
-            className="form-control"
-            placeholder="Faire l'exercice 1 page 12"
-            id="description"
-            name="description"
-            required
-          />
-          <label htmlFor="number" className="mt-3">
-            Nombre de points d'XP à gagner :
-          </label>
-          <input
-            value={reward}
-            onChange={(e) => setReward(e.target.value)}
-            type="number"
-            className="form-control"
-            placeholder="0"
-            id="xp"
-            name="xp"
-            required
-          />
-          <button type="submit" className="btn btn-success mt-3">
-            Valider
+    <div
+      className="w-100 d-flex align-items-center justify-content-center"
+      style={{ height: "100vh" }}
+    >
+      <div className="w-100 d-flex flex-row align-items-center justify-content-between">
+        <div
+          className="p-3 m-5 glass1 hug custom-scrollbar box-size"
+          style={{width:"40vw", overflow: "auto" }}
+        >
+          <h2 className="text-center just-color-yellow m-3 mb-5">
+            Liste de quêtes
+          </h2>
+          <table className="table table-striped text-white">
+            <thead>
+              <tr>
+                <th scope="col">Description</th>
+                <th scope="col">Récompense</th>
+                <th scope="col">Terminée par </th>
+              </tr>
+            </thead>
+            <tbody>
+              {quests.map((quest) => {
+                return (
+                  <tr
+                    key={quest.id}
+                    onClick={select}
+                    data-key={quest.id}
+                    className={quest.bg}
+                  >
+                    <td className="text-white">{quest.description}</td>
+                    <td className="text-white">{quest.reward}</td>
+                    <td className="text-white">
+                      {quest.nbCompleted + " étudiants"}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <div className="glass1 p-4 hug">
+          <h2 className="just-color-yellow">Ajouter une quête :</h2>
+          <form onSubmit={handleSubmit} className="d-flex flex-column justify-content-between just-color-white">
+            <label htmlFor="text" className="mt-3">
+              Description:
+            </label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              type="text"
+              className="form-control"
+              placeholder="Faire l'exercice 1 page 12"
+              id="description"
+              name="description"
+              required
+            />
+            <label htmlFor="number" className="mt-3">
+              Nombre de points d'XP à gagner :
+            </label>
+            <input
+              value={reward}
+              onChange={(e) => setReward(e.target.value)}
+              type="number"
+              className="form-control"
+              placeholder="0"
+              id="xp"
+              name="xp"
+              required
+            />
+            <button type="submit" className="btn btn-success mt-3">
+              Valider
+            </button>
+          </form>
+          <button onClick={deleteQuest} className="btn btn-danger mt-5">
+            Supprimer la quête sélectionnée
           </button>
-        </form>
-        <button onClick={deleteQuest} className="btn btn-danger mt-5">
-          Supprimer la quête sélectionnée
-        </button>
+        </div>
+        <SmallList id={props.id} />
       </div>
     </div>
   );

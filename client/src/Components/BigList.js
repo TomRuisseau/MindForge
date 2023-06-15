@@ -51,9 +51,8 @@ const BigList = forwardRef((props, ref) => {
   //affichage (render)
   return (
     <div
-      className="glass1 w-50 m-4 p-4 rounded custom-scrollbar"
+      className="glass1 w-50 m-4 p-4 rounded custom-scrollbar box-size"
       style={{
-        height: "75vh",
         overflow: "auto",
       }}
     >

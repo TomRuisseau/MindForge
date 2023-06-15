@@ -48,6 +48,10 @@
     font-size: 2vh;
 }
 
+.box-size{
+    height:80vh;
+}
+
 .classe-sup{
     color: #232826;
     font-family: 'hug';
