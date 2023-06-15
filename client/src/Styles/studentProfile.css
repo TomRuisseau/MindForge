@@ -87,23 +87,8 @@
   }
 
 
-  .lol-image {
-    display: block;
-    width: 200px; /* Largeur de l'image */
-    height: auto; /* Hauteur automatique pour préserver les proportions */
-    border-radius: 50%; /* Transformer l'image en un cercle */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); /* Ombre portée */
-    filter: grayscale(100%); /* Convertir l'image en noir et blanc */
-    transition: all 0.3s ease; /* Animation de transition pour les effets */
 
-  }
 
-  .lol-image:hover{
-    filter: grayscale(0%); /* Restaurer les couleurs d'origine au survol */
-    transform: scale(1.1); /* Effectuer un léger zoom au survol */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8); /* Renforcer l'ombre portée au survol */
-    background-color: gray;
-  }
   
 .col-skins{
 
@@ -111,13 +96,6 @@
   align-items: center;
 
 }
-
-
-
-  /* Effet de survol */
-  .lol-image:hover {
-    transform: scale(1.1); /* Agrandissement de l'image */
-  }
 
 
 
@@ -139,13 +117,85 @@
     flex: 1;
     top: 50px;
     margin-left: 30px;
+    width: 400px;
+    height: 400px;
+    background: #000;
+    border-radius: 50%;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: relative;
 }
 
+.col-skin::before{
+  content: '';
+  position: absolute;
+  inset: -10px 140px;
+  background: #ffcc00;
+  transition: 0.5s;
+  animation: animate2 10s linear infinite;
+
+}
+
+@keyframes animate2 {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+  
+}
+
+.col-skin:hover::before{
+  inset: -20px 0px;  
+}
+
+.col-skin::after{
+  content:'';
+  position: absolute;
+  inset: 6px;
+  background: black;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.content-col-skin{
+  position: absolute;
+  inset: 30px;
+  border: 6px solid #ffcc00;
+  z-index: 3;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #ffcc00;
+}
+
+.content-col-skin h3{
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.content-col-skin:hover h3{
+  opacity: 1;
+}
 
 .col-skin img{
-    max-width: 80%;
-    height: auto;
-    left: 50%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.col-skin:hover .content-col-skin img{
+  opacity: 0;
 }
 
 
