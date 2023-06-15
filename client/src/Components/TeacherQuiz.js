@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import QuizAleatoire from "./QuizAleatoire";
+import "../Styles/Glass.css";
+import "../Styles/Textes.css";
+import "../Styles/Buttons.css";
 
 const TeacherQuiz = (props) => {
   const [students, setStudents] = useState([]);
@@ -40,7 +43,7 @@ const TeacherQuiz = (props) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // prevent page reload
+    e.preventDefault(); // empêche le rechargement de la page
     if (selectedStudent === null) {
       alert("Veuillez sélectionner un élève !");
     }
@@ -59,14 +62,15 @@ const TeacherQuiz = (props) => {
   };
 
   return (
-    <div className="m-3 text-white">
-      <h2 className="text-center">
-        QUIZ : Sélectionnez l'élève qui gagne de l'XP
-      </h2>
-
-      <div className="d-flex flex-row justify-content-between m-5">
+    <div className="w-100 just-color-white hug d-flex flex-column align-items-center">
+      <div className="h-25 m-2 w-50 glass2 just-color-yellow pt-3">
+        <h2 className="text-center">
+          QUIZ : Sélectionnez l'élève qui gagne de l'XP
+        </h2>
+      </div>
+      <div className="w-100 d-flex flex-row justify-content-between m-5">
         <div
-          className="text-center border border-white rounded d-flex flex-column align-items-center"
+          className="m-4 text-center glass1 d-flex flex-column align-items-center"
           style={{ width: "35%" }}
         >
           <h4 className="m-4 text-nowrap">
