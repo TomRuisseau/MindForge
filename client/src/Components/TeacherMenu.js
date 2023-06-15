@@ -1,7 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
-import Clock from "react-clock";
+import Clock from "react-live-clock";
 import axios from "axios";
+import SmallList from "./SmallList";
 import "react-clock/dist/Clock.css";
+import "../Styles/Glass.css";
+import "../Styles/Textes.css";
+import "../Styles/Scroll.css";
 
 function TeacherMenu(props) {
   const [value, setValue] = useState(new Date());
@@ -50,19 +54,19 @@ function TeacherMenu(props) {
   }, []);
 
   return (
-    <>
-      <div className="row">
-        <div className="col-4">
+    <div className="d-flex align-items-center justify-content-between h-100">
+      <div className="d-flex flex-column align-items-center">
+        <div
+          className="clock-glass text-center hug just-color-yellow h-25 pt-3"
+        >
+          <h1>
+            <Clock format="HH:mm:ss" interval={1000} ticking={true} />
+          </h1>
+        </div>
+        <div className="glass1 m-5">
+          <h2 className="text-center just-color-yellow m-3">Liste de quêtes</h2>
           <div
-            className="bg-white rounded-circle m-5"
-            style={{ width: "200px" }}
-          >
-            <Clock value={value} size={200} />
-          </div>
-
-          <h2 className="text-center">Liste de quêtes</h2>
-          <div
-            className="m-1 custom-scrollbar"
+            className="m-2 custom-scrollbar"
             style={{ height: "50vh", overflow: "auto" }}
           >
             <table className="table table-striped text-white">
@@ -89,20 +93,25 @@ function TeacherMenu(props) {
             </table>
           </div>
         </div>
-        <div className="col-5">
-          <h1 className="text-center">Student of the day</h1>
-          <h2 className="text-center">
+      </div>
+      <div className="h-75 hug just-color-white d-flex flex-column justify-content-center">
+        <div className="glass2">
+          <h2 className="text-center m-3 just-color-yellow">
+            Élève mis à l'honneur :
+          </h2>
+          <h3 className="text-center m-3">
             {student.first_name +
               " " +
               student.surname +
               " : " +
               student.xp +
               " xp"}
-          </h2>
-          <img src={`media/skin/${skin}.png`}></img>
+          </h3>
         </div>
+        <img className="h-100" src={`media/skin/${skin}.png`}></img>
       </div>
-    </>
+      <SmallList id={props.id} />
+    </div>
   );
 }
 

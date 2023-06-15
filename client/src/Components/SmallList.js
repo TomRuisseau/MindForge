@@ -24,7 +24,7 @@ const SmallList = (props) => {
 
   return (
     <div
-      className="glass1 hug rounded custom-scrollbar"
+      className="glass1 hug rounded custom-scrollbar m-5"
       style={{
         width: "20%",
         height: "80vh",
