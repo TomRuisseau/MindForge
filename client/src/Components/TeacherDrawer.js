@@ -38,6 +38,7 @@ const TeacherDrawer = forwardRef((props, ref) => {
               originX: 0,
               cursor: "pointer",
             }}
+            whileTap={{ scale: 1.1 }}
             onClick={() => {
               toggleDrawer();
               props.onChoice("TeacherMenu");
@@ -52,6 +53,7 @@ const TeacherDrawer = forwardRef((props, ref) => {
               originX: 0,
               cursor: "pointer",
             }}
+            whileTap={{ scale: 1.1 }}
             onClick={() => {
               toggleDrawer();
               props.onChoice("StudentManager");
@@ -66,6 +68,7 @@ const TeacherDrawer = forwardRef((props, ref) => {
               originX: 0,
               cursor: "pointer",
             }}
+            whileTap={{ scale: 1.1 }}
             onClick={() => {
               toggleDrawer();
               props.onChoice("Quests");
@@ -80,6 +83,7 @@ const TeacherDrawer = forwardRef((props, ref) => {
               originX: 0,
               cursor: "pointer",
             }}
+            whileTap={{ scale: 1.1 }}
             onClick={() => {
               toggleDrawer();
               props.onChoice("TeacherQuiz");
@@ -94,6 +98,7 @@ const TeacherDrawer = forwardRef((props, ref) => {
               originX: 0,
               cursor: "pointer",
             }}
+            whileTap={{ scale: 1.1 }}
             onClick={() => {
               toggleDrawer();
               props.onChoice("DailyRand");
@@ -108,6 +113,7 @@ const TeacherDrawer = forwardRef((props, ref) => {
               originX: 0,
               cursor: "pointer",
             }}
+            whileTap={{ scale: 1.1 }}
             onClick={toggleDrawer}
           >
             Tutoriel
@@ -119,6 +125,7 @@ const TeacherDrawer = forwardRef((props, ref) => {
               originX: 0,
               cursor: "pointer",
             }}
+            whileTap={{ scale: 1.1 }}
             onClick={toggleDrawer}
           >
             Paramètres

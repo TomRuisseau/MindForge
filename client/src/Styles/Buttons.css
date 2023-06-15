@@ -71,7 +71,7 @@ border: 1px solid rgba(11, 77, 175, 0.3);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(1.9px);
     -webkit-backdrop-filter: blur(1.9px);
-    border: 1px solid rgba(255, 196, 0, 0.3);
+    border: 1px solid rgba(255, 196, 0, 0.197);
 }
 
 .btn-quetes-supp{

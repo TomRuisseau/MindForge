@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import "../Styles/Textes.css";
+import "../Styles/Buttons.css";
+import { motion } from "framer-motion";
 
 const QuizAleatoire = () => {
   const [questions, setQuestions] = useState([]);
@@ -30,30 +33,43 @@ const QuizAleatoire = () => {
   };
 
   return (
-    <div className="d-flex flex-column">
-      <div>
-        <button onClick={generateQuestion} className="btn btn-warning my-2">
+    <div className="h-100 w-100 d-flex flex-column align-items-center just-color-white">
+      <div className="w-50">
+        <motion.button
+          whileHover={{
+            scale: 1.1,
+            cursor: "pointer",
+          }}
+          whileTap={{ scale: 1 }}
+          onClick={generateQuestion}
+          className="btn-quetes-valider just-color-white log-size my-5"
+        >
           Générer une question
-        </button>
+        </motion.button>
       </div>
       {currentQuestion && (
-        <div>
-          <h3 className="mt-3">Question :</h3>
-          <p className="mx-2 my-2">{currentQuestion.question}</p>
+        <div className="h-75 d-flex flex-column justify-content-between">
+          <h3 className="mt-3 just-color-yellow">Question :</h3>
+          <p className="mx-2 my-2 log-size">{currentQuestion.question}</p>
           {!showAnswer && (
             <div>
-              <button
+              <motion.button
+                whileHover={{
+                  scale: 1.1,
+                  cursor: "pointer",
+                }}
+                whileTap={{ scale: 1 }}
                 onClick={showQuestionAnswer}
-                className="btn btn-primary my-5"
+                className="btn-quetes-valider just-color-white log-size my-5"
               >
                 Afficher la réponse
-              </button>
+              </motion.button>
             </div>
           )}
           {showAnswer && (
             <div>
-              <h3 className="mt-5">Réponse :</h3>
-              <p className="mx-2 my-2">{currentQuestion.answer}</p>
+              <h3 className="my-4 just-color-yellow">Réponse :</h3>
+              <p className="mx-2 my-2 log-size">{currentQuestion.answer}</p>
             </div>
           )}
         </div>

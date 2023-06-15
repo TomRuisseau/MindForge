@@ -6,6 +6,16 @@
     font-size: 2vh;
 }
 
+.input-size{
+    height: 30px;
+    font-size: 20px;
+}
+
+.input-big-size{
+    height: 50px;
+    font-size: 30px;
+}
+
 .hug{
     font-family: 'hug'; 
 }

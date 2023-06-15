@@ -5,6 +5,7 @@ import "../Styles/Scroll.css";
 import "../Styles/Glass.css";
 import "../Styles/Textes.css";
 import "../Styles/Buttons.css";
+import { motion } from "framer-motion";
 
 function Quests(props) {
   // state
@@ -110,7 +111,7 @@ function Quests(props) {
                     <td className="text-white">{quest.description}</td>
                     <td className="text-white">{quest.reward}</td>
                     <td className="text-white">
-                      {quest.nbCompleted + " étudiants"}
+                      {quest.nbCompleted + " élève(s)"}
                     </td>
                   </tr>
                 );
@@ -154,19 +155,23 @@ function Quests(props) {
                 required
               />
             </div>
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 1 }}
               type="submit"
               className="btn-quetes-valider just-color-white log-size"
             >
               Valider
-            </button>
+            </motion.button>
           </form>
-          <button
+          <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 1 }}
             onClick={deleteQuest}
             className="btn-quetes-supp just-color-white log-size"
           >
             Supprimer la quête sélectionnée
-          </button>
+          </motion.button>
         </div>
         <SmallList id={props.id} />
       </div>

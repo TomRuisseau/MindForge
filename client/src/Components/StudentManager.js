@@ -79,6 +79,7 @@ const StudentManager = (props) => {
           <div className="m-3 d-flex flex-column h-100 justify-content-between">
             <motion.button
               whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 1 }}
               className="mt-5 btn-act-students-classique"
               onClick={() => setPopUp("addTeam")}
             >
@@ -87,6 +88,7 @@ const StudentManager = (props) => {
 
             <motion.button
               whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 1 }}
               className="btn-act-students-classique mt-5"
               onClick={() => setPopUp("addStudent")}
             >
@@ -99,6 +101,7 @@ const StudentManager = (props) => {
             {student === 0 ? null : (
               <motion.button
                 whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 1 }}
                 className="btn-act-students-new mt-5"
                 onClick={() => setPopUp("removeHp")}
               >
@@ -108,6 +111,7 @@ const StudentManager = (props) => {
             {student === 0 ? null : (
               <motion.button
                 whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 1 }}
                 className="btn-act-students-new mt-5"
                 onClick={() => setPopUp("removeXp")}
               >

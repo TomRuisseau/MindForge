@@ -84,7 +84,7 @@ function TeacherMenu(props) {
                       <td className="text-white">{quest.description}</td>
                       <td className="text-white">{quest.reward}</td>
                       <td className="text-white">
-                        {quest.nbCompleted + " étudiants"}
+                        {quest.nbCompleted + " élève(s)"}
                       </td>
                     </tr>
                   );
