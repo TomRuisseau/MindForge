@@ -93,7 +93,7 @@ function StudentProfile(props) {
                         <div className='col-skin'>
                             <div className='content-col-skin'>
                                 <img src={`media/skin/${skin}.png`} className='w-100 lol-image'></img>
-                                <h3>Coucou</h3>
+                                <h3>{props.data[0].class}</h3>
                             </div>
                         </div>
                     </div>
