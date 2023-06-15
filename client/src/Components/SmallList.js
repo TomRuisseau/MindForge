@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Styles/Scroll.css";
+import "../Styles/Glass.css";
+import "../Styles/Textes.css";
 
 const SmallList = (props) => {
   const [students, setStudents] = useState([]);
@@ -22,13 +24,10 @@ const SmallList = (props) => {
 
   return (
     <div
-      className="position-absolute border border-white rounded custom-scrollbar"
+      className="glass1 hug rounded custom-scrollbar"
       style={{
         width: "20%",
         height: "80vh",
-        right: "-5%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
         overflowY: "auto",
       }}
     >
@@ -43,18 +42,26 @@ const SmallList = (props) => {
         }, new Map())
       ).map(([team, members]) => (
         <React.Fragment key={team}>
-          <h2>{team}</h2>
-          <table className="mb-5">
-            <tbody>
-              {members.map((student) => (
-                <tr key={student.id}>
-                  <td className="mx-2 px-3">{student.surname}</td>
-                  <td className="mx-2 px-3">{student.first_name}</td>
-                  <td className="mx-2 px-3">{student.hp}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="mx-2 my-3">
+            <h2 className="just-color-yellow">{team}</h2>
+            <table className="mb-5">
+              <tbody>
+                {members.map((student) => (
+                  <tr key={student.id}>
+                    <td className="mx-2 px-3 just-color-white taille-lignes-tab">
+                      {(student.surname + " ").padEnd(9, ".")}
+                    </td>
+                    <td className="mx-2 px-3 just-color-white taille-lignes-tab">
+                      {(student.first_name + " ").padEnd(9, ".")}
+                    </td>
+                    <td className="mx-2 px-3 just-color-white text-center taille-lignes-tab">
+                      {student.hp}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </React.Fragment>
       ))}
     </div>

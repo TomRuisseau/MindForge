@@ -44,6 +44,10 @@
     color: #232826;
 }
 
+.size-digits{
+    font-size: 2vh;
+}
+
 .classe-sup{
     color: #232826;
     font-family: 'hug';
