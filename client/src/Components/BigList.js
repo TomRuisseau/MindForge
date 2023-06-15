@@ -68,7 +68,7 @@ const BigList = forwardRef((props, ref) => {
         }, new Map())
       ).map(([team, members]) => (
         <React.Fragment key={team}>
-          <h1 className="lignes-tab">{team}</h1>
+          <h3 className="hug team-name">{team}</h3>
           <table className="mb-5">
             <tbody>
               {members.map((student) => (
@@ -78,17 +78,15 @@ const BigList = forwardRef((props, ref) => {
                   onClick={() => changeBackground(student.id)}
                 >
                   <td
-                    className={`mx-5 px-5 lignes-tab taille-lignes-tab ${student.supclass}`}
+                    className={`px-5 hug taille-lignes-tab ${student.supclass}`}
                   >
-                    {student.surname}
+                    {(student.surname + " ").padEnd(20, ".")}
+                  </td>
+                  <td className={`hug taille-lignes-tab ${student.supclass}`}>
+                    {(student.first_name + " ").padEnd(20, ".")}
                   </td>
                   <td
-                    className={`mx-5 px-5 lignes-tab taille-lignes-tab ${student.supclass}`}
-                  >
-                    {student.first_name}
-                  </td>
-                  <td
-                    className={`mx-5 px-5 lignes-tab taille-lignes-tab ${student.supclass}`}
+                    className={`px-5 hug taille-lignes-tab ${student.supclass}`}
                   >
                     {student.id}
                   </td>

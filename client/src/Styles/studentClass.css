@@ -3,7 +3,8 @@
     top: 20%;
     left: 10%;
     width: 80%;
-    border: solid 1px orange;
+    border: solid 1px #7c80fc;
+    
     border-radius: 10px;
     padding: 10px;
     margin-top: 10px;
@@ -12,8 +13,14 @@
     margin-right: 10px;
   }
   
-  
-
+  .titre {
+    text-align: center; /* Centre le texte */
+    color: #7c80fc; 
+  }
+  .titre1 {
+    text-align: center;
+    color: #FEFEFF
+  }
 
 
 

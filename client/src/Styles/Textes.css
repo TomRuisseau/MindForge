@@ -1,19 +1,56 @@
 @font-face {
     font-family: 'hug';
-    src: url("../Fonts/TheStudentsTeacher-Regular.ttf");
+    src: url("../Fonts/Hermit-Regular.otf");
+}
+.log-size{
+    font-size: 2vh;
 }
 
-.lignes-tab{
-    color: #ffffff;
+.hug{
     font-family: 'hug'; 
 }
 
+.team-name{
+    font-family: 'hug';
+    color: #F5CB5C;
+}
+
 .taille-lignes-tab{
-    font-size: 25px;
+    font-size: 2vh;
+    color: #fdfdfb;
+}
+
+.just-color-white{
+    color: #fdfdfb;
+}
+
+.just-color-dark-red{
+    color: #77021D;
+}
+
+.just-color-dark-blue{
+    color: #0A1D37;
+}
+
+.just-color-blue{
+    color: #3f48cc;
+}
+
+.just-color-yellow{
+    color: #F5CB5C;
+}
+
+.just-color-black{
+    color: #232826;
+}
+
+.size-digits{
+    font-size: 2vh;
 }
 
 .classe-sup{
     color: #232826;
     font-family: 'hug';
-    background-color: #fdfdfb;
+    background-color: #ddad54
+;
 }

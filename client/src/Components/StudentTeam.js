@@ -41,7 +41,7 @@ function StudentTeam(props){
 
     return(
         <>
-            <div className='row row-team'>
+            <div className='row row-team1 row-team'>
                 <div className='col-2 col-team'></div>
                 <h1 className='col col-team'>Mon équipe</h1>
                 <div className='row row-team'>

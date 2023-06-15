@@ -19,16 +19,16 @@ const StudentClass = forwardRef((props,ref) => {
 
   return (
     <div className="tab-class position-absolute">
-      <h1>Ma classe</h1>
+      <h1 class="titre">Ma classe</h1>
       <table>
         <thead>
-          <tr>
-            <th>Prénom</th>
+          <tr  class="titre">
+            <th >Prénom</th>
             <th>HP</th>
             <th>ID</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody  class="titre1" >
           {students.map((student) => (
             <tr key={student.id}>
               <td>{student.first_name}</td>
