@@ -54,7 +54,7 @@ function Quests(props) {
     setSelectedQuest(key);
     const blankQuests = quests.map((quest) => {
       if (quest.id.toString() === key) {
-        quest.bg = "bg-primary";
+        quest.bg = "classe-sup";
       } else {
         quest.bg = "";
       }
@@ -165,8 +165,8 @@ function Quests(props) {
             </motion.button>
           </form>
           <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 1 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 1 }}
             onClick={deleteQuest}
             className="btn-quetes-supp just-color-white log-size"
           >
