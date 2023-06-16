@@ -6,6 +6,10 @@
   font-size: 2vh;
 }
 
+.clock-size {
+  font-size: 8vh;
+}
+
 .who-how-many-size {
   font-size: 3vh;
 }
@@ -70,4 +74,23 @@
   color: #232826;
   font-family: "hug";
   background-color: #ddad54;
+}
+
+.blinking-cursor {
+  animation: cursor-blink 1s infinite;
+  color: #f5cb5c;
+}
+
+@keyframes cursor-blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
