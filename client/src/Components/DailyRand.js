@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import SmallList from "./SmallList";
+import "../Styles/Glass.css";
+import "../Styles/Textes.css";
+import "../Styles/Buttons.css";
+import { motion } from "framer-motion";
 
 function DailyRand(props) {
   const options = [
@@ -118,107 +123,97 @@ function DailyRand(props) {
   }, [props.id]);
 
   return (
-    <div
-      className="text-white"
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-      }}
-    >
-      <div className="p-5 w-75 h-75 border border-danger rounded text-center d-flex flex-column justify-content-center">
+    <div className="h-100 text-white d-flex flex-row hug justify-content-between align-items-center">
+      <div className="box-size m-5 p-5 w-75 glass1 text-center d-flex flex-column justify-content-between align-items-center">
         <div>
           <button
             onClick={random}
-            className="btn btn-danger btn-lg"
-            style={{
-              marginBottom: "10%",
-              fontSize: "50px",
-              paddingTop: "50px",
-              paddingBottom: "50px",
-              paddingLeft: "100px",
-              paddingRight: "100px",
-            }}
+            className="btn-lancer-dailyRand just-color-white"
           >
-            Lancer
+            LANCER
           </button>
         </div>
-        <h3>{selectedOption}</h3>
-        <div className="d-flex flex-row text-center my-5 justify-content-between">
+        <h1>{selectedOption}</h1>
+        <div className="w-50 h-25 d-flex flex-row text-center my-5 justify-content-between">
           {selectedOption === "Quelqu'un va perdre des HP" ||
-            selectedOption === "Quelqu'un va gagner des XP" ||
-            selectedOption === "Quelqu'un va gagner du Mana" ||
-            selectedOption ===
+          selectedOption === "Quelqu'un va gagner des XP" ||
+          selectedOption === "Quelqu'un va gagner du Mana" ||
+          selectedOption ===
             "Quelqu'un sera dispensé de devoirs pour le prochain cours" ? (
-            <div>
-              <button
-                onClick={selectStudent}
-                className="btn btn-primary"
-                style={{ marginBottom: "10%", marginTop: "10%" }}
-              >
-                Qui donc ?
-              </button>
+            <div className="w-50 h-5O d-flex flex-column justify-content-between align-items-center">
+              <div className="w-100 mt-5 mb-3">
+                <button
+                  onClick={selectStudent}
+                  className="w-75 btn-quetes-valider just-color-yellow who-how-many-size"
+                >
+                  Qui donc ?
+                </button>
+              </div>
+              <h3 style={{ whiteSpace: "nowrap" }}>
+                {updatedStudent &&
+                  `C'est pour ${updatedStudent.first_name} ${updatedStudent.surname}`}
+              </h3>
             </div>
           ) : null}
-          <h4>
-            {updatedStudent &&
-              `C'est pour ${updatedStudent.first_name} ${updatedStudent.surname}`}
-          </h4>
-          {selectedOption === "Quelqu'un va gagner des XP" && (
-            <div>
-              <button
-                onClick={addXP}
-                className="btn btn-primary"
-                style={{ marginBottom: "10%", marginTop: "10%" }}
-              >
-                Combien ?
-              </button>
-            </div>
-          )}
-          {selectedOption === "Quelqu'un va gagner du Mana" && (
-            <div>
-              <button
-                onClick={addMana}
-                className="btn btn-primary"
-                style={{ marginBottom: "10%", marginTop: "10%" }}
-              >
-                Combien ?
-              </button>
-            </div>
-          )}
-          {selectedOption === "Quelqu'un va perdre des HP" && (
-            <div>
-              <button
-                onClick={removeHP}
-                className="btn btn-primary"
-                style={{ marginBottom: "10%", marginTop: "10%" }}
-              >
-                Combien ?
-              </button>
-            </div>
-          )}
-          {show === true ? (
-            <div>
-              {toRemoveHP > 0 && (
-                <div>
-                  <h4>{`-${toRemoveHP} HP`}</h4>
+          {selectedOption === "Quelqu'un va gagner des XP" &&
+            updatedStudent && (
+              <div className="h-5O d-flex flex-column justify-content-between align-items-center">
+                <div className="w-100 mt-5 mb-3">
+                  <button
+                    onClick={addXP}
+                    className="w-100 btn-quetes-valider px-4 just-color-yellow who-how-many-size"
+                  >
+                    Combien ?
+                  </button>
                 </div>
-              )}
-              {toAddMana > 0 && (
-                <div>
-                  <h4>{`+${toAddMana} Mana`}</h4>
+                {show === true && toAddXP > 0 && (
+                  <div>
+                    <h3>{`+ ${toAddXP} XP`}</h3>
+                  </div>
+                )}
+              </div>
+            )}
+
+          {selectedOption === "Quelqu'un va gagner du Mana" &&
+            updatedStudent && (
+              <div className="h-5O d-flex flex-column justify-content-between align-items-center">
+                <div className="w-100 mt-5 mb-3">
+                  <button
+                    onClick={addMana}
+                    className="w-100 btn-quetes-valider px-4 just-color-yellow who-how-many-size"
+                  >
+                    Combien ?
+                  </button>
                 </div>
-              )}
-              {toAddXP > 0 && (
-                <div>
-                  <h4>{`+${toAddXP} XP`}</h4>
+                {show === true && toAddMana > 0 && (
+                  <div>
+                    <h3>{`+ ${toAddMana} Mana`}</h3>
+                  </div>
+                )}
+              </div>
+            )}
+
+          {selectedOption === "Quelqu'un va perdre des HP" &&
+            updatedStudent && (
+              <div className="h-5O d-flex flex-column justify-content-between align-items-center">
+                <div className="w-100 mt-5 mb-3">
+                  <button
+                    onClick={removeHP}
+                    className="w-100 px-4 btn-quetes-valider just-color-yellow who-how-many-size"
+                  >
+                    Combien ?
+                  </button>
                 </div>
-              )}
-            </div>
-          ) : null}
+                {show === true && toRemoveHP > 0 && (
+                  <div>
+                    <h3>{`- ${toRemoveHP} HP`}</h3>
+                  </div>
+                )}
+              </div>
+            )}
         </div>
       </div>
+      <SmallList id={props.id} />
     </div>
   );
 }

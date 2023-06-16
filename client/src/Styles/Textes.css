@@ -1,70 +1,73 @@
 @font-face {
-    font-family: 'hug';
-    src: url("../Fonts/Hermit-Regular.otf");
+  font-family: "hug";
+  src: url("../Fonts/Hermit-Regular.otf");
 }
-.log-size{
-    font-size: 2vh;
-}
-
-.input-size{
-    height: 30px;
-    font-size: 20px;
+.log-size {
+  font-size: 2vh;
 }
 
-.input-big-size{
-    height: 50px;
-    font-size: 30px;
+.who-how-many-size {
+  font-size: 3vh;
 }
 
-.hug{
-    font-family: 'hug'; 
+.input-size {
+  height: 30px;
+  font-size: 20px;
 }
 
-.team-name{
-    font-family: 'hug';
-    color: #F5CB5C;
+.input-big-size {
+  height: 50px;
+  font-size: 30px;
 }
 
-.taille-lignes-tab{
-    font-size: 2vh;
-    color: #fdfdfb;
+.hug {
+  font-family: "hug";
 }
 
-.just-color-white{
-    color: #fdfdfb;
+.team-name {
+  font-family: "hug";
+  color: #f5cb5c;
 }
 
-.just-color-dark-red{
-    color: #77021D;
+.taille-lignes-tab {
+  font-size: 2vh;
+  color: #fdfdfb;
 }
 
-.just-color-dark-blue{
-    color: #0A1D37;
+.just-color-white {
+  color: #fdfdfb;
 }
 
-.just-color-blue{
-    color: #3f48cc;
+.just-color-dark-red {
+  color: #77021d;
 }
 
-.just-color-yellow{
-    color: #F5CB5C;
+.just-color-dark-blue {
+  color: #0a1d37;
 }
 
-.just-color-black{
-    color: #232826;
+.just-color-blue {
+  color: #3f48cc;
 }
 
-.size-digits{
-    font-size: 2vh;
+.just-color-yellow {
+  color: #f5cb5c;
 }
 
-.box-size{
-    height:80vh;
+.just-color-black {
+  color: #232826;
 }
 
-.classe-sup{
-    color: #232826;
-    font-family: 'hug';
-    background-color: #ddad54
-;
+.size-digits {
+  font-size: 2vh;
+}
+
+.box-size {
+  height: 80vh;
+}
+
+.classe-sup {
+  color: #232826;
+  font-family: "hug";
+  background-color: #ddad54;
 }
