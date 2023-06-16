@@ -100,7 +100,10 @@ function PopUpHP(props) {
           Retirer des HP à {first_name} {surname}
         </h2>
 
-        <form onSubmit={handleSubmit} className="h-100 d-flex flex-column justify-content-between">
+        <form
+          onSubmit={handleSubmit}
+          className="h-100 w-100 d-flex flex-column justify-content-between"
+        >
           <div>
             <label htmlFor="number" className="mt-5 mb-2">
               Donner le nombre d'HP à retirer :
@@ -127,32 +130,32 @@ function PopUpHP(props) {
           </div>
           <div className="d-flex flex-column">
             <label htmlFor="tanker" className="mt-5 mb-2">
-              L'élève souhaite-t-il qu'un des tanks de son équipe utilise
-              "protection" pour 2 points de mana afin de prendre les dégats à sa
-              place ?
+              Utilisation de "Protection" par :
             </label>
-              <select
-                name="tanker"
-                id="tanker-select"
-                className="rounded opacity-75"
-                onChange={(e) => setTanker(e.target.value)}
-              >
-                <option value="0">Personne</option>
-                {tanks.map((tank) => {
-                  return (
-                    <option value={tank.id} key={tank.first_name}>
-                      {tank.first_name}
-                    </option>
-                  );
-                })}
-              </select>
+            <select
+              name="tanker"
+              id="tanker-select"
+              className="rounded opacity-75"
+              onChange={(e) => setTanker(e.target.value)}
+            >
+              <option value="0">Personne</option>
+              {tanks.map((tank) => {
+                return (
+                  <option value={tank.id} key={tank.first_name}>
+                    {tank.first_name}
+                  </option>
+                );
+              })}
+            </select>
           </div>
           <div className="w-100 text-center">
             <div>
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 1 }}
-               type="submit" className="btn-pop-up-valider just-color-white big-button px-4 pt-1 mt-5">
+                type="submit"
+                className="btn-pop-up-valider just-color-white big-button px-4 pt-1 mt-5"
+              >
                 Valider
               </motion.button>
             </div>
