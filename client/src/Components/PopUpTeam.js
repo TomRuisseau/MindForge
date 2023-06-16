@@ -1,5 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import "../Styles/Textes.css";
+import "../Styles/Glass.css";
+import "../Styles/Buttons.css";
+import { motion } from "framer-motion";
 
 function PopUpTeam(props) {
   //state
@@ -26,33 +30,47 @@ function PopUpTeam(props) {
 
   //affichage (render)
   return (
-    <div className="position-absolute w-100 h-100 d-flex align-items-center justify-content-center">
-      <div className="p-5 border border-muted rounded w-auto h-auto bg-danger d-flex flex-column align-items-center">
-        {" "}
+    <div
+      className="classic-glass-moins-flou hug just-color-white position-absolute w-100 h-100 d-flex align-items-center justify-content-center"
+      style={{ zIndex: 2 }}
+    >
+      <div className="p-5 glass3 w-auto h-50 d-flex flex-column justify-content-between align-items-center">
         <div className="d-flex flex-row">
-          <h2 className="px-3">Créer une équipe</h2>
           <button
-            className="btn-close btn-close-white h-auto"
+            className="btn-close btn-close-white m-3 position-absolute top-0 end-0 "
             onClick={props.close}
           ></button>
+          <h2 className="px-3 just-color-yellow">Créer une équipe</h2>
         </div>
-        <form onSubmit={handleSubmit} className="d-flex flex-column">
-          <label htmlFor="text" className="mt-3">
-            Entrez un nom d'équipe :
-          </label>
-          <input
-            value={nomDequipe}
-            onChange={(e) => setNomDequipe(e.target.value)}
-            type="text"
-            className="form-control"
-            placeholder="Un nom d'équipe"
-            id="nomDequipe"
-            name="nomDequipe"
-            required
-          />
-          <button type="submit" className="btn btn-success mt-3">
-            Valider
-          </button>
+        <form
+          onSubmit={handleSubmit}
+          className="w-100 h-75 d-flex flex-column justify-content-between align-items-center"
+        >
+          <div className="w-100">
+            <label htmlFor="text" className="my-3">
+              Entrez un nom d'équipe :
+            </label>
+            <input
+              value={nomDequipe}
+              onChange={(e) => setNomDequipe(e.target.value)}
+              type="text"
+              className="form-control"
+              placeholder="Un nom d'équipe"
+              id="nomDequipe"
+              name="nomDequipe"
+              required
+            />
+          </div>
+          <div>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 1 }}
+              type="submit"
+              className="btn-pop-up-team-valider just-color-white big-button px-4 pt-1 mt-3"
+            >
+              Valider
+            </motion.button>
+          </div>
         </form>
       </div>
     </div>
