@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../Styles/Textes.css";
+import "../Styles/Glass.css";
+import "../Styles/Buttons.css";
+import { motion } from "framer-motion";
 
 function PopUpDead(props) {
   const [first_name, setFirst_name] = useState("");
@@ -35,8 +39,7 @@ function PopUpDead(props) {
         .post("http://localhost:5000/useRevivification", {
           id: healer,
         })
-        .then((res) => {
-        })
+        .then((res) => {})
         .catch((err) => {
           console.log(err);
         });
@@ -61,64 +64,69 @@ function PopUpDead(props) {
         setFirst_name(res.data[0].first_name);
         setSurname(res.data[0].surname);
         axios
-          .post("http://localhost:5000/getHealers", { id: props.id, team: res.data[0].team })
+          .post("http://localhost:5000/getHealers", {
+            id: props.id,
+            team: res.data[0].team,
+          })
           .then((res) => {
             setHealers(res.data);
             console.log(res.data);
-          }
-          )
+          })
           .catch((err) => {
             console.log(err);
-          }
-          );
+          });
       })
       .catch((err) => {
         console.log(err);
       });
-
   }, [props.id]);
 
   return (
-    <div className="text-white position-absolute w-100 h-100 d-flex align-items-center justify-content-center">
-      <div className="p-5 border border-mwhite rounded w-50 h-50 bg-black d-flex flex-column align-items-center">
-        <div className="d-flex flex-row justify-content-between">
+    <div
+      className="classic-glass-moins-flou hug just-color-white position-absolute w-100 h-100 d-flex align-items-center justify-content-center"
+      style={{ zIndex: 2 }}
+    >
+      <div className="glass-dead p-5 w-50 h-50 d-flex flex-column align-items-center">
+        <motion.button
+          whileHover={{ scale: 2 }}
+          className="btn-close btn-close-white m-3 position-absolute top-0 end-0 "
+          onClick={backToLife}
+        ></motion.button>
+        <div className="h-100 d-flex flex-column justify-content-between align-items-center">
           <h1 className="px-5">Oh non !</h1>
-          <button
-            className="btn-close btn-close-white h-auto"
-            onClick={backToLife}
-          ></button>
+          <h2>
+            {first_name} {surname} n'a plus de vie...
+          </h2>
+          <label htmlFor="tanker" className="mt-3 text-white">
+            Utilisation de "reviviscence" (6 points de mana - annuler le malus)
+            par :
+          </label>
+          <select
+            name="healer"
+            id="healer-select"
+            className="rounded w-50 opacity-75"
+            onChange={(e) => setHealer(e.target.value)}
+          >
+            <option value="0">Personne</option>
+            {healers.map((_healer) => {
+              return (
+                <option value={_healer.id} key={_healer.first_name}>
+                  {_healer.first_name}
+                </option>
+              );
+            })}
+          </select>
+          {selectedOption ? (
+            <h1 className="h-5 m-5">{selectedOption}</h1>
+          ) : (
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 1 }}
+             className="btn-lancer-roue-de-la-mort just-color-white big-button p-4 mt-3" onClick={onClick}>
+              Lancer la roue de la mort
+            </motion.button>
+          )}
         </div>
-        <br></br>
-        <h2>
-          {first_name} {surname} n'a plus de vie.
-        </h2>
-
-        <br></br>
-        <label htmlFor="tanker" className="mt-3 text-white">
-          L'élève souhaite-t-il qu'un des soigneurs de son équipe utilise "reviviscence" pour 6 points de mana afin d'annuler le malus ?
-        </label>
-        <select
-          name="healer"
-          id="healer-select"
-          className="rounded"
-          onChange={(e) => setHealer(e.target.value)}
-        >
-          <option value="0">Personne</option>
-          {healers.map((_healer) => {
-            return (
-              <option value={_healer.id} key={_healer.first_name}>
-                {_healer.first_name}
-              </option>
-            );
-          })}
-        </select>
-        {selectedOption ? (
-          <h1 className="h-5 m-5">{selectedOption}</h1>
-        ) : (
-          <button className="btn btn-primary" onClick={onClick}>
-            Lancer la roue de la mort
-          </button>
-        )}
       </div>
     </div>
   );

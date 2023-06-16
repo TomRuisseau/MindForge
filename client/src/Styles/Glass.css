@@ -47,6 +47,15 @@
   border: 1px solid rgba(39, 52, 32, 0.23);
 }
 
+.glass-dead {
+  background: rgba(52, 35, 32, 0.75);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.8px);
+  -webkit-backdrop-filter: blur(7.8px);
+  border: 1px solid rgba(52, 35, 32, 0.23);
+}
+
 .input-glass {
   /* From https://css.glass */
   background: rgba(197, 147, 23, 0.41);

@@ -37,16 +37,16 @@ const StudentManager = (props) => {
           {student === 0 ? null : (
             <StudentStats id={student} counter={counter} />
           )}
-          {popUp === "dead" && student !== 0 ? (
-            <PopUpDead
-              id={student}
-              life={isDead}
-              close={() => setPopUp("hidden")}
-              open={() => setPopUp("badRand")}
-            />
-          ) : null}
         </div>
       </div>
+      {popUp === "dead" && student !== 0 ? (
+        <PopUpDead
+          id={student}
+          life={isDead}
+          close={() => setPopUp("hidden")}
+          open={() => setPopUp("badRand")}
+        />
+      ) : null}
 
       {popUp === "addTeam" ? (
         <PopUpTeam close={() => setPopUp("hidden")} id={props.id} />
