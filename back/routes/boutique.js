@@ -3,7 +3,6 @@ exports.setPostBoutique = function setPostBoutique(app, pool) {
 
     app.post("/getSkinsShop", (req, res) => {
         pool.getConnection(function (err, connection) {
-            console.log("début boutique")
             let respons = { skins: [], spells: [] }
             connection.query(
                 "SELECT * FROM item WHERE type = 'skin'",
@@ -44,7 +43,6 @@ exports.setPostBoutique = function setPostBoutique(app, pool) {
                                             }
                                             );
                                             respons.spells = allSpells;
-                                            console.log("fin boutique")
                                             res.send(respons);
                                         }
                                     );
@@ -52,6 +50,7 @@ exports.setPostBoutique = function setPostBoutique(app, pool) {
                         }
                     );
                 });
+            connection.release();
         });
     });
 
@@ -80,6 +79,7 @@ exports.setPostBoutique = function setPostBoutique(app, pool) {
                     );
                 }
             );
+            connection.release();
         });
     });
 
@@ -106,6 +106,7 @@ exports.setPostBoutique = function setPostBoutique(app, pool) {
                     );
                 }
             );
+            connection.release();
         });
     });
 };

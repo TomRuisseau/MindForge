@@ -23,6 +23,7 @@ exports.setPostManagers = function setPostManagers(app, pool, classMap) {
                     }
                 }
             );
+            connection.release();
         });
     });
 
@@ -36,6 +37,7 @@ exports.setPostManagers = function setPostManagers(app, pool, classMap) {
                     res.send(result);
                 }
             );
+            connection.release();
         });
     });
 
@@ -105,6 +107,7 @@ exports.setPostManagers = function setPostManagers(app, pool, classMap) {
                     }
                 );
             });
+            connection.release();
         });
     });
 }

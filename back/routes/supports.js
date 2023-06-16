@@ -18,6 +18,7 @@ exports.setPostSupports = function setPostSupports(app, pool, SpellsCosts) {
                     res.send(result);
                 }
             );
+            connection.release();
         });
     });
 
@@ -38,6 +39,7 @@ exports.setPostSupports = function setPostSupports(app, pool, SpellsCosts) {
                     res.send(result);
                 }
             );
+            connection.release();
         });
     });
 
@@ -57,6 +59,7 @@ exports.setPostSupports = function setPostSupports(app, pool, SpellsCosts) {
                     res.send(result);
                 }
             );
+            connection.release();
         });
     });
 };

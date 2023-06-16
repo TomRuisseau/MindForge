@@ -30,7 +30,7 @@ const { setPostActions } = require("./routes/actions.js");
 const { setPostBoutique } = require("./routes/boutique.js");
 //routes to get supports how can use spells
 const { setPostSupports } = require("./routes/supports.js");
-//routes to use spells 
+//route
 const { setPostSpells } = require("./routes/spells.js");
 
 addXp = functions.addXp;

@@ -88,6 +88,7 @@ exports.setPostSpells = function setPostSpells(app, pool, classMap, SpellsCosts,
           addXp(pool, req.body.id, SpellsCosts.get("soin_de_masse"), res);
         }
       );
+      connection.release();
     });
   });
 
@@ -102,6 +103,7 @@ exports.setPostSpells = function setPostSpells(app, pool, classMap, SpellsCosts,
           if (err) throw err;
         }
       );
+      connection.release();
     });
     removeMana(pool, req.body.id, SpellsCosts.get("expansion_du_savoir"));
     res.send("0");
@@ -118,6 +120,7 @@ exports.setPostSpells = function setPostSpells(app, pool, classMap, SpellsCosts,
           if (err) throw err;
         }
       );
+      connection.release();
     });
     removeMana(pool, req.body.id, SpellsCosts.get("halo_salvateur"));
     res.send("0");
@@ -138,6 +141,7 @@ exports.setPostSpells = function setPostSpells(app, pool, classMap, SpellsCosts,
           res.send("0");
         }
       )
+      connection.release();
     });
   });
 };

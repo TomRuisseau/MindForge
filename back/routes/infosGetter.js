@@ -13,6 +13,7 @@ exports.setPostInfosGetters = function setPostInfosGetters(app, pool, classMap, 
                     res.send(result);
                 }
             );
+            connection.release();
         });
     });
 
@@ -31,6 +32,7 @@ exports.setPostInfosGetters = function setPostInfosGetters(app, pool, classMap, 
                     res.send(ratioHp.toString());
                 }
             );
+            connection.release();
         });
     });
 
@@ -48,6 +50,7 @@ exports.setPostInfosGetters = function setPostInfosGetters(app, pool, classMap, 
                     res.send(ratioMana.toString());
                 }
             );
+            connection.release();
         });
     });
 
@@ -55,7 +58,6 @@ exports.setPostInfosGetters = function setPostInfosGetters(app, pool, classMap, 
 
     //send skin of a student
     app.post("/getSkin", (req, res) => {
-        console.log("début profile")
         pool.getConnection(function (err, connection) {
             connection.query(
                 "SELECT item_name FROM owned_item WHERE student_id = '" +
@@ -65,10 +67,10 @@ exports.setPostInfosGetters = function setPostInfosGetters(app, pool, classMap, 
                 "'",
                 function (err, result, fields) {
                     if (err) throw err;
-                    console.log("fin profile")
                     res.send(result[0].item_name);
                 }
             );
+            connection.release();
         });
     });
 
@@ -88,6 +90,7 @@ exports.setPostInfosGetters = function setPostInfosGetters(app, pool, classMap, 
                     );
                     res.send(result);
                 });
+            connection.release();
         });
     });
 }

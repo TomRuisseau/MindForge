@@ -19,6 +19,7 @@ exports.setPostQuests = function setPostQuests(app, pool, addXp) {
                     res.send("0");
                 }
             );
+            connection.release();
         });
     });
 
@@ -91,6 +92,7 @@ exports.setPostQuests = function setPostQuests(app, pool, addXp) {
                     res.send(result);
                 }
             );
+            connection.release();
         });
     });
 
@@ -115,6 +117,7 @@ exports.setPostQuests = function setPostQuests(app, pool, addXp) {
                     );
                 }
             );
+            connection.release();
         });
     });
 
@@ -135,6 +138,7 @@ exports.setPostQuests = function setPostQuests(app, pool, addXp) {
                     );
                 }
             );
+            connection.release();
         });
     });
 };

@@ -33,6 +33,7 @@ function addXp(connectionPool, id, xp, res) {
                 );
             }
         );
+        connection.release();
     });
 }
 
@@ -65,6 +66,7 @@ function addXpWithoutSend(connectionPool, id, xp) {
                         }
                     });
             });
+        connection.release();
     });
 }
 
@@ -87,6 +89,7 @@ function removeMana(connectionPool, id, mana) {
                 );
             }
         );
+        connection.release();
     });
 }
 
@@ -111,6 +114,7 @@ function addMana(connectionPool, id, mana, classMap) {
                 );
             }
         );
+        connection.release();
     });
 }
 
@@ -134,6 +138,7 @@ function addHp(connectionPool, id, hp, classMap) {
                 );
             }
         );
+        connection.release();
     });
 }
 
@@ -172,6 +177,7 @@ function removeHp(connectionPool, id, hp) {
                     }
                 );
             });
+        connection.release();
     });
 }
 

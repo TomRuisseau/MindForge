@@ -38,6 +38,7 @@ exports.setPostActions = function setPostActions(app, pool, classMap, addXp, add
                         }
                     );
                 });
+            connection.release();
         });
     });
 

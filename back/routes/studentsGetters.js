@@ -13,6 +13,7 @@ exports.setPostStudentsGetters = function setPostStudentsGetters(app, pool) {
                     res.send(result);
                 }
             );
+            connection.release();
         });
     });
 
@@ -31,6 +32,7 @@ exports.setPostStudentsGetters = function setPostStudentsGetters(app, pool) {
                     res.send(result[random]);
                 }
             );
+            connection.release();
         });
     });
 
@@ -44,6 +46,7 @@ exports.setPostStudentsGetters = function setPostStudentsGetters(app, pool) {
                     res.send(result);
                 }
             );
+            connection.release();
         });
     });
 
@@ -61,6 +64,7 @@ exports.setPostStudentsGetters = function setPostStudentsGetters(app, pool) {
                     res.send(result);
                 }
             );
+            connection.release();
         });
     });
 
@@ -75,6 +79,7 @@ exports.setPostStudentsGetters = function setPostStudentsGetters(app, pool) {
                     res.send(result);
                 }
             );
+            connection.release();
         });
     });
 }

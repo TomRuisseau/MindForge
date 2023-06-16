@@ -36,6 +36,7 @@ exports.setPostLogin = function setPostLogin(app, pool, classMap) {
                     }
                 }
             );
+            connection.release();
         });
     });
 
@@ -54,6 +55,7 @@ exports.setPostLogin = function setPostLogin(app, pool, classMap) {
                     res.send(result.length > 0 ? "1" : "0"); //test if email and password match
                 }
             );
+            connection.release();
         });
     });
 
@@ -82,6 +84,7 @@ exports.setPostLogin = function setPostLogin(app, pool, classMap) {
                     }
                 }
             );
+            connection.release();
         });
     });
 }
