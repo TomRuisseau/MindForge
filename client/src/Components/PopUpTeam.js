@@ -35,13 +35,11 @@ function PopUpTeam(props) {
       style={{ zIndex: 2 }}
     >
       <div className="p-5 glass3 w-auto h-50 d-flex flex-column justify-content-between align-items-center">
-        <div className="d-flex flex-row">
-          <button
-            className="btn-close btn-close-white m-3 position-absolute top-0 end-0 "
-            onClick={props.close}
-          ></button>
-          <h2 className="px-3 just-color-yellow">Créer une équipe</h2>
-        </div>
+        <button
+          className="btn-close btn-close-white m-3 position-absolute top-0 end-0 "
+          onClick={props.close}
+        ></button>
+        <h2 className="px-3 just-color-white">Créer une équipe</h2>
         <form
           onSubmit={handleSubmit}
           className="w-100 h-75 d-flex flex-column justify-content-between align-items-center"
@@ -54,7 +52,7 @@ function PopUpTeam(props) {
               value={nomDequipe}
               onChange={(e) => setNomDequipe(e.target.value)}
               type="text"
-              className="form-control"
+              className="form-control opacity-75"
               placeholder="Un nom d'équipe"
               id="nomDequipe"
               name="nomDequipe"
@@ -66,7 +64,7 @@ function PopUpTeam(props) {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 1 }}
               type="submit"
-              className="btn-pop-up-team-valider just-color-white big-button px-4 pt-1 mt-3"
+              className="btn-pop-up-valider just-color-white big-button px-4 pt-1 mt-3"
             >
               Valider
             </motion.button>

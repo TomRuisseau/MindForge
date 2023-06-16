@@ -9,13 +9,13 @@
 }
 
 .classic-glass-moins-flou {
-    /* From https://css.glass */
-    background: transparent;
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-  }
+  /* From https://css.glass */
+  background: transparent;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
 
 .glass1 {
   /* From https://css.glass */
@@ -39,12 +39,12 @@
 
 .glass3 {
   /* From https://css.glass */
-  background: rgba(123, 159, 13, 0.505);
+  background: rgba(39, 52, 32, 0.75);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10.1px);
-  -webkit-backdrop-filter: blur(10.1px);
-  border: 1px solid rgba(123, 159, 13, 0.688);
+  backdrop-filter: blur(7.8px);
+  -webkit-backdrop-filter: blur(7.8px);
+  border: 1px solid rgba(39, 52, 32, 0.23);
 }
 
 .input-glass {
