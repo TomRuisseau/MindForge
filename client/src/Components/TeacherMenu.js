@@ -57,11 +57,11 @@ function TeacherMenu(props) {
     <div className="d-flex align-items-center justify-content-between h-100">
       <div className="d-flex flex-column align-items-center">
         <div
-          className="clock-glass text-center hug just-color-yellow h-25 pt-3"
+          className="clock-glass text-center hug just-color-yellow h-25 w-75 pt-4"
         >
-          <h1>
+          <p className="clock-size">
             <Clock format="HH:mm:ss" interval={1000} ticking={true} />
-          </h1>
+          </p>
         </div>
         <div className="glass1 m-5">
           <h2 className="text-center just-color-yellow m-3">Liste de quêtes</h2>
