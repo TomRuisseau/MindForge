@@ -5,6 +5,7 @@ import { forwardRef, useImperativeHandle } from "react";
 import "../Styles/Scroll.css";
 import "../Styles/Glass.css";
 import "../Styles/Textes.css";
+import { motion } from "framer-motion";
 
 const BigList = forwardRef((props, ref) => {
   //state
@@ -73,7 +74,10 @@ const BigList = forwardRef((props, ref) => {
               {members.map((student) => (
                 <tr
                   key={student.id}
-                  style={{ backgroundColor: student.bgColor }}
+                  style={{
+                    backgroundColor: student.bgColor,
+                    cursor: "pointer", // Ajoutez cette ligne pour changer le curseur en pointeur
+                  }}
                   onClick={() => changeBackground(student.id)}
                 >
                   <td
