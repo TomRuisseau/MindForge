@@ -35,10 +35,11 @@ function PopUpTeam(props) {
       style={{ zIndex: 2 }}
     >
       <div className="p-5 glass3 w-auto h-50 d-flex flex-column justify-content-between align-items-center">
-        <button
+        <motion.button
+          whileHover={{ scale: 2 }}
           className="btn-close btn-close-white m-3 position-absolute top-0 end-0 "
           onClick={props.close}
-        ></button>
+        ></motion.button>
         <h2 className="px-3 just-color-white">Créer une équipe</h2>
         <form
           onSubmit={handleSubmit}

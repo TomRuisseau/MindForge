@@ -1,6 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import React, { useEffect } from "react";
+import "../Styles/Textes.css";
+import "../Styles/Glass.css";
+import "../Styles/Buttons.css";
+import { motion } from "framer-motion";
 
 function PopUpHP(props) {
   //state
@@ -82,63 +86,77 @@ function PopUpHP(props) {
 
   //affichage (render)
   return (
-    <div className="position-absolute w-100 h-100 d-flex align-items-center justify-content-center">
-      <div className="p-5 border border-muted rounded w-auto h-auto bg-black d-flex flex-column align-items-center">
-        <div className="d-flex flex-row justify-content-between">
-          <h2 className="text-white px-5">
-            Retirer des HP à {first_name} {surname}
-          </h2>
-          <button
-            className="btn-close btn-close-white h-auto"
-            onClick={props.close}
-          ></button>
-        </div>
-        <form onSubmit={handleSubmit} className="d-flex flex-column">
-          <label htmlFor="number" className="mt-3 text-white">
-            Donner le nombre d'HP à retirer :
-          </label>
-          <input
-            value={HP}
-            onChange={(e) => {
-              if (e.target.value >= 0) {
-                setHP(e.target.value);
-              }
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "-" || e.key === "e" || e.key === "E") {
-                e.preventDefault();
-              }
-            }}
-            type="number"
-            className="form-control"
-            placeholder="0"
-            id="hp"
-            name="hp"
-            required
-          />
-          <label htmlFor="tanker" className="mt-3 text-white">
-            L'élève souhaite-t-il qu'un des tanks de son équipe utilise
-            "protection" pour 2 points de mana afin de prendre les dégats à sa
-            place ?
-          </label>
-          <select
-            name="tanker"
-            id="tanker-select"
-            className="rounded"
-            onChange={(e) => setTanker(e.target.value)}
-          >
-            <option value="0">Personne</option>
-            {tanks.map((tank) => {
-              return (
-                <option value={tank.id} key={tank.first_name}>
-                  {tank.first_name}
-                </option>
-              );
-            })}
-          </select>
-          <button type="submit" className="btn btn-success mt-3">
-            Valider
-          </button>
+    <div
+      className="classic-glass-moins-flou hug just-color-white position-absolute w-100 h-100 d-flex align-items-center justify-content-center"
+      style={{ zIndex: 2 }}
+    >
+      <div className="p-5 w-auto h-50 glass3 d-flex flex-column align-items-center">
+        <motion.button
+          whileHover={{ scale: 2 }}
+          className="btn-close btn-close-white m-3 position-absolute top-0 end-0"
+          onClick={props.close}
+        ></motion.button>
+        <h2 className="text-white px-5">
+          Retirer des HP à {first_name} {surname}
+        </h2>
+
+        <form onSubmit={handleSubmit} className="h-100 d-flex flex-column justify-content-between">
+          <div>
+            <label htmlFor="number" className="mt-5 mb-2">
+              Donner le nombre d'HP à retirer :
+            </label>
+            <input
+              value={HP}
+              onChange={(e) => {
+                if (e.target.value >= 0) {
+                  setHP(e.target.value);
+                }
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "-" || e.key === "e" || e.key === "E") {
+                  e.preventDefault();
+                }
+              }}
+              type="number"
+              className="form-control opacity-75"
+              placeholder="0"
+              id="hp"
+              name="hp"
+              required
+            />
+          </div>
+          <div className="d-flex flex-column">
+            <label htmlFor="tanker" className="mt-5 mb-2">
+              L'élève souhaite-t-il qu'un des tanks de son équipe utilise
+              "protection" pour 2 points de mana afin de prendre les dégats à sa
+              place ?
+            </label>
+              <select
+                name="tanker"
+                id="tanker-select"
+                className="rounded opacity-75"
+                onChange={(e) => setTanker(e.target.value)}
+              >
+                <option value="0">Personne</option>
+                {tanks.map((tank) => {
+                  return (
+                    <option value={tank.id} key={tank.first_name}>
+                      {tank.first_name}
+                    </option>
+                  );
+                })}
+              </select>
+          </div>
+          <div className="w-100 text-center">
+            <div>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 1 }}
+               type="submit" className="btn-pop-up-valider just-color-white big-button px-4 pt-1 mt-5">
+                Valider
+              </motion.button>
+            </div>
+          </div>
         </form>
       </div>
     </div>
