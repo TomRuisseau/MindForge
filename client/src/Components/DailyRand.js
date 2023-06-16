@@ -126,12 +126,14 @@ function DailyRand(props) {
     <div className="h-100 text-white d-flex flex-row hug justify-content-between align-items-center">
       <div className="box-size m-5 p-5 w-75 glass1 text-center d-flex flex-column justify-content-between align-items-center">
         <div>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.3 }}
+            whileTap={{ scale: 1.2 }}
             onClick={random}
             className="btn-lancer-dailyRand just-color-white"
           >
             LANCER
-          </button>
+          </motion.button>
         </div>
         <h1>{selectedOption}</h1>
         <div className="w-50 h-25 d-flex flex-row text-center my-5 justify-content-between">
@@ -142,12 +144,14 @@ function DailyRand(props) {
             "Quelqu'un sera dispensé de devoirs pour le prochain cours" ? (
             <div className="w-50 h-5O d-flex flex-column justify-content-between align-items-center">
               <div className="w-100 mt-5 mb-3">
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1 }}
                   onClick={selectStudent}
                   className="w-75 btn-quetes-valider just-color-yellow who-how-many-size"
                 >
                   Qui donc ?
-                </button>
+                </motion.button>
               </div>
               <h3 style={{ whiteSpace: "nowrap" }}>
                 {updatedStudent &&
@@ -159,12 +163,14 @@ function DailyRand(props) {
             updatedStudent && (
               <div className="h-5O d-flex flex-column justify-content-between align-items-center">
                 <div className="w-100 mt-5 mb-3">
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 1 }}
                     onClick={addXP}
                     className="w-100 btn-quetes-valider px-4 just-color-yellow who-how-many-size"
                   >
                     Combien ?
-                  </button>
+                  </motion.button>
                 </div>
                 {show === true && toAddXP > 0 && (
                   <div>
@@ -178,12 +184,14 @@ function DailyRand(props) {
             updatedStudent && (
               <div className="h-5O d-flex flex-column justify-content-between align-items-center">
                 <div className="w-100 mt-5 mb-3">
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 1 }}
                     onClick={addMana}
                     className="w-100 btn-quetes-valider px-4 just-color-yellow who-how-many-size"
                   >
                     Combien ?
-                  </button>
+                  </motion.button>
                 </div>
                 {show === true && toAddMana > 0 && (
                   <div>
@@ -197,12 +205,14 @@ function DailyRand(props) {
             updatedStudent && (
               <div className="h-5O d-flex flex-column justify-content-between align-items-center">
                 <div className="w-100 mt-5 mb-3">
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 1 }}
                     onClick={removeHP}
                     className="w-100 px-4 btn-quetes-valider just-color-yellow who-how-many-size"
                   >
                     Combien ?
-                  </button>
+                  </motion.button>
                 </div>
                 {show === true && toRemoveHP > 0 && (
                   <div>
