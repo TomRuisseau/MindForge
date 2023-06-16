@@ -96,7 +96,7 @@ function PopUpHP(props) {
           className="btn-close btn-close-white m-3 position-absolute top-0 end-0"
           onClick={props.close}
         ></motion.button>
-        <h2 className="text-white px-5">
+        <h2 className="px-5">
           Retirer des HP à {first_name} {surname}
         </h2>
 
@@ -130,7 +130,7 @@ function PopUpHP(props) {
           </div>
           <div className="d-flex flex-column">
             <label htmlFor="tanker" className="mt-5 mb-2">
-              Utilisation de "Protection" par :
+              Utilisation de "Protection" (2 points mana) par :
             </label>
             <select
               name="tanker"

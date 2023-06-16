@@ -1,5 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "../Styles/Textes.css";
+import "../Styles/Glass.css";
+import "../Styles/Buttons.css";
+import { motion } from "framer-motion";
 
 function PopUpXP(props) {
   //state
@@ -8,7 +12,6 @@ function PopUpXP(props) {
   const [surname, setSurname] = useState("");
   const [mages, setMages] = useState([]);
   const [mage, setMage] = useState("0");
-
 
   useEffect(() => {
     axios
@@ -37,7 +40,6 @@ function PopUpXP(props) {
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
     if (mage === "0") {
-
       axios
         .post("http://localhost:5000/giveXP", {
           id: props.id,
@@ -50,8 +52,7 @@ function PopUpXP(props) {
         .catch((err) => {
           console.log(err);
         });
-    }
-    else {
+    } else {
       axios
         .post("http://localhost:5000/useTruquageDuDestin", {
           id: props.id,
@@ -76,64 +77,82 @@ function PopUpXP(props) {
     }
   };
 
-
   //affichage (render)
   return (
-    <div className="position-absolute w-100 h-100 d-flex align-items-center justify-content-center">
-      <div className="p-5 border border-muted rounded w-auto h-auto bg-primary d-flex flex-column align-items-center">
-        <div className="d-flex flex-row">
-          <h2 className="px-3">
-            Ajouter de l'XP à {first_name} {surname}
-          </h2>
-          <button className="btn-close h-auto" onClick={props.close}></button>
-        </div>
-        <form onSubmit={handleSubmit} className="d-flex flex-column">
-          <label htmlFor="number" className="mt-3">
-            Donner le nombre d'XP à ajouter :
-          </label>
-          <input
-            value={XP}
-            onChange={(e) => {
-              if (e.target.value >= 0) {
-                setXP(e.target.value);
-              }
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "-" || e.key === "e" || e.key === "E") {
-                e.preventDefault();
-              }
-            }}
-            type="number"
-            className="form-control"
-            placeholder="0"
-            id="xp"
-            name="xp"
-            required
-          />
+    <div
+      className="classic-glass-moins-flou hug just-color-white position-absolute w-100 h-100 d-flex align-items-center justify-content-center"
+      style={{ zIndex: 2 }}
+    >
+      <div className="p-5 w-auto h-50 glass3 d-flex flex-column align-items-center">
+        <motion.button
+          whileHover={{ scale: 2 }}
+          className="btn-close btn-close-white m-3 position-absolute top-0 end-0"
+          onClick={props.close}
+        ></motion.button>
+        <h2 className="px-5">
+          Ajouter de l'XP à {first_name} {surname}
+        </h2>
+        <form
+          onSubmit={handleSubmit}
+          className="h-100 w-100 d-flex flex-column justify-content-between"
+        >
+          <div>
+            <label htmlFor="number" className="mt-5 mb-2">
+              Donner le nombre d'XP à ajouter :
+            </label>
+            <input
+              value={XP}
+              onChange={(e) => {
+                if (e.target.value >= 0) {
+                  setXP(e.target.value);
+                }
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "-" || e.key === "e" || e.key === "E") {
+                  e.preventDefault();
+                }
+              }}
+              type="number"
+              className="form-control opacity-75"
+              placeholder="0"
+              id="xp"
+              name="xp"
+              required
+            />
+          </div>
 
-          <label htmlFor="mage" className="mt-3 text-white">
-            L'élève souhaite-t-il qu'un des mages de son équipe utilise
-            "truquage du destin" pour 5 points de mana afin de faire gagner cet XP à toute l'équipe ?
-          </label>
-          <select
-            name="mage"
-            id="mage-select"
-            className="rounded"
-            value={mage}
-            onChange={(e) => setMage(e.target.value)}
-          >
-            <option value="0">Personne</option>
-            {mages.map((_mage) => (
-              <option value={_mage.id} key={_mage.id}>
-                {_mage.first_name}
-              </option>
-            ))}
-          </select>
-
-
-          <button type="submit" className="btn btn-success mt-3">
-            Valider
-          </button>
+          <div className="d-flex flex-column">
+            <label htmlFor="mage" className="mt-5 mb2">
+              Utilisation de "truquage du destin" (5points de mana - gain des XP
+              pour toute l'équipe) par :
+            </label>
+            <select
+              name="mage"
+              id="mage-select"
+              className="rounded"
+              value={mage}
+              onChange={(e) => setMage(e.target.value)}
+            >
+              <option value="0">Personne</option>
+              {mages.map((_mage) => (
+                <option value={_mage.id} key={_mage.id}>
+                  {_mage.first_name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="w-100 text-center">
+            <div>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 1 }}
+                type="submit"
+                className="btn-pop-up-valider just-color-white big-button px-4 pt-1 mt-5"
+              >
+                Valider
+              </motion.button>
+            </div>
+          </div>
         </form>
       </div>
     </div>

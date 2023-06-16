@@ -40,7 +40,7 @@ function PopUpTeam(props) {
           className="btn-close btn-close-white m-3 position-absolute top-0 end-0 "
           onClick={props.close}
         ></motion.button>
-        <h2 className="px-3 just-color-white">Créer une équipe</h2>
+        <h2 className="px-3 just-color-white">Ajouter une équipe</h2>
         <form
           onSubmit={handleSubmit}
           className="w-100 h-75 d-flex flex-column justify-content-between align-items-center"
