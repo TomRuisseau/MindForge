@@ -5,7 +5,7 @@ import React from 'react';
 
 
 function Choice(props) {
-    const [activeTab, setActiveTab] = React.useState('Tank');
+    const [activeTab, setActiveTab] = React.useState('Guerrier');
     const [isScrollNavbar, setIsScrollNavbar] = React.useState(false);
   
     React.useEffect(() => {
@@ -24,11 +24,13 @@ function Choice(props) {
       return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+
     return (
         <div className="body">
-            <div className="containerAccueil centeredDiv ${isScrollNavbar ? 'scrollNavbar' : ''}`}">
-                <h1>MINDFORGE</h1>
-                <h2>Laissez nous vous aider à apprendre</h2>
+            <div className={"containerAccueil centeredDiv ${isScrollNavbar ? 'scrollNavbar' : ''}"}>
+                
+                <h1 className="tailleTitre">MINDFORGE</h1>
+                <h2 className="tailleSousTitre">Laissez nous vous aider à apprendre</h2>
                 
                 <div className="fleche">
                     <p>fleche vers le bas</p>
@@ -45,27 +47,26 @@ function Choice(props) {
             </div>
 
             <div className="containerAccueil centeredDiv containerPrincipe">
-                <h1>Le principe?</h1>
-                <p>Avec votre équipe, vos trois amis, observez l'évolution de vos personnages au fil de l'année, guidés par les 
-                    quêtes, les missions, les aides de votre maitre, enseignant.
+                <h1>Quel est le principe?</h1>
+                <p>Vous avez le choix d'incarner un guerrier, un mage ou un soigneur lors de votre aventure et avec lui vous allez apprendre !
                 </p>
 
-                <div>
-                     <div class="tab">
-                        <button class="tablinks" onClick={() => setActiveTab('Tank')}>Tank</button>
-                        <button class="tablinks" onClick={() => setActiveTab('Healer')}>Healer</button>
+                <div className="mt-5">
+                    <div class="tab">
+                        <button class="tablinks" onClick={() => setActiveTab('Guerrier')}>Guerrier</button>
+                        <button class="tablinks" onClick={() => setActiveTab('Soigneur')}>Soigneur</button>
                         <button class="tablinks"  onClick={() => setActiveTab('Mage')}>Mage</button>
                     </div>
 
-                    <div id="Tank" class={`tabcontent ${activeTab === 'Tank' ? 'active' : ''}`}>
-                        <h3>Tank</h3>
+                    <div id="Guerrier" class={`tabcontent ${activeTab === 'Guerrier' ? 'active' : ''}`}>
+                        <h3>Guerrier</h3>
                         <p>Il aide ses coéquipiers en les protégeant d'attaques dangereuses.
                            Il est là pour contrer et abriter ceux dont la vie est la plus fragile.
                         </p>
                     </div>
 
-                    <div id="Healer" class={`tabcontent ${activeTab === 'Healer' ? 'active' : ''}`}>
-                        <h3>Healer</h3>
+                    <div id="Soigneur" class={`tabcontent ${activeTab === 'Soigneur' ? 'active' : ''}`}>
+                        <h3>Soigneur</h3>
                         <p>Avec ses sorts, il aide en offrant plus de vie à ses coéquipiers.
                            
                         </p>
@@ -106,8 +107,8 @@ function Choice(props) {
             </div>
 
         
-            <footer className="d-flex flex-wrap py-3 my-4 border-top">
-                <p className="text-center ">2023</p>
+            <footer className="footer">
+                <p className="">2023</p>
             </footer>
 
             
