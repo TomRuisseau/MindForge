@@ -95,45 +95,67 @@ function Choice(props) {
             id="Guerrier"
             class={`tabcontent ${
               activeTab === "Guerrier"
-                ? "active h-75 d-flex flex-column justify-content-between"
+                ? "active h-75 d-flex flex-row align-items-center"
                 : ""
             }`}
           >
-            <h3>Guerrier</h3>
-            <p className="just-color-white">
-              Il aide ses coéquipiers en les protégeant d'attaques dangereuses.
-              Il est là pour contrer et abriter ceux dont la vie est la plus
-              fragile.
-            </p>
+            <div className="mx-4 w-100 h-100 d-flex flex-column justify-content-between">
+              <h3>Guerrier</h3>
+              <p className="just-color-white">
+                Il aide ses coéquipiers en les protégeant d'attaques
+                dangereuses. Il est là pour contrer et abriter ceux dont la vie
+                est la plus fragile.
+              </p>
+            </div>
+            <img
+              src="media/skin/tank.png"
+              style={{ height: "300px", right: "4%" }}
+              className="position-absolute"
+            />
           </div>
 
           <div
             id="Soigneur"
             class={`tabcontent ${
               activeTab === "Soigneur"
-                ? "active  h-75 d-flex flex-column justify-content-between"
+                ? "active  h-75 d-flex flex-row align-items-center"
                 : ""
             }`}
           >
-            <h3>Soigneur</h3>
-            <p className="just-color-white">
-              Avec ses sorts, il aide en offrant plus de vie à ses coéquipiers.
-            </p>
+            <div className="mx-4 h-100 w-100 d-flex flex-column justify-content-between">
+              <h3>Soigneur</h3>
+              <p className="just-color-white">
+                Avec ses sorts, il aide en offrant plus de vie à ses
+                coéquipiers.
+              </p>
+            </div>
+            <img
+              src="media/skin/healer.png"
+              style={{ height: "300px", right: "4%" }}
+              className="position-absolute"
+            />
           </div>
 
           <div
             id="Mage"
             class={`tabcontent ${
               activeTab === "Mage"
-                ? "active  h-75 d-flex flex-column justify-content-between"
+                ? "active  h-75 d-flex flex-row align-items-center"
                 : ""
             }`}
           >
-            <h3>Mage</h3>
-            <p className="just-color-white">
-              Il aide son équipe grâce à ses sorts en les renforçant et les
-              supportant.
-            </p>
+            <div className="mx-4 h-100 w-100 d-flex flex-column justify-content-between">
+              <h3>Mage</h3>
+              <p className="just-color-white">
+                Il aide son équipe grâce à ses sorts en les renforçant et les
+                supportant.
+              </p>
+            </div>
+            <img
+              src="media/skin/mage.png"
+              style={{ height: "300px", right: "4%" }}
+              className="position-absolute"
+            />
           </div>
         </div>
       </div>
