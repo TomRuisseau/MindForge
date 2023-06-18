@@ -85,39 +85,41 @@ function Quests(props) {
     >
       <div className="w-100 d-flex flex-row align-items-center justify-content-between">
         <div
-          className="p-3 m-5 glass1 hug custom-scrollbar box-size"
-          style={{ width: "40vw", overflow: "auto" }}
+          className="p-3 m-5 glass1 hug box-size"
+          style={{ width: "40vw"}}
         >
           <h2 className="text-center just-color-yellow m-3 mb-5">
             Liste de quêtes
           </h2>
-          <table className="table table-striped text-white">
-            <thead>
-              <tr>
-                <th scope="col">Description</th>
-                <th scope="col">Récompense</th>
-                <th scope="col">Terminée par </th>
-              </tr>
-            </thead>
-            <tbody>
-              {quests.map((quest) => {
-                return (
-                  <tr
-                    key={quest.id}
-                    onClick={select}
-                    data-key={quest.id}
-                    className={quest.bg}
-                  >
-                    <td className="text-white">{quest.description}</td>
-                    <td className="text-white">{quest.reward}</td>
-                    <td className="text-white">
-                      {quest.nbCompleted + " élève(s)"}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <div className="custom-scrollbar" style={{ height: "65vh",overflow: "auto" }}>
+            <table className="table table-striped text-white">
+              <thead>
+                <tr>
+                  <th scope="col">Description</th>
+                  <th scope="col">Récompense</th>
+                  <th scope="col">Terminée par </th>
+                </tr>
+              </thead>
+              <tbody>
+                {quests.map((quest) => {
+                  return (
+                    <tr
+                      key={quest.id}
+                      onClick={select}
+                      data-key={quest.id}
+                      className={quest.bg}
+                    >
+                      <td className="text-white">{quest.description}</td>
+                      <td className="text-white">{quest.reward}</td>
+                      <td className="text-white">
+                        {quest.nbCompleted + " élève(s)"}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
         <div className="glass1 p-4 hug box-size d-flex flex-column justify-content-between">
           <h2 className="just-color-yellow">Ajouter une quête :</h2>

@@ -106,6 +106,22 @@ const TeacherDrawer = forwardRef((props, ref) => {
           >
             Roue du destin
           </motion.h2>
+          <motion.h2
+            whileHover={{
+              color: "#232826",
+              scale: 1.2,
+              originX: 0,
+              cursor: "pointer",
+            }}
+            whileTap={{ scale: 1.1 }}
+            onClick={() => {
+              toggleDrawer();
+              //reload page
+              window.location.reload();
+            }}
+          >
+            Déconnexion
+          </motion.h2>
         </div>
       </Drawer>
     </>
