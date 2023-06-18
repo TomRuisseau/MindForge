@@ -1,5 +1,7 @@
 import "../Styles/mainChoice.css";
-import "../Styles/mainMain.css";
+import "../Styles/Glass.css";
+import "../Styles/Textes.css";
+import "../Styles/Buttons.css";
 import React from "react";
 
 function Choice(props) {
@@ -24,13 +26,13 @@ function Choice(props) {
   }, []);
 
   return (
-    <div className="body">
+    <div className="body hug">
       <div
         className={
           "containerAccueil centeredDiv ${isScrollNavbar ? 'scrollNavbar' : ''}"
         }
       >
-        <h1 className="tailleTitre">MINDFORGE</h1>
+        <h1 className="tailleTitre">MINDFORGE<span className="blinking-cursor">_</span></h1>
         <h2 className="tailleSousTitre">Laissez nous vous aider à apprendre</h2>
 
         <div className="fleche">

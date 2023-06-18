@@ -1,142 +1,135 @@
-/* -- BACKGROUND --*/ 
-    .body{
-        background-color: #254252 ;
-    }
+/* -- BACKGROUND --*/
+.body {
+  background-color: #232826;
+}
 
 /* -- SCROLLBAR --*/
-    /* width */
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
-    /* track */
-    ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
-    /* handle */
-    ::-webkit-scrollbar-thumb {
-        background: #ffbb00;
-        border-radius: 4px;
-    }
-    /* handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background: #ffd560;
-    }
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+/* track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+/* handle */
+::-webkit-scrollbar-thumb {
+  background: #f5cb5c;
+  border-radius: 4px;
+}
+/* handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #f5cb5c;
+}
 
+.scrollNavbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  z-index: 100;
+}
 
-    .scrollNavbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: #ffffff;
-        z-index: 100;
-      }
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
+.navbar h1 {
+  font-size: 3vh;
+  padding: 0px 5px 0px 5px;
+}
 
-    .navbar{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
+.tailleTitre {
+  font-size: 15vh;
+}
 
-    .navbar h1{
-        font-size: 3vh;
-        padding: 0px 5px 0px 5px;
-    }
+.tailleSousTitre {
+  font-size: 8vh;
+}
 
-    .tailleTitre{
-        font-size: 15vh;
-    }
+/* -- CHARACTERS' TABLE --*/
+/* Style the tab */
+.tab {
+  float: left;
+  background-color: #232826;
+  width: 30%;
+}
 
-    .tailleSousTitre{
-        font-size: 8vh;
-    }
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: #fdfdfb;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+}
 
-/* -- CHARACTERS' TABLE --*/ 
-    /* Style the tab */
-    .tab {
-        float: left;
-        background-color: #254252;
-        width: 30%;
-    }
-    
-    /* Style the buttons inside the tab */
-    .tab button {
-        display: block;
-        background-color: inherit;
-        color:#f1f1f1;
-        padding: 22px 16px;
-        width: 100%;
-        border: none;
-        outline: none;
-        text-align: left;
-        cursor: pointer;
-        transition: 0.3s;
-        font-size: 17px;
-    }
-    
-    /* Change background color of buttons on hover */
-    .tab button:hover {
-        background-color: #ffd560;
-    }
-    
-    /* Style the tab content */
-    .tabcontent {
-        float: left;
-        padding: 0px 12px;
-        width: 70%;
-        border-left: none;
-        height: 300px;
-        display: none;
-    }
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #f5cb5c;
+  color: #232826;
+}
 
-    .tabcontent.active {
-        display: block;
-    }
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  width: 70%;
+  border-left: none;
+  height: 300px;
+  display: none;
+}
 
+.tabcontent.active {
+  display: block;
+}
 
+.mainChoice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.containerAccueil,
+.fleche {
+  color: #f5cb5c;
+  text-align: center;
+}
 
+.fleche {
+  margin-top: 25vh;
+}
 
-    .mainChoice{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+.centeredDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+}
 
+.containerPrincipe {
+  background-color: #fdfdfb;
+  color: #232826;
+}
 
-    .containerAccueil, .fleche{
-        color: #ffbb00;
-        text-align: center;
-    }
-
-    .fleche{
-        margin-top: 25vh;
-    }
-
-    .centeredDiv {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh; 
-        padding: 20px; 
-    }
-
-
-    .containerPrincipe{
-        background-color: #e4e3e0;
-        color: #254252;
-    }
-
-
-    .footer{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        padding: 10px 0px 10px 0px;
-        background-color: #e4e3e0;
-        color: #254252;
-    }
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0px 10px 0px;
+  background-color: #e4e3e0;
+  color: #232826;
+}
