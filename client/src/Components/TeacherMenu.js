@@ -22,14 +22,19 @@ function TeacherMenu(props) {
         .post("http://localhost:5000/getRandomStudent", { id: props.id })
         .then((res) => {
           setStudent(res.data);
-          axios
-            .post("http://localhost:5000/getSkin", { id: res.data.id })
-            .then((res) => {
-              setSkin(res.data);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          if (res.data.id !== undefined) {
+            axios
+              .post("http://localhost:5000/getSkin", { id: res.data.id })
+              .then((res) => {
+                setSkin(res.data);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
+          else {
+            setStudent({ first_name: "Aucun", surname: "élève", xp: 0 });
+          }
         })
         .catch((err) => {
           console.log(err);

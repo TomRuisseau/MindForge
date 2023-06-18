@@ -12,7 +12,7 @@ exports.setPostQuests = function setPostQuests(app, pool, addXp) {
                 "', '" +
                 req.body.reward +
                 "', '" +
-                req.body.description +
+                req.body.description.replace('\'', " ") +
                 "')",
                 function (err, result, fields) {
                     if (err) throw err;
