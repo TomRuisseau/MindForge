@@ -63,13 +63,13 @@ function TeacherMenu(props) {
             <Clock format="HH:mm:ss" interval={1000} ticking={true} />
           </p>
         </div>
-        <div className="glass1 m-5">
+        <div className="glass1 m-5 hug">
           <h2 className="text-center just-color-yellow m-3">Liste de quêtes</h2>
           <div
             className="m-2 custom-scrollbar"
             style={{ height: "50vh", overflow: "auto" }}
           >
-            <table className="table table-striped text-white">
+            <table className="table table-striped text-white ">
               <thead>
                 <tr>
                   <th scope="col">Description</th>
