@@ -126,14 +126,20 @@ function Shop(props) {
 
   return (
     <>
-      <h1 className="text-center text-center-orange">Boutique</h1>
-      <h2 className="text-center text-center-orange">
+               <br></br><br></br><br></br>
+               <div className ='  '>
+      <h1 className="text-center  text-center-color   ">Boutique</h1>
+      <h2 className="text-center  text-center-color">
         Vous avez {props.data[0].xp} xp
       </h2>
-      <div className="row1 row m-0">
-        <div className="col p-5">
-          <h2>Sorts</h2>
-          <div className="d-flex d-flex1 flex-row">
+      </div>
+      <br></br><br></br>
+      <br></br><br></br>
+      <br></br><br></br>
+      <div className="row1  row m-0">
+        <div className="col   p-5">
+          <h2 className="d-flex1">Sorts</h2>
+          <div className="d-flex flex-row">
             {spells.map((spell) => {
               let bg = spell.name === selected ? "selected" : "";
               let className = "m-2 " + bg; //mettre ici les autres classes de la div
@@ -156,9 +162,9 @@ function Shop(props) {
             })}
           </div>
         </div>
-        <div className="col p-5">
-          <h2>Skins</h2>
-          <div className=" d-flex d-flex1 flex-row">
+        <div className="col   p-5">
+          <h2 className="d-flex1">Skins</h2>
+          <div className=" d-flex  flex-row">
             {skins.map((skin) => {
               let bg = skin.name === selected ? "selected" : "";
               let className = "m-2 " + bg; //mettre ici les autres classes de la div
