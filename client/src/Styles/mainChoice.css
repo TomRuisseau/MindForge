@@ -10,7 +10,7 @@
 }
 /* track */
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #232826;
 }
 /* handle */
 ::-webkit-scrollbar-thumb {
@@ -22,12 +22,12 @@
   background: #f5cb5c;
 }
 
-.scrollNavbar {
+.scrollNavbar {     /*pour afficher en haut pour se connecter*/
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
-  background-color: transparent;
   z-index: 100;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .tailleSousTitre {
-  font-size: 8vh;
+  font-size: 7vh;
 }
 
 /* -- CHARACTERS' TABLE --*/
@@ -100,8 +100,7 @@
   align-items: center;
 }
 
-.containerAccueil,
-.fleche {
+.containerAccueil{
   color: #f5cb5c;
   text-align: center;
 }
@@ -114,9 +113,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 100px;
   height: 100vh;
-  padding: 20px;
 }
 
 .containerPrincipe {

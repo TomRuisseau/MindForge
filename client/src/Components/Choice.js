@@ -12,7 +12,7 @@ function Choice(props) {
     const handleScroll = () => {
       const scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;
-      const scrollThreshold = 100; // Définissez votre seuil de défilement
+      const scrollThreshold = 10; // Définissez votre seuil de défilement
 
       if (scrollTop > scrollThreshold) {
         setIsScrollNavbar(true);
@@ -27,19 +27,20 @@ function Choice(props) {
 
   return (
     <div className="body hug">
-      <div
-        className={
-          "containerAccueil centeredDiv ${isScrollNavbar ? 'scrollNavbar' : ''}"
-        }
-      >
-        <h1 className="tailleTitre">MINDFORGE<span className="blinking-cursor">_</span></h1>
-        <h2 className="tailleSousTitre">Laissez nous vous aider à apprendre</h2>
+      <div className="containerAccueil centeredDiv">
+        <h1 className="tailleTitre">
+          MINDFORGE<span className="blinking-cursor">_</span>
+        </h1>
+        <h2 className="tailleSousTitre m-5">
+          Pour vous donner envie d'apprendre
+        </h2>
 
-        <div className="fleche">
-          <p>fleche vers le bas</p>
+        <div className="m-5 w-50 d-flex flex-row justify-content-between">
+          <img style={{ height: "100px" }} src="media/logos/fleche_bas.png" />
+          <img style={{ height: "100px" }} src="media/logos/fleche_bas.png" />
+          <img style={{ height: "100px" }} src="media/logos/fleche_bas.png" />
         </div>
       </div>
-
       <div
         className={`containerAccueil ${isScrollNavbar ? "scrollNavbar" : ""}`}
       >
