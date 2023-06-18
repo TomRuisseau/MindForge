@@ -32,9 +32,7 @@ function Choice(props) {
         <h1 className="tailleTitre">
           MINDFORGE<span className="blinking-cursor">_</span>
         </h1>
-        <h2 className="tailleSousTitre p-3 glass1">
-          Pour te motiver à apprendre
-        </h2>
+        <h2 className="tailleSousTitre p-3 glass1">Pour motiver à apprendre</h2>
 
         <div className="m-5 w-50 d-flex flex-row justify-content-between">
           <img style={{ height: "100px" }} src="media/logos/fleche_bas.png" />
@@ -95,7 +93,11 @@ function Choice(props) {
 
           <div
             id="Guerrier"
-            class={`tabcontent ${activeTab === "Guerrier" ? "active h-75 d-flex flex-column justify-content-between" : ""}`}
+            class={`tabcontent ${
+              activeTab === "Guerrier"
+                ? "active h-75 d-flex flex-column justify-content-between"
+                : ""
+            }`}
           >
             <h3>Guerrier</h3>
             <p className="just-color-white">
@@ -107,7 +109,11 @@ function Choice(props) {
 
           <div
             id="Soigneur"
-            class={`tabcontent ${activeTab === "Soigneur" ? "active  h-75 d-flex flex-column justify-content-between" : ""}`}
+            class={`tabcontent ${
+              activeTab === "Soigneur"
+                ? "active  h-75 d-flex flex-column justify-content-between"
+                : ""
+            }`}
           >
             <h3>Soigneur</h3>
             <p className="just-color-white">
@@ -117,7 +123,11 @@ function Choice(props) {
 
           <div
             id="Mage"
-            class={`tabcontent ${activeTab === "Mage" ? "active  h-75 d-flex flex-column justify-content-between" : ""}`}
+            class={`tabcontent ${
+              activeTab === "Mage"
+                ? "active  h-75 d-flex flex-column justify-content-between"
+                : ""
+            }`}
           >
             <h3>Mage</h3>
             <p className="just-color-white">
@@ -133,7 +143,7 @@ function Choice(props) {
         <p>Blah Blah Blah</p>
       </div>
 
-      <div className="containerAccueil centeredDiv containerPrincipe">
+      <div className="containerAccueil centeredDiv2 glass1 m-5">
         <h1>Qui sommes-nous?</h1>
         <p>
           {" "}
@@ -142,22 +152,20 @@ function Choice(props) {
         </p>
       </div>
 
-      <div className="containerAccueil centeredDiv">
-        <h1>Tentez d'apprendre?</h1>
+      <div className="containerAccueil centeredDiv2 m-5">
+        <h1>C'est parti !</h1>
         <div className="mainChoice">
           <h1>Vous êtes :</h1>
-          <div className="btn-group" role="group" aria-label="Basic example">
+          <div className="w-100 d-flex flex-row justify-content-between">
             <button
               onClick={() => props.onChoice("TeacherLogger")}
-              type="button"
-              className="btn btn-primary btn-lg"
+              className="btn-choice m-5"
             >
               Enseignant
             </button>
             <button
               onClick={() => props.onChoice("StudentLogger")}
-              type="button"
-              className="btn btn-primary btn-lg"
+              className="btn-choice m-5"
             >
               Elève
             </button>
@@ -165,8 +173,10 @@ function Choice(props) {
         </div>
       </div>
 
-      <footer className="footer">
-        <p className="">2023</p>
+      <footer className="footer pt-4">
+        <p className="">
+          Taume Xavled Marie Nobody Armand - Junia ISEN - Projet 2023
+        </p>
       </footer>
     </div>
   );

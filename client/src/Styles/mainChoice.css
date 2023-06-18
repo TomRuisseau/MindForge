@@ -130,10 +130,14 @@
 }
 
 .footer {
+  height: 10vh;
+  font-size: 2vh;
+  font-weight: bold;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding: 10px 0px 10px 0px;
-  color: #f5cb5c;
+  color: #232826;
+  background-color: #f5cb5c;
 }

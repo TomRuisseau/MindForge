@@ -123,3 +123,18 @@ backdrop-filter: blur(5px);
 -webkit-backdrop-filter: blur(5px);
 border: 1px solid rgba(202, 44, 0, 0.171);
 }
+
+.btn-choice{
+  height: 8vh;
+  width: 20vw;
+  font-size: 4vh;
+  color: #f5cb5c;
+  padding-left: 4%;
+  padding-right: 4%;
+  background: rgba(140, 132, 59, 0.41);
+  border-radius: 50px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.8px);
+  -webkit-backdrop-filter: blur(7.8px);
+  border: 1px solid rgba(140, 132, 59, 0.23);
+}
