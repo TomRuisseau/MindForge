@@ -9,6 +9,7 @@ import Tutorial from "./Tutorial";
 import StudentQuests from "./StudentQuests";
 import StudentClass from "./StudentClass";
 import "../Styles/studentDashboard.css";
+import { motion } from "framer-motion";
 
 function StudentDashboard(props) {
   const [page, setPage] = useState("StudentProfile"); // StudentMenu, quests, quiz, dailyEvent, tutorial, settings, Quetes
@@ -22,15 +23,21 @@ function StudentDashboard(props) {
   };
   return (
     <div>
-      <button
+      <motion.div
+        whileHover={{
+          scale: 1.4,
+          originX: 0,
+          cursor: "pointer",
+        }}
+        className="position-absolute m-3"
         onClick={() => childRef.current.toggleDrawerOutside()}
-        className="btn btn-gauche btn-primary position-absolute top-0 start-0"
       >
-        Menu
-      </button>
+        <div className="menu-animation"></div>
+        <div className="menu-animation"></div>
+        <div className="menu-animation"></div>
+      </motion.div>
 
       <StudentDrawer ref={childRef} onChoice={switchPage} />
-
 
       {page === "StudentProfile" ? (
         <StudentProfile data={props.data} />
