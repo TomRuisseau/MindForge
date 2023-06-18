@@ -157,18 +157,26 @@ function Choice(props) {
         <div className="mainChoice">
           <h1>Vous êtes :</h1>
           <div className="w-100 d-flex flex-row justify-content-between">
-            <button
+            <motion.button
+              whileHover={{
+                scale: 1.1,
+              }}
+              whileTap={{ scale: 0.9 }}
               onClick={() => props.onChoice("TeacherLogger")}
               className="btn-choice m-5"
             >
               Enseignant
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              whileHover={{
+                scale: 1.1,
+              }}
+              whileTap={{ scale: 0.9 }}
               onClick={() => props.onChoice("StudentLogger")}
               className="btn-choice m-5"
             >
               Elève
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
