@@ -84,14 +84,14 @@ function Quests(props) {
       style={{ height: "100vh" }}
     >
       <div className="w-100 d-flex flex-row align-items-center justify-content-between">
-        <div
-          className="p-3 m-5 glass1 hug box-size"
-          style={{ width: "40vw"}}
-        >
+        <div className="p-3 m-5 glass1 hug box-size" style={{ width: "40vw" }}>
           <h2 className="text-center just-color-yellow m-3 mb-5">
             Liste de quêtes
           </h2>
-          <div className="custom-scrollbar" style={{ height: "65vh",overflow: "auto" }}>
+          <div
+            className="custom-scrollbar"
+            style={{ height: "65vh", overflow: "auto" }}
+          >
             <table className="table table-striped text-white">
               <thead>
                 <tr>
@@ -121,11 +121,11 @@ function Quests(props) {
             </table>
           </div>
         </div>
-        <div className="glass1 p-4 hug box-size d-flex flex-column justify-content-between">
+        <div className="glass1 w-25 p-4 hug box-size d-flex flex-column justify-content-between">
           <h2 className="just-color-yellow">Ajouter une quête :</h2>
           <form
             onSubmit={handleSubmit}
-            className="h-75  d-flex flex-column justify-content-between just-color-white"
+            className="h-75 d-flex flex-column justify-content-between just-color-white"
           >
             <div className="h-50 w-100">
               <label htmlFor="text" className="mt-3">
@@ -166,15 +166,22 @@ function Quests(props) {
               Valider
             </motion.button>
           </form>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 1 }}
-            onClick={deleteQuest}
-            className="btn-quetes-supp just-color-white log-size"
-          >
-            Supprimer la quête sélectionnée
-          </motion.button>
+          {selectedQuest != 0 ? (
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 1 }}
+              onClick={deleteQuest}
+              className="btn-quetes-supp just-color-white log-size"
+            >
+              Supprimer la quête sélectionnée
+            </motion.button>
+          ) : (
+            <motion.button className="w-100 btn-quetes-supp just-color-white log-size">
+              Selectionnez une quête pour la supprimer
+            </motion.button>
+          )}
         </div>
+
         <SmallList id={props.id} />
       </div>
     </div>
