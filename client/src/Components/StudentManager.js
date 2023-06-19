@@ -46,7 +46,7 @@ const StudentManager = (props) => {
         <PopUpDead
           id={student}
           life={isDead}
-          close={() => setPopUp("hidden")}
+          close={() => { setPopUp("hidden"); addCounter(counter + 1) }}
           open={() => setPopUp("badRand")}
         />
       ) : null}
