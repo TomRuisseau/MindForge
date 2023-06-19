@@ -42,7 +42,9 @@ function StudentTeam(props) {
       style={{ height: "100vh" }}
     >
       <div className="w-75 p-4 glass1 d-flex flex-column box-size">
-        <h1 className="just-color-yellow text-center">Mon équipe</h1>
+        <h1 className="just-color-yellow text-center">
+          Mon équipe : {props.data[0].team}
+        </h1>
         <div className="d-flex flex-column h-100 justify-content-between">
           <div className="w-100 h-100 d-flex flex-row justify-content-between align-items-center p-5">
             {team.map((student) => {
