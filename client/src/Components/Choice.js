@@ -74,8 +74,9 @@ function Choice(props) {
       <div className="containerAccueil centeredDiv2 glass1 m-5">
         <h1>Quel est le principe?</h1>
         <p className="just-color-white who-how-many-size">
-          Vous avez le choix d'incarner un guerrier, un mage ou un soigneur lors
-          de votre aventure et avec lui vous allez apprendre ! (modifier)
+          Dans cette plateforme ludique et éducative, vous pouvez incarner le personnage de vos rêves !
+          Choisissez parmi les 3 rôles aux compétences et aux objectifs divers,
+          et alliez vous avec vos amis pour triompher de l’ignorance et de l’obscurantisme.
         </p>
 
         <div className="w-75 mt-5 ">
@@ -93,18 +94,18 @@ function Choice(props) {
 
           <div
             id="Guerrier"
-            class={`tabcontent ${
-              activeTab === "Guerrier"
-                ? "active h-75 d-flex flex-row align-items-center"
-                : ""
-            }`}
+            class={`tabcontent ${activeTab === "Guerrier"
+              ? "active h-75 d-flex flex-row align-items-center"
+              : ""
+              }`}
           >
             <div className="mx-4 w-100 h-100 d-flex flex-column justify-content-between">
               <h3>Guerrier</h3>
               <p className="just-color-white">
-                Il aide ses coéquipiers en les protégeant d'attaques
-                dangereuses. Il est là pour contrer et abriter ceux dont la vie
-                est la plus fragile.
+                Bouclier de l’équipe, le protecteur n’hésitera pas à prendre les coups à la place de ses coéquipiers.
+                Son grand nombre de points de vie lui permet de se tenir en première ligne et de conjuguer ses sorts pour réduire les dégâts subits par toutes son équipe.
+                Sa faible réserve de mana le force en revanche à être parcimonieux et se faire aider par ses alliés mages.
+                Un rôle destiné aux joueurs valeureux souhaitant protéger les personnes plus fragiles.
               </p>
             </div>
             <img
@@ -116,17 +117,19 @@ function Choice(props) {
 
           <div
             id="Soigneur"
-            class={`tabcontent ${
-              activeTab === "Soigneur"
-                ? "active  h-75 d-flex flex-row align-items-center"
-                : ""
-            }`}
+            class={`tabcontent ${activeTab === "Soigneur"
+              ? "active  h-75 d-flex flex-row align-items-center"
+              : ""
+              }`}
           >
             <div className="mx-4 h-100 w-100 d-flex flex-column justify-content-between">
               <h3>Soigneur</h3>
               <p className="just-color-white">
-                Avec ses sorts, il aide en offrant plus de vie à ses
-                coéquipiers.
+                Gardien de l'équipe, le soigneur est dédié à la guérison et à la protection de ses coéquipiers.
+                Il est prêt à sacrifier ses propres ressources et capacités pour maintenir ses alliés en bonne santé.
+                Doté d'un large éventail de sorts de guérison et de récupération, le soigneur est capable de restaurer les points de vie perdus
+                et de dissiper les altérations négatives sur son équipe. Il doit néanmoins faire preuve de prudence, car il possède très peu de points de vie.
+                Le rôle de soigneur convient aux joueurs bienveillants qui souhaitent prendre soin et soutenir les membres plus vulnérables de leur équipe.
               </p>
             </div>
             <img
@@ -138,17 +141,18 @@ function Choice(props) {
 
           <div
             id="Mage"
-            class={`tabcontent ${
-              activeTab === "Mage"
-                ? "active  h-75 d-flex flex-row align-items-center"
-                : ""
-            }`}
+            class={`tabcontent ${activeTab === "Mage"
+              ? "active  h-75 d-flex flex-row align-items-center"
+              : ""
+              }`}
           >
             <div className="mx-4 h-100 w-100 d-flex flex-column justify-content-between">
               <h3>Mage</h3>
               <p className="just-color-white">
-                Il aide son équipe grâce à ses sorts en les renforçant et les
-                supportant.
+                Maître des arcanes, le mage soutient son équipe grâce à sa panoplie de sorts puissants.
+                Sa grande réserve de mana lui permet d’en distribuer à ses alliés pour qu’ils puissent utiliser leurs sorts plus régulièrement.
+                Ses capacités à altérer l’espace et le temps lui donnent l’occasion d’accélérer le développement et le gain d’expérience des personnages.
+                Rôle préférentiel pour les joueurs à l’esprit disrupteur et à la recherche de puissance.
               </p>
             </div>
             <img
@@ -162,15 +166,22 @@ function Choice(props) {
 
       <div className="containerAccueil centeredDiv">
         <h1>Comment jouer?</h1>
-        <p>Blah Blah Blah</p>
+        <p>Dans MindForge vous êtes regroupés par équipes de 4 élèves. Vous devez vous serrez les coudes et faire preuve de stratégie pour progresser durant l’année.
+          Se comporter correctement, réaliser les quêtes et les devoirs ou encore remporter les quiz vous permettra de faire progresser votre personnage en gagnant des points d’expérience.
+          En revanche, avoir un comportement inadapté pendant le cours forcera votre professeur à vous retirer des points de vies. Une fois à 0, vous encourez un malus aléatoire. Attention, ce dernier peut aussi mettre toute votre équipe dans la panade.
+          Utilisez vos points d’expérience pour débloquer de puissants sorts vous permettant de soutenir votre équipe et de progresser encore plus rapidement !
+          Vous pouvez aussi utiliser cette expérience pour vous offrir de magnifiques, tenus afin d’avoir le plus beau personnage de toute la classe.
+        </p>
       </div>
 
       <div className="containerAccueil centeredDiv2 glass1 m-5">
         <h1>Qui sommes-nous?</h1>
         <p>
-          {" "}
-          Etudiants en 3ème année en école d'ingénieur, nous cherchons à aider
-          professeurs et élèves dans leur vie scolaire.
+          Nous sommes Marie, Clara, Xavier, Armand et Tom et nous sommes étudiants en 3ème année à Junia ISEN.
+          Plus jeunes, le système éducatif nous semblait daté et peu adapté à nos besoins et envies, il était donc difficile de s’investir autant dans l’apprentissage que dans nos passions.
+          Passionnés de jeux de rôle, d’héroïque fantasy et de pop culture, nous souhaitons mettre ces univers passionnant au service de l’éducation.
+          Notre objectif est de rendre l’apprentissage ludique, agréable et motivant. Pour ce faire, nous avons créés MindForge, un outil divertissant et interactif qui s’intègre parfaitement au déroulement d’une journée.
+          Alors, prêts à apprendre avec nous ?
         </p>
       </div>
 
