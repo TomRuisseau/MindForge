@@ -1,43 +1,18 @@
-
-
-.boutique h1 {
-  color:#F5CB5C; 
-}
-
-
 .selected {
-  background-color: #f0f0f0;
-  font-family: "hug";
+    background-color: #28284667;
+    border-radius: 5px;
     
-    font-size: 150%;
+}
+.text-center-orange{
+    color: orange;
 }
 
-.m-2 {
-  margin: 2px;
-  font-family: "hug";
-    
-    font-size: 150%;
+.row1{
+    border: 1px solid orange; 
+  padding: 10px;
+}
+.h2 {
+    color: orange;
+
 }
 
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-
-  color: #fff;
-  border-radius: 5px;
-  text-decoration:none ;
-  font-family: "hug";
-    
-    font-size: 150%;
-}
-
-.btn-primary {
-  background-color: #007bff;
-}
-
-.btn-primary:hover {
- 
-  font-family: "hug";
-    
-    font-size: 150%;
-}
