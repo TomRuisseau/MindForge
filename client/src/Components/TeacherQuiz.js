@@ -12,21 +12,6 @@ const TeacherQuiz = (props) => {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [XP, setXP] = useState(0);
 
-  useEffect(() => {
-    axios
-      .post("http://localhost:5000/getStudents", { email: props.id })
-      .then((res) => {
-        setStudents(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [selectedStudent]);
-
-  const handleClick = (studentId) => {
-    setSelectedStudent(studentId);
-  };
-
   const addXP = () => {
     if (selectedStudent !== null) {
       axios
@@ -43,6 +28,23 @@ const TeacherQuiz = (props) => {
         });
     } else alert("Veuillez sélectionner un élève !");
   };
+
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:5000/getStudents", { email: props.id })
+      .then((res) => {
+        setStudents(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedStudent, addXP, props.id]);
+
+  const handleClick = (studentId) => {
+    setSelectedStudent(studentId);
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault(); // empêche le rechargement de la page

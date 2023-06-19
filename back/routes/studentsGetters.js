@@ -28,7 +28,6 @@ exports.setPostStudentsGetters = function setPostStudentsGetters(app, pool) {
                     if (err) throw err;
                     let length = result.length;
                     let random = Math.floor(Math.random() * (length - 1));
-                    console.log(result[random]);
                     res.send(result[random]);
                 }
             );
