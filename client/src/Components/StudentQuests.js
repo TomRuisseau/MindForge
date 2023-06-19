@@ -77,58 +77,57 @@ function StudentQuests(props) {
         className="w-100 d-flex align-items-center hug justify-content-center"
         style={{ height: "100vh" }}
       >
-        <div
-          className="glass1 p-5 d-flex flex-column custom-scrollbar box-size w-75"
-          style={{ overflow: "auto" }}
-        >
+        <div className="glass1 p-5 d-flex flex-column box-size w-75">
           <h2 className="text-center just-color-yellow mb-5">
             Liste de quêtes
           </h2>
-          <table className="table">
-            <thead className="just-color-yellow log-size">
-              <tr className="mb-5">
-                <th scope="col" className="pb-4">
-                  Description
-                </th>
-                <th scope="col" className="text-center pb-4">
-                  Récompense
-                </th>
-                <th scope="col" className="text-center pb-4">
-                  État
-                </th>
-              </tr>
-            </thead>
-            <tbody className="just-color-white">
-              {quests.map((quest) => {
-                return (
-                  <tr key={quest.id} data-key={quest.id}>
-                    <td>{quest.description}</td>
-                    <td className="text-center">{quest.reward}</td>
-                    {testCompletedQuests(quest.id) ? (
-                      <td className="text-center">
-                        <p className="my-1">Quête déjà terminée</p>
-                      </td>
-                    ) : (
-                      <td className="text-center">
-                        <motion.button
-                          whileHover={{
-                            scale: 1.1,
-                            color: "#ffffff",
-                            backgroundColor: "#ffcc00",
-                          }}
-                          whileTap={{ scale: 0.9 }}
-                          onClick={questValidation}
-                          className="btn-valider-quete py-1"
-                        >
-                          Terminer la quête
-                        </motion.button>
-                      </td>
-                    )}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <div className="custom-scrollbar" style={{ overflow: "auto" }}>
+            <table className=" table">
+              <thead className="just-color-yellow log-size">
+                <tr className="mb-5">
+                  <th scope="col" className="pb-4">
+                    Description
+                  </th>
+                  <th scope="col" className="text-center pb-4">
+                    Récompense
+                  </th>
+                  <th scope="col" className="text-center pb-4">
+                    État
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="just-color-white">
+                {quests.map((quest) => {
+                  return (
+                    <tr key={quest.id} data-key={quest.id}>
+                      <td>{quest.description}</td>
+                      <td className="text-center">{quest.reward}</td>
+                      {testCompletedQuests(quest.id) ? (
+                        <td className="text-center">
+                          <p className="my-1">Quête déjà terminée</p>
+                        </td>
+                      ) : (
+                        <td className="text-center">
+                          <motion.button
+                            whileHover={{
+                              scale: 1.1,
+                              color: "#ffffff",
+                              backgroundColor: "#ffcc00",
+                            }}
+                            whileTap={{ scale: 0.9 }}
+                            onClick={questValidation}
+                            className="btn-valider-quete py-1"
+                          >
+                            Terminer la quête
+                          </motion.button>
+                        </td>
+                      )}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </>
