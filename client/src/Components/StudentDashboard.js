@@ -8,7 +8,6 @@ import Shop from "./Shop";
 import Tutorial from "./Tutorial";
 import StudentQuests from "./StudentQuests";
 import StudentClass from "./StudentClass";
-import "../Styles/studentDashboard.css";
 import { motion } from "framer-motion";
 
 function StudentDashboard(props) {
