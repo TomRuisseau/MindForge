@@ -1,13 +1,19 @@
-import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
+import React, {
+  useState,
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import axios from "axios";
-import "../Styles/studentClass.css";
 
-const StudentClass = forwardRef((props,ref) => {
+const StudentClass = forwardRef((props, ref) => {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudents", { email: props.data[0].teacher_email })
+      .post("http://localhost:5000/getStudents", {
+        email: props.data[0].teacher_email,
+      })
       .then((res) => {
         setStudents(res.data);
         console.log(res.data);
@@ -18,26 +24,33 @@ const StudentClass = forwardRef((props,ref) => {
   }, [props.data[0].teacher_email]);
 
   return (
-    <div className="tab-class position-absolute">
-      <h1 class="titre">Ma classe</h1>
-      <table>
-        <thead>
-          <tr  class="titre">
-            <th >Prénom</th>
-            <th>HP</th>
-            <th>ID</th>
-          </tr>
-        </thead>
-        <tbody  class="titre1" >
-          {students.map((student) => (
-            <tr key={student.id}>
-              <td>{student.first_name}</td>
-              <td>{student.hp}</td>
-              <td>{student.id}</td>
+    <div className=" w-100 d-flex flex-column align-items-center justify-content-center just-color-white" style={{ height: "100vh" }}>
+      <div
+        className="glass1 hug just-color-white w-50 box-size d-flex flex-column"
+        style={{ minHeight: "50vh" }}
+      >
+        <h1 className="text-center m-3 just-color-yellow">Ma classe</h1>
+        <table className="m-5 text-center">
+          <thead>
+            <tr className="ma-classe-size just-color-yellow">
+              <th className="pb-4">Prénom</th>
+              <th className="pb-4">HP</th>
+              <th className="pb-4">XP</th>
+              <th className="pb-4">Mana</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody class="custom-scrollbar log-size" style={{ overflow: "auto" }}>
+            {students.map((student) => (
+              <tr key={student.id}>
+                <td className="w-25">{student.first_name}</td>
+                <td className="w-25">{student.hp}</td>
+                <td className="w-25">{student.xp}</td>
+                <td className="w-25">{student.mana}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 });
