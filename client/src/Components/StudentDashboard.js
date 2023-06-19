@@ -36,6 +36,9 @@ function StudentDashboard(props) {
         <div className="menu-animation"></div>
         <div className="menu-animation"></div>
       </motion.div>
+      <h1 className="position-absolute mx-5 my-4 end-0 just-color-yellow hug">
+        MindForge<span class="blinking-cursor">_</span>
+      </h1>
 
       <StudentDrawer ref={childRef} onChoice={switchPage} />
 
