@@ -38,7 +38,7 @@ function StudentStats(props) {
             <h3>Equipe : {stat.team}</h3>
           </div>
           <div className="h-50 m-5 d-flex just-color-white flex-column justify-content-between">
-            <h4>Classe : {stat.class}</h4>
+            <h4>Rôle : {stat.class}</h4>
             <div className="h-25 w-25 d-flex align-items-center">
               <img
                 src={"media/logos/etoile.png"}
