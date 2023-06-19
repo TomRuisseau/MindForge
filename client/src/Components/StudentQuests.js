@@ -78,12 +78,12 @@ function StudentQuests(props) {
         style={{ height: "100vh" }}
       >
         <div className="glass1 p-5 d-flex flex-column box-size w-75">
-          <h2 className="text-center just-color-yellow mb-5">
+          <h1 className="text-center just-color-yellow mb-5">
             Liste de quêtes
-          </h2>
+          </h1>
           <div className="custom-scrollbar" style={{ overflow: "auto" }}>
             <table className=" table">
-              <thead className="just-color-yellow log-size">
+              <thead className="just-color-yellow ma-classe-size">
                 <tr className="mb-5">
                   <th scope="col" className="pb-4">
                     Description
