@@ -66,6 +66,40 @@
   -webkit-backdrop-filter: blur(7.8px);
 }
 
+/*glass en fonction des roles pour sorts*/
+
+.glass-tank {
+  /* From https://css.glass */
+  background: rgba(161, 0, 0, 0.559);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.8px);
+  -webkit-backdrop-filter: blur(7.8px);
+  border: 1px solid rgba(140, 62, 59, 0.23);
+}
+
+.glass-healer{
+  /* From https://css.glass */
+  background: rgba(0, 161, 0, 0.559);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.8px);
+  -webkit-backdrop-filter: blur(7.8px);
+  border: 1px solid rgba(62, 140, 59, 0.23);
+}
+
+.glass-mage{
+  /* From https://css.glass */
+  background: rgba(0, 0, 161, 0.559);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.8px);
+  -webkit-backdrop-filter: blur(7.8px);
+  border: 1px solid rgba(62, 59, 140, 0.23);
+}
+
+/*--------------------------------------*/
+
 .glass-dead {
   background: rgba(52, 35, 32, 0.75);
   border-radius: 16px;

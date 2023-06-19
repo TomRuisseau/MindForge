@@ -14,6 +14,7 @@
   font-size: 3vh;
 }
 
+
 .ma-classe-size {
   font-size: 3vh;
 }
@@ -80,6 +81,10 @@
 
 .box-size {
   height: 80vh;
+}
+
+.box-size-2 {
+  width: 48%;
 }
 
 .spacing-tab{
