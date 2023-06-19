@@ -85,11 +85,17 @@ function StudentQuests(props) {
             Liste de quêtes
           </h2>
           <table className="table">
-            <thead className="just-color-white log-size">
+            <thead className="just-color-yellow log-size">
               <tr className="mb-5">
-                <th scope="col">Description</th>
-                <th scope="col">Récompense</th>
-                <th scope="col">État</th>
+                <th scope="col" className="pb-4">
+                  Description
+                </th>
+                <th scope="col" className="text-center pb-4">
+                  Récompense
+                </th>
+                <th scope="col" className="text-center pb-4">
+                  État
+                </th>
               </tr>
             </thead>
             <tbody className="just-color-white">
@@ -97,19 +103,25 @@ function StudentQuests(props) {
                 return (
                   <tr key={quest.id} data-key={quest.id}>
                     <td>{quest.description}</td>
-                    <td>{quest.reward}</td>
+                    <td className="text-center">{quest.reward}</td>
                     {testCompletedQuests(quest.id) ? (
-                      <td>
-                        <p>Quête déjà terminée</p>
+                      <td className="text-center">
+                        <p className="my-1">Quête déjà terminée</p>
                       </td>
                     ) : (
-                      <td>
-                        <button
+                      <td className="text-center">
+                        <motion.button
+                          whileHover={{
+                            scale: 1.1,
+                            color: "#ffffff",
+                            backgroundColor: "#ffcc00",
+                          }}
+                          whileTap={{ scale: 0.9 }}
                           onClick={questValidation}
-                          className="btn btn-light"
+                          className="btn-valider-quete py-1"
                         >
                           Terminer la quête
-                        </button>
+                        </motion.button>
                       </td>
                     )}
                   </tr>

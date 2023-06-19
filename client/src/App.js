@@ -18,6 +18,8 @@ function App() {
     setLogId(id);
   };
 
+  
+
   return (
     <div className="App w-100 h-100 text-black">
       {currentPage === "Choice" ? (
