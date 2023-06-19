@@ -18,7 +18,7 @@ const StudentClass = forwardRef((props,ref) => {
   }, [props.data[0].teacher_email]);
 
   return (
-    <div className=" glass3 position-absolute">
+    <div className="tab-class position-absolute">
       <h1 class="titre">Ma classe</h1>
       <table>
         <thead>

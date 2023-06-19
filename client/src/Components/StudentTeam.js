@@ -41,28 +41,16 @@ function StudentTeam(props){
 
     return(
         <>
-            <div className='row  row-team1 row-team'>
-                
-                <div className='col-2 col-21 col-team'></div>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-               
-                <div className=' glass2 '>
-
-                <h1 className='col color: col-glass2 col-team'>Mon équipe</h1>
-               
+            <div className='row row-team1 row-team'>
+                <div className='col-2 col-team'></div>
+                <h1 className='col col-team'>Mon équipe</h1>
                 <div className='row row-team'>
-              
                     <div className='col-2 col-team'></div>
-                   
                     {team.map((student) => {
                         return (
-                           
+                            
+                                
                                 <div className='col-2 col-team'>
-                                    
-
                                     
                                     <h3>{student.first_name}</h3>
                                     <h5>Vie:</h5><p>{student.hp}</p>
@@ -73,7 +61,6 @@ function StudentTeam(props){
                         )
                     }
                     )}
-                </div>
                 </div>
 
             </div>

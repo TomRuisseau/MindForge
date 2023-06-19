@@ -64,7 +64,7 @@ function StudentQuests(props) {
             <div className="row questRow position-absolute w-100">
                 <div className="col custom-scrollbar" style={{ height: "82vh", overflow: "auto" }}>
                     <h2 className="text-center" className="text-center1">Liste de quêtes</h2>
-                    <table className="table glass1 table-striped">
+                    <table className="table table-striped">
                         <thead  className="text-center1">
                             <tr>
                                 <th scope="col">Description</th>
