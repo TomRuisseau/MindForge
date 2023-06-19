@@ -47,7 +47,7 @@ const BigList = forwardRef((props, ref) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [props.id, count]);
+  }, [props.id, count, props.counter]);
 
   //affichage (render)
   return (

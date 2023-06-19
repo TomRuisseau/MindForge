@@ -13,7 +13,7 @@ import "../Styles/Buttons.css";
 const StudentManager = (props) => {
   const [popUp, setPopUp] = useState("hidden"); //[hidden, addTeam, addStudent, removeHp, removeXp]
   const [student, setStudent] = useState(0);
-  const [counter, setCounter] = useState(0); //used to force reloads
+  const [counter, addCounter] = useState(0); //used to force reloads
   const childRef = useRef();
 
   const isDead = () => {
@@ -21,8 +21,11 @@ const StudentManager = (props) => {
   };
 
   const forceReload = () => {
-    console.log("reload");
     childRef.current.forceReload();
+  };
+
+  const setCounter = (value) => {
+    addCounter(counter + value);
   };
 
   const pass = (identifiant) => {
@@ -33,7 +36,7 @@ const StudentManager = (props) => {
     <div className="row p-0 m-0 w-100 h-100">
       <div className="col-10 my-4 p-0">
         <div className="d-flex flex-row my-5">
-          <BigList id={props.id} ref={childRef} onPass={pass} />
+          <BigList id={props.id} ref={childRef} onPass={pass} counter={counter} />
           {student === 0 ? null : (
             <StudentStats id={student} counter={counter} />
           )}
