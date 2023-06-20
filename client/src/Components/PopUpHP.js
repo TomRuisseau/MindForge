@@ -51,7 +51,7 @@ function PopUpHP(props) {
           props.close();
           props.addCounter(1);
           if (res.data === "dead") {
-            props.isDead();
+            props.isDead(props.id);
           }
         })
         .catch((err) => {
@@ -62,12 +62,12 @@ function PopUpHP(props) {
         .post("http://localhost:5000/removeHp", {
           id: tanker,
           damage: HP,
-        })
+        })  
         .then((res) => {
           props.close();
           props.addCounter(1);
           if (res.data === "dead") {
-            props.isDead();
+            props.isDead(tanker);
           }
         })
         .catch((err) => {
@@ -77,7 +77,7 @@ function PopUpHP(props) {
         .post("http://localhost:5000/useProtection", {
           id: tanker,
         })
-        .then((res) => {})
+        .then((res) => { })
         .catch((err) => {
           console.log(err);
         });
