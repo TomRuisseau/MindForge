@@ -14,7 +14,7 @@ const QuizAleatoire = () => {
 
   const fetchQuestions = () => {
     try {
-      const data = require("./QuestionsReponses.json");
+      const data = require("../Data/QuestionsReponses.json");
       setQuestions(data.questions);
     } catch (error) {
       console.error("Erreur lors du chargement des questions", error);
