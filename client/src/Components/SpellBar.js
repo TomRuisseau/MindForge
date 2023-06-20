@@ -47,23 +47,19 @@ const SpellBar = (props) => {
   }, [props.data]);
 
   return (
-    <div>
-      <h2>SpellBar</h2>
+    <div className="w-auto h-auto d-flex flex-column">
+      <h3>Sorts :</h3>
 
-      <div className="spellBar">
+      <div className="d-flex flex-row mt-2 mx-5">
         {spells.map((spell) => {
           return (
             <div key={spell.item_name}>
               <img
                 src={`media/spells/${spell.item_name}.webp`}
                 onClick={() => selectSpell(spell.item_name)}
+                className="rounded mx-3"
+                style={{ width: "71px", height: "71px" }}
               ></img>
-              {/* <p>
-              {spell.item_name.split("_").join(" ") +
-                " : " +
-                spell.manaCost +
-                " points de mana"}
-            </p> */}
             </div>
           );
         })}

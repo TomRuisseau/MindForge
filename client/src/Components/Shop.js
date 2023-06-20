@@ -164,7 +164,7 @@ function Shop(props) {
           Vous avez {props.data[0].xp} XP
         </h2>
       </div>
-      <div className="h-75 d-flex flex-row justify-content-between mx-5">
+      <div className="h-75 d-flex flex-row justify-content-between mx-5 mb-5">
         <div className="w-auto glass1 d-flex flex-column justify-content-between p-4">
           <h1 className="just-color-yellow text-center">Sorts</h1>
           <p className="just-color-yellow text-center">
