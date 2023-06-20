@@ -51,6 +51,10 @@
   color: #fdfdfb;
 }
 
+.just-color-red {
+  color: rgb(192, 9, 9);
+}
+
 .just-color-dark-red {
   color: #77021d;
 }
@@ -85,6 +89,10 @@
 
 .box-size-2 {
   width: 45%;
+}
+
+.aligner-droite{
+  text-align: right;
 }
 
 .spacing-tab{
