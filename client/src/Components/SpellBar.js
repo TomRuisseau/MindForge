@@ -13,6 +13,9 @@ import TruquageDuDestin from "./PopUpsSorts/TruquageDuDestin";
 import VagueDeMana from "./PopUpsSorts/VagueDeMana";
 import Reviviscence from "./PopUpsSorts/Reviviscence";
 import "../Styles/studentProfile.css";
+import "../Styles/Glass.css";
+import "../Styles/Textes.css";
+import { motion } from "framer-motion";
 
 const SpellBar = (props) => {
   const [spells, setSpells] = useState([]); // liste des sorts
@@ -50,17 +53,26 @@ const SpellBar = (props) => {
     <div className="w-auto h-75 d-flex flex-column justify-content-between">
       <h3>Sorts</h3>
 
-      <div className="h-auto d-flex flex-column justify-content-between"
-      style={{minHeight:"50%"}}>
+      <div
+        className="h-auto d-flex flex-column justify-content-between"
+        style={{ minHeight: "50%" }}
+      >
         {spells.map((spell) => {
           return (
-            <div key={spell.item_name}>
-              <img
+            <div key={spell.item_name} className="text-center">
+              <motion.img
+                whileHover={{
+                  scale: 1.2,
+                  //scale center
+                  originY: 0.5,
+                  cursor: "pointer",
+                }}
+                whileTap={{ scale: 1 }}
                 src={`media/spells/${spell.item_name}.webp`}
                 onClick={() => selectSpell(spell.item_name)}
                 className="rounded m-3"
                 style={{ width: "71px", height: "71px" }}
-              ></img>
+              ></motion.img>
             </div>
           );
         })}

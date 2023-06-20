@@ -127,7 +127,7 @@ function StudentProfile(props) {
           <img src={`media/skin/${skin}.png`}></img>
         </div>
         <div
-          className="glass1 just-color-yellow w-auto p-3"
+          className="glass1 just-color-yellow w-auto p-3 text-center"
           style={{ height: "70%" }}
         >
           <SpellBar data={props.data} refresh={addCounter} className="p-2" />
