@@ -35,9 +35,9 @@ function Choice(props) {
         <h2 className="tailleSousTitre p-3 glass1">Pour motiver à apprendre</h2>
 
         <div className="m-5 w-50 d-flex flex-row justify-content-between">
-          <img style={{ height: "100px" }} src="media/logos/fleche_bas.png" />
-          <img style={{ height: "100px" }} src="media/logos/fleche_bas.png" />
-          <img style={{ height: "100px" }} src="media/logos/fleche_bas.png" />
+          <img style={{ height: "10vh" }} src="media/logos/fleche_bas.png" />
+          <img style={{ height: "10vh" }} src="media/logos/fleche_bas.png" />
+          <img style={{ height: "10vh" }} src="media/logos/fleche_bas.png" />
         </div>
       </div>
       <div

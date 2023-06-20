@@ -80,6 +80,19 @@
   border: 1px solid rgba(255, 38, 0, 0.197);
 }
 
+.btn-acheter-equiper {
+  height: 50px;
+  padding-left: 4%;
+  padding-right: 4%;
+  /* From https://css.glass */
+  background: rgba(200, 255, 0, 0.257);
+  border-radius: 30px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1.9px);
+  -webkit-backdrop-filter: blur(1.9px);
+  border: 1px solid rgba(140, 255, 0, 0.197);
+}
+
 .btn-quetes-supp {
   height: 80px;
   padding-left: 4%;

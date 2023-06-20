@@ -202,7 +202,7 @@ function Shop(props) {
         <div className="glass1 text-center p-4" style={{width:"15%"}}>
         <h1 className="just-color-yellow">Actions</h1>
           {selected !== "" && !isOwned(selected) ? (
-            <button className="btn-quetes-valider just-color-white big-button px-4" onClick={buy}>
+            <button className="btn-acheter-equiper just-color-white big-button px-4" onClick={buy}>
               Acheter
             </button>
           ) : (
