@@ -72,7 +72,6 @@ function StudentProfile(props) {
                                     <h3>{props.data[0].team}</h3>
                                     <div className='stripe'></div>
                                     <h1>{props.data[0].first_name + " " + props.data[0].surname}</h1>
-                                    <SpellBar data={props.data} refresh={addCounter} />
                                     <div className='stripe'></div>
 
 
@@ -98,6 +97,11 @@ function StudentProfile(props) {
                         </div>
                     </div>
 
+
+
+                </div>
+                <div className='spellbar-box'>
+                <SpellBar data={props.data} refresh={addCounter} className='p-2'/>
                 </div>
         </>
     )
