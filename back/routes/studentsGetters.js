@@ -5,7 +5,7 @@ exports.setPostStudentsGetters = function setPostStudentsGetters(app, pool) {
     app.post("/getStudents", (req, res) => {
         pool.getConnection(function (err, connection) {
             connection.query(
-                "SELECT * FROM student WHERE teacher_email = '" +
+                "SELECT * FROM student WHERE teacher_email = '" + //get all students of a teacher
                 req.body.email +
                 "' ORDER BY team",
                 function (err, result, fields) {
@@ -21,17 +21,17 @@ exports.setPostStudentsGetters = function setPostStudentsGetters(app, pool) {
     app.post("/getRandomStudent", (req, res) => {
         pool.getConnection(function (err, connection) {
             connection.query(
-                "SELECT * FROM student WHERE teacher_email = '" +
+                "SELECT * FROM student WHERE teacher_email = '" + //get all students of a teacher
                 req.body.id +
                 "'",
                 function (err, result, fields) {
                     if (err) throw err;
-                    let length = result.length;
-                    let random = Math.floor(Math.random() * (length - 1));
+                    let length = result.length; //get the number of students
+                    let random = Math.floor(Math.random() * (length - 1)); //pick a random student 
                     res.send(result[random]);
                 }
             );
-            connection.release();
+            connection.release(); //release connection to free memory space
         });
     });
 
@@ -39,13 +39,13 @@ exports.setPostStudentsGetters = function setPostStudentsGetters(app, pool) {
     app.post("/getStudentsTeam", (req, res) => {
         pool.getConnection(function (err, connection) {
             connection.query(
-                "SELECT * FROM student WHERE team = '" + req.body.team + "'",
+                "SELECT * FROM student WHERE team = '" + req.body.team + "'", //get all students of a team
                 function (err, result, fields) {
                     if (err) throw err;
                     res.send(result);
                 }
             );
-            connection.release();
+            connection.release(); //release connection to free memory space
         });
     });
 
@@ -53,7 +53,7 @@ exports.setPostStudentsGetters = function setPostStudentsGetters(app, pool) {
     app.post("/getStudentsTeamExcept", (req, res) => {
         pool.getConnection(function (err, connection) {
             connection.query(
-                "SELECT * FROM student WHERE team = '" +
+                "SELECT * FROM student WHERE team = '" +  //get all students of a team except one
                 req.body.team +
                 "' AND id != '" +
                 req.body.id +
@@ -69,10 +69,9 @@ exports.setPostStudentsGetters = function setPostStudentsGetters(app, pool) {
 
     //get a specific student
     app.post("/getStudent", (req, res) => {
-        //todo : send the skin too
         pool.getConnection(function (err, connection) {
             connection.query(
-                "SELECT * FROM student WHERE id = '" + req.body.id + "'",
+                "SELECT * FROM student WHERE id = '" + req.body.id + "'", //get a specific student
                 function (err, result, fields) {
                     if (err) throw err;
                     res.send(result);

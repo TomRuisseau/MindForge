@@ -1,3 +1,4 @@
+//map of linking spells to their costs
 exports.SpellsCosts = new Map();
 
 exports.SpellsCosts.set("protection", 2);
