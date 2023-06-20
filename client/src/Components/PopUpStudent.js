@@ -49,7 +49,7 @@ function PopUpStudent(props) {
               console.log(err);
             });
         } else {
-          alert("L'équipe est déjà complète");
+          props.notify("L'équipe est déjà complète");
         }
       })
       .catch((err) => {

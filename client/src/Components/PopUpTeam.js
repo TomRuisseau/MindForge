@@ -23,7 +23,7 @@ function PopUpTeam(props) {
           //console.log("team created");
           props.close();
         } else {
-          alert("équipe déjà existante");
+          props.notify("Equipe déjà existante");
         }
       });
   };

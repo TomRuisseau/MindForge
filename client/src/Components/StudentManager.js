@@ -9,6 +9,8 @@ import StudentStats from "./StudentStats";
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import "../Styles/Buttons.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const StudentManager = (props) => {
   const [popUp, setPopUp] = useState("hidden"); //[hidden, addTeam, addStudent, removeHp, removeXp]
@@ -34,6 +36,17 @@ const StudentManager = (props) => {
     setStudent(identifiant);
   };
 
+  const notify = (message) => toast.warning(message, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+
   return (
     <div className="row p-0 m-0 w-100 h-100">
       <div className="col-10 my-4 p-0">
@@ -54,7 +67,7 @@ const StudentManager = (props) => {
       ) : null}
 
       {popUp === "addTeam" ? (
-        <PopUpTeam close={() => setPopUp("hidden")} id={props.id} />
+        <PopUpTeam close={() => setPopUp("hidden")} id={props.id} notify={notify} />
       ) : null}
 
       {popUp === "addStudent" ? (
@@ -62,6 +75,7 @@ const StudentManager = (props) => {
           close={() => setPopUp("hidden")}
           id={props.id}
           reload={forceReload}
+          notify={notify}
         />
       ) : null}
       {popUp === "removeHp" ? (
@@ -126,6 +140,18 @@ const StudentManager = (props) => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 };
