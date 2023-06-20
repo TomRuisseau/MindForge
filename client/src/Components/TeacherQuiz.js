@@ -6,6 +6,8 @@ import "../Styles/Textes.css";
 import "../Styles/Buttons.css";
 import "../Styles/Scroll.css";
 import { motion } from "framer-motion";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TeacherQuiz = (props) => {
   const [students, setStudents] = useState([]);
@@ -26,7 +28,18 @@ const TeacherQuiz = (props) => {
         .catch((err) => {
           console.log(err);
         });
-    } else alert("Veuillez sélectionner un élève !");
+    } else {
+      toast.warning("Veuillez sélectionner un élève !", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
   };
 
 
@@ -49,7 +62,16 @@ const TeacherQuiz = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault(); // empêche le rechargement de la page
     if (selectedStudent === null) {
-      alert("Veuillez sélectionner un élève !");
+      toast.warning("Veuillez sélectionner un élève !", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
     axios
       .post("http://localhost:5000/giveXP", {
@@ -189,6 +211,18 @@ const TeacherQuiz = (props) => {
           </form>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 };
