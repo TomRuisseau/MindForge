@@ -14,17 +14,19 @@ function PopUpDead(props) {
 
   const options = [
     "L'équipe organise un goûter",
-    "Coup de bol",
+    "Coup de chance ! pas de malus",
     "Choix du professeur",
     "Passer au tableau pour le prochain exercice",
-    "L'équipe doit faire un exposé",
-    "Tu fais seul un exposé",
-    "Chanter",
+    "L'équipe doit faire un exposé sur un sujet choisi par le professeur",
+    "Faire seul un exposé",
+    "Toute l'équipe chante une chanson",
     "Récit de poésie",
-    "Faire un stand-up",
+    "Faire un stand-up ou une mini pièce de théâtre avec l'équipe",
     "Faire un poème d'éloge au professeur",
-    "Débat",
-    "Coup de bol",
+    "Lire un livre choisi par le professeur",
+    "Tutorat d'un autre élève",
+    "Exercices supplémentaires",
+    "Faire un exposer en anglais",
   ];
 
   const onClick = () => {
@@ -39,7 +41,7 @@ function PopUpDead(props) {
         .post("http://localhost:5000/useRevivification", {
           id: healer,
         })
-        .then((res) => {})
+        .then((res) => { })
         .catch((err) => {
           console.log(err);
         });
@@ -122,7 +124,7 @@ function PopUpDead(props) {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 1 }}
-             className="btn-lancer-roue-de-la-mort just-color-white big-button p-4 mt-3" onClick={onClick}>
+              className="btn-lancer-roue-de-la-mort just-color-white big-button p-4 mt-3" onClick={onClick}>
               Lancer la roue de la mort
             </motion.button>
           )}
