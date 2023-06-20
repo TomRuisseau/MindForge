@@ -122,7 +122,7 @@ function StudentProfile(props) {
         </div>
         <div
           className="d-flex flex-column justify-content-center"
-          style={{ height: "90%", width: "40%" }}
+          style={{ height: "90%", width: "40%" ,marginRight:"10%"}}
         >
           <img src={`media/skin/${skin}.png`}></img>
         </div>
