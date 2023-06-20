@@ -165,9 +165,9 @@ function Shop(props) {
         </h2>
       </div>
       <div className="h-75 d-flex flex-row justify-content-between mx-5">
-        <div className="box-size-2 glass1 d-flex flex-column justify-content-between p-4">
-          <h1 className="just-color-yellow">Sorts</h1>
-          <div className="h-100 w-75 d-flex flex-row justify-content-between align-self-center align-items-center flex-wrap">
+        <div className="w-auto glass1 d-flex flex-column justify-content-between p-4">
+          <h1 className="just-color-yellow text-center">Sorts</h1>
+          <div className="h-100 w-100 d-flex flex-row justify-content-between align-self-center align-items-center flex-wrap">
             {spells.map((spell) => {
               let bg = spell.name === selected ? "selected" : "";
               let className = "m-2 " + bg; //mettre ici les autres classes de la div
@@ -199,8 +199,27 @@ function Shop(props) {
             })}
           </div>
         </div>
+        <div className="glass1 text-center p-4" style={{width:"15%"}}>
+        <h1 className="just-color-yellow">Actions</h1>
+          {selected !== "" && !isOwned(selected) ? (
+            <button className="btn-quetes-valider just-color-white big-button px-4" onClick={buy}>
+              Acheter
+            </button>
+          ) : (
+            <button className={`${glassClass} btn-just-circle opacity-50 just-color-white big-button px-4`}>
+              Acheter
+            </button>
+          )}
+          {isOwned(selected) && isSkin(selected) && !isEquiped(selected) ? (
+            <button className="btn btn-primary" onClick={equip}>
+              Équiper
+            </button>
+          ) : (
+            <></>
+          )}
+        </div>
         <div className="box-size-2 glass1 d-flex flex-column justify-content-between p-4">
-          <h1 className="just-color-yellow">Skins</h1>
+          <h1 className="just-color-yellow text-center">Skins</h1>
           <div className="d-flex d-flex1 flex-row">
             {skins.map((skin) => {
               let bg = skin.name === selected ? "selected" : "";
@@ -229,20 +248,6 @@ function Shop(props) {
           </div>
         </div>
       </div>
-      {selected !== "" && !isOwned(selected) ? (
-        <button className="btn btn-primary" onClick={buy}>
-          Acheter
-        </button>
-      ) : (
-        <></>
-      )}
-      {isOwned(selected) && isSkin(selected) && !isEquiped(selected) ? (
-        <button className="btn btn-primary" onClick={equip}>
-          Equiper
-        </button>
-      ) : (
-        <></>
-      )}
     </div>
   );
 }
