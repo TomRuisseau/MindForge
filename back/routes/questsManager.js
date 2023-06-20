@@ -5,21 +5,21 @@ exports.setPostQuests = function setPostQuests(app, pool, addXp) {
         //receive id and quest
         pool.getConnection(function (err, connection) {
             connection.query(
-                "INSERT INTO quest(id, teacher_email, reward, description) VALUES ('" +
+                "INSERT INTO quest(id, teacher_email, reward, description) VALUES ('" +  //add the quest to the database
                 new Date().getTime() +
                 "', '" +
                 req.body.email +
                 "', '" +
                 req.body.reward +
                 "', '" +
-                req.body.description.replace('\'', " ") +
+                req.body.description.replace('\'', " ") + //replace ' by a space to avoid sql errors
                 "')",
                 function (err, result, fields) {
                     if (err) throw err;
                     res.send("0");
                 }
             );
-            connection.release();
+            connection.release();  //release connection to free memory space
         });
     });
 
@@ -27,7 +27,7 @@ exports.setPostQuests = function setPostQuests(app, pool, addXp) {
     app.post("/getQuests", (req, res) => {
         pool.getConnection(function (err, connection) {
             connection.query(
-                "SELECT * FROM quest WHERE teacher_email = '" + req.body.email + "'",
+                "SELECT * FROM quest WHERE teacher_email = '" + req.body.email + "'", //get all quests of a teacher
                 function (err, result, fields) {
                     if (err) {
                         console.error(err);
@@ -71,7 +71,7 @@ exports.setPostQuests = function setPostQuests(app, pool, addXp) {
                             res.status(500).send("Error retrieving quests");
                         })
                         .finally(() => {
-                            connection.release();
+                            connection.release();  //release connection to free memory space
                         });
                 }
             );
@@ -82,7 +82,7 @@ exports.setPostQuests = function setPostQuests(app, pool, addXp) {
     app.post("/getCompletedQuests", (req, res) => {
         pool.getConnection(function (err, connection) {
             connection.query(
-                "SELECT quest.* FROM quest, completed_quest WHERE teacher_email = '"
+                "SELECT quest.* FROM quest, completed_quest WHERE teacher_email = '" //get all completed quests of a student
                 + req.body.email +
                 "' AND completed_quest.student_id = '" +
                 req.body.id +
@@ -92,7 +92,7 @@ exports.setPostQuests = function setPostQuests(app, pool, addXp) {
                     res.send(result);
                 }
             );
-            connection.release();
+            connection.release();  //release connection to free memory space
         });
     });
 
@@ -101,7 +101,7 @@ exports.setPostQuests = function setPostQuests(app, pool, addXp) {
         //receive id
         pool.getConnection(function (err, connection) {
             connection.query(
-                "INSERT INTO completed_quest(student_id, quest_id) VALUES ('" +
+                "INSERT INTO completed_quest(student_id, quest_id) VALUES ('" + //add the completed quest to the database
                 req.body.student_id +
                 "', '" +
                 req.body.quest_id +
@@ -109,15 +109,15 @@ exports.setPostQuests = function setPostQuests(app, pool, addXp) {
                 function (err, result, fields) {
                     if (err) throw err;
                     connection.query(
-                        "SELECT reward FROM quest WHERE id = '" + req.body.quest_id + "'",
+                        "SELECT reward FROM quest WHERE id = '" + req.body.quest_id + "'",  //get the reward of the quest
                         function (err, result, fields) {
                             if (err) throw err;
-                            addXp(pool, req.body.student_id, result[0].reward, res);
+                            addXp(pool, req.body.student_id, result[0].reward, res); //add the reward to the student
                         }
                     );
                 }
             );
-            connection.release();
+            connection.release();  //release connection to free memory space
         });
     });
 
@@ -126,11 +126,11 @@ exports.setPostQuests = function setPostQuests(app, pool, addXp) {
         //receive id
         pool.getConnection(function (err, connection) {
             connection.query(
-                "DELETE FROM quest WHERE id = '" + req.body.id + "'",
+                "DELETE FROM quest WHERE id = '" + req.body.id + "'",  //delete the quest from the database
                 function (err, result, fields) {
                     if (err) throw err;
                     connection.query(
-                        "DELETE FROM completed_quest WHERE quest_id = '" + req.body.id + "'",
+                        "DELETE FROM completed_quest WHERE quest_id = '" + req.body.id + "'",  //delete the completed quest from the database
                         function (err, result, fields) {
                             if (err) throw err;
                             res.send("0");
@@ -138,7 +138,7 @@ exports.setPostQuests = function setPostQuests(app, pool, addXp) {
                     );
                 }
             );
-            connection.release();
+            connection.release();  //release connection to free memory space
         });
     });
 };

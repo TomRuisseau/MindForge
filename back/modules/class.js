@@ -1,3 +1,4 @@
+// list of classes and their stats (max hp, max mana, base spell)
 exports.classMap = new Map();
 
 let tank = {

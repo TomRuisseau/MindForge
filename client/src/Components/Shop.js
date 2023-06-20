@@ -167,6 +167,10 @@ function Shop(props) {
       <div className="h-75 d-flex flex-row justify-content-between mx-5">
         <div className="w-auto glass1 d-flex flex-column justify-content-between p-4">
           <h1 className="just-color-yellow text-center">Sorts</h1>
+          <p className="just-color-yellow text-center">
+            (sort acheté = sort appris)
+          </p>
+
           <div className="h-100 w-100 d-flex flex-row justify-content-between align-self-center align-items-center flex-wrap">
             {spells.map((spell) => {
               let bg = spell.name === selected ? "selected" : "";
@@ -199,24 +203,50 @@ function Shop(props) {
             })}
           </div>
         </div>
-        <div className="glass1 text-center p-4" style={{width:"15%"}}>
-        <h1 className="just-color-yellow">Actions</h1>
-          {selected !== "" && !isOwned(selected) ? (
-            <button className="btn-acheter-equiper just-color-white big-button px-4" onClick={buy}>
-              Acheter
-            </button>
-          ) : (
-            <button className={`${glassClass} btn-just-circle opacity-50 just-color-white big-button px-4`}>
-              Acheter
-            </button>
-          )}
-          {isOwned(selected) && isSkin(selected) && !isEquiped(selected) ? (
-            <button className="btn btn-primary" onClick={equip}>
-              Équiper
-            </button>
-          ) : (
-            <></>
-          )}
+        <div className="glass1 text-center p-4" style={{ width: "15%" }}>
+          <div className="h-75 d-flex flex-column justify-content-between">
+            <h1 className="just-color-yellow">Actions</h1>
+            {selected !== "" && !isOwned(selected) ? (
+              <motion.button
+                whileHover={{
+                  scale: 1.1,
+                }}
+                whileTap={{
+                  scale: 0.9,
+                }}
+                className={`${glassClass} btn-just-circle just-color-white big-button px-4`}
+                onClick={buy}
+              >
+                Acheter
+              </motion.button>
+            ) : (
+              <button
+                className={`${glassClass} btn-just-circle opacity-25 just-color-white big-button px-4`}
+              >
+                Acheter
+              </button>
+            )}
+            {isOwned(selected) && isSkin(selected) && !isEquiped(selected) ? (
+              <motion.button
+                whileHover={{
+                  scale: 1.1,
+                }}
+                whileTap={{
+                  scale: 0.9,
+                }}
+                className={`${glassClass} btn-just-circle just-color-white big-button px-4`}
+                onClick={equip}
+              >
+                Équiper
+              </motion.button>
+            ) : (
+              <button
+                className={`${glassClass} btn-just-circle opacity-25 just-color-white big-button px-4`}
+              >
+                Équiper
+              </button>
+            )}
+          </div>
         </div>
         <div className="box-size-2 glass1 d-flex flex-column justify-content-between p-4">
           <h1 className="just-color-yellow text-center">Skins</h1>

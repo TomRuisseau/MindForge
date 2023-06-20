@@ -6,7 +6,7 @@ exports.setPostSupports = function setPostSupports(app, pool, SpellsCosts) {
         //receive id and team
         pool.getConnection(function (err, connection) {
             connection.query(
-                "SELECT * FROM student WHERE team = '" +
+                "SELECT * FROM student WHERE team = '" + //get tanks that have enough mana to protect and are in the same team
                 req.body.team +
                 "' AND id != '" +
                 req.body.id +
@@ -27,7 +27,7 @@ exports.setPostSupports = function setPostSupports(app, pool, SpellsCosts) {
         //receive id and team
         pool.getConnection(function (err, connection) {
             connection.query(
-                "SELECT student.* FROM student, owned_item WHERE student.team = '" +
+                "SELECT student.* FROM student, owned_item WHERE student.team = '" + //get healers that have enough mana to revive and are in the same team and learned the spell
                 req.body.team +
                 "' AND student.id != '" +
                 req.body.id +
@@ -49,7 +49,7 @@ exports.setPostSupports = function setPostSupports(app, pool, SpellsCosts) {
         //receive id and team
         pool.getConnection(function (err, connection) {
             connection.query(
-                "SELECT student.* FROM student, owned_item WHERE student.team = '" +
+                "SELECT student.* FROM student, owned_item WHERE student.team = '" +  //get mages that have enough mana to use truquage_du_destin and are in the same team and learned the spell
                 req.body.team +
                 "' AND student.mana >= '" +
                 SpellsCosts.get("truquage_du_destin") +

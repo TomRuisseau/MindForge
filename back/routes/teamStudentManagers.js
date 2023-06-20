@@ -4,7 +4,7 @@ exports.setPostManagers = function setPostManagers(app, pool, classMap) {
     app.post("/addTeam", (req, res) => {
         pool.getConnection(function (err, connection) {
             connection.query(
-                "SELECT * FROM team WHERE name = '" + req.body.name.replace('\'', " ") + "'",
+                "SELECT * FROM team WHERE name = '" + req.body.name.replace('\'', " ") + "'", //test if name already used
                 function (err, result, fields) {
                     if (err) throw err;
                     if (result.length > 0) res.send("1"); //test if name already used
@@ -23,7 +23,7 @@ exports.setPostManagers = function setPostManagers(app, pool, classMap) {
                     }
                 }
             );
-            connection.release();
+            connection.release(); //release connection to free memory space
         });
     });
 
@@ -44,12 +44,12 @@ exports.setPostManagers = function setPostManagers(app, pool, classMap) {
     //add a new student
     app.post("/addStudent", (req, res) => {
         pool.getConnection(function (err, connection) {
-            connection.query("SELECT * FROM student", function (err, result, fields) {
+            connection.query("SELECT * FROM student", function (err, result, fields) { //get all students
                 if (err) throw err;
                 let hp = classMap.get(req.body.class).hp;
                 let xp = 0;
                 let mana = classMap.get(req.body.class).mana;
-                let id = result.length + 1;
+                let id = result.length + 1; //id is the number of students + 1
                 let date = new Date().getTime();
                 connection.query(
                     "INSERT INTO student(id,teacher_email, team, first_name, surname, class, hp, xp, mana, last_time, protected, minded) VALUES ('" +
@@ -80,7 +80,7 @@ exports.setPostManagers = function setPostManagers(app, pool, classMap) {
                     function (err, result, fields) {
                         if (err) throw err;
                         connection.query(
-                            "INSERT INTO owned_item() VALUES ('" +
+                            "INSERT INTO owned_item() VALUES ('" + //add the default skin
                             req.body.class +
                             "', '" +
                             id +
@@ -90,7 +90,7 @@ exports.setPostManagers = function setPostManagers(app, pool, classMap) {
                             function (err, result, fields) {
                                 if (err) throw err;
                                 connection.query(
-                                    "INSERT INTO owned_item() VALUES ('" +
+                                    "INSERT INTO owned_item() VALUES ('" + //add the default spell
                                     classMap.get(req.body.class).spell +
                                     "', '" +
                                     id +
@@ -107,7 +107,7 @@ exports.setPostManagers = function setPostManagers(app, pool, classMap) {
                     }
                 );
             });
-            connection.release();
+            connection.release();  //release connection to free memory space
         });
     });
 }

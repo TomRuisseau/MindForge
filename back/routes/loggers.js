@@ -3,19 +3,18 @@ exports.setPostLogin = function setPostLogin(app, pool, classMap) {
     app.post("/login/student", (req, res) => {
         pool.getConnection(function (err, connection) {
             connection.query(
-                "SELECT * FROM student WHERE id = '" + req.body.code + "'",
+                "SELECT * FROM student WHERE id = '" + req.body.code + "'", //select student with the code
                 function (err, result, fields) {
                     if (err) throw err;
                     let now = new Date().getTime();
-                    if (result.length > 0) {
+                    if (result.length > 0) { //if the student exists
 
                         if (
-                            now - result[0].last_time >= 1000 * 60 * 60 * 24 &&
-                            result[0].mana < classMap.get(result[0].class).mana
+                            now - result[0].last_time >= 1000 * 60 * 60 * 24 && //check if the sutdent  haven't logged in for 24h
+                            result[0].mana < classMap.get(result[0].class).mana //check if the student haven't reached the max mana
                         ) {
-                            //todo : mettre à 24h
                             connection.query(
-                                "UPDATE student SET last_time = '" +
+                                "UPDATE student SET last_time = '" + //update the last time the student logged in and his mana
                                 now +
                                 "', mana = '" +
                                 (result[0].mana + 1) +
@@ -36,13 +35,12 @@ exports.setPostLogin = function setPostLogin(app, pool, classMap) {
                     }
                 }
             );
-            connection.release();
+            connection.release(); //release connection to free memory space
         });
     });
 
     //login for teacher
     app.post("/login/teacher", (req, res) => {
-        //todo : use the real table
         pool.getConnection(function (err, connection) {
             connection.query(
                 "SELECT * FROM teacher WHERE email = '" +
@@ -61,7 +59,6 @@ exports.setPostLogin = function setPostLogin(app, pool, classMap) {
 
     //register for teacher
     app.post("/register/teacher", (req, res) => {
-        //todo : use the real table
         pool.getConnection(function (err, connection) {
             connection.query(
                 "SELECT * FROM teacher WHERE email = '" + req.body.email + "'",
@@ -84,7 +81,7 @@ exports.setPostLogin = function setPostLogin(app, pool, classMap) {
                     }
                 }
             );
-            connection.release();
+            connection.release(); //release connection to free memory space
         });
     });
 }
