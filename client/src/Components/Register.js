@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Register(props) {
   const [email, setEmail] = useState("");
@@ -19,7 +21,7 @@ function Register(props) {
 
         .then((res) => {
           if (res.data === 1) {
-            alert("Email already used");
+            props.notify("E mail déjà utilisé")
             return;
           }
           props.sendValidation("TeacherDashboard", email);
@@ -28,7 +30,7 @@ function Register(props) {
           console.log(err);
         });
     } else {
-      alert("Passwords do not match");
+      props.notify("Les mots de passe ne correspondent pas")
     }
   };
 
@@ -93,8 +95,7 @@ function Register(props) {
           Se connecter
         </motion.button>
       </div>
-    </div>
-  );
+    </div>);
 }
 
 export default Register;

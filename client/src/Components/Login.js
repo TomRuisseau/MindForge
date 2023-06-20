@@ -19,7 +19,7 @@ function Login(props) {
         if (res.data === 1) {
           props.sendValidation("TeacherDashboard", email);
         } else {
-          alert("Email or password incorrect");
+          props.notify("Email ou mot de passe érroné");
         }
       })
       .catch((err) => {
