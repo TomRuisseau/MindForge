@@ -3,6 +3,8 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import "../Styles/Glass.css";
 import "../Styles/Textes.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function StudentLogger(props) {
   const [code, setCode] = useState("");
@@ -19,7 +21,16 @@ function StudentLogger(props) {
           props.onPass(res.data);
           props.onValidation("StudentDashboard");
         } else {
-          alert("Code incorrect");
+          toast.warning('Code incorrect', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         }
       })
       .catch((err) => {
@@ -51,6 +62,18 @@ function StudentLogger(props) {
           </motion.button>
         </form>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }
