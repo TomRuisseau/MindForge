@@ -95,6 +95,11 @@
   text-align: right;
 }
 
+.p-justify{
+  text-align: justify;
+  
+}
+
 .spacing-tab{
   line-height: 1.5;
 }
