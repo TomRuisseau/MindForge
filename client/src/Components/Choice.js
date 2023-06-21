@@ -256,32 +256,42 @@ function Choice(props) {
           d'expérience. En revanche, un comportement inadapté pendant le cours
           forcera votre professeur à vous retirer des points de vie. Une fois à
           0, vous encourez un malus aléatoire. Attention, ce dernier peut aussi
-          mettre toute votre équipe dans la panade. Utilisez vos points
-          d'expérience pour débloquer de puissants sorts vous permettant de
-          soutenir votre équipe et de progresser encore plus rapidement ! Vous
-          pouvez aussi utiliser cette expérience pour vous offrir de magnifiques
-          tenues afin d'avoir le plus beau personnage de toute la classe.
+          mettre toute votre équipe dans la panade. <br></br> <br></br>Utilisez
+          vos points d'expérience pour débloquer de puissants sorts vous
+          permettant de soutenir votre équipe et de progresser encore plus
+          rapidement ! Vous pouvez aussi utiliser cette expérience pour vous
+          offrir de magnifiques tenues afin d'avoir le plus beau personnage de
+          toute la classe.
         </p>
       </div>
 
       <div className="containerAccueil centeredDiv2 glass1 m-5">
-        <h1>Qui sommes-nous?</h1>
-        <p>
-          Nous sommes Marie, Clara, Xavier, Armand et Tom et nous sommes
-          étudiants en 3ème année à Junia ISEN. Plus jeunes, le système éducatif
-          nous semblait daté et peu adapté à nos besoins et envies, il était
-          donc difficile de s'investir autant dans l'pprentissage que dans nos
-          passions. Passionnés de jeux de rôle, d'héroïque fantasy et de pop
-          culture, nous souhaitons mettre ces univers passionnant au service de
-          l'éducation. Notre objectif est de rendre l'apprentissage ludique,
-          agréable et motivant. Pour ce faire, nous avons créés MindForge, un
-          outil divertissant et interactif qui s'intègre parfaitement au
-          déroulement d'une journée. Alors, prêts à apprendre avec nous ?
+        <h1>Qui sommes-nous ?</h1>
+        <p
+          className="w-100 just-color-white px-5 p-justify"
+          style={{ fontSize: "2.5vh", lineHeight: "2" }}
+        >
+          Marie, Clara, Xavier, Armand et Tom : étudiants en 3ème année à Junia
+          ISEN.
+          <br></br> <br></br> Plus jeunes, le système éducatif nous semblait
+          daté et peu adapté à nos besoins et envies, il était donc difficile de
+          s'investir autant dans l'apprentissage que dans nos passions.
+          Passionnés de jeux de rôle, d'héroïque fantasy et de pop culture, nous
+          souhaitons mettre ces univers passionnants au service de l'éducation.
+          Notre objectif est de rendre l'apprentissage ludique, agréable et
+          motivant. Pour ce faire, nous avons créé MindForge, un outil
+          divertissant et interactif qui s'intègre parfaitement au déroulement
+          d'une journée. <br></br> <br></br> Alors, tu es prêt à tenter l'aventure avec nous ?
         </p>
       </div>
 
       <div className="containerAccueil centeredDiv2 m-5">
         <h1>C'est parti !</h1>
+        <div className=" w-50 d-flex flex-row justify-content-between">
+          <img style={{ height: "10vh" }} src="media/logos/fleche_bas.png" />
+          <img style={{ height: "10vh" }} src="media/logos/fleche_bas.png" />
+          <img style={{ height: "10vh" }} src="media/logos/fleche_bas.png" />
+        </div>
         <div className="mainChoice">
           <h1>Vous êtes :</h1>
           <div className="w-100 d-flex flex-row justify-content-between">
