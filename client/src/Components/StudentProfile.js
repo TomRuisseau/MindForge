@@ -111,18 +111,24 @@ function StudentProfile(props) {
           </div>
 
           <div className="text-center my-5">
-            {parseInt(props.data[0].protected) ? (
-              <h2>* Vous êtes protégé par un Halo *</h2>
+            {parseInt(props.data[0].protected) &&
+            parseInt(props.data[0].minded) ? (
+              <div>
+                <h3>* Vous êtes protégé par un Halo *</h3>
+                <h3>* Votre prochain gain d'XP sera doublé *</h3>
+              </div>
+            ) : parseInt(props.data[0].protected) ? (
+              <h3>* Vous êtes protégé par un Halo *</h3>
             ) : parseInt(props.data[0].minded) ? (
-              <h2>* Votre prochain gain d'XP sera doublé *</h2>
+              <h3>* Votre prochain gain d'XP sera doublé *</h3>
             ) : (
-              <h2>* Aucun sort appliqué sur toi *</h2>
+              <h3>* Aucun sort appliqué sur toi *</h3>
             )}
           </div>
         </div>
         <div
           className="d-flex flex-column justify-content-center"
-          style={{ height: "90%", width: "40%" ,marginRight:"10%"}}
+          style={{ height: "90%", width: "40%", marginRight: "10%" }}
         >
           <img src={`media/skin/${skin}.png`}></img>
         </div>

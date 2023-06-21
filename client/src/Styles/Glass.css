@@ -78,7 +78,7 @@
   border: 1px solid rgba(140, 62, 59, 0.23);
 }
 
-.glass-healer{
+.glass-healer {
   /* From https://css.glass */
   background: rgba(0, 161, 0, 0.559);
   border-radius: 16px;
@@ -88,7 +88,7 @@
   border: 1px solid rgba(62, 140, 59, 0.23);
 }
 
-.glass-mage{
+.glass-mage {
   /* From https://css.glass */
   background: rgba(0, 0, 161, 0.559);
   border-radius: 16px;
