@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./text.css";
 
 function VagueDeMana(props) {
   const [students, setStudents] = useState([]);
