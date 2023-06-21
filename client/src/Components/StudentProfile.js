@@ -4,7 +4,18 @@ import axios from "axios";
 import "../Styles/studentProfile.css";
 import "../Styles/Glass.css";
 import "../Styles/Textes.css";
-import { motion } from "framer-motion";
+import Protection from "./PopUpsSorts/Protection";
+import AuraMagique from "./PopUpsSorts/AuraMagique";
+import PremiersSoins from "./PopUpsSorts/PremiersSoins";
+import ApaisementMajeur from "./PopUpsSorts/ApaisementMajeur";
+import ExpansionDuSavoir from "./PopUpsSorts/ExpansionDuSavoir";
+import HaloSalvateur from "./PopUpsSorts/HaloSalvateur";
+import Purification from "./PopUpsSorts/Purification";
+import ImpositionDesMains from "./PopUpsSorts/ImpositionDesMains";
+import SoinDeMasse from "./PopUpsSorts/SoinDeMasse";
+import TruquageDuDestin from "./PopUpsSorts/TruquageDuDestin";
+import VagueDeMana from "./PopUpsSorts/VagueDeMana";
+import Reviviscence from "./PopUpsSorts/Reviviscence";
 
 function StudentProfile(props) {
   console.log(props.data);
@@ -16,10 +27,22 @@ function StudentProfile(props) {
 
   const isMountedRef = useRef(false);
 
+  const [selectedSpell, setSelectedSpell] = useState("hidden"); // sort sélectionné
+
+
+  const openPopUp = (spell) => {
+    setSelectedSpell(spell);
+  };
+
   const addCounter = () => {
     isMountedRef.current = false;
     setCounter(counter + 1);
   };
+
+  function closePopUp() {
+    setSelectedSpell("hidden");
+    addCounter();
+  }
 
   useEffect(() => {
     if (!isMountedRef.current) {
@@ -112,7 +135,7 @@ function StudentProfile(props) {
 
           <div className="text-center my-5">
             {parseInt(props.data[0].protected) &&
-            parseInt(props.data[0].minded) ? (
+              parseInt(props.data[0].minded) ? (
               <div>
                 <h3>* Vous êtes protégé par un Halo *</h3>
                 <h3>* Votre prochain gain d'XP sera doublé *</h3>
@@ -136,9 +159,40 @@ function StudentProfile(props) {
           className="glass1 just-color-yellow w-auto p-3 text-center"
           style={{ height: "70%" }}
         >
-          <SpellBar data={props.data} refresh={addCounter} className="p-2" />
+          <SpellBar data={props.data} refresh={addCounter} openPopUp={openPopUp} className="p-2" />
         </div>
       </div>
+      {
+        {
+          protection: <Protection data={props.data} close={closePopUp} />,
+          aura_magique: <AuraMagique data={props.data} close={closePopUp} />,
+          premiers_soins: (
+            <PremiersSoins data={props.data} close={closePopUp} />
+          ),
+          apaisement_majeur: (
+            <ApaisementMajeur data={props.data} close={closePopUp} />
+          ),
+          expansion_du_savoir: (
+            <ExpansionDuSavoir data={props.data} close={closePopUp} />
+          ),
+          halo_salvateur: (
+            <HaloSalvateur data={props.data} close={closePopUp} />
+          ),
+          purification: <Purification data={props.data} close={closePopUp} />,
+          imposition_des_mains: (
+            <ImpositionDesMains data={props.data} close={closePopUp} />
+          ),
+          soin_de_masse: <SoinDeMasse data={props.data} close={closePopUp} />,
+          truquage_du_destin: (
+            <TruquageDuDestin data={props.data} close={closePopUp} />
+          ),
+          vague_de_mana: <VagueDeMana data={props.data} close={closePopUp} />,
+          reviviscence: <Reviviscence data={props.data} close={closePopUp} />,
+
+          hidden: null,
+          default: null,
+        }[selectedSpell]
+      }
     </div>
   );
 }
