@@ -13,6 +13,7 @@ const TeacherQuiz = (props) => {
   const [students, setStudents] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [XP, setXP] = useState(0);
+  const [counter, setCounter] = useState(0); //used to force reloads
 
   const addXP = () => {
     if (selectedStudent !== null) {
@@ -22,7 +23,7 @@ const TeacherQuiz = (props) => {
           xp: 2,
         })
         .then((res) => {
-          props.close();
+          setCounter(counter + 1);
           setXP(0);
         })
         .catch((err) => {
@@ -48,11 +49,12 @@ const TeacherQuiz = (props) => {
       .post("http://localhost:5000/getStudents", { email: props.id })
       .then((res) => {
         setStudents(res.data);
+        console.log(counter);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedStudent, addXP, props.id]);
+  }, [selectedStudent, props.id, counter]);
 
   const handleClick = (studentId) => {
     setSelectedStudent(studentId);
