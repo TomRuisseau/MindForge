@@ -2,11 +2,10 @@ import React, {
   useState,
   useEffect,
   forwardRef,
-  useImperativeHandle,
 } from "react";
 import axios from "axios";
 
-const StudentClass = forwardRef((props, ref) => {
+const StudentClass = forwardRef((props) => {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
@@ -21,7 +20,7 @@ const StudentClass = forwardRef((props, ref) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [props.data[0].teacher_email]);
+  }, [props.data]);
 
   return (
     <div className=" w-100 d-flex flex-column align-items-center justify-content-center just-color-white" style={{ height: "100vh" }}>

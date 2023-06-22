@@ -5,13 +5,11 @@ import { forwardRef, useImperativeHandle } from "react";
 import "../Styles/Scroll.css";
 import "../Styles/Glass.css";
 import "../Styles/Textes.css";
-import { motion } from "framer-motion";
 
 const BigList = forwardRef((props, ref) => {
   //state
   const [students, setStudents] = useState([]); //liste des élèves
   const [count, setCount] = useState(0); //compteur de rechargement
-  const [selectedStudent, setSelectedStudent] = useState(0); //élève sélectionné
 
   //comportement
   useImperativeHandle(ref, () => ({
@@ -24,7 +22,6 @@ const BigList = forwardRef((props, ref) => {
     setStudents((prevStudents) =>
       prevStudents.map((student) => {
         if (student.id === studentId) {
-          setSelectedStudent(studentId);
           props.onPass(studentId);
           return { ...student, bgColor: "#232826", supclass: "classe-sup" };
         } else {

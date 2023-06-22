@@ -3,7 +3,6 @@ import axios from "axios";
 import "../Styles/Buttons.css";
 import "../Styles/Textes.css";
 import "../Styles/Glass.css";
-import { motion } from "framer-motion";
 
 function StudentTeam(props) {
   const [team, setTeam] = useState([]);
@@ -55,6 +54,7 @@ function StudentTeam(props) {
                     src={`media/skin/${student.skin}.png`}
                     className="mt-5"
                     style={{ height: "400px" }}
+                    alt="skin"
                   ></img>
                   <div
                     className="glass4 h-100 d-flex flex-column justify-content-between align-self-center p-3"
@@ -64,6 +64,7 @@ function StudentTeam(props) {
                       <img
                         src={"media/logos/coeur.png"}
                         style={{ width: "30px", height: "auto" }}
+                        alt="heart"
                       />
                       <p className="mx-3 mb-0 just-color-dark-red size-digits">
                         {student.hp}
@@ -73,6 +74,7 @@ function StudentTeam(props) {
                       <img
                         src={"media/logos/etoile.png"}
                         style={{ width: "30px", height: "auto" }}
+                        alt="star"
                       />
                       <p className="mx-3 mb-0 text-warning size-digits">
                         {student.xp}

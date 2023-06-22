@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { motion } from "framer-motion";
 import "../Styles/Glass.css";
 import "../Styles/Textes.css";
 
@@ -43,6 +42,7 @@ function StudentStats(props) {
               <img
                 src={"media/logos/etoile.png"}
                 style={{ width: "50px", height: "auto" }}
+                alt="etoile"
               />
               <p className="mx-3 mb-0 text-warning size-digits">{stat.xp}</p>
             </div>
@@ -50,6 +50,7 @@ function StudentStats(props) {
               <img
                 src={"media/logos/coeur.png"}
                 style={{ width: "50px", height: "auto" }}
+                alt="coeur"
               />
               <p className="mx-3 mb-0 just-color-dark-red size-digits">
                 {stat.hp}
@@ -59,6 +60,7 @@ function StudentStats(props) {
               <img
                 src={"media/logos/mana.png"}
                 style={{ width: "50px", height: "auto" }}
+                alt="mana bottle"
               />
               <p className="mx-3 mb-0 just-color-blue size-digits">
                 {stat.mana}
