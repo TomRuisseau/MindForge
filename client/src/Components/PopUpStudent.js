@@ -5,6 +5,8 @@ import "../Styles/Textes.css";
 import "../Styles/Glass.css";
 import "../Styles/Buttons.css";
 import { motion } from "framer-motion";
+import Select from 'react-select'
+
 
 function PopUpStudent(props) {
   //state
@@ -78,20 +80,35 @@ function PopUpStudent(props) {
             <label htmlFor="text" className="mt-5 mb-2">
               Choisir une équipe :
             </label>
-            <select
-              name="teams"
-              id="teams-select"
-              className="rounded opacity-75"
-              onChange={(e) => setTeam(e.target.value)}
-            >
-              {teams.map((team) => {
-                return (
-                  <option value={team.name} key={team.name}>
-                    {team.name}
-                  </option>
-                );
-              })}
-            </select>
+            {(() => {
+              const options = [];
+              teams.map((team) => {
+                options.push({ value: team.name, label: team.name, key: team.name });
+              })
+
+              const styles = {
+                option: (provided, state) => ({
+                  ...provided,
+                  fontWeight: state.isSelected ? "bold" : "normal",
+                  color: "black",
+                  backgroundColor: "white",
+                  fontSize: state.selectProps.myFontSize
+                }),
+                singleValue: (provided, state) => ({
+                  ...provided,
+                  color: "black",
+                  fontSize: state.selectProps.myFontSize
+                })
+              }
+
+              return (<Select options={options}
+                placeholder={team}
+                styles={styles}
+                name="teams"
+                id="teams-select"
+                className="rounded"
+                onChange={(e) => setTeam(e.value)} />)
+            })()}
           </div>
 
           <div>
@@ -188,8 +205,8 @@ function PopUpStudent(props) {
             Valider
           </motion.button>
         </form>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
 

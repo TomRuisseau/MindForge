@@ -5,6 +5,8 @@ import "../Styles/Textes.css";
 import "../Styles/Glass.css";
 import "../Styles/Buttons.css";
 import { motion } from "framer-motion";
+import Select from 'react-select'
+
 
 function PopUpHP(props) {
   //state
@@ -62,7 +64,7 @@ function PopUpHP(props) {
         .post("http://localhost:5000/removeHp", {
           id: tanker,
           damage: HP,
-        })  
+        })
         .then((res) => {
           props.close();
           props.addCounter(1);
@@ -132,21 +134,38 @@ function PopUpHP(props) {
             <label htmlFor="tanker" className="mt-5 mb-2">
               Utilisation de "Protection" (2 points mana) par :
             </label>
-            <select
-              name="tanker"
-              id="tanker-select"
-              className="rounded opacity-75"
-              onChange={(e) => setTanker(e.target.value)}
-            >
-              <option value="0">Personne</option>
-              {tanks.map((tank) => {
-                return (
-                  <option value={tank.id} key={tank.first_name}>
-                    {tank.first_name}
-                  </option>
-                );
-              })}
-            </select>
+            {(() => {
+              const options = [];
+              options.push({ value: "0", label: "Personne", key: "Personne" })
+              tanks.map((tank) => {
+                options.push({ value: tank.id, label: tank.first_name, key: tank.first_name });
+              })
+
+              const styles = {
+                option: (provided, state) => ({
+                  ...provided,
+                  fontWeight: state.isSelected ? "bold" : "normal",
+                  color: "black",
+                  backgroundColor: "white",
+                  fontSize: state.selectProps.myFontSize
+                }),
+                singleValue: (provided, state) => ({
+                  ...provided,
+                  color: "black",
+                  fontSize: state.selectProps.myFontSize
+                })
+              }
+              
+              return (<Select
+                options={options}
+                defaultValue = {options[0]}
+                required
+                styles={styles}
+                name="tanks"
+                id="tanker-select"
+                className="rounded"
+                onChange={(e) => setTanker(e.value)} />)
+            })()}
           </div>
           <div className="w-100 text-center">
             <div>
