@@ -4,6 +4,7 @@ import "../Styles/Textes.css";
 import "../Styles/Glass.css";
 import "../Styles/Buttons.css";
 import { motion } from "framer-motion";
+import Select from 'react-select'
 
 function PopUpDead(props) {
   const [first_name, setFirst_name] = useState("");
@@ -72,7 +73,6 @@ function PopUpDead(props) {
           })
           .then((res) => {
             setHealers(res.data);
-            console.log(res.data);
           })
           .catch((err) => {
             console.log(err);
@@ -103,21 +103,47 @@ function PopUpDead(props) {
             Utilisation de "reviviscence" (6 points de mana - annuler le malus)
             par :
           </label>
-          <select
-            name="healer"
-            id="healer-select"
-            className="rounded w-50 opacity-75"
-            onChange={(e) => setHealer(e.target.value)}
-          >
-            <option value="0">Personne</option>
-            {healers.map((_healer) => {
-              return (
-                <option value={_healer.id} key={_healer.first_name}>
-                  {_healer.first_name}
-                </option>
-              );
-            })}
-          </select>
+          <option value="0">Personne</option>
+          {healers.map((_healer) => {
+            return (
+              <option value={_healer.id} key={_healer.first_name}>
+                {_healer.first_name}
+              </option>
+            );
+          })}
+
+          {(() => {
+            const options = [];
+            options.push({ value: "0", label: "Personne", key: "Personne" })
+            healers.map((_healer) => {
+              options.push({ value: _healer.id, label: _healer.first_name, key: _healer.first_name });
+            })
+
+            const styles = {
+              option: (provided, state) => ({
+                ...provided,
+                fontWeight: state.isSelected ? "bold" : "normal",
+                color: "black",
+                backgroundColor: "white",
+                fontSize: state.selectProps.myFontSize
+              }),
+              singleValue: (provided, state) => ({
+                ...provided,
+                color: "black",
+                fontSize: state.selectProps.myFontSize
+              })
+            }
+
+            return (<Select
+              options={options}
+              defaultValue={options[0]}
+              required
+              styles={styles}
+              name="healer"
+              id="healer-select"
+              className="rounded"
+              onChange={(e) => setHealer(e.value)} />)
+          })()}
           {selectedOption ? (
             <h1 className="h-5 m-5">{selectedOption}</h1>
           ) : (
