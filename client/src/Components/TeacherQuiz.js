@@ -6,8 +6,8 @@ import "../Styles/Textes.css";
 import "../Styles/Buttons.css";
 import "../Styles/Scroll.css";
 import { motion } from "framer-motion";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const TeacherQuiz = (props) => {
   const [students, setStudents] = useState([]);
@@ -43,7 +43,6 @@ const TeacherQuiz = (props) => {
     }
   };
 
-
   useEffect(() => {
     axios
       .post("http://localhost:5000/getStudents", { email: props.id })
@@ -59,7 +58,6 @@ const TeacherQuiz = (props) => {
   const handleClick = (studentId) => {
     setSelectedStudent(studentId);
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault(); // empêche le rechargement de la page
@@ -169,7 +167,9 @@ const TeacherQuiz = (props) => {
               <h2 className="just-color-white">Pour gagner :</h2>
               <div className="form-group">
                 <motion.input
-                  whileTap={{ scale: 0.9 }}
+                  whileTap={{
+                    scale: 1.1,
+                  }}
                   value={XP}
                   onChange={(e) => {
                     if (e.target.value >= 0) {
