@@ -70,7 +70,7 @@ function ExpansionDuSavoir(props) {
             className="h-75 d-flex flex-column justify-content-between"
           >
             <div className="d-flex flex-column">
-              <label htmlFor="text" className="mt-3">
+              <label htmlFor="text" className="my-3">
                 Choisis un membre de l'équipe sur qui utiliser le sort :
               </label>
               {(() => {

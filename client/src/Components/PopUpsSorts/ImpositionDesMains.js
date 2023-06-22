@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import "../../Styles/Glass.css";
 import "../../Styles/Textes.css";
 import "../../Styles/Buttons.css";
-import Select from 'react-select'
+import Select from "react-select";
 
 function ImpositionDesMains(props) {
   const [students, setStudents] = useState([]);
@@ -72,14 +72,18 @@ function ImpositionDesMains(props) {
             className="h-75 d-flex flex-column justify-content-between"
           >
             <div className="d-flex flex-column">
-              <label htmlFor="text" className="mt-3">
+              <label htmlFor="text" className="my-3">
                 Choisis un membre de l'équipe sur qui utiliser le sort :
               </label>
               {(() => {
                 const options = [];
                 students.map((eleve) => {
-                  options.push({ value: eleve.id, label: eleve.first_name + " " + eleve.surname, key: eleve.id });
-                })
+                  options.push({
+                    value: eleve.id,
+                    label: eleve.first_name + " " + eleve.surname,
+                    key: eleve.id,
+                  });
+                });
 
                 const styles = {
                   option: (provided, state) => ({
@@ -87,24 +91,27 @@ function ImpositionDesMains(props) {
                     fontWeight: state.isSelected ? "bold" : "normal",
                     color: "black",
                     backgroundColor: "white",
-                    fontSize: state.selectProps.myFontSize
+                    fontSize: state.selectProps.myFontSize,
                   }),
                   singleValue: (provided, state) => ({
                     ...provided,
                     color: "black",
-                    fontSize: state.selectProps.myFontSize
-                  })
-                }
+                    fontSize: state.selectProps.myFontSize,
+                  }),
+                };
 
-                return (<Select
-                  options={options}
-                  required
-                  placeholder="Choisis une cible"
-                  styles={styles}
-                  name="student"
-                  id="student-select"
-                  className="rounded"
-                  onChange={(e) => setStudent(e.value)} />)
+                return (
+                  <Select
+                    options={options}
+                    required
+                    placeholder="Choisis une cible"
+                    styles={styles}
+                    name="student"
+                    id="student-select"
+                    className="rounded"
+                    onChange={(e) => setStudent(e.value)}
+                  />
+                );
               })()}
             </div>
             <div className="w-100 text-center">
