@@ -173,8 +173,8 @@ function Shop(props) {
 
           <div className="h-100 w-100 d-flex flex-row justify-content-between align-self-center align-items-center flex-wrap">
             {spells.map((spell) => {
-              let bg = spell.name === selected ? "selected" : "";
-              let className = "m-2 " + bg; //mettre ici les autres classes de la div
+              let bg = spell.name === selected ? "classic-glass" : glassClass;
+              let className = "rounded-circle " + bg; //mettre ici les autres classes de la div
               return (
                 <div
                   key={spell.name}
@@ -189,7 +189,7 @@ function Shop(props) {
                   </p>
                   <div
                     data-key={spell.name}
-                    className={`${glassClass} rounded-circle`}
+                    className={className}
                     style={{ width: "120px", height: "120px" }}
                   >
                     <img
