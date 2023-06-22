@@ -10,12 +10,12 @@
 
 .hover-glass:hover {
   /* From https://css.glass */
-  background: rgba(140, 132, 59, 0.151);
+  background: rgba(150, 150, 150, 0.151);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(7.8px);
   -webkit-backdrop-filter: blur(7.8px);
-  border: 1px solid rgba(140, 132, 59, 0.23);
+  border: 1px solid rgba(150, 150, 150, 0.23);
 }
 
 .classic-glass-moins-flou {
