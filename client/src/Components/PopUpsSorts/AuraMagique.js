@@ -26,7 +26,7 @@ function AuraMagique(props) {
 
   return (
     <div
-      className="classic-glass-moins-flou hug just-color-white position-absolute top-0 start-0 translate-middl w-100 h-100 d-flex align-items-center justify-content-center"
+      className="classic-glass-moins-flou hug just-color-white position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
       style={{ zIndex: 2 }}
     >
       <div className="px-3 py-3 w-50 h-50 glass3 text-center d-flex flex-column align-items-center justify-content-between">

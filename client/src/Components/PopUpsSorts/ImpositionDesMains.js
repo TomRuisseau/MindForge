@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
+import "../../Styles/Glass.css";
+import "../../Styles/Textes.css";
+import "../../Styles/Buttons.css";
 
 function ImpositionDesMains(props) {
   const [students, setStudents] = useState([]);
@@ -42,46 +46,63 @@ function ImpositionDesMains(props) {
   };
 
   return (
-    <div className="px-3 py-3 w-50 h-50 bg-light position-absolute top-50 start-50 translate-middle text-center border rounded border-success d-flex flex-column align-items-center justify-content-between">
-      <div className="d-flex flex-row justify-content-between">
-        <h1 className="px-5">Imposition des mains</h1>
-        <button className="btn-close h-auto" onClick={props.close}></button>
-      </div>
-      <div className="p-3 rounded">
-        <p style={{ fontSize: "22px" }}>
-          Tu t'infliges des dégats de <span className="text-danger">5 HP</span>{" "}
-          pour soigner un membre de <span className="text-primary">10 HP</span>.
-        </p>
-      </div>
-      <h3>Coût en mana : 6</h3>
-      <div className="w-50">
-        <form
-          onSubmit={useSpell}
-          className="d-flex flex-row justify-content-between"
-        >
-          <div className="d-flex flex-column">
-            <label htmlFor="text" className="mt-3">
-              Choisis un membre de l'équipe sur qui utiliser le sort :
-            </label>
-            <select
-              name="student"
-              id="student-select"
-              className="rounded"
-              onChange={(e) => setStudent(e.target.value)}
-            >
-              {students.map((eleve) => {
-                return (
-                  <option value={eleve.id} key={eleve.id}>
-                    {eleve.first_name} {eleve.surname}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-          <button type="submit" className="btn btn-success btn-lg">
-            Utiliser
-          </button>
-        </form>
+    <div
+      className="classic-glass-moins-flou hug just-color-white position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
+      style={{ zIndex: 2 }}
+    >
+      <div className="px-3 py-3 w-50 h-75 glass3 text-center d-flex flex-column align-items-center justify-content-between">
+        <div className="d-flex flex-row justify-content-between">
+          <h1 className="px-5">Imposition des mains</h1>
+          <motion.button
+            whileHover={{ scale: 2 }}
+            className="btn-close btn-close-white m-3 position-absolute top-0 end-0"
+            onClick={props.close}
+          ></motion.button>
+        </div>
+        <div className="p-3 rounded">
+          <p style={{ fontSize: "22px" }}>
+            Tu t'infliges des dégats de 5 HP pour soigner un membre de 10 HP.
+          </p>
+        </div>
+        <h3>Coût en mana : 6</h3>
+        <div className="h-50 d-flex flex-column justify-content-center">
+          <form
+            onSubmit={useSpell}
+            className="h-75 d-flex flex-column justify-content-between"
+          >
+            <div className="d-flex flex-column">
+              <label htmlFor="text" className="mt-3">
+                Choisis un membre de l'équipe sur qui utiliser le sort :
+              </label>
+              <select
+                name="student"
+                id="student-select"
+                className="rounded opacity-75"
+                onChange={(e) => setStudent(e.target.value)}
+              >
+                {students.map((eleve) => {
+                  return (
+                    <option value={eleve.id} key={eleve.id}>
+                      {eleve.first_name} {eleve.surname}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <div className="w-100 text-center">
+              <div>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1 }}
+                  type="submit"
+                  className="btn-pop-up-valider just-color-white big-button px-4 pt-1 my-3"
+                >
+                  Utiliser
+                </motion.button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
