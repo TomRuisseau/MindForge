@@ -7,6 +7,12 @@ function StudentStats(props) {
   const [studentStats, setStudentStats] = useState([]);
   const [skin, setSkin] = useState("toutNu");
 
+  const className = {
+    tank: "Protecteur",
+    healer: "Soigneur",
+    mage: "Mage",
+  };
+
   useEffect(() => {
     axios
       .post("http://localhost:5000/getStudent", { id: props.id })
@@ -37,7 +43,7 @@ function StudentStats(props) {
             <h3>Equipe : {stat.team}</h3>
           </div>
           <div className="h-50 m-5 d-flex just-color-white flex-column justify-content-between">
-            <h4>Rôle : {stat.class}</h4>
+            <h4>Rôle : {className[stat.class]}</h4>
             <div className="h-25 w-25 d-flex align-items-center">
               <img
                 src={"media/logos/etoile.png"}
