@@ -5,7 +5,6 @@ import { useState, useRef } from "react";
 import StudentProfile from "./StudentProfile";
 import StudentTeam from "./StudentTeam";
 import Shop from "./Shop";
-import Tutorial from "./Tutorial";
 import StudentQuests from "./StudentQuests";
 import StudentClass from "./StudentClass";
 import { motion } from "framer-motion";
@@ -47,8 +46,6 @@ function StudentDashboard(props) {
         <StudentTeam data={props.data} />
       ) : page === "Shop" ? (
         <Shop data={props.data} />
-      ) : page === "Tutorial" ? (
-        <Tutorial />
       ) : page === "StudentClass" ? (
         <StudentClass data={props.data} />
       ) : page === "Quetes" ? (

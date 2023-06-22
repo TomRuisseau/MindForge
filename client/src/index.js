@@ -13,7 +13,13 @@ function ErrorApp() {
           style={{ fontSize: "200%", lineHeight: "1.5" }}
           className="text-center m-5"
         >
-          Utilisez un ordinateur et mettez vous en fenêtre 100%
+          Utilisez un ordinateur et mettez vous en grande fenêtre
+        </p>
+        <p
+          style={{ fontSize: "200%", lineHeight: "1.5" }}
+          className="text-center m-5"
+        >
+          (Réduisez le ratio de votre écran)
         </p>
       </div>
     </div>
@@ -22,6 +28,6 @@ function ErrorApp() {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 if (window.innerWidth < 1800) {
-  console.log("caca");
+  console.log("mauvaise taille");
   root.render(<ErrorApp />);
 } else root.render(<App />);
