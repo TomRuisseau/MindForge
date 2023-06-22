@@ -29,7 +29,6 @@ function StudentProfile(props) {
 
   const [selectedSpell, setSelectedSpell] = useState("hidden"); // sort sélectionné
 
-
   const openPopUp = (spell) => {
     setSelectedSpell(spell);
   };
@@ -135,15 +134,15 @@ function StudentProfile(props) {
 
           <div className="text-center my-5">
             {parseInt(props.data[0].protected) &&
-              parseInt(props.data[0].minded) ? (
+            parseInt(props.data[0].minded) ? (
               <div>
-                <h3>* Vous êtes protégé par un Halo *</h3>
-                <h3>* Votre prochain gain d'XP sera doublé *</h3>
+                <h3>* Tu es protégé par un Halo *</h3>
+                <h3>* Ton prochain gain d'XP sera doublé *</h3>
               </div>
             ) : parseInt(props.data[0].protected) ? (
-              <h3>* Vous êtes protégé par un Halo *</h3>
+              <h3>* Tu es protégé par un Halo *</h3>
             ) : parseInt(props.data[0].minded) ? (
-              <h3>* Votre prochain gain d'XP sera doublé *</h3>
+              <h3>* Ton prochain gain d'XP sera doublé *</h3>
             ) : (
               <h3>* Aucun sort appliqué sur toi *</h3>
             )}
@@ -159,7 +158,12 @@ function StudentProfile(props) {
           className="glass1 just-color-yellow w-auto p-3 text-center"
           style={{ height: "70%" }}
         >
-          <SpellBar data={props.data} refresh={addCounter} openPopUp={openPopUp} className="p-2" />
+          <SpellBar
+            data={props.data}
+            refresh={addCounter}
+            openPopUp={openPopUp}
+            className="p-2"
+          />
         </div>
       </div>
       {
