@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import "../../Styles/Glass.css";
 import "../../Styles/Textes.css";
 import "../../Styles/Buttons.css";
+import Select from 'react-select'
 
 function ExpansionDuSavoir(props) {
   const [students, setStudents] = useState([]);
@@ -72,20 +73,37 @@ function ExpansionDuSavoir(props) {
               <label htmlFor="text" className="mt-3">
                 Choisis un membre de l'équipe sur qui utiliser le sort :
               </label>
-              <select
-                name="student"
-                id="student-select"
-                className="rounded opacity-75"
-                onChange={(e) => setStudent(e.target.value)}
-              >
-                {students.map((eleve) => {
-                  return (
-                    <option value={eleve.id} key={eleve.id}>
-                      {eleve.first_name} {eleve.surname}
-                    </option>
-                  );
-                })}
-              </select>
+              {(() => {
+                const options = [];
+                students.map((eleve) => {
+                  options.push({ value: eleve.id, label: eleve.first_name + " " + eleve.surname, key: eleve.id });
+                })
+
+                const styles = {
+                  option: (provided, state) => ({
+                    ...provided,
+                    fontWeight: state.isSelected ? "bold" : "normal",
+                    color: "black",
+                    backgroundColor: "white",
+                    fontSize: state.selectProps.myFontSize
+                  }),
+                  singleValue: (provided, state) => ({
+                    ...provided,
+                    color: "black",
+                    fontSize: state.selectProps.myFontSize
+                  })
+                }
+
+                return (<Select
+                  options={options}
+                  required
+                  placeholder="Choisis une cible"
+                  styles={styles}
+                  name="student"
+                  id="student-select"
+                  className="rounded"
+                  onChange={(e) => setStudent(e.value)} />)
+              })()}
             </div>
             <div className="w-100 text-center">
               <div>
