@@ -4,6 +4,7 @@ import "../Styles/Textes.css";
 import "../Styles/Glass.css";
 import "../Styles/Buttons.css";
 import { motion } from "framer-motion";
+import Select from 'react-select'
 
 function PopUpXP(props) {
   //state
@@ -126,20 +127,40 @@ function PopUpXP(props) {
               Utilisation de "truquage du destin" (5points de mana - gain des XP
               pour toute l'équipe) par :
             </label>
-            <select
-              name="mage"
-              id="mage-select"
-              className="rounded"
-              value={mage}
-              onChange={(e) => setMage(e.target.value)}
-            >
-              <option value="0">Personne</option>
-              {mages.map((_mage) => (
-                <option value={_mage.id} key={_mage.id}>
-                  {_mage.first_name}
-                </option>
-              ))}
-            </select>
+
+            {(() => {
+              const options = [];
+              options.push({ value: "0", label: "Personne", key: "Personne" })
+              mages.map((_mage) => {
+                options.push({ value: _mage.id, label: _mage.first_name, key: _mage.first_name });
+              })
+
+              const styles = {
+                option: (provided, state) => ({
+                  ...provided,
+                  fontWeight: state.isSelected ? "bold" : "normal",
+                  color: "black",
+                  backgroundColor: "white",
+                  fontSize: state.selectProps.myFontSize
+                }),
+                singleValue: (provided, state) => ({
+                  ...provided,
+                  color: "black",
+                  fontSize: state.selectProps.myFontSize
+                })
+              }
+
+              return (<Select
+                options={options}
+                defaultValue={options[0]}
+                required
+                styles={styles}
+                name="mage"
+                id="mage-select"
+                className="rounded"
+                onChange={(e) => setMage(e.value)} />)
+            })()}
+
           </div>
           <div className="w-100 text-center">
             <div>
