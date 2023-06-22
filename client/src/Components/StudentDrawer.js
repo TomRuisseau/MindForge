@@ -102,21 +102,7 @@ const StudentDrawer = forwardRef((props, ref) => {
           >
             Quetes
           </motion.h2>
-          <motion.h2
-            whileHover={{
-              color: "#232826",
-              scale: 1.2,
-              originX: 0,
-              cursor: "pointer",
-            }}
-            whileTap={{ scale: 1.1 }}
-            onClick={() => {
-              toggleDrawer();
-              props.onChoice("Tutorial");
-            }}
-          >
-            Tutoriel
-          </motion.h2>
+
           <motion.h2
             whileHover={{
               color: "#232826",
