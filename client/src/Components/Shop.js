@@ -252,13 +252,13 @@ function Shop(props) {
           <h1 className="just-color-yellow text-center">Skins</h1>
           <div className="d-flex d-flex1 flex-row">
             {skins.map((skin) => {
-              let bg = skin.name === selected ? "selected" : "";
-              let className = "m-2 " + bg; //mettre ici les autres classes de la div
+              let bg = skin.name === selected ? "classic-glass" : "";
+              let className = "d-flex flex-column justify-content-between align-items-center py-3 " + bg; //mettre ici les autres classes de la div
               return (
                 <div
                   key={skin.name}
                   data-key={skin.name}
-                  className="d-flex flex-column justify-content-between align-items-center"
+                  className={className}
                   onClick={select}
                 >
                   <h2>{skinsMap.get(skin.name.split("_").join(" "))}</h2>
