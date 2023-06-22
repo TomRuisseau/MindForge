@@ -76,6 +76,7 @@ const BigList = forwardRef((props, ref) => {
                     cursor: "pointer", // Ajoutez cette ligne pour changer le curseur en pointeur
                   }}
                   onClick={() => changeBackground(student.id)}
+                  className="on-hover"
                 >
                   <td
                     className={`px-5 hug taille-lignes-tab ${student.supclass}`}

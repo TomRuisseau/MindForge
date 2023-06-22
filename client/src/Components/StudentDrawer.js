@@ -100,7 +100,7 @@ const StudentDrawer = forwardRef((props, ref) => {
               props.onChoice("Quetes");
             }}
           >
-            Quetes
+            Quêtes
           </motion.h2>
 
           <motion.h2

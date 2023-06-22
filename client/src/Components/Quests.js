@@ -107,7 +107,7 @@ function Quests(props) {
                       key={quest.id}
                       onClick={select}
                       data-key={quest.id}
-                      className={quest.bg}
+                      className={`on-hover ${quest.bg} `}
                     >
                       <td className="text-white">{quest.description}</td>
                       <td className="text-white">{quest.reward}</td>

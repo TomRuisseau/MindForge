@@ -155,7 +155,7 @@ function Shop(props) {
 
   return (
     <div
-      className="w-100 d-flex flex-column align-items-center hug just-color-white justify-content-center"
+      className="w-100 p-3 d-flex flex-column align-items-center hug just-color-white justify-content-center"
       style={{ height: "100vh" }}
     >
       <div className="glass2 py-3 px-5 mb-5">

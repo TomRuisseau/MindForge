@@ -145,6 +145,7 @@ const TeacherQuiz = (props) => {
                     color:
                       selectedStudent === student.id ? "#232826" : "#fdfdfb",
                   }}
+                  className="on-hover"
                 >
                   <td style={{ lineHeight: "2" }}>{student.first_name}</td>
 
