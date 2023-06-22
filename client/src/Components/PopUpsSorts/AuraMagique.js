@@ -40,15 +40,21 @@ function AuraMagique(props) {
         </div>
         <div className="p-3 rounded">
           <p style={{ fontSize: "22px" }}>
-            Tu restitues <span className="text-danger">2 de mana</span> à tous
-            les autres membres de ton équipe.
+            Tu restitues 2 de mana à tous les autres membres de ton équipe.
           </p>
         </div>
         <h3>Coût en mana : 4</h3>
-        <div>
-          <button onClick={useSpell} className="btn btn-success btn-lg">
-            Utiliser
-          </button>
+        <div className="w-100 text-center">
+          <div>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 1 }}
+              type="submit"
+              className="btn-pop-up-valider just-color-white big-button px-4 pt-1 my-3"
+            >
+              Utiliser
+            </motion.button>
+          </div>
         </div>
       </div>
     </div>

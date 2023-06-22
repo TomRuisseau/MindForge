@@ -9,7 +9,7 @@ function TruquageDuDestin(props) {
     >
       <div className="px-3 py-3 w-50 h-50 glass3 text-center d-flex flex-column align-items-center justify-content-between">
         <div className="d-flex flex-row justify-content-between">
-          <h1 className="px-5">Aura magique</h1>
+          <h1 className="px-5">Truquage du destin</h1>
           <motion.button
             whileHover={{ scale: 2 }}
             className="btn-close btn-close-white m-3 position-absolute top-0 end-0"

@@ -49,7 +49,7 @@ function VagueDeMana(props) {
       className="classic-glass-moins-flou hug just-color-white position-absolute top-0 start-0 translate-middl w-100 h-100 d-flex align-items-center justify-content-center"
       style={{ zIndex: 2 }}
     >
-      <div className="px-3 py-3 w-50 h-50 glass3 text-center d-flex flex-column align-items-center justify-content-between">
+      <div className="px-3 py-3 w-50 h-75 glass3 text-center d-flex flex-column align-items-center justify-content-between">
         <div className="d-flex flex-row justify-content-between">
           <h1 className="px-5">Vague de mana</h1>
           <motion.button
@@ -60,15 +60,15 @@ function VagueDeMana(props) {
         </div>
         <div className="p-3 rounded">
           <p style={{ fontSize: "22px" }}>
-            Tu restaures <span className="text-danger">tout le mana</span> d'un
-            membre de ton équipe (sauf toi) en fonction de sa classe.
+            Tu restaures tout le mana d'un membre de ton équipe (sauf toi) en
+            fonction de sa classe.
           </p>
         </div>
         <h3>Coût en mana : 6</h3>
-        <div className="w-50">
+        <div className="h-50 d-flex flex-column justify-content-center">
           <form
             onSubmit={useSpell}
-            className="d-flex flex-row justify-content-between"
+            className="h-75 d-flex flex-column justify-content-between"
           >
             <div className="d-flex flex-column">
               <label htmlFor="text" className="mt-3">
@@ -77,7 +77,7 @@ function VagueDeMana(props) {
               <select
                 name="student"
                 id="student-select"
-                className="rounded"
+                className="rounded opacity-75"
                 onChange={(e) => setStudent(e.target.value)}
               >
                 {students.map((eleve) => {
@@ -89,9 +89,18 @@ function VagueDeMana(props) {
                 })}
               </select>
             </div>
-            <button type="submit" className="btn btn-success btn-lg">
-              Utiliser
-            </button>
+            <div className="w-100 text-center">
+              <div>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1 }}
+                  type="submit"
+                  className="btn-pop-up-valider just-color-white big-button px-4 pt-1 my-3"
+                >
+                  Utiliser
+                </motion.button>
+              </div>
+            </div>
           </form>
         </div>
       </div>
