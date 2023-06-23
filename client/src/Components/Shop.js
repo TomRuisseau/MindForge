@@ -177,7 +177,9 @@ function Shop(props) {
                 spell.name === selected
                   ? "classic-glass"
                   : glassClass + " hover-glass";
-              let className = "rounded-circle " + bg; //mettre ici les autres classes de la div
+              let className =
+                "rounded d-flex flex-column justify-content-center align-items-center " +
+                bg; //mettre ici les autres classes de la div
               return (
                 <div
                   key={spell.name}
@@ -197,8 +199,8 @@ function Shop(props) {
                   >
                     <img
                       src={`media/spells/${spell.name}.png`}
-                      className="rounded-circle"
-                      style={{ width: "100px", transform: "translate(9%,9%)" }}
+                      className="rounded"
+                      style={{ width: "100px" }}
                     ></img>
                   </div>
                 </div>
