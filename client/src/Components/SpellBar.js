@@ -72,7 +72,7 @@ const SpellBar = (props) => {
             <div key={spell.item_name} className="text-center spell-container">
               <motion.img
                 whileHover={{
-                  x: -10,
+                  x: -20,
                   cursor: "pointer",
                 }}
                 whileTap={{ scale: 0.9 }}

@@ -15,22 +15,22 @@ const StudentManager = (props) => {
   const [student, setStudent] = useState(0);
   const childRef = useRef();
 
-
   const pass = (identifiant) => {
     setStudent(identifiant);
   };
 
   return (
-    <div className="d-flex flex-column justify-content-center w-100" style={{height:"100vh"}}>
-      <div className="d-flex flex-row">
+    <div
+      className="d-flex flex-column justify-content-center w-100"
+      style={{ height: "100vh" }}
+    >
+      <div className="d-flex flex-row w-100">
         <BigList
           id={props.data[0].teacher_email}
           ref={childRef}
           onPass={pass}
         />
-        {student === 0 ? null : (
-          <StudentStats id={student} />
-        )}
+        {student === 0 ? null : <StudentStats id={student} />}
       </div>
     </div>
   );
