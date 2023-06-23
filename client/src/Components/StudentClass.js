@@ -21,8 +21,8 @@ const StudentManager = (props) => {
   };
 
   return (
-    <div className="row p-0 m-0 w-100 h-100">
-      <div className="d-flex flex-row my-5">
+    <div className="d-flex flex-column justify-content-center w-100" style={{height:"100vh"}}>
+      <div className="d-flex flex-row">
         <BigList
           id={props.data[0].teacher_email}
           ref={childRef}

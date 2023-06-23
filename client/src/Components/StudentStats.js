@@ -83,7 +83,7 @@ function StudentStats(props) {
           <img
             src={`media/skin/${skin}.png`}
             className="position-absolute"
-            style={{ bottom: "-5%", right: "-2%", width: "75%" }}
+            style={{ bottom: "-5%", right: "-2%", width: "65vh" }}
             alt="Skin"
           />
         </div>
