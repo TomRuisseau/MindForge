@@ -251,8 +251,8 @@ function Choice(props) {
           Dans MindForge, vous êtes regroupés par équipe de 4 élèves. Vous devez
           vous serrer les coudes et faire preuve de stratégie pour progresser
           durant l'année. <br></br> <br></br>Se comporter correctement, réaliser
-          les quêtes et les devoirs, remporter les quizs... tout ceci vous permettra
-          de faire progresser votre personnage en gagnant des points
+          les quêtes et les devoirs, remporter les quizs... tout ceci vous
+          permettra de faire progresser votre personnage en gagnant des points
           d'expérience. En revanche, un comportement inadapté pendant le cours
           forcera votre professeur à vous retirer des points de vie. Une fois à
           0, vous encourrez un malus aléatoire. Attention, ce dernier peut aussi
@@ -281,7 +281,8 @@ function Choice(props) {
           Notre objectif est de rendre l'apprentissage ludique, agréable et
           motivant. Pour ce faire, nous avons créé MindForge, un outil
           divertissant et interactif qui s'intègre parfaitement au déroulement
-          d'une journée. <br></br> <br></br> Alors, tu es prêt à tenter l'aventure avec nous ?
+          d'une journée. <br></br> <br></br> Alors, tu es prêt à tenter
+          l'aventure avec nous ?
         </p>
       </div>
 
