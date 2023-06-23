@@ -3,8 +3,8 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import "../Styles/Glass.css";
 import "../Styles/Textes.css";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function StudentLogger(props) {
   const [code, setCode] = useState("");
@@ -21,7 +21,7 @@ function StudentLogger(props) {
           props.onPass(res.data);
           props.onValidation("StudentDashboard");
         } else {
-          toast.warning('Code incorrect', {
+          toast.warning("Code incorrect", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -39,7 +39,18 @@ function StudentLogger(props) {
   };
 
   return (
-    <div className="h-100 d-flex hug justify-content-center align-items-center">
+    <div className="h-100 w-100 d-flex hug justify-content-center align-items-center">
+      <motion.div
+        whileHover={{
+          scale: 1.4,
+          originX: 0,
+          cursor: "pointer",
+        }}
+        className="position-absolute m-5 start-0 top-0"
+        onClick={() => window.location.reload()}
+      >
+        <img style={{ height: "5vh"}} src="media/logos/fleche_back.png" />
+      </motion.div>
       <div className="mainChoice h-25 w-25 p-5 classic-glass">
         <form onSubmit={handleSubmit} className="d-flex flex-column log-size">
           <label htmlFor="code">Entre ton identifiant</label>
