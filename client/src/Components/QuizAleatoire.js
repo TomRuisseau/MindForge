@@ -48,7 +48,13 @@ const QuizAleatoire = () => {
         </motion.button>
       </div>
       {currentQuestion && (
-        <div className="h-75 d-flex flex-column justify-content-between">
+        <motion.div
+          //entrance animation
+          initial={{ scale: 0.4 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.2 }}
+          className="h-75 d-flex flex-column justify-content-between"
+        >
           <h3 className="mt-3 just-color-yellow">Question :</h3>
           <p className="mx-2 my-2 log-size">{currentQuestion.question}</p>
           {!showAnswer && (
@@ -67,12 +73,16 @@ const QuizAleatoire = () => {
             </div>
           )}
           {showAnswer && (
-            <div>
+            <motion.div //entrance animation
+              initial={{ scale: 0.4 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.2 }}
+            >
               <h3 className="my-4 just-color-yellow">Réponse :</h3>
               <p className="mx-2 my-2 log-size">{currentQuestion.answer}</p>
-            </div>
+            </motion.div>
           )}
-        </div>
+        </motion.div>
       )}
     </div>
   );

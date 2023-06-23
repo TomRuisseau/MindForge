@@ -135,14 +135,29 @@ function DailyRand(props) {
             LANCER
           </motion.button>
         </div>
-        <h1>{selectedOption}</h1>
+        {selectedOption != "" ? (
+          <motion.h1
+            //entrance animation
+            initial={{ scale: 0.4 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.2 }}
+          >
+            {selectedOption}
+          </motion.h1>
+        ) : null}
         <div className="w-50 h-25 d-flex flex-row text-center my-5 justify-content-between">
           {selectedOption === "Quelqu'un va perdre des HP" ||
           selectedOption === "Quelqu'un va gagner des XP" ||
           selectedOption === "Quelqu'un va gagner du Mana" ||
           selectedOption ===
             "Quelqu'un sera dispensé de devoirs pour le prochain cours" ? (
-            <div className="w-50 h-5O d-flex flex-column justify-content-between align-items-center">
+            <motion.div
+              //entrance animation
+              initial={{ scale: 0.4 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.2 }}
+              className="w-50 h-5O d-flex flex-column justify-content-between align-items-center"
+            >
               <div className="w-100 mt-5 mb-3">
                 <motion.button
                   whileHover={{ scale: 1.1 }}
@@ -153,16 +168,28 @@ function DailyRand(props) {
                   Qui donc ?
                 </motion.button>
               </div>
-              <h3 style={{ whiteSpace: "nowrap" }}>
-                {updatedStudent &&
-                  `C'est pour ${updatedStudent.first_name} ${updatedStudent.surname}`}
-              </h3>
-            </div>
+              <motion.div //entrance animation
+                initial={{ scale: 0.4 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <h3 style={{ whiteSpace: "nowrap" }}>
+                  {updatedStudent &&
+                    `C'est pour ${updatedStudent.first_name} ${updatedStudent.surname}`}
+                </h3>
+              </motion.div>
+            </motion.div>
           ) : null}
           {selectedOption === "Quelqu'un va gagner des XP" &&
             updatedStudent && (
               <div className="h-5O d-flex flex-column justify-content-between align-items-center">
-                <div className="w-100 mt-5 mb-3">
+                <motion.div
+                  //entrance animation
+                  initial={{ scale: 0.4 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.2 }}
+                  className="w-100 mt-5 mb-3"
+                >
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 1 }}
@@ -171,10 +198,14 @@ function DailyRand(props) {
                   >
                     Combien ?
                   </motion.button>
-                </div>
+                </motion.div>
                 {show === true && toAddXP > 0 && (
                   <div>
-                    <h3>{`+ ${toAddXP} XP`}</h3>
+                    <motion.h3 //entrance animation
+                      initial={{ scale: 0.4 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.2 }}
+                    >{`+ ${toAddXP} XP`}</motion.h3>
                   </div>
                 )}
               </div>
@@ -183,7 +214,13 @@ function DailyRand(props) {
           {selectedOption === "Quelqu'un va gagner du Mana" &&
             updatedStudent && (
               <div className="h-5O d-flex flex-column justify-content-between align-items-center">
-                <div className="w-100 mt-5 mb-3">
+                <motion.div
+                  //entrance animation
+                  initial={{ scale: 0.4 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.2 }}
+                  className="w-100 mt-5 mb-3"
+                >
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 1 }}
@@ -192,10 +229,14 @@ function DailyRand(props) {
                   >
                     Combien ?
                   </motion.button>
-                </div>
+                </motion.div>
                 {show === true && toAddMana > 0 && (
                   <div>
-                    <h3>{`+ ${toAddMana} Mana`}</h3>
+                    <motion.h3 //entrance animation
+                      initial={{ scale: 0.4 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.2 }}
+                    >{`+ ${toAddMana} Mana`}</motion.h3>
                   </div>
                 )}
               </div>
@@ -204,7 +245,13 @@ function DailyRand(props) {
           {selectedOption === "Quelqu'un va perdre des HP" &&
             updatedStudent && (
               <div className="h-5O d-flex flex-column justify-content-between align-items-center">
-                <div className="w-100 mt-5 mb-3">
+                <motion.div
+                  //entrance animation
+                  initial={{ scale: 0.4 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.2 }}
+                  className="w-100 mt-5 mb-3"
+                >
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 1 }}
@@ -213,10 +260,15 @@ function DailyRand(props) {
                   >
                     Combien ?
                   </motion.button>
-                </div>
+                </motion.div>
                 {show === true && toRemoveHP > 0 && (
                   <div>
-                    <h3>{`- ${toRemoveHP} HP`}</h3>
+                    <motion.h3
+                      //entrance animation
+                      initial={{ scale: 0.4 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.2 }}
+                    >{`- ${toRemoveHP} HP`}</motion.h3>
                   </div>
                 )}
               </div>
