@@ -251,11 +251,11 @@ function Choice(props) {
           Dans MindForge, vous êtes regroupés par équipe de 4 élèves. Vous devez
           vous serrer les coudes et faire preuve de stratégie pour progresser
           durant l'année. <br></br> <br></br>Se comporter correctement, réaliser
-          les quêtes et les devoirs, ou encore remporter les quiz vous permettra
+          les quêtes et les devoirs, remporter les quizs... tout ceci vous permettra
           de faire progresser votre personnage en gagnant des points
           d'expérience. En revanche, un comportement inadapté pendant le cours
           forcera votre professeur à vous retirer des points de vie. Une fois à
-          0, vous encourez un malus aléatoire. Attention, ce dernier peut aussi
+          0, vous encourrez un malus aléatoire. Attention, ce dernier peut aussi
           mettre toute votre équipe dans la panade. <br></br> <br></br>Utilisez
           vos points d'expérience pour débloquer de puissants sorts vous
           permettant de soutenir votre équipe et de progresser encore plus
