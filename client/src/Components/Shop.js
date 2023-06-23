@@ -4,6 +4,8 @@ import "../Styles/Buttons.css";
 import "../Styles/Textes.css";
 import "../Styles/Glass.css";
 import { motion } from "framer-motion";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Shop(props) {
   const [spells, setSpells] = useState([]); // liste des sorts
@@ -100,7 +102,16 @@ function Shop(props) {
           console.log(err);
         });
     } else {
-      alert("Vous n'avez pas assez d'xp");
+      toast.warning("Vous n'avez pas assez d'XP", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   };
 
@@ -285,6 +296,18 @@ function Shop(props) {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }
