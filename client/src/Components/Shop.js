@@ -173,7 +173,10 @@ function Shop(props) {
 
           <div className="h-100 w-100 d-flex flex-row justify-content-between align-self-center align-items-center flex-wrap">
             {spells.map((spell) => {
-              let bg = spell.name === selected ? "classic-glass" : glassClass + " hover-glass";
+              let bg =
+                spell.name === selected
+                  ? "classic-glass"
+                  : glassClass + " hover-glass";
               let className = "rounded-circle " + bg; //mettre ici les autres classes de la div
               return (
                 <div
@@ -193,7 +196,7 @@ function Shop(props) {
                     style={{ width: "120px", height: "120px" }}
                   >
                     <img
-                      src={`media/spells/${spell.name}.webp`}
+                      src={`media/spells/${spell.name}.png`}
                       className="rounded-circle"
                       style={{ width: "100px", transform: "translate(9%,9%)" }}
                     ></img>
@@ -253,7 +256,9 @@ function Shop(props) {
           <div className="d-flex d-flex1 flex-row">
             {skins.map((skin) => {
               let bg = skin.name === selected ? "classic-glass" : "hover-glass";
-              let className = "d-flex flex-column justify-content-between align-items-center py-3 " + bg; //mettre ici les autres classes de la div
+              let className =
+                "d-flex flex-column justify-content-between align-items-center py-3 " +
+                bg; //mettre ici les autres classes de la div
               return (
                 <div
                   key={skin.name}

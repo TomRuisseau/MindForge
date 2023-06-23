@@ -76,7 +76,7 @@ const SpellBar = (props) => {
                   cursor: "pointer",
                 }}
                 whileTap={{ scale: 0.9 }}
-                src={`media/spells/${spell.item_name}.webp`}
+                src={`media/spells/${spell.item_name}.png`}
                 onClick={() => selectSpell(spell.item_name)}
                 onMouseEnter={() => setHoveredSpell(spell.item_name)}
                 onMouseLeave={() => setHoveredSpell(null)}
