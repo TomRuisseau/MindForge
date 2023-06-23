@@ -168,7 +168,7 @@ const TeacherQuiz = (props) => {
               <div className="form-group">
                 <motion.input
                   whileTap={{
-                    scale: 1.1,
+                    scale: 0.9,
                   }}
                   value={XP}
                   onChange={(e) => {

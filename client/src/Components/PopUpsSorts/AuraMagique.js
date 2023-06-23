@@ -29,7 +29,12 @@ function AuraMagique(props) {
       className="classic-glass-moins-flou hug just-color-white position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
       style={{ zIndex: 2 }}
     >
-      <div className="px-3 py-3 w-50 h-50 glass3 text-center d-flex flex-column align-items-center justify-content-between">
+      <motion.div
+      //entrance animation
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.5 }}
+      className="px-3 py-3 w-50 h-50 glass3 text-center d-flex flex-column align-items-center justify-content-between">
         <div className="d-flex flex-row justify-content-between">
           <h1 className="px-5">Aura magique</h1>
           <motion.button
@@ -56,7 +61,7 @@ function AuraMagique(props) {
             </motion.button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

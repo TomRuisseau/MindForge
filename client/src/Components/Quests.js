@@ -71,6 +71,7 @@ function Quests(props) {
       })
       .then((res) => {
         setCounter(counter + 1);
+        setSelectedQuest(0);
       })
       .catch((err) => {
         console.log(err);
