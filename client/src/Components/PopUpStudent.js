@@ -65,7 +65,11 @@ function PopUpStudent(props) {
       className="classic-glass-moins-flou hug just-color-white position-absolute w-100 h-100 d-flex align-items-center justify-content-center"
       style={{ zIndex: 2 }}
     >
-      <div className="p-5 glass3 w-auto h-75 d-flex flex-column justify-content-between align-items-center">
+      <motion.div
+      //entrance animation
+      initial={{ scale: 0.4 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.2 }} className="p-5 glass3 w-auto h-75 d-flex flex-column justify-content-between align-items-center">
         <motion.button
           whileHover={{ scale: 2 }}
           className="btn-close btn-close-white m-3 position-absolute top-0 end-0"
@@ -205,7 +209,7 @@ function PopUpStudent(props) {
             Valider
           </motion.button>
         </form>
-      </div >
+      </motion.div >
     </div >
   );
 }

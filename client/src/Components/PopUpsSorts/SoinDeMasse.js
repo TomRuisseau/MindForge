@@ -29,7 +29,13 @@ function SoinDeMasse(props) {
       className="classic-glass-moins-flou hug just-color-white position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
       style={{ zIndex: 2 }}
     >
-      <div className="px-3 py-3 w-50 h-50 glass3 text-center d-flex flex-column align-items-center justify-content-between">
+      <motion.div
+        //entrance animation
+        initial={{ scale: 0.4 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.2 }}
+        className="px-3 py-3 w-50 h-50 glass3 text-center d-flex flex-column align-items-center justify-content-between"
+      >
         <div className="d-flex flex-row justify-content-between">
           <h1 className="px-5">Soin de masse</h1>
           <motion.button
@@ -40,8 +46,7 @@ function SoinDeMasse(props) {
         </div>
         <div className="p-3 rounded">
           <p style={{ fontSize: "22px" }}>
-            Tu soignes tous les membres de l'équipe de{" "}
-            <span className="text-danger">2 HP</span>.
+            Tu soignes tous les membres de l'équipe de 2 HP.
           </p>
         </div>
         <h3>Coût en mana : 6</h3>
@@ -57,7 +62,7 @@ function SoinDeMasse(props) {
             </motion.button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

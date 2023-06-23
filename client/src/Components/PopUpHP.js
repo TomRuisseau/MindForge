@@ -5,8 +5,7 @@ import "../Styles/Textes.css";
 import "../Styles/Glass.css";
 import "../Styles/Buttons.css";
 import { motion } from "framer-motion";
-import Select from 'react-select'
-
+import Select from "react-select";
 
 function PopUpHP(props) {
   //state
@@ -79,7 +78,7 @@ function PopUpHP(props) {
         .post("http://localhost:5000/useProtection", {
           id: tanker,
         })
-        .then((res) => { })
+        .then((res) => {})
         .catch((err) => {
           console.log(err);
         });
@@ -92,7 +91,13 @@ function PopUpHP(props) {
       className="classic-glass-moins-flou hug just-color-white position-absolute w-100 h-100 d-flex align-items-center justify-content-center"
       style={{ zIndex: 2 }}
     >
-      <div className="p-5 w-auto h-50 glass3 d-flex flex-column align-items-center">
+      <motion.div
+        //entrance animation
+        initial={{ scale: 0.4 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.2 }}
+        className="p-5 w-auto h-50 glass3 d-flex flex-column align-items-center"
+      >
         <motion.button
           whileHover={{ scale: 2 }}
           className="btn-close btn-close-white m-3 position-absolute top-0 end-0"
@@ -136,10 +141,14 @@ function PopUpHP(props) {
             </label>
             {(() => {
               const options = [];
-              options.push({ value: "0", label: "Personne", key: "Personne" })
+              options.push({ value: "0", label: "Personne", key: "Personne" });
               tanks.map((tank) => {
-                options.push({ value: tank.id, label: tank.first_name, key: tank.first_name });
-              })
+                options.push({
+                  value: tank.id,
+                  label: tank.first_name,
+                  key: tank.first_name,
+                });
+              });
 
               const styles = {
                 option: (provided, state) => ({
@@ -147,24 +156,27 @@ function PopUpHP(props) {
                   fontWeight: state.isSelected ? "bold" : "normal",
                   color: "black",
                   backgroundColor: "white",
-                  fontSize: state.selectProps.myFontSize
+                  fontSize: state.selectProps.myFontSize,
                 }),
                 singleValue: (provided, state) => ({
                   ...provided,
                   color: "black",
-                  fontSize: state.selectProps.myFontSize
-                })
-              }
-              
-              return (<Select
-                options={options}
-                defaultValue = {options[0]}
-                required
-                styles={styles}
-                name="tanks"
-                id="tanker-select"
-                className="rounded"
-                onChange={(e) => setTanker(e.value)} />)
+                  fontSize: state.selectProps.myFontSize,
+                }),
+              };
+
+              return (
+                <Select
+                  options={options}
+                  defaultValue={options[0]}
+                  required
+                  styles={styles}
+                  name="tanks"
+                  id="tanker-select"
+                  className="rounded"
+                  onChange={(e) => setTanker(e.value)}
+                />
+              );
             })()}
           </div>
           <div className="w-100 text-center">
@@ -180,7 +192,7 @@ function PopUpHP(props) {
             </div>
           </div>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 }

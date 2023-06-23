@@ -9,8 +9,8 @@ import StudentStats from "./StudentStats";
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import "../Styles/Buttons.css";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const StudentManager = (props) => {
   const [popUp, setPopUp] = useState("hidden"); //[hidden, addTeam, addStudent, removeHp, removeXp]
@@ -36,22 +36,28 @@ const StudentManager = (props) => {
     setStudent(identifiant);
   };
 
-  const notify = (message) => toast.warning(message, {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
-  });
+  const notify = (message) =>
+    toast.warning(message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
   return (
     <div className="row p-0 m-0 w-100 h-100">
       <div className="col-10 my-4 p-0">
         <div className="d-flex flex-row my-5">
-          <BigList id={props.id} ref={childRef} onPass={pass} counter={counter} />
+          <BigList
+            id={props.id}
+            ref={childRef}
+            onPass={pass}
+            counter={counter}
+          />
           {student === 0 ? null : (
             <StudentStats id={student} counter={counter} />
           )}
@@ -61,13 +67,20 @@ const StudentManager = (props) => {
         <PopUpDead
           id={deadStudent}
           life={isDead}
-          close={() => { setPopUp("hidden"); addCounter(counter + 1) }}
+          close={() => {
+            setPopUp("hidden");
+            addCounter(counter + 1);
+          }}
           open={() => setPopUp("badRand")}
         />
       ) : null}
 
       {popUp === "addTeam" ? (
-        <PopUpTeam close={() => setPopUp("hidden")} id={props.id} notify={notify} />
+        <PopUpTeam
+          close={() => setPopUp("hidden")}
+          id={props.id}
+          notify={notify}
+        />
       ) : null}
 
       {popUp === "addStudent" ? (
@@ -119,6 +132,10 @@ const StudentManager = (props) => {
           <div className="m-3 d-flex flex-column h-100 justify-content-between">
             {student === 0 ? null : (
               <motion.button
+                //entrance animation
+                initial={{ scale: 0.4 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.2 }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 1 }}
                 className="btn-act-students-new mt-5"
@@ -129,6 +146,10 @@ const StudentManager = (props) => {
             )}
             {student === 0 ? null : (
               <motion.button
+                //entrance animation
+                initial={{ scale: 0.4 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.2 }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 1 }}
                 className="btn-act-students-new mt-5"

@@ -30,11 +30,12 @@ function AuraMagique(props) {
       style={{ zIndex: 2 }}
     >
       <motion.div
-      //entrance animation
+        //entrance animation
         initial={{ scale: 0.4 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.2 }}
-      className="px-3 py-3 w-50 h-50 glass3 text-center d-flex flex-column align-items-center justify-content-between">
+        className="px-3 py-3 w-50 h-50 glass3 text-center d-flex flex-column align-items-center justify-content-between"
+      >
         <div className="d-flex flex-row justify-content-between">
           <h1 className="px-5">Aura magique</h1>
           <motion.button

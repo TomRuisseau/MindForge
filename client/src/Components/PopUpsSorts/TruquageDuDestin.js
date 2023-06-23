@@ -7,7 +7,13 @@ function TruquageDuDestin(props) {
       className="classic-glass-moins-flou hug just-color-white position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
       style={{ zIndex: 2 }}
     >
-      <div className="px-3 py-3 w-50 h-50 glass3 text-center d-flex flex-column align-items-center justify-content-between">
+      <motion.div
+        //entrance animation
+        initial={{ scale: 0.4 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.2 }}
+        className="px-3 py-3 w-50 h-50 glass3 text-center d-flex flex-column align-items-center justify-content-between"
+      >
         <div className="d-flex flex-row justify-content-between">
           <h1 className="px-5">Truquage du destin</h1>
           <motion.button
@@ -26,7 +32,7 @@ function TruquageDuDestin(props) {
           </p>
         </div>
         <h3>Coût en mana : 5</h3>
-      </div>
+      </motion.div>
     </div>
   );
 }

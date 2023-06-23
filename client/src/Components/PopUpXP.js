@@ -4,7 +4,7 @@ import "../Styles/Textes.css";
 import "../Styles/Glass.css";
 import "../Styles/Buttons.css";
 import { motion } from "framer-motion";
-import Select from 'react-select'
+import Select from "react-select";
 
 function PopUpXP(props) {
   //state
@@ -84,7 +84,13 @@ function PopUpXP(props) {
       className="classic-glass-moins-flou hug just-color-white position-absolute w-100 h-100 d-flex align-items-center justify-content-center"
       style={{ zIndex: 2 }}
     >
-      <div className="p-5 w-auto h-50 glass3 d-flex flex-column align-items-center">
+      <motion.div
+        //entrance animation
+        initial={{ scale: 0.4 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.2 }}
+        className="p-5 w-auto h-50 glass3 d-flex flex-column align-items-center"
+      >
         <motion.button
           whileHover={{ scale: 2 }}
           className="btn-close btn-close-white m-3 position-absolute top-0 end-0"
@@ -130,10 +136,14 @@ function PopUpXP(props) {
 
             {(() => {
               const options = [];
-              options.push({ value: "0", label: "Personne", key: "Personne" })
+              options.push({ value: "0", label: "Personne", key: "Personne" });
               mages.map((_mage) => {
-                options.push({ value: _mage.id, label: _mage.first_name, key: _mage.first_name });
-              })
+                options.push({
+                  value: _mage.id,
+                  label: _mage.first_name,
+                  key: _mage.first_name,
+                });
+              });
 
               const styles = {
                 option: (provided, state) => ({
@@ -141,26 +151,28 @@ function PopUpXP(props) {
                   fontWeight: state.isSelected ? "bold" : "normal",
                   color: "black",
                   backgroundColor: "white",
-                  fontSize: state.selectProps.myFontSize
+                  fontSize: state.selectProps.myFontSize,
                 }),
                 singleValue: (provided, state) => ({
                   ...provided,
                   color: "black",
-                  fontSize: state.selectProps.myFontSize
-                })
-              }
+                  fontSize: state.selectProps.myFontSize,
+                }),
+              };
 
-              return (<Select
-                options={options}
-                defaultValue={options[0]}
-                required
-                styles={styles}
-                name="mage"
-                id="mage-select"
-                className="rounded"
-                onChange={(e) => setMage(e.value)} />)
+              return (
+                <Select
+                  options={options}
+                  defaultValue={options[0]}
+                  required
+                  styles={styles}
+                  name="mage"
+                  id="mage-select"
+                  className="rounded"
+                  onChange={(e) => setMage(e.value)}
+                />
+              );
             })()}
-
           </div>
           <div className="w-100 text-center">
             <div>
@@ -175,7 +187,7 @@ function PopUpXP(props) {
             </div>
           </div>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 }

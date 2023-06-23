@@ -10,9 +10,15 @@ function Reviviscence(props) {
       className="classic-glass-moins-flou hug just-color-white position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
       style={{ zIndex: 2 }}
     >
-      <div className="px-3 py-3 w-50 h-50 glass3 text-center d-flex flex-column align-items-center justify-content-between">
+      <motion.div
+        //entrance animation
+        initial={{ scale: 0.4 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.2 }}
+        className="px-3 py-3 w-50 h-50 glass3 text-center d-flex flex-column align-items-center justify-content-between"
+      >
         <div className="d-flex flex-row justify-content-between">
-          <h1 className="px-5">Revviscence</h1>
+          <h1 className="px-5">Reviscence</h1>
           <motion.button
             whileHover={{ scale: 2 }}
             className="btn-close btn-close-white m-3 position-absolute top-0 end-0"
@@ -29,7 +35,7 @@ function Reviviscence(props) {
           </p>
         </div>
         <h3>Coût en mana : 6</h3>
-      </div>
+      </motion.div>
     </div>
   );
 }

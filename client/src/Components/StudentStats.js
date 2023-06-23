@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "../Styles/Glass.css";
 import "../Styles/Textes.css";
+import { motion } from "framer-motion";
 
 function StudentStats(props) {
   const [studentStats, setStudentStats] = useState([]);
@@ -33,7 +34,13 @@ function StudentStats(props) {
   }, [props.id, props.counter]);
 
   return (
-    <div className="hug w-50 m-4 px-3 py-2 rounded glass1">
+    <motion.div
+      //entrance animation
+      initial={{ scale: 0.4 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.2 }}
+      className="hug w-50 m-4 px-3 py-2 rounded glass1"
+    >
       {studentStats.map((stat) => (
         <div key={stat.id} className="h-100">
           <div className="m-3 just-color-yellow d-flex flex-row justify-content-between">
@@ -81,7 +88,7 @@ function StudentStats(props) {
           />
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 }
 
