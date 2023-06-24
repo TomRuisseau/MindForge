@@ -6,7 +6,7 @@ import "../../Styles/Buttons.css";
 
 function SoinDeMasse(props) {
   const useSpell = () => {
-    if (props.data[0].mana >= 4) {
+    if (props.data[0].mana >= 4) { //check if student has enough mana
       axios
         .post("http://localhost:5000/useSoinDeMasse", {
           id: props.data[0].id,

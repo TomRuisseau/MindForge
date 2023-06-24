@@ -6,7 +6,7 @@ import "../../Styles/Buttons.css";
 
 function HaloSalvateur(props) {
   const useSpell = () => {
-    if (props.data[0].mana < 6) {
+    if (props.data[0].mana < 6) { //check if student has enough mana
       props.manaAlert();
       return;
     }

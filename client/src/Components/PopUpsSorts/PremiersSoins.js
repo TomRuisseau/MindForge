@@ -8,12 +8,12 @@ import "../../Styles/Buttons.css";
 import Select from "react-select";
 
 function PremiersSoins(props) {
-  const [students, setStudents] = useState([]);
-  const [student, setStudent] = useState("0");
+  const [students, setStudents] = useState([]); //team members
+  const [student, setStudent] = useState("0"); //selected target
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudentsTeam", {
+      .post("http://localhost:5000/getStudentsTeam", { //get team members
         team: props.data[0].team,
       })
       .then((res) => {
@@ -27,7 +27,7 @@ function PremiersSoins(props) {
 
   const useSpell = (e) => {
     e.preventDefault(); // prevent page reload
-    if (props.data[0].mana >= 2) {
+    if (props.data[0].mana >= 2) { //check if student has enough mana
       axios
         .post("http://localhost:5000/usePremiersSoins", {
           id: props.data[0].id,

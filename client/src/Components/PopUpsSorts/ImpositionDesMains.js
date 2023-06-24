@@ -7,12 +7,12 @@ import "../../Styles/Buttons.css";
 import Select from "react-select";
 
 function ImpositionDesMains(props) {
-  const [students, setStudents] = useState([]);
-  const [student, setStudent] = useState("0");
+  const [students, setStudents] = useState([]); //students of the same team
+  const [student, setStudent] = useState("0"); //student selected
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudentsTeamExcept", {
+      .post("http://localhost:5000/getStudentsTeamExcept", { //get all students except the one who uses the spell
         team: props.data[0].team,
         id: props.data[0].id,
       })
@@ -27,7 +27,7 @@ function ImpositionDesMains(props) {
 
   const useSpell = (e) => {
     e.preventDefault(); // prevent page reload
-    if (props.data[0].mana >= 2 && props.data[0].hp > 5) {
+    if (props.data[0].mana >= 2 && props.data[0].hp > 5) { //check if student has enough mana and hp
       axios
         .post("http://localhost:5000/useImpositionDesMains", {
           id: props.data[0].id,

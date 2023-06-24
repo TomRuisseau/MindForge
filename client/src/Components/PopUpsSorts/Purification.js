@@ -6,7 +6,7 @@ import "../../Styles/Buttons.css";
 
 function Purification(props) {
   const useSpell = () => {
-    if (props.data[0].mana >= 3) {
+    if (props.data[0].mana >= 3) { //check if student has enough mana
       axios
         .post("http://localhost:5000/usePurification", {
           id: props.data[0].id,

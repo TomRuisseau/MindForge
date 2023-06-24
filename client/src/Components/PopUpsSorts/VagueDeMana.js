@@ -6,12 +6,12 @@ import "../../Styles/Textes.css";
 import Select from "react-select";
 
 function VagueDeMana(props) {
-  const [students, setStudents] = useState([]);
-  const [student, setStudent] = useState("0");
+  const [students, setStudents] = useState([]); //team members
+  const [student, setStudent] = useState("0"); //selected target
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudentsTeamExcept", {
+      .post("http://localhost:5000/getStudentsTeamExcept", { //get all students except the one who uses the spell
         team: props.data[0].team,
         id: props.data[0].id,
       })
@@ -26,7 +26,7 @@ function VagueDeMana(props) {
 
   const useSpell = (e) => {
     e.preventDefault(); // prevent page reload
-    if (props.data[0].mana >= 6) {
+    if (props.data[0].mana >= 6) { //check if student has enough mana
       axios
         .post("http://localhost:5000/useVagueDeMana", {
           id: props.data[0].id,

@@ -46,7 +46,7 @@ function StudentProfile(props) {
   }
 
   const manaAlert = () => {
-    toast.warning("Pas assez de mana pour utiliser ce sort", {
+    toast.warning("Vous n'avez pas assez de mana (ou de vie) pour utiliser ce sort", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
