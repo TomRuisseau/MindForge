@@ -1,6 +1,5 @@
 import React from "react";
 import StudentDrawer from "./StudentDrawer";
-import StudentMenu from "./StudentMenu";
 import { useState, useRef } from "react";
 import StudentProfile from "./StudentProfile";
 import StudentTeam from "./StudentTeam";
@@ -10,7 +9,7 @@ import StudentClass from "./StudentClass";
 import { motion } from "framer-motion";
 
 function StudentDashboard(props) {
-  const [page, setPage] = useState("StudentProfile"); // current page : StudentMenu, quests, quiz, dailyEvent, tutorial, settings, Quetes
+  const [page, setPage] = useState("StudentProfile"); // current page :  quests, quiz, dailyEvent,  , Quetes
   const childRef = useRef();
 
   const switchPage = (page) => {
@@ -47,9 +46,7 @@ function StudentDashboard(props) {
         <StudentClass data={props.data} />
       ) : page === "Quetes" ? (
         <StudentQuests data={props.data} />
-      ) : (
-        <StudentMenu />
-      )}
+      ) : null}
     </div>
   );
 }
