@@ -154,6 +154,16 @@ function Shop(props) {
     return _skin;
   };
 
+  const isSpell = (name) => { //check if the item is a spell
+    let _spell = false;
+    spells.forEach((spell) => {
+      if (spell.name === name) {
+        _spell = true;
+      }
+    });
+    return _spell;
+  };
+
   const isEquiped = (name) => { //check if a skin is equiped
     let equiped = false;
     skins.forEach((skin) => {
@@ -222,6 +232,8 @@ function Shop(props) {
         <div className="glass1 text-center p-4" style={{ width: "15%" }}>
           <div className="h-75 d-flex flex-column justify-content-between">
             <h1 className="just-color-yellow">Actions</h1>
+
+
             {selected !== "" && !isOwned(selected) ? (
               <motion.button
                 whileHover={{
@@ -242,6 +254,8 @@ function Shop(props) {
                 Acheter
               </button>
             )}
+
+
             {isOwned(selected) && isSkin(selected) && !isEquiped(selected) ? (
               <motion.button
                 whileHover={{
@@ -262,6 +276,28 @@ function Shop(props) {
                 Équiper
               </button>
             )}
+
+            {isSpell(selected) ? (
+              <motion.button
+                whileHover={{
+                  scale: 1.1,
+                }}
+                whileTap={{
+                  scale: 0.9,
+                }}
+                className={`${glassClass} btn-just-circle just-color-white big-button px-4`}
+                onClick={equip}
+              >
+                Description
+              </motion.button>
+            ) : (
+              <button
+                className={`${glassClass} btn-just-circle opacity-25 just-color-white big-button px-4`}
+              >
+                Description
+              </button>
+            )}
+
           </div>
         </div>
         <div className="box-size-2 glass1 d-flex flex-column justify-content-between p-4">
