@@ -12,16 +12,16 @@ function Shop(props) {
   const [skins, setSkins] = useState([]); // liste des skins
   const [selected, setSelected] = useState(""); // liste des skins
   const [counter, setCounter] = useState(0); // pour forcer le rechargement de la page quand valide une quête
-  const [glassClass, setGlassClass] = useState(""); // classe du verre (tank, healer, mage)
+  const [glassClass, setGlassClass] = useState(""); // classe du verre (tank, healer, mage) pour changer la couleur
 
   const isMountedRef = useRef(false);
 
-  let skinsMap = new Map();
+  let skinsMap = new Map(); //map to translate skins names
   skinsMap.set("tank", "Protecteur");
   skinsMap.set("mage", "Mage");
   skinsMap.set("healer", "Soigneur");
 
-  let spellsMap = new Map();
+  let spellsMap = new Map(); //map to translate spells names
   //tank
   spellsMap.set("protection", "Protection");
   spellsMap.set("halo salvateur", "Halo salvateur");
@@ -39,10 +39,10 @@ function Shop(props) {
   spellsMap.set("expansion du savoir", "Expansion du savoir");
 
   useEffect(() => {
-    if (!isMountedRef.current) {
+    if (!isMountedRef.current) { //prevent multiple calls
       isMountedRef.current = true;
       axios
-        .post("http://localhost:5000/getSkinsShop", {
+        .post("http://localhost:5000/getSkinsShop", { //get the list of skins and spells for the student's shop
           id: props.data[0].id,
           class: props.data[0].class,
         })
@@ -57,7 +57,7 @@ function Shop(props) {
     }
   }, [props.data, counter]);
 
-  const select = (e) => {
+  const select = (e) => { //select a skin or a spell by clicking on it
     if (e.target.getAttribute("data-key") === null) {
       setSelected(e.target.parentNode.getAttribute("data-key"));
     } else {
@@ -65,7 +65,7 @@ function Shop(props) {
     }
   };
 
-  //change class glass-tank or glass-healer or glass-mage
+  //change the color of the glass depending on the class
   useEffect(() => {
     const classToGlassClassMap = {
       tank: "glass-tank",
@@ -75,9 +75,9 @@ function Shop(props) {
     setGlassClass(classToGlassClassMap[props.data[0].class]);
   }, [props.data]);
 
-  const buy = () => {
+  const buy = () => { //buy a skin or a spell
     let price = 0;
-    skins.forEach((skin) => {
+    skins.forEach((skin) => { //get the price of the selected skin or spell
       if (skin.name === selected) {
         price = skin.cost;
       }
@@ -87,7 +87,7 @@ function Shop(props) {
         price = spell.cost;
       }
     });
-    if (props.data[0].xp >= price) {
+    if (props.data[0].xp >= price) { //check if the student has enough xp
       axios
         .post("http://localhost:5000/buy", {
           id: props.data[0].id,
@@ -96,7 +96,7 @@ function Shop(props) {
         })
         .then((res) => {
           props.data[0].xp -= price;
-          setCounter(counter + 1);
+          setCounter(counter + 1); //force the re-render 
         })
         .catch((err) => {
           console.log(err);
@@ -115,21 +115,21 @@ function Shop(props) {
     }
   };
 
-  const equip = () => {
+  const equip = () => { //equip a skin
     axios
       .post("http://localhost:5000/equip", {
         id: props.data[0].id,
         name: selected,
       })
       .then((res) => {
-        setCounter(counter + 1);
+        setCounter(counter + 1); //force the re-render
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const isOwned = (name) => {
+  const isOwned = (name) => { //check if the student owns a skin or a spell
     let owned = false;
     skins.forEach((skin) => {
       if (skin.name === name && skin.owned) {
@@ -144,7 +144,7 @@ function Shop(props) {
     return owned;
   };
 
-  const isSkin = (name) => {
+  const isSkin = (name) => { //check if the item is a skin
     let _skin = false;
     skins.forEach((skin) => {
       if (skin.name === name) {
@@ -154,7 +154,7 @@ function Shop(props) {
     return _skin;
   };
 
-  const isEquiped = (name) => {
+  const isEquiped = (name) => { //check if a skin is equiped
     let equiped = false;
     skins.forEach((skin) => {
       if (skin.name === name && skin.equiped == "1") {

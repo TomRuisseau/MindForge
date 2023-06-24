@@ -6,23 +6,23 @@ import { motion } from "framer-motion";
 function Register(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState(""); // TODO: add password confirmation
+  const [passwordConfirm, setPasswordConfirm] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
-    console.log(email, password, passwordConfirm);
-    if (password === passwordConfirm) {
+    if (password === passwordConfirm) { //check if passwords match
       axios
-        .post("http://localhost:5000/register/teacher", {
+        .post("http://localhost:5000/register/teacher", { //send register data to server
           email: email,
           password: password,
         })
 
         .then((res) => {
-          if (res.data === 1) {
+          if (res.data === 1) { //if email is already used, send error message to parent
             props.notify("E mail déjà utilisé")
             return;
           }
+          //else send validation to parent
           props.sendValidation("TeacherDashboard", email);
         })
         .catch((err) => {

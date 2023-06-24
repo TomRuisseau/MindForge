@@ -4,12 +4,12 @@ import "../Styles/Buttons.css";
 import { motion } from "framer-motion";
 
 const QuizAleatoire = () => {
-  const [questions, setQuestions] = useState([]);
-  const [currentQuestion, setCurrentQuestion] = useState(null);
-  const [showAnswer, setShowAnswer] = useState(false);
+  const [questions, setQuestions] = useState([]); //list of questions
+  const [currentQuestion, setCurrentQuestion] = useState(null); //current question chosen randomly
+  const [showAnswer, setShowAnswer] = useState(false); //show the answer or not
 
   useEffect(() => {
-    fetchQuestions();
+    fetchQuestions(); //get the questions from the json file when the component is mounted
   }, []);
 
   const fetchQuestions = () => {
@@ -21,11 +21,11 @@ const QuizAleatoire = () => {
     }
   };
 
-  const generateQuestion = () => {
+  const generateQuestion = () => { //pick a random question from the list
     const randomIndex = Math.floor(Math.random() * questions.length);
     const question = questions[randomIndex];
     setCurrentQuestion(question);
-    setShowAnswer(false);
+    setShowAnswer(false); //hide the answer
   };
 
   const showQuestionAnswer = () => {

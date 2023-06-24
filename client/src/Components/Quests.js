@@ -18,10 +18,10 @@ function Quests(props) {
   // comportement
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getQuests", { email: props.id })
+      .post("http://localhost:5000/getQuests", { email: props.id }) //get the list of quests
       .then((res) => {
         const blankQuests = res.data.map((quest) => {
-          quest.bg = "";
+          quest.bg = ""; // background color (empty by default)
           return quest;
         });
         setQuests(blankQuests);
@@ -34,7 +34,7 @@ function Quests(props) {
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
     axios
-      .post("http://localhost:5000/addQuest", {
+      .post("http://localhost:5000/addQuest", { //add a quest
         email: props.id,
         description: description,
         reward: reward,
@@ -49,14 +49,14 @@ function Quests(props) {
       });
   };
 
-  const select = (e) => {
+  const select = (e) => { //select a quest by clicking on it
     let key = e.target.parentNode.getAttribute("data-key");
     setSelectedQuest(key);
     const blankQuests = quests.map((quest) => {
       if (quest.id.toString() === key) {
-        quest.bg = "classe-sup";
+        quest.bg = "classe-sup"; //add a background color to the selected quest
       } else {
-        quest.bg = "";
+        quest.bg = ""; //and remove it from the others
       }
       return quest;
     });
@@ -66,12 +66,12 @@ function Quests(props) {
   const deleteQuest = (e) => {
     e.preventDefault(); // prevent page reload
     axios
-      .post("http://localhost:5000/deleteQuest", {
+      .post("http://localhost:5000/deleteQuest", { //delete a quest
         id: selectedQuest,
       })
       .then((res) => {
-        setCounter(counter + 1);
-        setSelectedQuest(0);
+        setCounter(counter + 1); //force page reload
+        setSelectedQuest(0); //unselect the quest
       })
       .catch((err) => {
         console.log(err);

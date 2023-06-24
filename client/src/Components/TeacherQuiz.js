@@ -10,13 +10,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const TeacherQuiz = (props) => {
-  const [students, setStudents] = useState([]);
-  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [students, setStudents] = useState([]); //list of students
+  const [selectedStudent, setSelectedStudent] = useState(null); //selected student
   const [XP, setXP] = useState(0);
   const [counter, setCounter] = useState(0); //used to force reloads
 
   const addXP = () => {
-    if (selectedStudent !== null) {
+    if (selectedStudent !== null) { //if a student is selected, give them XP
       axios
         .post("http://localhost:5000/giveXP", {
           id: selectedStudent,
@@ -45,7 +45,7 @@ const TeacherQuiz = (props) => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudents", { email: props.id })
+      .post("http://localhost:5000/getStudents", { email: props.id }) //get the list of students
       .then((res) => {
         setStudents(res.data);
         console.log(counter);

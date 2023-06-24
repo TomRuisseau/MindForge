@@ -22,15 +22,15 @@ function DailyRand(props) {
     "Au choix",
     "Au choix",
   ];
-  const [updatedStudent, setUpdatedStudent] = useState(null);
-  const [students, setStudents] = useState([]);
-  const [selectedOption, setSelectedOption] = useState("");
-  const [toAddMana, setToAddMana] = useState(0);
-  const [toAddXP, setToAddXP] = useState(0);
-  const [toRemoveHP, setToRemoveHP] = useState(0);
-  const [show, setShow] = useState(false);
+  const [updatedStudent, setUpdatedStudent] = useState(null); //selected target
+  const [students, setStudents] = useState([]); //student list
+  const [selectedOption, setSelectedOption] = useState(""); //selected option
+  const [toAddMana, setToAddMana] = useState(0); //number of mana to add
+  const [toAddXP, setToAddXP] = useState(0); //number of xp to add
+  const [toRemoveHP, setToRemoveHP] = useState(0); //number of hp to remove
+  const [show, setShow] = useState(false); //visual state of the result
 
-  const selectStudent = () => {
+  const selectStudent = () => { //select a random student
     const randomIndex = Math.floor(Math.random() * students.length);
     setShow(false);
 
@@ -39,10 +39,9 @@ function DailyRand(props) {
     setToRemoveHP(0);
 
     setUpdatedStudent(students[randomIndex]);
-    console.log(updatedStudent);
   };
 
-  const addXP = () => {
+  const addXP = () => { //add random xp to the selected student
     //random number between 1 and 10
     const randomXP = Math.floor(Math.random() * 10) + 1;
     setShow(true);
@@ -54,14 +53,13 @@ function DailyRand(props) {
       })
       .then(() => {
         props.close();
-        console.log(toAddXP);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const addMana = () => {
+  const addMana = () => { //add random mana to the selected student
     //random number between 1 and 10
     const randomMana = Math.floor(Math.random() * 10) + 1;
     setShow(true);
@@ -80,7 +78,7 @@ function DailyRand(props) {
       });
   };
 
-  const removeHP = () => {
+  const removeHP = () => { //remove random hp to the selected student
     //random number between 1 and 10
     const randomHP = Math.floor(Math.random() * 10) + 1;
     setShow(true);
@@ -99,7 +97,7 @@ function DailyRand(props) {
       });
   };
 
-  const random = () => {
+  const random = () => { //select a random option among the list
     setShow(false);
     setToAddMana(0);
     setToAddXP(0);
@@ -112,10 +110,9 @@ function DailyRand(props) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudents", { email: props.id })
+      .post("http://localhost:5000/getStudents", { email: props.id }) //get the list of students
       .then((res) => {
         setStudents(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -146,40 +143,41 @@ function DailyRand(props) {
           </motion.h1>
         ) : null}
         <div className="w-50 h-25 d-flex flex-row text-center my-5 justify-content-between">
-          {selectedOption === "Quelqu'un va perdre des HP" ||
-          selectedOption === "Quelqu'un va gagner des XP" ||
-          selectedOption === "Quelqu'un va gagner du Mana" ||
-          selectedOption ===
-            "Quelqu'un sera dispensé de devoirs pour le prochain cours" ? (
-            <motion.div
-              //entrance animation
-              initial={{ scale: 0.4 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.2 }}
-              className="w-50 h-5O d-flex flex-column justify-content-between align-items-center"
-            >
-              <div className="w-100 mt-5 mb-3">
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 1 }}
-                  onClick={selectStudent}
-                  className="w-75 btn-quetes-valider just-color-yellow who-how-many-size"
-                >
-                  Qui donc ?
-                </motion.button>
-              </div>
-              <motion.div //entrance animation
+          { //option that needs a target :
+            selectedOption === "Quelqu'un va perdre des HP" ||
+              selectedOption === "Quelqu'un va gagner des XP" ||
+              selectedOption === "Quelqu'un va gagner du Mana" ||
+              selectedOption ===
+              "Quelqu'un sera dispensé de devoirs pour le prochain cours" ? (
+              <motion.div
+                //entrance animation
                 initial={{ scale: 0.4 }}
                 animate={{ scale: 1 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.2 }}
+                className="w-50 h-5O d-flex flex-column justify-content-between align-items-center"
               >
-                <h3 style={{ whiteSpace: "nowrap" }}>
-                  {updatedStudent &&
-                    `C'est pour ${updatedStudent.first_name} ${updatedStudent.surname}`}
-                </h3>
+                <div className="w-100 mt-5 mb-3">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 1 }}
+                    onClick={selectStudent}
+                    className="w-75 btn-quetes-valider just-color-yellow who-how-many-size"
+                  >
+                    Qui donc ?
+                  </motion.button>
+                </div>
+                <motion.div //entrance animation
+                  initial={{ scale: 0.4 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <h3 style={{ whiteSpace: "nowrap" }}>
+                    {updatedStudent &&
+                      `C'est pour ${updatedStudent.first_name} ${updatedStudent.surname}`}
+                  </h3>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          ) : null}
+            ) : null}
           {selectedOption === "Quelqu'un va gagner des XP" &&
             updatedStudent && (
               <div className="h-5O d-flex flex-column justify-content-between align-items-center">

@@ -13,7 +13,7 @@ function StudentQuests(props) {
   //comportement
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getQuests", {
+      .post("http://localhost:5000/getQuests", { //get the list of quests 
         email: props.data[0].teacher_email,
       })
       .then((res) => {
@@ -23,7 +23,7 @@ function StudentQuests(props) {
         console.log(err);
       });
     axios
-      .post("http://localhost:5000/getCompletedQuests", {
+      .post("http://localhost:5000/getCompletedQuests", { //get the list of quests completed by the student
         email: props.data[0].teacher_email,
         id: props.data[0].id,
       })
@@ -38,12 +38,12 @@ function StudentQuests(props) {
   const questValidation = (e) => {
     e.preventDefault(); // prevent page reload
     axios
-      .post("http://localhost:5000/questValidation", {
+      .post("http://localhost:5000/questValidation", { //validate the quest
         quest_id: e.target.parentElement.parentElement.getAttribute("data-key"),
         student_id: props.data[0].id,
       })
       .then((res) => {
-        props.data[0].xp += getReward(
+        props.data[0].xp += getReward( //add the quest's reward to the student's xp
           e.target.parentElement.parentElement.getAttribute("data-key")
         );
         setCounter(counter + 1);
@@ -53,7 +53,7 @@ function StudentQuests(props) {
       });
   };
 
-  const testCompletedQuests = (quest_id) => {
+  const testCompletedQuests = (quest_id) => { //check if the quest is already validated
     for (let i = 0; i < completedQuests.length; i++) {
       if (completedQuests[i].id == quest_id) {
         return true;
@@ -62,7 +62,7 @@ function StudentQuests(props) {
     return false;
   };
 
-  const getReward = (quest_id) => {
+  const getReward = (quest_id) => { //get the quest's reward
     for (let i = 0; i < quests.length; i++) {
       if (quests[i].id == quest_id) {
         return quests[i].reward;

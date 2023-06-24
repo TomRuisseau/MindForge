@@ -9,9 +9,9 @@ import Select from "react-select";
 function PopUpDead(props) {
   const [first_name, setFirst_name] = useState("");
   const [surname, setSurname] = useState("");
-  const [selectedOption, setSelectedOption] = useState("");
-  const [healers, setHealers] = useState([]);
-  const [healer, setHealer] = useState("0");
+  const [selectedOption, setSelectedOption] = useState(""); //selected option for healer
+  const [healers, setHealers] = useState([]); //list of healers that could revive the student
+  const [healer, setHealer] = useState("0"); //selected healer
 
   const options = [
     "L'équipe organise un goûter",
@@ -30,25 +30,25 @@ function PopUpDead(props) {
     "Faire un exposer en anglais",
   ];
 
-  const onClick = () => {
+  const onClick = () => { //when the button is clicked, select a random option
     const randomIndex = Math.floor(Math.random() * options.length);
     const selectedOption = options[randomIndex];
     setSelectedOption(selectedOption);
   };
 
-  const backToLife = () => {
-    if (healer !== "0") {
+  const backToLife = () => { //when the button is clicked, revive the student
+    if (healer !== "0") { //if a healer was selected, make them use revivification
       axios
         .post("http://localhost:5000/useRevivification", {
           id: healer,
         })
-        .then((res) => {})
+        .then((res) => { })
         .catch((err) => {
           console.log(err);
         });
     }
     axios
-      .post("http://localhost:5000/removeHp", {
+      .post("http://localhost:5000/removeHp", { //set the student's hp to 1
         id: props.id,
         damage: -1,
       })
@@ -62,12 +62,12 @@ function PopUpDead(props) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudent", { id: props.id })
+      .post("http://localhost:5000/getStudent", { id: props.id }) //get the student's name and team
       .then((res) => {
         setFirst_name(res.data[0].first_name);
         setSurname(res.data[0].surname);
         axios
-          .post("http://localhost:5000/getHealers", {
+          .post("http://localhost:5000/getHealers", { //get the list of healers that could revive the student
             id: props.id,
             team: res.data[0].team,
           })

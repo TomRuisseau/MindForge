@@ -7,20 +7,19 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function StudentLogger(props) {
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState(""); //student code
 
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
 
     axios
-      .post("http://localhost:5000/login/student", { code: code })
+      .post("http://localhost:5000/login/student", { code: code }) //ask the server if the code is correct
 
       .then((res) => {
-        console.log(res.data.length);
-        if (res.data.length !== 0) {
+        if (res.data.length !== 0) { //if code is correct, pass the student's data to the parent component and change the page
           props.onPass(res.data);
           props.onValidation("StudentDashboard");
-        } else {
+        } else { //if code is incorrect, display a toast
           toast.warning("Code incorrect", {
             position: "top-right",
             autoClose: 5000,
@@ -49,7 +48,7 @@ function StudentLogger(props) {
         className="position-absolute m-5 start-0 top-0"
         onClick={() => window.location.reload()}
       >
-        <img style={{ height: "5vh"}} src="media/logos/fleche_back.png" />
+        <img style={{ height: "5vh" }} src="media/logos/fleche_back.png" />
       </motion.div>
       <div className="mainChoice h-25 w-25 p-5 classic-glass">
         <form onSubmit={handleSubmit} className="d-flex flex-column log-size">

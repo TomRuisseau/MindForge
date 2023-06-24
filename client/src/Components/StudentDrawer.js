@@ -5,7 +5,8 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 
 const StudentDrawer = forwardRef((props, ref) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);//drawer is closed by default
+
   useImperativeHandle(ref, () => ({
     toggleDrawerOutside() {
       setIsOpen((prevState) => !prevState);

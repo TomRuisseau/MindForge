@@ -10,21 +10,21 @@ import Select from "react-select";
 function PopUpHP(props) {
   //state
   const [HP, setHP] = useState(0);
-  const [tanker, setTanker] = useState("0");
+  const [tanker, setTanker] = useState("0"); //selected tanker
   const [first_name, setFirst_name] = useState("");
   const [surname, setSurname] = useState("");
-  const [tanks, setTanks] = useState([]);
+  const [tanks, setTanks] = useState([]); //list of tanks that could protect the student
 
   //comportement
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudent", { id: props.id })
+      .post("http://localhost:5000/getStudent", { id: props.id }) //get the student's name and team
       .then((res) => {
         setFirst_name(res.data[0].first_name);
         setSurname(res.data[0].surname);
         axios
-          .post("http://localhost:5000/getTanks", {
+          .post("http://localhost:5000/getTanks", { //get the list of tanks that could protect the student
             id: props.id,
             team: res.data[0].team,
           })
@@ -42,7 +42,7 @@ function PopUpHP(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
-    if (tanker === "0") {
+    if (tanker === "0") { //if no tanker was selected, just remove the hp
       axios
         .post("http://localhost:5000/removeHp", {
           id: props.id,
@@ -58,7 +58,7 @@ function PopUpHP(props) {
         .catch((err) => {
           console.log(err);
         });
-    } else {
+    } else { //if a tanker was selected, remove the hp to the tank instead and make them use protection
       axios
         .post("http://localhost:5000/removeHp", {
           id: tanker,
@@ -78,7 +78,7 @@ function PopUpHP(props) {
         .post("http://localhost:5000/useProtection", {
           id: tanker,
         })
-        .then((res) => {})
+        .then((res) => { })
         .catch((err) => {
           console.log(err);
         });

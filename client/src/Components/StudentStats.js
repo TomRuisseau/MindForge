@@ -5,8 +5,8 @@ import "../Styles/Textes.css";
 import { motion } from "framer-motion";
 
 function StudentStats(props) {
-  const [studentStats, setStudentStats] = useState([]);
-  const [skin, setSkin] = useState("toutNu");
+  const [studentStats, setStudentStats] = useState([]); // liste des stats
+  const [skin, setSkin] = useState("toutNu"); // skin du personnage
 
   const className = {
     tank: "Protecteur",
@@ -16,7 +16,7 @@ function StudentStats(props) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudent", { id: props.id })
+      .post("http://localhost:5000/getStudent", { id: props.id }) //get the student's stats
       .then((res) => {
         setStudentStats(res.data);
       })
@@ -24,7 +24,7 @@ function StudentStats(props) {
         console.log(err);
       });
     axios
-      .post("http://localhost:5000/getSkin", { id: props.id })
+      .post("http://localhost:5000/getSkin", { id: props.id }) //get the student's skin
       .then((res) => {
         setSkin(res.data);
       })

@@ -5,11 +5,11 @@ import "../Styles/Glass.css";
 import "../Styles/Textes.css";
 
 const SmallList = (props) => {
-  const [students, setStudents] = useState([]);
+  const [students, setStudents] = useState([]); //list of students
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudents", { email: props.id })
+      .post("http://localhost:5000/getStudents", { email: props.id }) //get the list of students
       .then((res) => {
         // Ajouter la propriété bgColor initiale à chaque élève
         const updatedStudents = res.data.map((student) => ({

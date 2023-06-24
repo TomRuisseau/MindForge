@@ -12,17 +12,15 @@ function PopUpTeam(props) {
   //comportement
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
-    console.log(nomDequipe);
     axios
-      .post("http://localhost:5000/addTeam", {
+      .post("http://localhost:5000/addTeam", { //ask server to create the team
         email: props.id,
         name: nomDequipe,
       })
       .then((res) => {
-        if (res.data === 0) {
-          //console.log("team created");
+        if (res.data === 0) { //if the team was created, close the pop up
           props.close();
-        } else {
+        } else { //else, display an error message
           props.notify("Equipe déjà existante");
         }
       });

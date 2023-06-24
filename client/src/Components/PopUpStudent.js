@@ -12,13 +12,13 @@ function PopUpStudent(props) {
   //state
   const [nomEleve, setNomEleve] = useState("");
   const [prenomEleve, setPrenomEleve] = useState("");
-  const [classe, setClasse] = useState(""); //[classe1,classe2,classe3] //peut-être une classe par défaut
-  const [teams, setTeams] = useState([]); //[team1,team2,team3] //peut-être une team par défaut
-  const [team, setTeam] = useState(""); //[team1,team2,team3] //peut-être une team par défaut
+  const [classe, setClasse] = useState(""); //selected class
+  const [teams, setTeams] = useState([]); //list of teams
+  const [team, setTeam] = useState(""); //selected team
   //comportement
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getTeams", { email: props.id })
+      .post("http://localhost:5000/getTeams", { email: props.id }) //get the list of teams
       .then((res) => {
         setTeams(res.data);
         setTeam(res.data[0].name);
@@ -30,11 +30,10 @@ function PopUpStudent(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
-    //number of students in the team must not exceeds 5
     axios
-      .post("http://localhost:5000/getTeamSize", { team: team })
+      .post("http://localhost:5000/getTeamSize", { team: team }) //get the number of students in the team
       .then((res) => {
-        if (res.data[0].size < 4) {
+        if (res.data[0].size < 4) {//number of students in the team must not exceeds 4
           axios
             .post("http://localhost:5000/addStudent", {
               email: props.id,
@@ -66,10 +65,10 @@ function PopUpStudent(props) {
       style={{ zIndex: 2 }}
     >
       <motion.div
-      //entrance animation
-      initial={{ scale: 0.4 }}
-      animate={{ scale: 1 }}
-      transition={{ duration: 0.2 }} className="p-5 glass3 w-auto h-75 d-flex flex-column justify-content-between align-items-center">
+        //entrance animation
+        initial={{ scale: 0.4 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.2 }} className="p-5 glass3 w-auto h-75 d-flex flex-column justify-content-between align-items-center">
         <motion.button
           whileHover={{ scale: 2 }}
           className="btn-close btn-close-white m-3 position-absolute top-0 end-0"

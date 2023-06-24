@@ -9,16 +9,15 @@ import "../Styles/animations.css";
 import { motion } from "framer-motion";
 
 function TeacherDashboard(props) {
-  const [page, setPage] = useState("TeacherMenu"); // TeacherMenu, StudentManager, quests, quiz, dailyEvent, tutorial, settings
+  const [page, setPage] = useState("TeacherMenu"); // current page : TeacherMenu, StudentManager, quests, quiz, dailyEvent, tutorial, settings
   const childRef = useRef();
 
-  const switchPage = (page) => {
+  const switchPage = (page) => { //
     setPage(page);
-    console.log(page);
   };
   return (
     <>
-      <TeacherDrawer ref={childRef} onChoice={switchPage} />
+      <TeacherDrawer ref={childRef} onChoice={switchPage} /> 
 
       <motion.div
         whileHover={{

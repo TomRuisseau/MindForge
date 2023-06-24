@@ -9,7 +9,8 @@ import { motion } from "framer-motion";
 import "../Styles/teacherDrawer.css";
 
 const TeacherDrawer = forwardRef((props, ref) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false); //drawer is closed by default
+
   useImperativeHandle(ref, () => ({
     toggleDrawerOutside() {
       setIsOpen((prevState) => !prevState);

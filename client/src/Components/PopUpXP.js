@@ -11,17 +11,17 @@ function PopUpXP(props) {
   const [XP, setXP] = useState(0);
   const [first_name, setFirst_name] = useState("");
   const [surname, setSurname] = useState("");
-  const [mages, setMages] = useState([]);
-  const [mage, setMage] = useState("0");
+  const [mages, setMages] = useState([]); //list of mages that could use truquage du destin
+  const [mage, setMage] = useState("0"); //selected mage
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudent", { id: props.id })
+      .post("http://localhost:5000/getStudent", { id: props.id }) //get the student's name and team
       .then((res) => {
         setFirst_name(res.data[0].first_name);
         setSurname(res.data[0].surname);
         axios
-          .post("http://localhost:5000/getMages", {
+          .post("http://localhost:5000/getMages", { //get the list of mages that could use truquage du destin
             id: props.id,
             team: res.data[0].team,
           })
@@ -42,7 +42,7 @@ function PopUpXP(props) {
     e.preventDefault(); // prevent page reload
     if (mage === "0") {
       axios
-        .post("http://localhost:5000/giveXP", {
+        .post("http://localhost:5000/giveXP", { //if no mage was selected, just give the xp
           id: props.id,
           xp: XP,
         })
@@ -55,7 +55,7 @@ function PopUpXP(props) {
         });
     } else {
       axios
-        .post("http://localhost:5000/useTruquageDuDestin", {
+        .post("http://localhost:5000/useTruquageDuDestin", { //if a mage was selected, use truquage du destin
           id: props.id,
           team: getTeam(mage),
           xp: XP,

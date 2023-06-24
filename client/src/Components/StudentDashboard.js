@@ -10,14 +10,11 @@ import StudentClass from "./StudentClass";
 import { motion } from "framer-motion";
 
 function StudentDashboard(props) {
-  const [page, setPage] = useState("StudentProfile"); // StudentMenu, quests, quiz, dailyEvent, tutorial, settings, Quetes
+  const [page, setPage] = useState("StudentProfile"); // current page : StudentMenu, quests, quiz, dailyEvent, tutorial, settings, Quetes
   const childRef = useRef();
-
-  console.log(props.data);
 
   const switchPage = (page) => {
     setPage(page);
-    console.log(page);
   };
   return (
     <div>

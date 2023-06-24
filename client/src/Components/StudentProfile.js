@@ -20,9 +20,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function StudentProfile(props) {
-  console.log(props.data);
-  const [hpRatio, setHpRatio] = useState(0);
-  const [skin, setSkin] = useState("toutNu");
+  const [hpRatio, setHpRatio] = useState(0); // ratio de vie
+  const [skin, setSkin] = useState("toutNu"); // skin du personnage
   const [counter, setCounter] = useState(0); // pour forcer le rechargement de la page
 
   const [updated, setUpdated] = useState(false); // pour forcer le rechargement de la page aussi
@@ -31,16 +30,16 @@ function StudentProfile(props) {
 
   const [selectedSpell, setSelectedSpell] = useState("hidden"); // sort sélectionné
 
-  const openPopUp = (spell) => {
+  const openPopUp = (spell) => { // ouvre la pop up du sort sélectionné
     setSelectedSpell(spell);
   };
 
-  const addCounter = () => {
+  const addCounter = () => { // incrémente le compteur pour forcer le rechargement de la page
     isMountedRef.current = false;
     setCounter(counter + 1);
   };
 
-  function closePopUp() {
+  function closePopUp() { // ferme la pop up et force le rechargement de la page pour mettre à jour les données
     setSelectedSpell("hidden");
     addCounter();
   }
@@ -62,7 +61,7 @@ function StudentProfile(props) {
     if (!isMountedRef.current) {
       isMountedRef.current = true;
       axios
-        .post("http://localhost:5000/getSkin", { id: props.data[0].id })
+        .post("http://localhost:5000/getSkin", { id: props.data[0].id }) // récupère le skin du personnage
         .then((res) => {
           setSkin(res.data);
         })
@@ -70,9 +69,8 @@ function StudentProfile(props) {
           console.log(err);
         });
       axios
-        .post("http://localhost:5000/getStudent", { id: props.data[0].id })
+        .post("http://localhost:5000/getStudent", { id: props.data[0].id }) // récupère les données du personnage 
         .then((res) => {
-          console.log(res.data);
           props.data[0] = res.data[0];
           setUpdated(!updated);
         })
@@ -80,7 +78,7 @@ function StudentProfile(props) {
           console.log(err);
         });
       axios
-        .post("http://localhost:5000/getHp", { id: props.data[0].id })
+        .post("http://localhost:5000/getHp", { id: props.data[0].id }) // récupère le ratio de vie
         .then((res) => {
           setHpRatio(res.data);
         })

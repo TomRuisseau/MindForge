@@ -10,7 +10,7 @@ const SpellBar = (props) => {
   const [hoveredSpell, setHoveredSpell] = useState(null); // sort survolé
   const [glassClass, setGlassClass] = useState("glass-tank"); // classe du verre (tank, healer, mage)
 
-  let spellsMap = new Map();
+  let spellsMap = new Map(); //map used to translate spells names
   //tank
   spellsMap.set("protection", "Protection");
   spellsMap.set("halo salvateur", "Halo salvateur");
@@ -29,7 +29,7 @@ const SpellBar = (props) => {
 
   const isMountedRef = useRef(false);
 
-  useEffect(() => {
+  useEffect(() => { //change the glass class depending on the student's class
     const classToGlassClassMap = {
       tank: "glass-tank",
       mage: "glass-mage",
@@ -38,15 +38,15 @@ const SpellBar = (props) => {
     setGlassClass(classToGlassClassMap[props.data[0].class]);
   }, [props.data]);
 
-  const selectSpell = (spell) => {
+  const selectSpell = (spell) => { //open the spell's pop up
     props.openPopUp(spell);
   };
 
   useEffect(() => {
-    if (!isMountedRef.current) {
+    if (!isMountedRef.current) { //prevent multiple calls
       isMountedRef.current = true;
       axios
-        .post("http://localhost:5000/getSpells", {
+        .post("http://localhost:5000/getSpells", { //get the list of spells owned by the student
           id: props.data[0].id,
           class: props.data[0].class,
         })

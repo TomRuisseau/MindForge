@@ -14,12 +14,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 const StudentManager = (props) => {
   const [popUp, setPopUp] = useState("hidden"); //[hidden, addTeam, addStudent, removeHp, removeXp]
-  const [student, setStudent] = useState(0);
+  const [student, setStudent] = useState(0); //selected student
   const [counter, addCounter] = useState(0); //used to force reloads
   const [deadStudent, setDeadStudent] = useState(0); //used to force reloads
   const childRef = useRef();
 
-  const isDead = (id) => {
+  const isDead = (id) => { //if a student is dead, open the dead popup
     setDeadStudent(id);
     setPopUp("dead");
   };
@@ -36,7 +36,7 @@ const StudentManager = (props) => {
     setStudent(identifiant);
   };
 
-  const notify = (message) =>
+  const notify = (message) => //toastify notifications
     toast.warning(message, {
       position: "top-right",
       autoClose: 5000,

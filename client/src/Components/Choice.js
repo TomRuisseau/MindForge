@@ -42,7 +42,7 @@ function Choice(props) {
         </div>
       </div>
       <div
-        className={`containerAccueil ${isScrollNavbar ? "scrollNavbar" : ""}`}
+        className={`containerAccueil ${isScrollNavbar ? "scrollNavbar" : ""}`} //display navbar after scrolling down
       >
         <div className="glass1 px-5 pt-3 navbar mx-5 my-2">
           <h1> Se connecter : </h1>
@@ -87,15 +87,15 @@ function Choice(props) {
                 style={
                   selector === 0
                     ? {
-                        backgroundColor: "#f5cb5c",
-                        color: "#232826",
-                        transition: "all .5s ease",
-                      }
+                      backgroundColor: "#f5cb5c",
+                      color: "#232826",
+                      transition: "all .5s ease",
+                    }
                     : {
-                        backgroundColor: "#232826",
-                        color: "#f5cb5c",
-                        transition: "all .5s ease",
-                      }
+                      backgroundColor: "#232826",
+                      color: "#f5cb5c",
+                      transition: "all .5s ease",
+                    }
                 }
                 onMouseEnter={() => {
                   setSelector(0);
@@ -109,15 +109,15 @@ function Choice(props) {
                 style={
                   selector === 1
                     ? {
-                        backgroundColor: "#f5cb5c",
-                        color: "#232826",
-                        transition: "all .5s ease",
-                      }
+                      backgroundColor: "#f5cb5c",
+                      color: "#232826",
+                      transition: "all .5s ease",
+                    }
                     : {
-                        backgroundColor: "#232826",
-                        color: "#f5cb5c",
-                        transition: "all .5s ease",
-                      }
+                      backgroundColor: "#232826",
+                      color: "#f5cb5c",
+                      transition: "all .5s ease",
+                    }
                 }
                 onMouseEnter={() => {
                   setSelector(1);
@@ -131,22 +131,21 @@ function Choice(props) {
                 style={
                   selector === 2
                     ? {
-                        backgroundColor: "#f5cb5c",
-                        color: "#232826",
-                        transition: "all .5s ease",
-                      }
+                      backgroundColor: "#f5cb5c",
+                      color: "#232826",
+                      transition: "all .5s ease",
+                    }
                     : {
-                        backgroundColor: "#232826",
-                        color: "#f5cb5c",
-                        transition: "all .5s ease",
-                      }
+                      backgroundColor: "#232826",
+                      color: "#f5cb5c",
+                      transition: "all .5s ease",
+                    }
                 }
                 onMouseEnter={() => {
                   setSelector(2);
                   setActiveTab("Mage");
                 }}
                 //keep change on the button after click
-
                 class="tablinks"
               >
                 Mage
@@ -154,11 +153,10 @@ function Choice(props) {
             </div>
             <div
               id="Protecteur"
-              class={`tabcontent ${
-                activeTab === "Protecteur"
-                  ? "active d-flex flex-row align-items-center"
-                  : ""
-              }`}
+              class={`tabcontent ${activeTab === "Protecteur"
+                ? "active d-flex flex-row align-items-center"
+                : ""
+                }`}
             >
               <div
                 className="mx-4 w-100 d-flex flex-column justify-content-between"
@@ -184,11 +182,10 @@ function Choice(props) {
             </div>
             <div
               id="Soigneur"
-              class={`tabcontent ${
-                activeTab === "Soigneur"
-                  ? "active  h-75 d-flex flex-row align-items-center"
-                  : ""
-              }`}
+              class={`tabcontent ${activeTab === "Soigneur"
+                ? "active  h-75 d-flex flex-row align-items-center"
+                : ""
+                }`}
             >
               <div className="mx-4 h-100 w-100 d-flex flex-column justify-content-between">
                 <h3 className="mb-3">Soigneur</h3>
@@ -213,11 +210,10 @@ function Choice(props) {
             </div>
             <div
               id="Mage"
-              class={`tabcontent ${
-                activeTab === "Mage"
-                  ? "active  h-75 d-flex flex-row align-items-center"
-                  : ""
-              }`}
+              class={`tabcontent ${activeTab === "Mage"
+                ? "active  h-75 d-flex flex-row align-items-center"
+                : ""
+                }`}
             >
               <div className="mx-4 h-100 w-100 d-flex flex-column justify-content-between">
                 <h3 className="mb-3">Mage</h3>

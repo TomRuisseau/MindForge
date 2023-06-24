@@ -8,18 +8,17 @@ function Login(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
-    console.log(email, password);
     axios
-      .post("http://localhost:5000/login/teacher", {
+      .post("http://localhost:5000/login/teacher", { //send login data to server
         email: email,
         password: password,
       })
 
       .then((res) => {
-        if (res.data === 1) {
+        if (res.data === 1) { //if login is correct send validation to parent
           props.sendValidation("TeacherDashboard", email);
         } else {
-          props.notify("Email ou mot de passe érroné");
+          props.notify("Email ou mot de passe érroné"); //else send error message to parent
         }
       })
       .catch((err) => {
@@ -70,7 +69,7 @@ function Login(props) {
       <div>
         <motion.button
           whileHover={{ scale: 1.1 }}
-          onClick={() => props.onFormSwitch("Register")}
+          onClick={() => props.onFormSwitch("Register")} //send switch form request to parent
           className="btn-create-account just-color-white"
         >
           Créer un compte

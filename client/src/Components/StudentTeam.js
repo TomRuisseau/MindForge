@@ -5,11 +5,11 @@ import "../Styles/Textes.css";
 import "../Styles/Glass.css";
 
 function StudentTeam(props) {
-  const [team, setTeam] = useState([]);
+  const [team, setTeam] = useState([]); // liste des élèves de l'équipe
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudentsTeam", {
+      .post("http://localhost:5000/getStudentsTeam", { //get the list of students in the team
         team: props.data[0].team,
       })
       .then((res) => {

@@ -8,9 +8,9 @@ import "../Styles/Textes.css";
 import "../Styles/Scroll.css";
 
 function TeacherMenu(props) {
-  const [value, setValue] = useState(new Date());
-  const [student, setStudent] = useState({});
-  const [skin, setSkin] = useState("toutNu");
+  const [value, setValue] = useState(new Date()); // clock
+  const [student, setStudent] = useState({}); // élève sélectionné
+  const [skin, setSkin] = useState("toutNu"); // skin de l'élève
   const [quests, setQuests] = useState([]); // liste des quêtes
 
   const isMountedRef = useRef(false);
@@ -19,12 +19,12 @@ function TeacherMenu(props) {
     if (!isMountedRef.current) {
       isMountedRef.current = true;
       axios
-        .post("http://localhost:5000/getRandomStudent", { id: props.id })
+        .post("http://localhost:5000/getRandomStudent", { id: props.id }) //pick a random student
         .then((res) => {
           setStudent(res.data);
           if (res.data.id !== undefined) {
             axios
-              .post("http://localhost:5000/getSkin", { id: res.data.id })
+              .post("http://localhost:5000/getSkin", { id: res.data.id }) //get the random student's skin
               .then((res) => {
                 setSkin(res.data);
               })
@@ -33,14 +33,14 @@ function TeacherMenu(props) {
               });
           }
           else {
-            setStudent({ first_name: "Aucun", surname: "élève", xp: 0 });
+            setStudent({ first_name: "Aucun", surname: "élève", xp: 0 }); //if no student is found, display "aucun élève"
           }
         })
         .catch((err) => {
           console.log(err);
         });
       axios
-        .post("http://localhost:5000/getQuests", { email: props.id })
+        .post("http://localhost:5000/getQuests", { email: props.id }) //get the list of quests
         .then((res) => {
           setQuests(res.data);
         })
@@ -50,7 +50,7 @@ function TeacherMenu(props) {
     }
   }, [props.id]);
 
-  useEffect(() => {
+  useEffect(() => { //clock initialization
     const interval = setInterval(() => setValue(new Date()), 1000);
 
     return () => {

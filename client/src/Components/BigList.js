@@ -9,16 +9,16 @@ import "../Styles/Textes.css";
 const BigList = forwardRef((props, ref) => {
   //state
   const [students, setStudents] = useState([]); //liste des élèves
-  const [count, setCount] = useState(0); //compteur de rechargement
+  const [count, setCount] = useState(0); //used to force reload
 
   //comportement
-  useImperativeHandle(ref, () => ({
+  useImperativeHandle(ref, () => ({  //function to force reload from parent
     forceReload: () => {
       setCount(count + 1);
     },
   }));
 
-  const changeBackground = (studentId) => {
+  const changeBackground = (studentId) => { //change background color of selected student
     setStudents((prevStudents) =>
       prevStudents.map((student) => {
         if (student.id === studentId) {
@@ -33,7 +33,7 @@ const BigList = forwardRef((props, ref) => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudents", { email: props.id })
+      .post("http://localhost:5000/getStudents", { email: props.id }) //get list of students
       .then((res) => {
         // Ajouter la propriété bgColor initiale à chaque élève
         const updatedStudents = res.data.map((student) => ({
@@ -54,7 +54,7 @@ const BigList = forwardRef((props, ref) => {
         overflow: "auto",
       }}
     >
-      {Array.from(
+      {Array.from( //group students by team
         students.reduce((teamMap, student) => {
           if (teamMap.has(student.team)) {
             teamMap.get(student.team).push(student);
@@ -63,7 +63,7 @@ const BigList = forwardRef((props, ref) => {
           }
           return teamMap;
         }, new Map())
-      ).map(([team, members]) => (
+      ).map(([team, members]) => ( //display students by team
         <React.Fragment key={team}>
           <h3 className="hug team-name">{team}</h3>
           <table className="mb-5">
@@ -73,10 +73,10 @@ const BigList = forwardRef((props, ref) => {
                   key={student.id}
                   style={{
                     backgroundColor: student.bgColor,
-                    cursor: "pointer", // Ajoutez cette ligne pour changer le curseur en pointeur
+                    cursor: "pointer",
                   }}
                   onClick={() => changeBackground(student.id)}
-                  className="on-hover"
+                  className="on-hover" //classe pour changer la couleur de fond au survol
                 >
                   <td
                     className={`px-5 hug taille-lignes-tab ${student.supclass}`}

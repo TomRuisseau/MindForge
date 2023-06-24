@@ -9,13 +9,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import { motion } from "framer-motion";
 
 function TeacherLogger(props) {
-  const [currentForm, setCurrentForm] = useState("Login"); // ['Login', 'Register']
+  const [currentForm, setCurrentForm] = useState("Login"); // current form : ['Login', 'Register']
 
-  const toggleForm = (formName) => {
+  const toggleForm = (formName) => { //switch between login and register
     setCurrentForm(formName);
   };
 
-  const validation = (page, id) => {
+  const validation = (page, id) => { //send validation to parent
     props.onPass(id);
     props.onValidation(page);
   };
@@ -36,7 +36,7 @@ function TeacherLogger(props) {
       className="d-flex justify-content-center align-items-center"
       style={{ height: "100vh" }}
     >
-        <motion.div
+      <motion.div
         whileHover={{
           scale: 1.4,
           originX: 0,
@@ -45,7 +45,7 @@ function TeacherLogger(props) {
         className="position-absolute m-5 start-0 top-0"
         onClick={() => window.location.reload()}
       >
-        <img style={{ height: "5vh"}} src="media/logos/fleche_back.png" />
+        <img style={{ height: "5vh" }} src="media/logos/fleche_back.png" />
       </motion.div>
 
       <div className="w-25 h-50 hug just-color-black log-size classic-glass p-4 text-center">
