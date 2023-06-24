@@ -4,8 +4,8 @@ import "../Styles/Buttons.css";
 import "../Styles/Textes.css";
 import "../Styles/Glass.css";
 import { motion } from "framer-motion";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import SpellDescription from "./SpellDescription";
 
 function Shop(props) {
@@ -41,10 +41,12 @@ function Shop(props) {
   spellsMap.set("expansion du savoir", "Expansion du savoir");
 
   useEffect(() => {
-    if (!isMountedRef.current) { //prevent multiple calls
+    if (!isMountedRef.current) {
+      //prevent multiple calls
       isMountedRef.current = true;
       axios
-        .post("http://localhost:5000/getSkinsShop", { //get the list of skins and spells for the student's shop
+        .post("http://localhost:5000/getSkinsShop", {
+          //get the list of skins and spells for the student's shop
           id: props.data[0].id,
           class: props.data[0].class,
         })
@@ -59,7 +61,8 @@ function Shop(props) {
     }
   }, [props.data, counter]);
 
-  const select = (e) => { //select a skin or a spell by clicking on it
+  const select = (e) => {
+    //select a skin or a spell by clicking on it
     if (e.target.getAttribute("data-key") === null) {
       setSelected(e.target.parentNode.getAttribute("data-key"));
     } else {
@@ -77,9 +80,11 @@ function Shop(props) {
     setGlassClass(classToGlassClassMap[props.data[0].class]);
   }, [props.data]);
 
-  const buy = () => { //buy a skin or a spell
+  const buy = () => {
+    //buy a skin or a spell
     let price = 0;
-    skins.forEach((skin) => { //get the price of the selected skin or spell
+    skins.forEach((skin) => {
+      //get the price of the selected skin or spell
       if (skin.name === selected) {
         price = skin.cost;
       }
@@ -89,7 +94,8 @@ function Shop(props) {
         price = spell.cost;
       }
     });
-    if (props.data[0].xp >= price) { //check if the student has enough xp
+    if (props.data[0].xp >= price) {
+      //check if the student has enough xp
       axios
         .post("http://localhost:5000/buy", {
           id: props.data[0].id,
@@ -98,7 +104,7 @@ function Shop(props) {
         })
         .then((res) => {
           props.data[0].xp -= price;
-          setCounter(counter + 1); //force the re-render 
+          setCounter(counter + 1); //force the re-render
         })
         .catch((err) => {
           console.log(err);
@@ -117,7 +123,8 @@ function Shop(props) {
     }
   };
 
-  const equip = () => { //equip a skin
+  const equip = () => {
+    //equip a skin
     axios
       .post("http://localhost:5000/equip", {
         id: props.data[0].id,
@@ -131,7 +138,8 @@ function Shop(props) {
       });
   };
 
-  const isOwned = (name) => { //check if the student owns a skin or a spell
+  const isOwned = (name) => {
+    //check if the student owns a skin or a spell
     let owned = false;
     skins.forEach((skin) => {
       if (skin.name === name && skin.owned) {
@@ -146,7 +154,8 @@ function Shop(props) {
     return owned;
   };
 
-  const isSkin = (name) => { //check if the item is a skin
+  const isSkin = (name) => {
+    //check if the item is a skin
     let _skin = false;
     skins.forEach((skin) => {
       if (skin.name === name) {
@@ -156,7 +165,8 @@ function Shop(props) {
     return _skin;
   };
 
-  const isSpell = (name) => { //check if the item is a spell
+  const isSpell = (name) => {
+    //check if the item is a spell
     let _spell = false;
     spells.forEach((spell) => {
       if (spell.name === name) {
@@ -166,7 +176,8 @@ function Shop(props) {
     return _spell;
   };
 
-  const isEquiped = (name) => { //check if a skin is equiped
+  const isEquiped = (name) => {
+    //check if a skin is equiped
     let equiped = false;
     skins.forEach((skin) => {
       if (skin.name === name && skin.equiped == "1") {
@@ -176,7 +187,8 @@ function Shop(props) {
     return equiped;
   };
 
-  const close = () => { //close the description pop up
+  const close = () => {
+    //close the description pop up
     setDescription("hidden");
   };
 
@@ -239,7 +251,6 @@ function Shop(props) {
           <div className="h-75 d-flex flex-column justify-content-between">
             <h1 className="just-color-yellow">Actions</h1>
 
-
             {selected !== "" && !isOwned(selected) ? (
               <motion.button
                 whileHover={{
@@ -260,7 +271,6 @@ function Shop(props) {
                 Acheter
               </button>
             )}
-
 
             {isOwned(selected) && isSkin(selected) && !isEquiped(selected) ? (
               <motion.button
@@ -294,16 +304,15 @@ function Shop(props) {
                 className={`${glassClass} btn-just-circle just-color-white big-button px-4`}
                 onClick={() => setDescription(selected)}
               >
-                Description
+                Effet
               </motion.button>
             ) : (
               <button
                 className={`${glassClass} btn-just-circle opacity-25 just-color-white big-button px-4`}
               >
-                Description
+                Effet
               </button>
             )}
-
           </div>
         </div>
         <div className="box-size-2 glass1 d-flex flex-column justify-content-between p-4">
@@ -352,7 +361,7 @@ function Shop(props) {
       />
 
       <SpellDescription state={description} close={close}></SpellDescription>
-    </div >
+    </div>
   );
 }
 

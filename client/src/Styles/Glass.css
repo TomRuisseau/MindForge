@@ -80,7 +80,7 @@
 
 .glass-tank {
   /* From https://css.glass */
-  background: rgba(161, 0, 0, 0.559);
+  background: rgba(84, 4, 4, 0.559);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(7.8px);
@@ -90,7 +90,7 @@
 
 .glass-healer {
   /* From https://css.glass */
-  background: rgba(0, 161, 0, 0.559);
+  background: rgba(8, 75, 8, 0.559);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(7.8px);
@@ -100,7 +100,7 @@
 
 .glass-mage {
   /* From https://css.glass */
-  background: rgba(0, 0, 161, 0.559);
+  background: rgba(3, 3, 96, 0.559);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(7.8px);
