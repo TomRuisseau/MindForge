@@ -7,7 +7,7 @@ import "../../Styles/Buttons.css";
 
 function AuraMagique(props) {
   const useSpell = () => {
-    if (props.data[0].mana >= 4) {
+    if (props.data[0].mana >= 4) { //check if student has enough mana
       axios
         .post("http://localhost:5000/useAuraMagique", {
           id: props.data[0].id,
@@ -57,7 +57,7 @@ function AuraMagique(props) {
               whileTap={{ scale: 1 }}
               type="submit"
               className="btn-pop-up-valider just-color-white big-button px-4 pt-1 my-3"
-            >
+              onClick={useSpell}>
               Utiliser
             </motion.button>
           </div>
