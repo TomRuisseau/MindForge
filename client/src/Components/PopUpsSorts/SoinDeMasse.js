@@ -9,7 +9,6 @@ function SoinDeMasse(props) {
     if (props.data[0].mana >= 4) {
       axios
         .post("http://localhost:5000/useSoinDeMasse", {
-          //changer le nom de la route
           id: props.data[0].id,
           team: props.data[0].team,
         })
@@ -20,7 +19,7 @@ function SoinDeMasse(props) {
           console.log(err);
         });
     } else {
-      alert("Vous n'avez pas assez de mana pour utiliser ce sort !");
+      props.manaAlert();
     }
   };
 
@@ -57,6 +56,7 @@ function SoinDeMasse(props) {
               whileTap={{ scale: 1 }}
               type="submit"
               className="btn-pop-up-valider just-color-white big-button px-4 pt-1 my-3"
+              onClick={useSpell}
             >
               Utiliser
             </motion.button>

@@ -39,9 +39,7 @@ function VagueDeMana(props) {
           console.log(err);
         });
     } else {
-      alert(
-        "Vous n'avez pas assez de mana ou de points de vie pour utiliser ce sort !"
-      );
+      props.manaAlert();
     }
   };
 

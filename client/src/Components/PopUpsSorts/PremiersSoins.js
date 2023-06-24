@@ -40,7 +40,7 @@ function PremiersSoins(props) {
           console.log(err);
         });
     } else {
-      alert("Vous n'avez pas assez de mana pour utiliser ce sort !");
+      props.manaAlert();
     }
   };
 

@@ -16,6 +16,8 @@ import SoinDeMasse from "./PopUpsSorts/SoinDeMasse";
 import TruquageDuDestin from "./PopUpsSorts/TruquageDuDestin";
 import VagueDeMana from "./PopUpsSorts/VagueDeMana";
 import Reviviscence from "./PopUpsSorts/Reviviscence";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function StudentProfile(props) {
   console.log(props.data);
@@ -42,6 +44,19 @@ function StudentProfile(props) {
     setSelectedSpell("hidden");
     addCounter();
   }
+
+  const manaAlert = () => {
+    toast.warning("Pas assez de mana pour utiliser ce sort", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
 
   useEffect(() => {
     if (!isMountedRef.current) {
@@ -134,7 +149,7 @@ function StudentProfile(props) {
 
           <div className="text-center my-5">
             {parseInt(props.data[0].protected) &&
-            parseInt(props.data[0].minded) ? (
+              parseInt(props.data[0].minded) ? (
               <div>
                 <h3>* Tu es protégé par un Halo *</h3>
                 <h3>* Ton prochain gain d'XP sera doublé *</h3>
@@ -168,35 +183,47 @@ function StudentProfile(props) {
       </div>
       {
         {
-          protection: <Protection data={props.data} close={closePopUp} />,
-          aura_magique: <AuraMagique data={props.data} close={closePopUp} />,
+          protection: <Protection data={props.data} close={closePopUp} manaAlert={manaAlert} />,
+          aura_magique: <AuraMagique data={props.data} close={closePopUp} manaAlert={manaAlert} />,
           premiers_soins: (
-            <PremiersSoins data={props.data} close={closePopUp} />
+            <PremiersSoins data={props.data} close={closePopUp} manaAlert={manaAlert} />
           ),
           apaisement_majeur: (
-            <ApaisementMajeur data={props.data} close={closePopUp} />
+            <ApaisementMajeur data={props.data} close={closePopUp} manaAlert={manaAlert} />
           ),
           expansion_du_savoir: (
-            <ExpansionDuSavoir data={props.data} close={closePopUp} />
+            <ExpansionDuSavoir data={props.data} close={closePopUp} manaAlert={manaAlert} />
           ),
           halo_salvateur: (
-            <HaloSalvateur data={props.data} close={closePopUp} />
+            <HaloSalvateur data={props.data} close={closePopUp} manaAlert={manaAlert} />
           ),
-          purification: <Purification data={props.data} close={closePopUp} />,
+          purification: <Purification data={props.data} close={closePopUp} manaAlert={manaAlert} />,
           imposition_des_mains: (
-            <ImpositionDesMains data={props.data} close={closePopUp} />
+            <ImpositionDesMains data={props.data} close={closePopUp} manaAlert={manaAlert} />
           ),
-          soin_de_masse: <SoinDeMasse data={props.data} close={closePopUp} />,
+          soin_de_masse: <SoinDeMasse data={props.data} close={closePopUp} manaAlert={manaAlert} />,
           truquage_du_destin: (
-            <TruquageDuDestin data={props.data} close={closePopUp} />
+            <TruquageDuDestin data={props.data} close={closePopUp} manaAlert={manaAlert} />
           ),
-          vague_de_mana: <VagueDeMana data={props.data} close={closePopUp} />,
-          reviviscence: <Reviviscence data={props.data} close={closePopUp} />,
+          vague_de_mana: <VagueDeMana data={props.data} close={closePopUp} manaAlert={manaAlert} />,
+          reviviscence: <Reviviscence data={props.data} close={closePopUp} manaAlert={manaAlert} />,
 
           hidden: null,
           default: null,
         }[selectedSpell]
       }
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }

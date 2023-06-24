@@ -6,15 +6,20 @@ import "../../Styles/Buttons.css";
 
 function HaloSalvateur(props) {
   const useSpell = () => {
+    if (props.data[0].mana < 6) {
+      props.manaAlert();
+      return;
+    }
     axios
       .post("http://localhost:5000/useHaloSalvateur", {
         id: props.data[0].id,
       })
-      .then((res) => {})
+      .then((res) => {
+        props.close();
+      })
       .catch((err) => {
         console.log(err);
       });
-    props.close();
   };
 
   return (
@@ -23,10 +28,10 @@ function HaloSalvateur(props) {
       style={{ zIndex: 2 }}
     >
       <motion.div
-      //entrance animation
-      initial={{ scale: 0.4 }}
-      animate={{ scale: 1 }}
-      transition={{ duration: 0.2 }} className="px-3 py-3 w-50 h-50 glass3 text-center d-flex flex-column align-items-center justify-content-between">
+        //entrance animation
+        initial={{ scale: 0.4 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.2 }} className="px-3 py-3 w-50 h-50 glass3 text-center d-flex flex-column align-items-center justify-content-between">
         <div className="d-flex flex-row justify-content-between">
           <h1 className="px-5">Halo salvateur</h1>
           <motion.button
@@ -48,6 +53,7 @@ function HaloSalvateur(props) {
               whileTap={{ scale: 1 }}
               type="submit"
               className="btn-pop-up-valider just-color-white big-button px-4 pt-1 my-3"
+              onClick={useSpell}
             >
               Utiliser
             </motion.button>
