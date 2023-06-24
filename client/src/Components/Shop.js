@@ -6,6 +6,7 @@ import "../Styles/Glass.css";
 import { motion } from "framer-motion";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SpellDescription from "./SpellDescription";
 
 function Shop(props) {
   const [spells, setSpells] = useState([]); // liste des sorts
@@ -13,6 +14,7 @@ function Shop(props) {
   const [selected, setSelected] = useState(""); // liste des skins
   const [counter, setCounter] = useState(0); // pour forcer le rechargement de la page quand valide une quête
   const [glassClass, setGlassClass] = useState(""); // classe du verre (tank, healer, mage) pour changer la couleur
+  const [description, setDescription] = useState("hidden"); // description du skin ou du sort
 
   const isMountedRef = useRef(false);
 
@@ -174,6 +176,10 @@ function Shop(props) {
     return equiped;
   };
 
+  const close = () => { //close the description pop up
+    setDescription("hidden");
+  };
+
   return (
     <div
       className="w-100 p-3 d-flex flex-column align-items-center hug just-color-white justify-content-center"
@@ -286,7 +292,7 @@ function Shop(props) {
                   scale: 0.9,
                 }}
                 className={`${glassClass} btn-just-circle just-color-white big-button px-4`}
-                onClick={equip}
+                onClick={() => setDescription(selected)}
               >
                 Description
               </motion.button>
@@ -344,7 +350,9 @@ function Shop(props) {
         pauseOnHover
         theme="colored"
       />
-    </div>
+
+      <SpellDescription state={description} close={close}></SpellDescription>
+    </div >
   );
 }
 
