@@ -259,14 +259,14 @@ function Shop(props) {
                 whileTap={{
                   scale: 0.9,
                 }}
-                className={`${glassClass} btn-just-circle just-color-white big-button px-4`}
+                className={`${glassClass} btn-just-circle just-color-white big-button pt-1 px-4`}
                 onClick={buy}
               >
                 Acheter
               </motion.button>
             ) : (
               <button
-                className={`${glassClass} btn-just-circle opacity-25 just-color-white big-button px-4`}
+                className={`${glassClass} btn-just-circle opacity-25 just-color-white pt-1 big-button px-4`}
               >
                 Acheter
               </button>
@@ -280,14 +280,14 @@ function Shop(props) {
                 whileTap={{
                   scale: 0.9,
                 }}
-                className={`${glassClass} btn-just-circle just-color-white big-button px-4`}
+                className={`${glassClass} btn-just-circle just-color-white big-button pt-1 px-4`}
                 onClick={equip}
               >
                 Équiper
               </motion.button>
             ) : (
               <button
-                className={`${glassClass} btn-just-circle opacity-25 just-color-white big-button px-4`}
+                className={`${glassClass} btn-just-circle opacity-25 just-color-white big-button pt-1 px-4`}
               >
                 Équiper
               </button>
@@ -301,14 +301,14 @@ function Shop(props) {
                 whileTap={{
                   scale: 0.9,
                 }}
-                className={`${glassClass} btn-just-circle just-color-white big-button px-4`}
+                className={`${glassClass} btn-just-circle just-color-white big-button pt-1 px-4`}
                 onClick={() => setDescription(selected)}
               >
                 Effet
               </motion.button>
             ) : (
               <button
-                className={`${glassClass} btn-just-circle opacity-25 just-color-white big-button px-4`}
+                className={`${glassClass} btn-just-circle opacity-25 just-color-white big-button pt-1 px-4`}
               >
                 Effet
               </button>
@@ -319,7 +319,8 @@ function Shop(props) {
           <h1 className="just-color-yellow text-center">Skins</h1>
           <div className="d-flex flex-row w-100">
             {skins.map((skin) => {
-              let bg = skin.name === selected ? "classic-glass-select" : "hover-glass";
+              let bg =
+                skin.name === selected ? "classic-glass-select" : "hover-glass";
               let className =
                 "d-flex flex-column justify-content-between align-items-center py-3 mx-1 " +
                 bg; //mettre ici les autres classes de la div
@@ -333,14 +334,14 @@ function Shop(props) {
                   <h2>{skinsMap.get(skin.name.split("_").join(" "))}</h2>
                   <img
                     src={`media/skin/${skin.name}.png`}
-                    style={{ width: "140%"}}
+                    style={{ width: "140%" }}
                   ></img>
                   <p>
                     {!skin.owned
                       ? "Prix : " + skin.cost + " XP"
                       : "En poche" + (isEquiped(skin.name) ? " et équipé" : "")}
                   </p>
-                  <div/>
+                  <div />
                 </div>
               );
             })}
