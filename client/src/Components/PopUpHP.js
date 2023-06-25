@@ -128,7 +128,7 @@ function PopUpHP(props) {
                 }
               }}
               type="number"
-              className="form-control opacity-75"
+              className="form-control"
               placeholder="0"
               id="hp"
               name="hp"

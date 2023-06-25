@@ -21,7 +21,8 @@ function PopUpXP(props) {
         setFirst_name(res.data[0].first_name);
         setSurname(res.data[0].surname);
         axios
-          .post("http://localhost:5000/getMages", { //get the list of mages that could use truquage du destin
+          .post("http://localhost:5000/getMages", {
+            //get the list of mages that could use truquage du destin
             id: props.id,
             team: res.data[0].team,
           })
@@ -42,7 +43,8 @@ function PopUpXP(props) {
     e.preventDefault(); // prevent page reload
     if (mage === "0") {
       axios
-        .post("http://localhost:5000/giveXP", { //if no mage was selected, just give the xp
+        .post("http://localhost:5000/giveXP", {
+          //if no mage was selected, just give the xp
           id: props.id,
           xp: XP,
         })
@@ -55,7 +57,8 @@ function PopUpXP(props) {
         });
     } else {
       axios
-        .post("http://localhost:5000/useTruquageDuDestin", { //if a mage was selected, use truquage du destin
+        .post("http://localhost:5000/useTruquageDuDestin", {
+          //if a mage was selected, use truquage du destin
           id: props.id,
           team: getTeam(mage),
           xp: XP,
@@ -120,7 +123,7 @@ function PopUpXP(props) {
                 }
               }}
               type="number"
-              className="form-control opacity-75"
+              className="form-control"
               placeholder="0"
               id="xp"
               name="xp"

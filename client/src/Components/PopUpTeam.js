@@ -57,7 +57,7 @@ function PopUpTeam(props) {
               value={nomDequipe}
               onChange={(e) => setNomDequipe(e.target.value)}
               type="text"
-              className="form-control opacity-75"
+              className="form-control"
               placeholder="Un nom d'équipe"
               id="nomDequipe"
               name="nomDequipe"

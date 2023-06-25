@@ -122,7 +122,7 @@ function PopUpStudent(props) {
               value={nomEleve}
               onChange={(e) => setNomEleve(e.target.value)}
               type="text"
-              className="form-control opacity-75"
+              className="form-control"
               placeholder="Dupont"
               id="nomEleve"
               name="nomEleve"
@@ -138,7 +138,7 @@ function PopUpStudent(props) {
               value={prenomEleve}
               onChange={(e) => setPrenomEleve(e.target.value)}
               type="text"
-              className="form-control opacity-75"
+              className="form-control"
               placeholder="Jean"
               id="prenomEleve"
               name="prenomEleve"
