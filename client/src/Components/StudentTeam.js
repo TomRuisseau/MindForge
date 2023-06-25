@@ -9,7 +9,8 @@ function StudentTeam(props) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/getStudentsTeam", { //get the list of students in the team
+      .post("http://localhost:5000/getStudentsTeam", {
+        //get the list of students in the team
         team: props.data[0].team,
       })
       .then((res) => {
@@ -45,15 +46,17 @@ function StudentTeam(props) {
           Mon équipe : {props.data[0].team}
         </h1>
         <div className="d-flex flex-column h-100 justify-content-between">
-          <div className="w-100 h-100 d-flex flex-row justify-content-between align-items-center p-5">
+          <div
+            className="w-100 h-100 d-flex flex-row justify-content-between align-items-center"
+            style={{ paddingTop: "50px" }}
+          >
             {team.map((student) => {
               return (
                 <div className="h-100 d-flex flex-column justify-content-between">
                   <h3 className="text-center">{student.first_name}</h3>
                   <img
                     src={`media/skin/${student.skin}.png`}
-                    className="mt-5"
-                    style={{ height: "400px" }}
+                    style={{ height: "420px" }}
                     alt="skin"
                   ></img>
                   <div
