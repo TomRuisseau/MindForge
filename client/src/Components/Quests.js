@@ -34,7 +34,8 @@ function Quests(props) {
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
     axios
-      .post("http://localhost:5000/addQuest", { //add a quest
+      .post("http://localhost:5000/addQuest", {
+        //add a quest
         email: props.id,
         description: description,
         reward: reward,
@@ -49,7 +50,8 @@ function Quests(props) {
       });
   };
 
-  const select = (e) => { //select a quest by clicking on it
+  const select = (e) => {
+    //select a quest by clicking on it
     let key = e.target.parentNode.getAttribute("data-key");
     setSelectedQuest(key);
     const blankQuests = quests.map((quest) => {
@@ -66,7 +68,8 @@ function Quests(props) {
   const deleteQuest = (e) => {
     e.preventDefault(); // prevent page reload
     axios
-      .post("http://localhost:5000/deleteQuest", { //delete a quest
+      .post("http://localhost:5000/deleteQuest", {
+        //delete a quest
         id: selectedQuest,
       })
       .then((res) => {
@@ -149,7 +152,16 @@ function Quests(props) {
               </label>
               <input
                 value={reward}
-                onChange={(e) => setReward(e.target.value)}
+                onChange={(e) => {
+                  if (e.target.value >= 0) {
+                    setReward(e.target.value);
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "-" || e.key === "e" || e.key === "E") {
+                    e.preventDefault();
+                  }
+                }}
                 type="number"
                 className="form-control opacity-75"
                 placeholder="0"
