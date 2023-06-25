@@ -214,7 +214,7 @@ function Shop(props) {
             {spells.map((spell) => {
               let bg =
                 spell.name === selected
-                  ? "classic-glass"
+                  ? "classic-glass-select"
                   : glassClass + " hover-glass";
               let className =
                 "rounded d-flex flex-column justify-content-center align-items-center " +
@@ -317,11 +317,11 @@ function Shop(props) {
         </div>
         <div className="box-size-2 glass1 d-flex flex-column justify-content-between p-4">
           <h1 className="just-color-yellow text-center">Skins</h1>
-          <div className="d-flex d-flex1 flex-row">
+          <div className="d-flex flex-row w-100">
             {skins.map((skin) => {
-              let bg = skin.name === selected ? "classic-glass" : "hover-glass";
+              let bg = skin.name === selected ? "classic-glass-select" : "hover-glass";
               let className =
-                "d-flex flex-column justify-content-between align-items-center py-3 " +
+                "d-flex flex-column justify-content-between align-items-center py-3 mx-1 " +
                 bg; //mettre ici les autres classes de la div
               return (
                 <div
@@ -333,14 +333,14 @@ function Shop(props) {
                   <h2>{skinsMap.get(skin.name.split("_").join(" "))}</h2>
                   <img
                     src={`media/skin/${skin.name}.png`}
-                    style={{ width: "140%" }}
+                    style={{ width: "140%"}}
                   ></img>
                   <p>
                     {!skin.owned
                       ? "Prix : " + skin.cost + " XP"
                       : "En poche" + (isEquiped(skin.name) ? " et équipé" : "")}
                   </p>
-                  <div />
+                  <div/>
                 </div>
               );
             })}
